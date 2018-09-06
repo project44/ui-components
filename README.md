@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install --save ui-components
+npm install --save project44/ui-components
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ npm install --save ui-components
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'ui-components'
+import { MyComponent } from 'ui-components'
 
 class Example extends Component {
   render () {
