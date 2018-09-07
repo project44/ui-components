@@ -7,14 +7,22 @@ import { Button } from 'antd';
 
 import Header from './components/common/Header';
 import SideNav from './components/common/SideNav';
+import Components from './components/common/Components';
+import Landing from './components/Landing';
+
 
 export default class App extends Component {
   render () {
+    console.log(this.props);
     return (
-      <div>
-        <Header />
-        <SideNav />
-      </div>
+      <BrowserRouter>
+        <div className="p44-ui">
+          {/* <Header /> */}
+          <SideNav />
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/components" component={Components} />
+        </div>
+      </BrowserRouter>
     )
   }
 }
