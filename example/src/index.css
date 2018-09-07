@@ -18,14 +18,32 @@ html {
   flex-direction: row;
   height:100%;
 }
-.p44-ui__logo {
+.logo {
   padding: 18px 0;
   border-right: 1px solid #e8e8e8;
 }
-.p44-ui__logo img {
+.logo img {
   display: block;
   width: 75px;
   margin: 0 auto;
+}
+.logo .sm {
+  width: 25px;
+}
+.p44-ui__header {}
+  .header__trigger {
+    margin-left: 18px;
+  }
+  .header__trigger:hover {
+    cursor: pointer;
+  }
+.p44-ui__content {
+  margin: 24px 16px;
+  padding: 24px;
+  height: 100%;
+}
+.p44-ui__component {
+  width: 100%;
 }
 
 /* ANT OVERRIDES */

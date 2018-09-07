@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 
-class Landing extends Component {
-  render() {
-    return (
-      <div>
-        Landing
-      </div>
-    )
-  }
-}
-
-export default Landing;
+export default (props) => {
+  return (
+    <div>
+      <h1>project44's React UI Components</h1>
+    </div>
+  )
+};

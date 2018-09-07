@@ -1,27 +1,62 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-// import { Foo, Bar } from 'ui-components';
-
-// import Header from './components/common/Header';
+import AppHeader from './components/common/Header';
 import SideNav from './components/common/SideNav';
 import Components from './components/common/Components';
-import ComponentShell from './components/common/ComponentShell';
 import Landing from './components/Landing';
+
+import logoImg from './assets/images/logo.svg';
+import logoImgSm from './assets/images/logo-small.svg';
+
+import { Layout, Icon } from 'antd';
+const { Header, Sider, Content } = Layout;
 
 
 class App extends Component {
+  state = {
+    collapsed: false,
+  };
+
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  }
   render () {
-    console.log(this.props);
+    let logoImage = this.state.collapsed ? logoImgSm : logoImg;
+    let logoClassNames = this.state.collapsed ? 'sm' : ''
     return (
       <BrowserRouter  basename="/ui-components">
-        <div className="p44-ui">
-          {/* <Header /> */}
-          <SideNav />
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/components" component={Components} />
-          <Route exact path="/components/foo" component={ComponentShell} />
-        </div>
+        <Layout className="p44-ui">
+          <Sider
+            style={{ background: '#fff' }}
+            trigger={null}
+            collapsible
+            collapsed={this.state.collapsed}
+          >
+            <div className={`logo`}>
+              <Link to={'/'}>
+                <img className={logoClassNames} src={logoImage} />
+              </Link>
+            </div>
+            <SideNav />
+          </Sider>
+          <Layout>
+            <Header className="p44-ui__header" style={{ background: '#fff', padding: 0 }}>
+              <Icon
+                className="header__trigger"
+                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                onClick={this.toggle}
+              />
+              {/* <AppHeader /> */}
+            </Header>
+            <Content className="p44-ui__content">
+              <Route exact path="/" component={Landing} />
+              <Route path="/components" component={Components} />
+            </Content>
+          </Layout>
+        </Layout>
       </BrowserRouter>
     )
   }

@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class ComponentShell extends Component {
-  render() {
-    console.log(this.props);
-    return (
-      <div>
-        ComponentShell
-      </div>
-    )
-  }
-}
+export default (props) => {
+  console.log(props);
+  return (
+    <div className="component-shell">
+      {props.children}
+    </div>
+  )
+};
