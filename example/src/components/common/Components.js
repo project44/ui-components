@@ -5,7 +5,6 @@ import Foo from '../components/Foo';
 import Bar from '../components/Bar';
 
 export default (props) => {
-  console.log(props);
   let { match } = props;
   return (
     <div className="p44-ui__component">
