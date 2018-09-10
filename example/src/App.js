@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Foo, Bar } from 'ui-components'
+import { Foo, Bar, Button, DatePicker } from 'ui-components'
 
 export default class App extends Component {
   render () {
@@ -8,6 +8,8 @@ export default class App extends Component {
       <div>
         <Foo text='Foo Props' />
         <Bar text='Bar Props' />
+        <Button>Hey there!</Button>
+        <DatePicker></DatePicker>
       </div>
     )
   }

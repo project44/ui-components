@@ -23,12 +23,14 @@
 
 import Foo from './components/Foo'
 import Bar from './components/Bar'
+import Button from './components/button/Button'
+import DatePicker from './components/datePicker/DatePicker'
 
 // export Foo and Bar as named exports
-export { Foo, Bar }
+export { Foo, Bar, Button, DatePicker }
 
 // alternative, more concise syntax for named exports
 // export { default as Foo } from './Foo'
 
 // you can optionally also set a default export for your module
-export default { Foo, Bar }
+export default { Foo, Bar, Button, DatePicker }

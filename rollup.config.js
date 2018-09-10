@@ -21,6 +21,7 @@ export default {
       sourcemap: true
     }
   ],
+  external: [ 'antd' ],
   plugins: [
     external(),
     postcss({
