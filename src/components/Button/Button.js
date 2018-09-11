@@ -38,7 +38,7 @@ const Button = (props) => {
   } else {
     return (
       <button
-        className={`custom-button ${classes}`}
+        className={`custom-button ${className}`}
         disabled={disabled}
         onClick={clickFn}
         onBlur={blurFn}
