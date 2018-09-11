@@ -1,6 +1,6 @@
 {
   "name": "ui-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "project44&#x27;s UI Component Library",
   "author": "project44",
   "license": "MIT",
@@ -35,6 +35,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "cross-env": "^5.1.4",
+    "eslint": "^5.0.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-config-standard-react": "^6.0.0",
     "eslint-plugin-import": "^2.13.0",

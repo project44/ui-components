@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import './Button.scss';
 
 const Button = (props) => {
   const { classes, link, upload, href, clickFn, disabled = false, blurFn, type = 'button', download = false} = props;

@@ -23,8 +23,8 @@
 
 import Foo from './components/Foo'
 import Bar from './components/Bar'
-import Button from './components/button/Button'
-import DatePicker from './components/datePicker/DatePicker'
+import Button from './components/Button/Button'
+import DatePicker from './components/DatePicker/DatePicker'
 
 // export Foo and Bar as named exports
 export { Foo, Bar, Button, DatePicker }

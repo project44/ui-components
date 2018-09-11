@@ -1,5 +1,6 @@
 import React from 'react';
 import { DatePicker as AntDatePicker } from 'antd';
+import './DatePicker.scss';
 
 const DatePicker = (props) => {
   const { } = props;
