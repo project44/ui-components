@@ -9,7 +9,8 @@ module.exports = function override(config, env) {
     config
   )
 
-  config = rewireSass(config, env)
+  // config = rewireSass(config, env)
+  config = rewireSass.withLoaderOptions({ sourceMap: true }, includePaths: ["src/styles/main.scss"])(config, env);
 
   config = rewireLess.withLoaderOptions({
      modifyVars: { '@primary-color': '#1DA57A'},
