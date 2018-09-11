@@ -1,0 +1,121 @@
+@import '../modules/mixins';
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.2rem;
+}
+
+.form-header {
+  @include toRem(font-size, 12px);
+  @include toRem(margin-bottom, 12px);
+  font-weight: bold;
+  color: var(--primary-grey-80);
+  border-bottom: 1px solid var(--primary-grey-20);
+  text-transform: uppercase;
+  @include toRem(padding-bottom, 3px);
+  @include toRem(padding-top, 16px);
+}
+
+.form-header-help {
+  @include toRem(font-size, 11px);
+  font-weight: 500;
+  float: right;
+  color: var(--primary-grey-40);
+  text-transform: none;
+}
+
+h1 { // page title
+  @include toRem(font-size, 32px);
+  font-weight: 500;
+  color: var(--primary-grey);
+}
+
+h2 { // section title
+  @include toRem(font-size, 24px);
+  font-weight: 500;
+  color: var(--primary-grey);
+  &.light {
+    font-weight: 300;
+  }
+}
+
+h3 { // card title
+  @include toRem(font-size, 16px);
+  font-weight: 500;
+  color: var(--primary-grey);
+  text-transform: uppercase;
+}
+
+h4 { // company name
+  @include toRem(font-size, 16px);
+  font-weight: 500;
+  color: var(--primary-grey);
+}
+
+h5 { // carrier name
+  @include toRem(font-size, 14px);
+  font-weight: 500;
+  color: var(--primary-grey-40);
+}
+
+h6 { // content section header
+  @include toRem(font-size, 12px);
+  font-weight: normal;
+  color: var(--primary-grey-80);
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+a {
+  @include toRem(font-size, 12px);
+  font-weight: normal;
+  color: var(--bluish);
+  cursor: pointer;
+  &.action {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+p {
+  @include toRem(margin-bottom, 4px);
+}
+
+.text-separator {
+  padding: 0 .5em;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.x-small-text {
+  @include toRem(font-size, 10px);
+}
+
+.small-text {
+  @include toRem(font-size, 12px);
+}
+
+.medium-text {
+  @include toRem(font-size, 14px);
+}
+
+.large-text {
+  @include toRem(font-size, 16px);
+}
+
+.x-large-text {
+  @include toRem(font-size, 18px);
+}
+
+.grey-80 {
+  color: #575451;
+}
+
+.primary-grey {
+  color: var(--primary-grey);
+}
