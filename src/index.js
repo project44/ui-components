@@ -25,15 +25,16 @@ import Foo from './components/Foo'
 import Bar from './components/Bar'
 import Button from './components/Button/Button'
 import DatePicker from './components/DatePicker/DatePicker'
+import Chips from './components/Chips/Chips'
 
 // Our global styles
 import './styles/main.scss';
 
 // export Components as named exports
-export { Foo, Bar, Button, DatePicker }
+export { Foo, Bar, Button, DatePicker, Chips }
 
 // alternative, more concise syntax for named exports
 // export { default as Foo } from './Foo'
 
 // you can optionally also set a default export for your module
-export default { Foo, Bar, Button, DatePicker }
+export default { Foo, Bar, Button, DatePicker, Chips }

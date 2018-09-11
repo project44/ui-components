@@ -64,6 +64,11 @@ class SideNav extends Component {
                 Date Picker
               </Link>
             </Menu.Item>
+            <Menu.Item key="9">
+              <Link to={'/components/chips'}>
+                Chips
+              </Link>
+            </Menu.Item>
           </SubMenu>
         </Menu>
     );

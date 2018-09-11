@@ -1,0 +1,12 @@
+.chips {
+  display: flex;
+  .chip {
+    display: flex;
+
+    &__chip-item {
+      background-color: rgb(171, 169, 168);
+      border-radius: 0px;
+      box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px 0px;
+    }
+  }
+}
