@@ -5,6 +5,7 @@ import AppHeader from './components/common/Header';
 import SideNav from './components/common/SideNav';
 import Components from './components/common/Components';
 import Landing from './components/Landing';
+import Colors from './components/pages/colors/Colors';
 
 import logoImg from './assets/images/logo.svg';
 import logoImgSm from './assets/images/logo-small.svg';
@@ -53,6 +54,7 @@ class App extends Component {
             </Header>
             <Content className="p44-ui__content">
               <Route exact path="/" component={Landing} />
+              <Route exact path="/colors" component={Colors} />
               <Route path="/components" component={Components} />
             </Content>
           </Layout>

@@ -31,6 +31,12 @@ class SideNav extends Component {
               <span>About</span>
             </Link>
           </Menu.Item>
+          <Menu.Item key="2">
+            <Link to={'/colors'}>
+              <Icon type="bg-colors" />
+              <span>Colors</span>
+            </Link>
+          </Menu.Item>
           <SubMenu key="sub1" title={<span><Icon type="layout" /><span>Components</span></span>}>
             <Menu.Item key="5">
               <Link to={'/components/foo'}>

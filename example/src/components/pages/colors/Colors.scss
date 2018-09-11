@@ -1,0 +1,14 @@
+.colors {
+  .colors__item {
+    text-align: center;
+    margin-bottom: 18px;
+
+    .item__example {
+      margin: 0 auto;
+      width: 124px;
+      height: 124px;
+      border:1px solid #ccc;
+      border-radius: 5px;
+    }
+  }
+}
