@@ -3,12 +3,12 @@ import {Link} from 'react-router-dom';
 import './Button.scss';
 
 const Button = (props) => {
-  const { classes, link, upload, href, clickFn, disabled = false, blurFn, type = 'button', download = false} = props;
+  const { className, link, upload, href, clickFn, disabled = false, blurFn, type = 'button', download = false} = props;
   if (link) {
     return (
       <Link to={link} className="custom-button-link">
         <button
-          className={`custom-button ${classes}`}
+          className={`custom-button ${className}`}
           disabled={disabled}
           onClick={clickFn}
           onBlur={blurFn}
@@ -23,7 +23,7 @@ const Button = (props) => {
     return (
       <label htmlFor={upload}>
         <button
-          className={`custom-button ${classes}`}
+          className={`custom-button ${className}`}
           disabled={disabled}
           onClick={clickFn}
           onBlur={blurFn}
