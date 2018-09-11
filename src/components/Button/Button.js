@@ -1,9 +1,23 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// import { Button as AntButton } from 'antd';
+// import Button as AntButton from 'antd/lib/button';
 import './Button.scss';
 
 const Button = (props) => {
-  const { className, link, upload, href, clickFn, disabled = false, blurFn, type = 'button', download = false} = props;
+  const {
+    className,
+    link,
+    upload,
+    href,
+    clickFn,
+    disabled = false,
+    blurFn,
+    type = 'default',
+    download = false,
+    htmlType = 'button'
+  } = props;
+
   if (link) {
     return (
       <Link to={link} className="custom-button-link">
