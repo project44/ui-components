@@ -56,7 +56,7 @@ class App extends Component {
             <Content className="p44-ui__content">
               <Route exact path="/" component={Landing} />
               <Route exact path="/colors" component={Colors} />
-              <Route exact path="/colors" component={Typography} />
+              <Route exact path="/typography" component={Typography} />
               <Route path="/components" component={Components} />
             </Content>
           </Layout>

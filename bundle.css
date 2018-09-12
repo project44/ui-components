@@ -1,0 +1,296 @@
+/* Color palette */
+:root {
+  --primary-blue-30: #bdd0df;
+  --primary-blue: #236192;
+  --off-blue: #5888b0;
+  --chathams-blue: #11426a;
+  --primary-grey: #2d2926;
+  --primary-grey-80: #575451;
+  --primary-grey-40: #aba9a8;
+  --primary-grey-20: #D5D4D4;
+  --primary-grey-05: #f3f3f3;
+  --mysterious-grey: #aba9a8;
+  --yellow: #f6c472;
+  --orange: #ea8616;
+  --green: #1e9f5b;
+  --new-fruit: #f55449;
+  --side-padding: 87px;
+  --bluish: #2091a9;
+  --white: #ffffff;
+  --white-two: #d5d4d4;
+  --teal: #2091A9; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  font-size: 1.2rem; }
+
+.form-header {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 12px;
+  /* 9 */
+  font-size: 1.2rem;
+  /* 9 */
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  margin-bottom: 12px;
+  /* 9 */
+  margin-bottom: 1.2rem;
+  /* 9 */
+  font-weight: bold;
+  color: var(--primary-grey-80);
+  border-bottom: 1px solid var(--primary-grey-20);
+  text-transform: uppercase;
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  padding-bottom: 3px;
+  /* 9 */
+  padding-bottom: 0.3rem;
+  /* 9 */
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  padding-top: 16px;
+  /* 9 */
+  padding-top: 1.6rem;
+  /* 9 */ }
+
+.form-header-help {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 11px;
+  /* 9 */
+  font-size: 1.1rem;
+  /* 9 */
+  font-weight: 500;
+  float: right;
+  color: var(--primary-grey-40);
+  text-transform: none; }
+
+h1 {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 32px;
+  /* 9 */
+  font-size: 3.2rem;
+  /* 9 */
+  font-weight: 500;
+  color: var(--primary-grey); }
+
+h2 {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 24px;
+  /* 9 */
+  font-size: 2.4rem;
+  /* 9 */
+  font-weight: 500;
+  color: var(--primary-grey); }
+  h2.light {
+    font-weight: 300; }
+
+h3 {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 16px;
+  /* 9 */
+  font-size: 1.6rem;
+  /* 9 */
+  font-weight: 500;
+  color: var(--primary-grey);
+  text-transform: uppercase; }
+
+h4 {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 16px;
+  /* 9 */
+  font-size: 1.6rem;
+  /* 9 */
+  font-weight: 500;
+  color: var(--primary-grey); }
+
+h5 {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 14px;
+  /* 9 */
+  font-size: 1.4rem;
+  /* 9 */
+  font-weight: 500;
+  color: var(--primary-grey-40); }
+
+h6 {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 12px;
+  /* 9 */
+  font-size: 1.2rem;
+  /* 9 */
+  font-weight: normal;
+  color: var(--primary-grey-80);
+  text-transform: uppercase;
+  margin-bottom: 0; }
+
+a {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 12px;
+  /* 9 */
+  font-size: 1.2rem;
+  /* 9 */
+  font-weight: normal;
+  color: var(--bluish);
+  cursor: pointer; }
+  a.action {
+    font-weight: bold;
+    text-transform: uppercase; }
+
+p {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  margin-bottom: 4px;
+  /* 9 */
+  margin-bottom: 0.4rem;
+  /* 9 */ }
+
+.text-separator {
+  padding: 0 .5em; }
+
+.bold {
+  font-weight: bold; }
+
+.x-small-text {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 10px;
+  /* 9 */
+  font-size: 1rem;
+  /* 9 */ }
+
+.small-text {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 12px;
+  /* 9 */
+  font-size: 1.2rem;
+  /* 9 */ }
+
+.medium-text {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 14px;
+  /* 9 */
+  font-size: 1.4rem;
+  /* 9 */ }
+
+.large-text {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 16px;
+  /* 9 */
+  font-size: 1.6rem;
+  /* 9 */ }
+
+.x-large-text {
+  /* 3 */
+  /* 3 */
+  /* 4 */
+  /* 6 */
+  /* 6 */
+  /* 7 */
+  font-size: 18px;
+  /* 9 */
+  font-size: 1.8rem;
+  /* 9 */ }
+
+.grey-80 {
+  color: #575451; }
+
+.primary-grey {
+  color: var(--primary-grey); }
+
+/* add css styles here (optional) */
+.foo, .bar {
+  display: block;
+  margin: 2em auto;
+  border: 2px solid #000;
+  font-size: 2em; }
+
+.foo {
+  background: yellow; }
+
+.bar {
+  background: red; }
+
+.customButton {
+  display: none; }

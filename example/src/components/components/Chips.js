@@ -3,12 +3,12 @@ import ComponentShell from '../common/ComponentShell';
 import { Chips } from 'ui-components';
 
 const chipData = [
-  'Jet',
-  'fuel',
-  'cant',
-  'melt',
-  'steel',
-  'beams'
+  'Lays',
+  'Pringles',
+  'Ruffles',
+  'Cheetos',
+  'Thins',
+  'Doritos'
 ];
 
 export default class ChipsDemo extends Component {
@@ -22,11 +22,8 @@ export default class ChipsDemo extends Component {
   }
 
   deleteChip = (index) => {
-    console.log(this.state.chipData)
-    const updatedChips = this.state.chipData.slice(index, 1);
-    console.log('updated', updatedChips)
     this.setState({
-      chipData: updatedChips
+      chipData: this.state.chipData.filter((_, i) => i !== index)
     });
   }
 
@@ -34,7 +31,14 @@ export default class ChipsDemo extends Component {
     return (
       <ComponentShell>
         <h1>Chips</h1>
-        <Chips listData={this.state.chipData} deleteFn={this.deleteChip}></Chips>
+        <h2>Truncated</h2>
+        <Chips listData={this.state.chipData} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>
+
+        <h2>Row</h2>
+        <Chips listData={this.state.chipData} layout="row" deleteFn={this.deleteChip}></Chips>
+
+        <h2>Column</h2>
+        <Chips listData={this.state.chipData} layout="column" deleteFn={this.deleteChip}></Chips>
       </ComponentShell>
     )
   }
