@@ -49,11 +49,6 @@ class SideNav extends Component {
                 Foo
               </Link>
             </Menu.Item>
-            <Menu.Item key="6">
-              <Link to={'/components/bar'}>
-                Bar
-              </Link>
-            </Menu.Item>
             <Menu.Item key="7">
               <Link to={'/components/buttons'}>
                 Buttons
