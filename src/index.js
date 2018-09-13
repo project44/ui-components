@@ -31,10 +31,10 @@ import Chips from './components/Chips/Chips'
 import './styles/main.scss';
 
 // export Components as named exports
-export { Foo, Bar, Button, DatePicker, Chips }
+export { Foo, Button, DatePicker, Chips }
 
 // alternative, more concise syntax for named exports
 // export { default as Foo } from './Foo'
 
 // you can optionally also set a default export for your module
-export default { Foo, Bar, Button, DatePicker, Chips }
+export default { Foo, Button, DatePicker, Chips }
