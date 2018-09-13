@@ -20,7 +20,9 @@ export default class Input extends Component {
 
     return (
       <div className="input-group">
-        <label>{label}</label>
+        { label &&
+          <label>{label}</label>
+        }
         <AntInput
           placeholder={placeholder}
           {...custom}

@@ -13,11 +13,6 @@ module.exports = function override(config, env) {
   config = rewireSass.withLoaderOptions({ sourceMap: true })(config, env);
 
   config = rewireLess.withLoaderOptions({
-    modifyVars: {
-      '@primary-color': '#1DA57A',
-      // '@btn-border-radius-base': '0px',
-      // '@btn-border-radius-sm': '0px',
-    },
     javascriptEnabled: true,
   })(config, env)
   return config

@@ -15,7 +15,7 @@ export default class InputDemo extends Component {
     return (
       <ComponentShell>
         <h1>Input</h1>
-        <Input placeholder="Sample input"></Input>
+        <Input placeholder="Sample input" label="Sample input"></Input>
 
       </ComponentShell>
     )

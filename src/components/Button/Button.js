@@ -7,69 +7,39 @@ class Button extends Component {
   render() {
     const {
       className,
-      link,
-      upload,
-      href,
       clickFn,
-      disabled = false,
       blurFn,
-      type = 'default',
+      upload,
       download = false,
-      htmlType = 'button'
+      ...props
     } = this.props;
 
-    if (link) {
-      return (
-        <Link to={link} className="custom-button-link">
-          <button
-            className={`custom-button ${className}`}
-            disabled={disabled}
-            onClick={clickFn}
-            onBlur={blurFn}
-            type={type}
-            download={download}
-            >
-              {this.props.children}
-            </button>
-          </Link>
-        );
-      } else if (upload) {
+    if (upload) {
         return (
           <label htmlFor={upload}>
-            <button
-              className={`custom-button ${className}`}
-              disabled={disabled}
+            <AntButton
+              className={className ? `p44-btn ${className}` : `p44-btn`}
               onClick={clickFn}
               onBlur={blurFn}
-              type={type}
-              variant="raised"
-              component="span"
-              >
-                {this.props.children}
-              </button>
-            </label>
-          );
-        } else if (!this.props.children) {
-          return (
-            <AntButton />
-          )
-        } else {
-          return (
-              <AntButton
-                className={`custom-button ${className}`}
-                disabled={disabled}
-                onClick={clickFn}
-                onBlur={blurFn}
-                type={"primary"}
-                download={download}
-                href={href}
-              >
-                {this.props.children}
-              </AntButton>
-            );
-          }
+            >
+              {this.props.children}
+            </AntButton>
+          </label>
+        );
+    } else {
+      return (
+          <AntButton
+            {...props}
+            className={className ? `p44-btn ${className}` : `p44-btn`}
+            onClick={clickFn}
+            onBlur={blurFn}
+            download={download}
+          >
+            {this.props.children}
+          </AntButton>
+      );
+    }
   }
-
 };
 
 export default Button;
