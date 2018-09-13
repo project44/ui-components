@@ -4,8 +4,9 @@ import { Route } from 'react-router-dom';
 import Foo from '../components/Foo';
 import Bar from '../components/Bar';
 import Buttons from '../components/Buttons';
-import DatePicker from '../components/DatePicker'
-import ChipsDemo from '../components/Chips'
+import DatePicker from '../components/DatePicker';
+import ChipsDemo from '../components/Chips';
+import InputDemo from '../components/Input';
 
 
 export default (props) => {
@@ -17,6 +18,7 @@ export default (props) => {
       <Route exact path={`${match.url}/buttons`} component={Buttons} />
       <Route exact path={`${match.url}/date-picker`} component={DatePicker} />
       <Route exact path={`${match.url}/chips`} component={ChipsDemo} />
+      <Route exact path={`${match.url}/input`} component={InputDemo} />
     </div>
   )
 };

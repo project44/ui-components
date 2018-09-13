@@ -33,5 +33,9 @@
     padding: 10px 0;
     display: inline-block;
     cursor: pointer;
+    .text_action {
+      display: flex;
+      align-items: center;
+    }
   }
 }

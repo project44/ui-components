@@ -38,10 +38,10 @@ export default class Chips extends Component {
         { showCount && (listData.length > showCount) &&
         <div className="chips__show-all animated fadeIn" onClick={this.toggleChipsDisplay}>
           { this.state.showAll &&
-          <span className="text_action">SHOW ALL &nbsp; &#x25BC;</span>
+          <span className="text_action">SHOW LESS <i className="material-icons">arrow_drop_down</i></span>
           }
           { !this.state.showAll &&
-          <span className="text_action">SHOW LESS &nbsp; &#x25B2;</span>
+          <span className="text_action">SHOW ALL <i className="material-icons">arrow_drop_up</i></span>
           }
         </div>
         }

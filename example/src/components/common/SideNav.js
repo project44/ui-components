@@ -69,6 +69,11 @@ class SideNav extends Component {
                 Chips
               </Link>
             </Menu.Item>
+            <Menu.Item key="10">
+              <Link to={'/components/input'}>
+                Input
+              </Link>
+            </Menu.Item>
           </SubMenu>
         </Menu>
     );
