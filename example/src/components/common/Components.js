@@ -6,7 +6,7 @@ import Buttons from '../components/Buttons';
 import DatePicker from '../components/DatePicker';
 import ChipsDemo from '../components/Chips';
 import InputDemo from '../components/Input';
-
+import CheckboxDemo from '../components/Checkbox';
 
 export default (props) => {
   let { match } = props;
@@ -17,6 +17,7 @@ export default (props) => {
       <Route exact path={`${match.url}/date-picker`} component={DatePicker} />
       <Route exact path={`${match.url}/chips`} component={ChipsDemo} />
       <Route exact path={`${match.url}/input`} component={InputDemo} />
+      <Route exact path={`${match.url}/checkbox`} component={CheckboxDemo} />
     </div>
   )
 };

@@ -69,6 +69,11 @@ class SideNav extends Component {
                 Input
               </Link>
             </Menu.Item>
+            <Menu.Item key="11">
+              <Link to={'/components/checkbox'}>
+                Checkbox
+              </Link>
+            </Menu.Item>
           </SubMenu>
         </Menu>
     );
