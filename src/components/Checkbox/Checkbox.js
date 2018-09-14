@@ -5,13 +5,6 @@ import _ from 'lodash';
 
 export default class Checkbox extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showAll: false,
-    };
-  }
-
   render() {
     const { checkboxData, layout = 'row', onChange } = this.props;
 
