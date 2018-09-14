@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Checkbox.scss';
 import { Checkbox as AntCheckbox, Row, Col} from 'antd';
+import _ from 'lodash';
 
 export default class Checkbox extends Component {
 
@@ -10,41 +11,21 @@ export default class Checkbox extends Component {
       showAll: false,
     };
   }
-  // label, value, disabled
-  //
-  // labelText(pin): "Running Early"
-  // propertyName(pin): "runningEarly"
-  // checked(pin): true
-  // id(pin): 0
-  //
-  // openSunday(pin): false
-  // openMonday(pin): true
-  // openTuesday(pin): true
-  // openWednesday(pin): true
-  // openThursday(pin): true
-  // openFriday(pin): true
-  // openSaturday(pin): false
-
-  // "On Time"
-  // 1
-  //   :
-  //   "Running Early"
 
   render() {
     const { checkboxData, layout = 'row', onChange } = this.props;
 
     return (
       <div className="checkbox-group">
-        <AntCheckbox.Group style={{ width: '100%' }} onChange={onChange}>
-          <Row>
+        <AntCheckbox.Group onChange={onChange}>
+
             { checkboxData.map((item, index) => {
               if (layout === 'row'){
-                return <Row><AntCheckbox value={item.value}>{item.label}</AntCheckbox></Row>
+                return <AntCheckbox key={index} value={_.get(item, 'value', item)}>{_.get(item, 'value', item)}</AntCheckbox>
               } else {
-                return <Col><AntCheckbox value={item.value}>{item.label}</AntCheckbox></Col>
+                return <Col><AntCheckbox key={index} value={item.value}>{item.label}</AntCheckbox></Col>
               }
             })}
-          </Row>
         </AntCheckbox.Group>
       </div>
     )

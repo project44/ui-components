@@ -9,8 +9,6 @@ const checkboxData = [
 
 export default class CheckboxDemo extends Component {
 
-
-
   constructor(props) {
     super(props);
     this.state = {
@@ -22,8 +20,10 @@ export default class CheckboxDemo extends Component {
     return (
       <ComponentShell>
         <h1>Checkbox</h1>
+        <h2>Row</h2>
         <Checkbox checkboxData={checkboxData}></Checkbox>
-
+        <h2>Column</h2>
+        <Checkbox checkboxData={checkboxData} layout="column"></Checkbox>
       </ComponentShell>
     )
   }
