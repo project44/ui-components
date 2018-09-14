@@ -11,12 +11,13 @@ export default class Checkbox extends Component {
     return (
       <div className="checkbox-group">
         <AntCheckbox.Group onChange={onChange}>
-
             { checkboxData.map((item, index) => {
               if (layout === 'row'){
                 return <AntCheckbox key={index} value={_.get(item, 'value', item)}>{_.get(item, 'value', item)}</AntCheckbox>
               } else {
-                return <Col><AntCheckbox key={index} value={item.value}>{item.label}</AntCheckbox></Col>
+                return <Col key={index}>
+                  <AntCheckbox value={item.value}>{item.label}</AntCheckbox>
+                </Col>
               }
             })}
         </AntCheckbox.Group>

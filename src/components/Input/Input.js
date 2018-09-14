@@ -5,7 +5,7 @@ import './Input.scss';
 export default class Input extends Component {
 
   render() {
-    const { label, placeholder, custom, value, defaultValue, onPressEnter, onChange, onBlur } = this.props;
+    const { label, placeholder, custom, defaultValue, onPressEnter, onBlur, onChange } = this.props;
 
     return (
       <div className="input-group">
@@ -16,7 +16,6 @@ export default class Input extends Component {
         }
         <AntInput
           placeholder={placeholder}
-          value={value}
           defaultValue={defaultValue}
           onPressEnter={onPressEnter}
           onChange={onChange}
@@ -26,7 +25,6 @@ export default class Input extends Component {
           {this.props.children}
         </AntInput>
       </div>
-
     )
   }
 };

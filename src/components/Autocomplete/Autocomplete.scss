@@ -1,0 +1,16 @@
+.autocomplete {
+  &__input{
+    min-width: 200px;
+    margin-bottom: 16px;
+  }
+  .ant-select-selection__choice {
+    display: none;
+  }
+  .autocomplete__input {
+    &:not(.ant-select-focused) {
+      .ant-select-selection__placeholder {
+        display: block !important;
+      }
+    }
+  }
+}

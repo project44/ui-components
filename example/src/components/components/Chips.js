@@ -18,7 +18,6 @@ export default class ChipsDemo extends Component {
     this.state = {
       chipData: chipData
     };
-
   }
 
   deleteChip = (index) => {

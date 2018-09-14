@@ -74,6 +74,11 @@ class SideNav extends Component {
                 Checkbox
               </Link>
             </Menu.Item>
+            <Menu.Item key="12">
+              <Link to={'/components/autocomplete'}>
+                Autocomplete
+              </Link>
+            </Menu.Item>
           </SubMenu>
         </Menu>
     );
