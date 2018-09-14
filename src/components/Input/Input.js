@@ -4,27 +4,23 @@ import './Input.scss';
 
 export default class Input extends Component {
 
-  // static propTypes = {
-  //   listData: PropTypes.array.required
-  // }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-
   render() {
-    const { label, placeholder, custom } = this.props;
+    const { label, placeholder, custom, value, defaultValue, onPressEnter, onChange, onBlur } = this.props;
 
     return (
       <div className="input-group">
         { label &&
-          <label>{label}</label>
+          <div className="ant-form-item-label">
+            <label title={label}>{label}</label>
+          </div>
         }
         <AntInput
           placeholder={placeholder}
+          value={value}
+          defaultValue={defaultValue}
+          onPressEnter={onPressEnter}
+          onChange={onChange}
+          onBlur={onBlur}
           {...custom}
         >
           {this.props.children}
