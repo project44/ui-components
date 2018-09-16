@@ -28,15 +28,16 @@ import Chips from './components/Chips/Chips'
 import Input from './components/Input/Input'
 import Checkbox from './components/Checkbox/Checkbox'
 import Autocomplete from './components/Autocomplete/Autocomplete'
+import Select from './components/Select/Select'
 
 // Our global styles
 import './styles/main.scss';
 
 // export Components as named exports
-export { Foo, Button, DatePicker, Chips, Input, Checkbox, Autocomplete }
+export { Foo, Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select }
 
 // alternative, more concise syntax for named exports
 // export { default as Foo } from './Foo'
 
 // you can optionally also set a default export for your module
-export default { Foo, Button, DatePicker, Chips, Input, Checkbox, Autocomplete }
+export default { Foo, Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select }

@@ -79,6 +79,11 @@ class SideNav extends Component {
                 Autocomplete
               </Link>
             </Menu.Item>
+            <Menu.Item key="13">
+              <Link to={'/components/select'}>
+                Select
+              </Link>
+            </Menu.Item>
           </SubMenu>
         </Menu>
     );
