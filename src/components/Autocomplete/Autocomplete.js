@@ -43,7 +43,7 @@ export default class Autocomplete extends Component {
           onChange={onChange}
           onSearch={(val) => {
             this.handleSearch(val)
-            if (onSearch) { onSearch }
+            if (onSearch) { onSearch() }
           }}
           mode={mode}
           open={this.state.open}

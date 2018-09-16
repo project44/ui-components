@@ -28,9 +28,9 @@ export default class AutocompleteDemo extends Component {
     });
   }
 
-  handleChange = (indexes) => {
+  handleChange = (values) => {
     this.setState({
-      selectedChips: indexes,
+      selectedChips: values,
     })
   }
 
@@ -44,10 +44,12 @@ export default class AutocompleteDemo extends Component {
           dataSource={this.state.dataSource}
           placeholder="Sample autocomplete"
           label="Sample autocomplete"
-          onChange={(value)=> this.handleChange(value)}
+          onChange={(value) => this.handleChange(value)}
           open={this.state.open}
-        ></Autocomplete>
-        <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>
+        >
+        </Autocomplete>
+        <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}>
+        </Chips>
       </ComponentShell>
     )
   }
