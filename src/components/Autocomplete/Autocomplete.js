@@ -8,17 +8,25 @@ export default class Autocomplete extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      options: _.get(props, 'dataSource', [])
+      options: _.get(props, 'dataSource', []),
+      open: false
     };
   }
 
-  handleChange = (value) => {
-    console.log(value)
+  closeDropDown = () => {
+    this.setState({
+      open: false
+    })
+  }
+
+  handleSearch = (value) => {
+    this.setState({
+      open: value.length > 0 && this.state.options.length > -1
+    })
   }
 
   render() {
-    const { mode = 'tags', onSearch, label, showSearch, placeholder, custom, defaultValue, onBlur, onChange, onSelect, dataSource =[] } = this.props;
-
+    const { mode = 'tags', onSearch, value, label, placeholder, custom, defaultValue, onChange} = this.props;
     return (
       <div className="autocomplete ant-form-vertical">
         { label &&
@@ -28,19 +36,24 @@ export default class Autocomplete extends Component {
         }
         <AntAutoComplete
           className="autocomplete__input"
-          dataSource={dataSource}
+          value={value}
           placeholder={placeholder}
-          onSelect={onSelect}
+          onSelect={this.closeDropDown}
           defaultValue={defaultValue}
           onChange={onChange}
-          onSearch={onSearch}
-          onBlur={onBlur}
+          onSearch={(val) => {
+            this.handleSearch(val)
+            if (onSearch) { onSearch }
+          }}
           mode={mode}
-          showSearch={showSearch}
+          open={this.state.open}
+          onBlur={this.closeDropDown}
+          onDeselect={this.closeDropDown}
+          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
           {...custom}
         >
-          { dataSource.map((item, index) => {
-            return <AntAutoComplete.Option key={index}>{item}</AntAutoComplete.Option>;
+          { this.state.options.map((item) => {
+            return <AntAutoComplete.Option key={item}>{item}</AntAutoComplete.Option>;
           })}
 
         </AntAutoComplete>
