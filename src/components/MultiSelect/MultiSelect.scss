@@ -26,7 +26,7 @@
       z-index: 1;
     }
     &__placeholder {
-      left: 11px;
+      margin-left: 11px;
       margin-right: 11px;
     }
     &-selected-value {
@@ -43,6 +43,19 @@
     background: #FFF;
     margin-bottom: 16px;
     cursor: pointer;
+    &.no-search {
+      .ant-select-selection__rendered {
+        cursor: pointer;
+      }
+      .ant-select-search {
+        opacity: 0;
+      }
+      .multi-select__input {
+          .ant-select-selection__placeholder {
+            display: block !important;
+          }
+      }
+    }
   }
   &__input{
     min-width: 200px;

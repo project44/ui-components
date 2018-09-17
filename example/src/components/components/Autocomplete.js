@@ -39,6 +39,7 @@ export default class AutocompleteDemo extends Component {
     return (
       <ComponentShell>
         <h1>Autocomplete</h1>
+        <h2>Autocomplete with chips</h2>
         <Autocomplete
           value={this.state.selectedChips}
           dataSource={this.state.dataSource}

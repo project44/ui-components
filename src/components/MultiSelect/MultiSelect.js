@@ -26,7 +26,7 @@ export default class MultiSelect extends Component {
   }
 
   render() {
-    const { mode = 'multiple', onSearch, value, label, closeOnSelect, placeholder, custom, defaultValue, onChange, icon = 'arrow_drop_down'} = this.props;
+    const { mode = 'multiple', onSearch, value, label, allowSearch = true, closeOnSelect, placeholder, custom, defaultValue, onChange, icon = 'arrow_drop_down'} = this.props;
 
     return (
       <div className="multi-select ant-form-vertical">
@@ -35,7 +35,7 @@ export default class MultiSelect extends Component {
           <label title={label}>{label}</label>
         </div>
         }
-        <div className="multi-select__dropdown">
+        <div className={ allowSearch ? 'multi-select__dropdown' : 'multi-select__dropdown no-search'}>
           <AntMultiSelect
             className="multi-select__input"
             value={value}
@@ -49,7 +49,7 @@ export default class MultiSelect extends Component {
             mode={mode}
             onBlur={this.closeDropDown}
             onDeselect={this.closeDropDown}
-            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            filterOption={ allowSearch ? (input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0 : false}
             {...custom}
           >
             { this.state.options.map((item) => {

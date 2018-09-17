@@ -51,6 +51,19 @@ export default class MultiSelectDemo extends Component {
         </MultiSelect>
         <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}>
         </Chips>
+        <h2>Standard Multi-Select no search</h2>
+        <MultiSelect
+          value={this.state.selectedChips}
+          dataSource={this.state.dataSource}
+          placeholder="Select Multiple"
+          label="Sample multi-select dropdown"
+          onChange={(value) => this.handleChange(value)}
+          open={this.state.open}
+          allowSearch={false}
+        >
+        </MultiSelect>
+        <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}>
+        </Chips>
         <h2>Multi-Select with auto-close dropdown</h2>
         <MultiSelect
           value={this.state.selectedChips}
