@@ -12,8 +12,14 @@ export default class Select extends Component {
     };
   }
 
+  handleDropdownChange = () => {
+    this.setState({
+      open: !this.state.open
+    })
+  }
+
   render() {
-    const { mode = 'default', value, label, placeholder, custom, defaultValue, onChange} = this.props;
+    const { mode = 'default', label, placeholder, custom, showSearch, defaultValue, onChange, icon = 'arrow_drop_down'} = this.props;
     return (
       <div className="select ant-form-vertical">
         { label &&
@@ -21,19 +27,26 @@ export default class Select extends Component {
           <label title={label}>{label}</label>
         </div>
         }
-        <AntSelect
-          className="select__input"
-          placeholder={placeholder}
-          defaultValue={defaultValue}
-          onChange={onChange}
-          mode={mode}
-          {...custom}
-        >
-          { this.state.options.map((item) => {
-            return <AntSelect.Option key={item}>{item}</AntSelect.Option>
-          })}
-
-        </AntSelect>
+        <div className="select__dropdown">
+          <AntSelect
+            showSearch={showSearch}
+            className="select__input"
+            showArrow={false}
+            onDropdownVisibleChange={this.handleDropdownChange}
+            placeholder={placeholder}
+            defaultValue={defaultValue}
+            onChange={onChange}
+            mode={mode}
+            {...custom}
+          >
+            { this.state.options.map((item) => {
+              return <AntSelect.Option key={item}>{item}</AntSelect.Option>
+            })}
+          </AntSelect>
+          <div className="select__icon">
+            <i className={`material-icons ${this.state.open ? 'open' : 'closed'}`}>{icon}</i>
+          </div>
+        </div>
       </div>
     )
   }

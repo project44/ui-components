@@ -1,6 +1,54 @@
 .select {
+  .ant-select-selection{
+    &--single {
+      border: none;
+      box-shadow: none;
+    }
+    &__rendered {
+      display: flex;
+      margin: 0;
+      line-height: 36px;
+      width: 100%;
+      position: absolute;
+      z-index: 1;
+    }
+    &__placeholder {
+      left: 11px;
+    }
+    &-selected-value {
+      margin-left: 11px;
+    }
+  }
+  .ant-select-search {
+    &__field__wrap {
+      margin-left: 11px;
+    }
+  }
+  &__dropdown {
+    display: inline-flex;
+    background: #FFF;
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
   &__input{
     min-width: 200px;
-    margin-bottom: 16px;
+    border: 1px solid #d9d9d9;
+  }
+  &__icon {
+    transform: translate(-30px);
+    width: 0px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    .material-icons {
+      -webkit-transition: -webkit-transform 0.3s;
+      transition: -webkit-transform 0.3s;
+      -o-transition: transform 0.3s;
+      transition: transform 0.3s;
+      transition: transform 0.3s, -webkit-transform 0.3s;
+      &.open {
+        transform: rotate(-180deg);
+      }
+    }
   }
 }
