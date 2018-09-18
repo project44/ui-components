@@ -21,7 +21,6 @@
 //   }
 // }
 
-import Foo from './components/Foo'
 import Button from './components/Button/Button'
 import DatePicker from './components/DatePicker/DatePicker'
 import Chips from './components/Chips/Chips'
@@ -35,10 +34,10 @@ import MultiSelect from './components/MultiSelect/MultiSelect'
 import './styles/main.scss';
 
 // export Components as named exports
-export { Foo, Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select, MultiSelect }
+export { Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select, MultiSelect }
 
 // alternative, more concise syntax for named exports
 // export { default as Foo } from './Foo'
 
 // you can optionally also set a default export for your module
-export default { Foo, Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select, MultiSelect }
+export default { Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select, MultiSelect }

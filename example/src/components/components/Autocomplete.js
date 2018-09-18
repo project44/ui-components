@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ComponentShell from '../common/ComponentShell';
 import { Autocomplete } from 'ui-components';
 import { Chips } from 'ui-components';
+import {Divider} from "antd";
 
 const chipData = [
   'Lays',
@@ -37,9 +38,10 @@ export default class AutocompleteDemo extends Component {
   render(){
 
     return (
-      <ComponentShell>
-        <h1>Autocomplete</h1>
-        <h2>Autocomplete with chips</h2>
+      <ComponentShell name="Autocomplete">
+        <h2>Autocomplete Example</h2>
+        <Divider />
+        <h4>Autocomplete with chips</h4>
         <Autocomplete
           value={this.state.selectedChips}
           dataSource={this.state.dataSource}
@@ -51,6 +53,7 @@ export default class AutocompleteDemo extends Component {
         </Autocomplete>
         <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}>
         </Chips>
+        <Divider />
       </ComponentShell>
     )
   }

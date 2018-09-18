@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ComponentShell from '../common/ComponentShell';
 import { Checkbox } from 'ui-components';
+import {Divider, Icon} from "antd";
 
 const checkboxData = [
   {label: 'test1', value: 'test1'},
@@ -18,12 +19,15 @@ export default class CheckboxDemo extends Component {
 
   render(){
     return (
-      <ComponentShell>
-        <h1>Checkbox</h1>
-        <h2>Row</h2>
+      <ComponentShell name="Checkbox">
+        <h2>Checkbox Example</h2>
+        <Divider />
+        <h4>Checkbox Row</h4>
         <Checkbox checkboxData={checkboxData}></Checkbox>
-        <h2>Column</h2>
+        <Divider />
+        <h4>Checkbox Column</h4>
         <Checkbox checkboxData={checkboxData} layout="column"></Checkbox>
+        <Divider />
       </ComponentShell>
     )
   }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ComponentShell from '../common/ComponentShell';
 import { Chips } from 'ui-components';
+import {Divider} from "antd";
 
 const chipData = [
   'Lays',
@@ -28,16 +29,16 @@ export default class ChipsDemo extends Component {
 
   render(){
     return (
-      <ComponentShell>
-        <h1>Chips</h1>
-        <h2>Truncated</h2>
+      <ComponentShell name="Chips">
+        <h4>Truncated Chips</h4>
         <Chips listData={this.state.chipData} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>
-
-        <h2>Row</h2>
+        <Divider />
+        <h4>Chips Row</h4>
         <Chips listData={this.state.chipData} layout="row" deleteFn={this.deleteChip}></Chips>
-
-        <h2>Column</h2>
+        <Divider />
+        <h4>Chips Column</h4>
         <Chips listData={this.state.chipData} layout="column" deleteFn={this.deleteChip}></Chips>
+        <Divider />
       </ComponentShell>
     )
   }

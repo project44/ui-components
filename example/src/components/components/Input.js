@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ComponentShell from '../common/ComponentShell';
 import { Input } from 'ui-components';
+import {Divider} from "antd";
 
 export default class InputDemo extends Component {
 
@@ -13,10 +14,12 @@ export default class InputDemo extends Component {
 
   render(){
     return (
-      <ComponentShell>
-        <h1>Input</h1>
+      <ComponentShell name="Input">
+        <h2>Input Example</h2>
+        <Divider />
+        <h4>Basic Input</h4>
         <Input placeholder="Sample input" label="Sample input"></Input>
-
+        <Divider />
       </ComponentShell>
     )
   }
