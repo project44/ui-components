@@ -3,6 +3,11 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto:100,300,400,500,700,900');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+/*
+font-family: 'Roboto', sans-serif;
+font-family: 'Roboto Mono', monospace;
+*/
+
 html {
   font-size: 62.5%;
 }
@@ -37,6 +42,11 @@ h1 { // page title
   @include toRem(font-size, 32px);
   font-weight: 500;
   color: var(--primary-grey);
+
+  &.hero {
+    @include toRem(font-size, 48px);
+    color: var(--white);
+  }
 }
 
 h2 { // section title

@@ -53,7 +53,7 @@ class App extends Component {
               />
               {/* <AppHeader /> */}
             </Header>
-            <Content className="p44-ui__content">
+            <Content className="p44-ui__wrapper">
               <Route exact path="/" component={Landing} />
               <Route exact path="/colors" component={Colors} />
               <Route exact path="/typography" component={Typography} />

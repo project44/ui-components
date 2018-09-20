@@ -6,10 +6,17 @@ import './Colors.scss'
 
 export default (props) => {
   return (
-      <div className="colors">
-        <h2>
-          Colors
-        </h2>
+    <div className="p44-ui__page">
+      <div className="page-header">
+        <h1>Colors</h1>
+      </div>
+      <div className="page-content">
+        <p className="page-intro">
+          If you hadn’t noticed, we like blue. We also like to keep it simple.
+          The use of color throughout our application is minimal and intentional.
+          Specifically reserving color for the most crucial data points for fast
+          consumption and indication of status.
+        </p>
         <Row gutter={8}>
           <Col span={6}>
             <div className="colors__item">
@@ -121,5 +128,6 @@ export default (props) => {
           </Col>
         </Row>
       </div>
+    </div>
   );
 }

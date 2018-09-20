@@ -34,10 +34,43 @@ html {
   .header__trigger:hover {
     cursor: pointer;
   }
-.p44-ui__content {
+.p44-ui__wrapper {
+  background-color: #fff;
   margin: 24px 16px;
-  padding: 24px;
-  height: 100%;
+  border:1px solid #cecece;
+
+  .page-header {
+    background-color: #f3f3f3;
+    padding:16px;
+
+    h1 {
+      margin-bottom: 0;
+    }
+  }
+  .page-content {
+    padding: 20px;
+  }
+  .page-intro {
+    margin-bottom: 18px;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--primary-grey);
+  }
+  .page-section {
+    margin-bottom: 32px;
+  }
+  > .section-title {
+    font-size: 16px;
+    color: var(--primary-grey);
+
+    .aside {
+      float:right;
+      font-size: 12px;
+      font-weight: normal;
+    }
+  }
 }
 .p44-ui__component {
   width: 100%;
