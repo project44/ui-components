@@ -14,14 +14,6 @@ body {
   font-family: 'Roboto', sans-serif, 'Open Sans';
 }
 
-html {
-  font-size: 62.5%;
-}
-
-body {
-  font-size: 1.2rem;
-}
-
 .form-header {
   @include toRem(font-size, 12px);
   @include toRem(margin-bottom, 12px);
