@@ -1,0 +1,12 @@
+.clearfix {
+  display: block;
+  clear: both;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    clear: both;
+  }
+}

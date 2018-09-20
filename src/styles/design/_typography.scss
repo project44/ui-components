@@ -1,5 +1,19 @@
 @import '../modules/mixins';
 
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto:100,300,400,500,700,900');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  font-size: 1.2rem;
+  background-color: var(--primary-grey-05);
+  font-family: 'Roboto', sans-serif, 'Open Sans';
+}
+
 html {
   font-size: 62.5%;
 }

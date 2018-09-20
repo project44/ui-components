@@ -31,7 +31,7 @@ import Select from './components/Select/Select'
 import MultiSelect from './components/MultiSelect/MultiSelect'
 
 // Our global styles
-import './styles/main.scss';
+import './styles/init.scss';
 
 // export Components as named exports
 export { Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select, MultiSelect }
