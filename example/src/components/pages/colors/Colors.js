@@ -42,117 +42,164 @@ export default (props) => {
           </ul>
 
           <p>All blues may be used for illustrations or to create dimension.</p>
+
+          <Row gutter={8} className="colors">
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--chathams-blue)'}}></div>
+                <div className="item__var-name">--chathams-blue</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--p44-blue)'}}></div>
+                <div className="item__var-name">--p44-blue</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--primary-blue)'}}></div>
+                <div className="item__var-name">--primary-blue</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--primary-blue-95)'}}></div>
+                <div className="item__var-name">--primary-blue-95</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--primary-blue-75)'}}></div>
+                <div className="item__var-name">--primary-blue-75</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--primary-blue-45)'}}></div>
+                <div className="item__var-name">--primary-blue-45</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--primary-blue-30)'}}></div>
+                <div className="item__var-name">--primary-blue-30</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--primary-blue-13)'}}></div>
+                <div className="item__var-name">--primary-blue-13</div>
+              </div>
+            </Col>
+          </Row>
         </section>
-        <Row gutter={8} className="colors">
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--primary-blue-30)'}}></div>
-              <div className="item__var-name">--primary-blue-30</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--primary-blue)'}}></div>
-              <div className="item__var-name">--primary-blue</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--off-blue)'}}></div>
-              <div className="item__var-name">--off-blue</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--bluish)'}}></div>
-              <div className="item__var-name">--bluish</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--chathams-blue)'}}></div>
-              <div className="item__var-name">--chathams-blue</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--primary-grey)'}}></div>
-              <div className="item__var-name">--primary-grey</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--primary-grey-80)'}}></div>
-              <div className="item__var-name">--primary-grey-80</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--primary-grey-40)'}}></div>
-              <div className="item__var-name">--primary-grey-40</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--primary-grey-20)'}}></div>
-              <div className="item__var-name">--primary-grey-20</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--primary-grey-05)'}}></div>
-              <div className="item__var-name">--primary-grey-05</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--mysterious-grey)'}}></div>
-              <div className="item__var-name">--mysterious-grey</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--yellow)'}}></div>
-              <div className="item__var-name">--yellow</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--orange)'}}></div>
-              <div className="item__var-name">--orange</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--green)'}}></div>
-              <div className="item__var-name">--green</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--new-fruit)'}}></div>
-              <div className="item__var-name">--new-fruit</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--white)'}}></div>
-              <div className="item__var-name">--white</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--white-two)'}}></div>
-              <div className="item__var-name">--white-two</div>
-            </div>
-          </Col>
-          <Col span={6}>
-            <div className="colors__item">
-              <div className="item__example" style={{backgroundColor: 'var(--teal)'}}></div>
-              <div className="item__var-name">--teal</div>
-            </div>
-          </Col>
-        </Row>
+
+        <section className="page-section">
+          <h2 className="section-title">Grays</h2>
+          <p>Our grays can be used on most UI components but should be limited to:</p>
+          <ul>
+            <li>Backgrounds</li>
+            <li>Borders</li>
+            <li>Text</li>
+            <li>SVG fills</li>
+            <li>Button fills</li>
+          </ul>
+          <Row gutter={8} className="colors">
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--primary-grey)'}}></div>
+                <div className="item__var-name">--primary-grey</div>
+              </div>
+            </Col>
+          </Row>
+          <Row gutter={8} className="colors">
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--primary-grey-80)'}}></div>
+                <div className="item__var-name">--primary-grey-80</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--primary-grey-40)'}}></div>
+                <div className="item__var-name">--primary-grey-40</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--primary-grey-20)'}}></div>
+                <div className="item__var-name">--primary-grey-20</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--primary-grey-05)'}}></div>
+                <div className="item__var-name">--primary-grey-05</div>
+              </div>
+            </Col>
+          </Row>
+        </section>
+
+        <section className="page-section">
+          <h2 className="section-title">Accents</h2>
+          <p>Teal:</p>
+          <ul>
+            <li>Hyperlinks</li>
+          </ul>
+          <p>Orange and  Yellow are rarely used in the UI but are provided for accent and illustration purposes.</p>
+          <Row gutter={8} className="colors">
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--teal)'}}></div>
+                <div className="item__var-name">--teal</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--orange)'}}></div>
+                <div className="item__var-name">--orange</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--yellow)'}}></div>
+                <div className="item__var-name">--yellow</div>
+              </div>
+            </Col>
+          </Row>
+        </section>
+
+        <section className="page-section">
+          <h2 className="section-title">Alerts</h2>
+          <p><strong>Green</strong></p>
+          <ul>
+            <li>
+              Success or Early status
+            </li>
+          </ul>
+          <p><strong>New-Fruit</strong></p>
+          <ul>
+            <li>
+              Error or late status
+            </li>
+          </ul>
+
+          <Row gutter={8} className="colors">
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--green)'}}></div>
+                <div className="item__var-name">--green</div>
+              </div>
+            </Col>
+            <Col span={6}>
+              <div className="colors__item">
+                <div className="item__example" style={{backgroundColor: 'var(--new-fruit)'}}></div>
+                <div className="item__var-name">--new-fruit</div>
+              </div>
+            </Col>
+          </Row>
+        </section>
       </div>
     </div>
   );
