@@ -1,6 +1,11 @@
 /* Color palette */
-$primary-blue-30: #bdd0df;
 $primary-blue: #236192;
+$primary-blue-95: #2E6998;
+$primary-blue-75: #5A89AE;
+$primary-blue-45: #9CB8CE;
+$primary-blue-30: #BDD0DF;
+$primary-blue-13: #E3EBF1;
+$p44-blue: #236192;
 $off-blue: #5888b0;
 $chathams-blue: #11426a;
 $bluish: #2091a9;
@@ -9,7 +14,6 @@ $primary-grey-80: #575451;
 $primary-grey-40: #aba9a8;
 $primary-grey-20: #D5D4D4;
 $primary-grey-05: #f3f3f3;
-$mysterious-grey: #aba9a8;
 $yellow: #f6c472;
 $orange: #ea8616;
 $green: #1e9f5b;
@@ -45,8 +49,13 @@ $colorsList:
 ;
 
 :root {
-  --primary-blue-30: #bdd0df;
   --primary-blue: #236192;
+  --primary-blue-95: #2E6998;
+  --primary-blue-75: #5A89AE;
+  --primary-blue-45: #9CB8CE;
+  --primary-blue-30: #BDD0DF;
+  --primary-blue-13: #E3EBF1;
+  --p44-blue: #236192;
   --off-blue: #5888b0;
   --chathams-blue: #11426a;
   --bluish: #2091a9;
@@ -55,7 +64,6 @@ $colorsList:
   --primary-grey-40: #aba9a8;
   --primary-grey-20: #D5D4D4;
   --primary-grey-05: #f3f3f3;
-  --mysterious-grey: #aba9a8;
   --yellow: #f6c472;
   --orange: #ea8616;
   --green: #1e9f5b;

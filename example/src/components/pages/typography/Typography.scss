@@ -140,7 +140,7 @@ font-family: 'Roboto Mono', monospace;
       }
       .carrier-name {
         font-size: 14px;
-        color: #aba9a8;
+        color: var(--primary-grey-40);
       }
       h6 {
         font-size: 12px;
@@ -159,7 +159,7 @@ font-family: 'Roboto Mono', monospace;
 }
 
 .link {
-  color: #236192;
+  color: var(--teal);
 
   &.uppercase {
     font-weight: bold;
