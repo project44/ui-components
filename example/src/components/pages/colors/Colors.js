@@ -17,7 +17,33 @@ export default (props) => {
           Specifically reserving color for the most crucial data points for fast
           consumption and indication of status.
         </p>
-        <Row gutter={8}>
+
+        <section className="page-section">
+          <h2 className="section-title">project44 Blues</h2>
+          <p>Our brand blue should be used sparingly within the application. Specifically for primary actions and accents.</p>
+
+          <p>The following colors have specific purpose within the shipment tracking application.</p>
+
+          <p><strong>Chathams-Blue</strong></p>
+        	<ul>
+            <li>Backgrounds</li>
+          </ul>
+
+          <p><strong>p44-Blue</strong></p>
+          <ul>
+            <li>Primary Actions and Button fills</li>
+            <li>Hyperlinks</li>
+            <li>Highlights and Accents</li>
+          </ul>
+
+          <p><strong>Blue-75</strong></p>
+          <ul>
+            <li>On-Time Status</li>
+          </ul>
+
+          <p>All blues may be used for illustrations or to create dimension.</p>
+        </section>
+        <Row gutter={8} className="colors">
           <Col span={6}>
             <div className="colors__item">
               <div className="item__example" style={{backgroundColor: 'var(--primary-blue-30)'}}></div>
