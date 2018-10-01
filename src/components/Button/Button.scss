@@ -1,3 +1,169 @@
-.p44-btn {
+@import '../../styles/design/colors';
 
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+.p44-btn {
+  text-transform: uppercase;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  border-radius: 0;
+  line-height: 1em;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  i {
+    font-size: 12px;
+    &.left {
+      margin-left: -4px;
+      margin-right: 4px;
+    }
+    &.right {
+      margin-right: -4px;
+      margin-left: 4px;
+    }
+    &.flipped {
+      -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      filter: FlipH;
+      -ms-filter: "FlipH";
+    }
+  }
+  &__primary {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    height: 48px;
+    font-size: 14px;
+    i {
+      font-size: 18px;
+    }
+    &:hover, &:focus {
+      color: var(--white);
+      background-color: var(--chathams-blue);
+    }
+  }
+  &__primary-ink {
+    background-color: var(--primary-grey-05);
+    color: var(--primary-grey-80);
+    i {
+      font-size: 14px;
+    }
+    &:hover, &:focus {
+      color: var(--primary-grey-80);
+      background-color: var(--primary-grey-20);
+    }
+  }
+  &__destructive {
+    border: solid 1px var(--new-fruit);
+    color: var(--new-fruit);
+    box-shadow: none;
+    justify-content: center;
+    background-color: transparent;
+    width: 100%;
+    &:hover, &:focus {
+      color: var(--new-fruit);
+      border: solid 1px var(--new-fruit);
+      background-color: tint($new-fruit, 80%);
+    }
+  }
+  &__secondary { // no border
+    box-shadow: none;
+    color: $primary-grey-40;
+    &:hover, &:focus {
+      color: $primary-grey-40;
+      background-color: var(--primary-grey-05);
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    }
+  }
+  &__basic { // basically a link with/without an icon
+    box-shadow: none;
+    @each $color in $colorsList {
+      &.#{nth($color, 1)} {
+        color: nth($color, 2);
+        &:hover, &:focus {
+          color: nth($color, 2);
+          background-color: transparent;
+        }
+      }
+    }
+  }
+  &__bordered { //has border
+    color: var(--primary-grey-80);
+    border: solid 1px var(--primary-grey-80);
+    box-shadow: none;
+    @each $color in $colorsList {
+      &.#{nth($color, 1)} {
+        color: nth($color, 2);
+        border: solid 1px nth($color, 2);
+        &:hover, &:focus  {
+          background-color: tint(nth($color, 2), 80%);
+          color: nth($color, 2);
+        }
+      }
+    }
+  }
+  &.large {
+    height: 48px;
+    font-size: 14px;
+    i {
+      font-size: 18px;
+    }
+  }
+  &.medium {
+    height: 40px;
+    font-size: 14px;
+    i {
+      font-size: 16px;
+    }
+  }
+  &.small {
+    height: 36px;
+    font-size: 12px;
+    i {
+      font-size: 16px;
+    }
+  }
+  &.x-small {
+    height: 30px;
+    font-size: 10px;
+    min-height: 30px;
+    i {
+      font-size: 12px;
+    }
+  }
+  &:hover {
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    span {
+      text-decoration: none;
+    }
+  }
+  &:disabled {
+    background-color: transparent;
+    color: #aba9a8;
+    box-shadow: none;
+  }
+  &-full-width {
+    width: 100%;
+  }
+  &.icon-button {
+    width: auto;
+    min-width: auto;
+    color: var(--primary-grey-80);
+    padding: 8px;
+    i {
+      font-size: 24px;
+    }
+  }
+}
+.p44-btn-link {
+  &:hover {
+    text-decoration: none;
+  }
 }

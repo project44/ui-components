@@ -9,7 +9,7 @@ export default (props) => {
       <div className="component__description mb-8">
         {props.description}
       </div>
-      <div className="component__example bg-white my-4 p-4 shadow-md rounded">
+      <div className="component__example bg-white my-4 p-8 shadow-md rounded">
         {props.children}
       </div>
     </div>

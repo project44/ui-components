@@ -29,15 +29,16 @@ import Checkbox from './components/Checkbox/Checkbox'
 import Autocomplete from './components/Autocomplete/Autocomplete'
 import Select from './components/Select/Select'
 import MultiSelect from './components/MultiSelect/MultiSelect'
+import SubHeader from './components/SubHeader/SubHeader'
 
 // Our global styles
 import './styles/init.scss';
 
 // export Components as named exports
-export { Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select, MultiSelect }
+export { Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select, MultiSelect, SubHeader }
 
 // alternative, more concise syntax for named exports
 // export { default as Foo } from './Foo'
 
 // you can optionally also set a default export for your module
-export default { Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select, MultiSelect }
+export default { Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select, MultiSelect, SubHeader }
