@@ -14,9 +14,10 @@ export default (props) => {
         <p className="page-intro">
           A button indicates an action upon touch or click and is typically labeled using text, an icon, or both.
         </p>
+        <p>Note that you can add any class name from the list of <a href="/ui-components/colors">colors</a> and the theme will be overwritten.</p>
         <section className="page-section">
           <h3 className="section-title">Primary Brand Button</h3>
-          <p>The primary brand button is to indicate app level primary actions. The brand color can be overriden for theme specific usage.</p>
+          <p>The primary brand button is to indicate app level primary actions. The brand color can be overwritten for theme specific usage.</p>
           <p>The Brand button generally should only be used once per component screen at any one time. It is used when there is an action that
             is clearly more important than the other actions and you need to draw attention to it. An example is when you have a “Save” and “Cancel” button. The “Save” is the primary action.
           </p>
@@ -27,7 +28,6 @@ export default (props) => {
             <Button className="p44-btn__primary x-small">Primary brand XS</Button>
           </div>
           <div className="component__usage mt-8">
-            <h3 className="section-title">Usage</h3>
             <SyntaxHighlighter language='jsx' style={xonokai}>
               {`import { Button } from 'ui-components';\n
 <Button className="p44-btn__primary large">Primary brand LG</Button>
@@ -51,7 +51,6 @@ export default (props) => {
             <Button className="p44-btn__primary-ink x-small">Primary ink XS</Button>
           </div>
           <div className="component__usage mt-8">
-            <h3 className="section-title">Usage</h3>
             <SyntaxHighlighter language='jsx' style={xonokai}>
               {`import { Button } from 'ui-components';\n
 <Button className="p44-btn__primary-ink large">Primary ink LG</Button>
@@ -75,7 +74,6 @@ export default (props) => {
             <Button className="p44-btn__primary-ink x-small"><i className="material-icons left">settings</i>Primary ink XS</Button>
           </div>
           <div className="component__usage mt-8">
-            <h3 className="section-title">Usage</h3>
             <SyntaxHighlighter language='jsx' style={xonokai}>
               {`import { Button } from 'ui-components';\n
 <Button className="p44-btn__primary-ink large"><i className="material-icons left">settings</i>Primary ink LG</Button>
@@ -99,7 +97,6 @@ export default (props) => {
             <Button className="p44-btn__secondary x-small">Tertiary Gray-40 XS</Button>
           </div>
           <div className="component__usage mt-8">
-            <h3 className="section-title">Usage</h3>
             <SyntaxHighlighter language='jsx' style={xonokai}>
               {`import { Button } from 'ui-components';\n
 <Button className="p44-btn__secondary large">Tertiary Gray-40 LG</Button>
@@ -122,7 +119,6 @@ export default (props) => {
             <Button className="p44-btn__destructive x-small mb-4">Destructive Outline XS</Button>
           </div>
           <div className="component__usage mt-8">
-            <h3 className="section-title">Usage</h3>
             <SyntaxHighlighter language='jsx' style={xonokai}>
               {`import { Button } from 'ui-components';\n
 <Button className="p44-btn__destructive large">Destructive Outline LG</Button>
@@ -145,7 +141,6 @@ export default (props) => {
             <Button className="p44-btn__basic new-fruit x-small">Destructive Tex-Icon XS<i className="material-icons right">delete</i></Button>
           </div>
           <div className="component__usage mt-8">
-            <h3 className="section-title">Usage</h3>
             <SyntaxHighlighter language='jsx' style={xonokai}>
               {`import { Button } from 'ui-components';\n
 <Button className="p44-btn__basic new-fruit large">Destructive Tex-Icon LG<i className="material-icons right">delete</i></Button>

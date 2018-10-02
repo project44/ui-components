@@ -89,3 +89,8 @@ html {
 .SideNav > .ant-menu {
   height: 100%;
 }
+
+/* PRISM OVERRIDES */
+pre {
+  border-radius: 0 !important;
+}

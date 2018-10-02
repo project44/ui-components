@@ -7,7 +7,7 @@
 .p44-btn {
   text-transform: uppercase;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
-  font-weight: 500;
+  font-weight: 400;
   border-radius: 0;
   line-height: 1em;
   border: none;
@@ -115,24 +115,24 @@
   }
   &.medium {
     height: 40px;
-    font-size: 14px;
+    font-size: 12px;
     i {
       font-size: 16px;
     }
   }
   &.small {
     height: 36px;
-    font-size: 12px;
+    font-size: 10px;
     i {
-      font-size: 16px;
+      font-size: 18px;
     }
   }
   &.x-small {
     height: 30px;
-    font-size: 10px;
+    font-size: 8px;
     min-height: 30px;
     i {
-      font-size: 12px;
+      font-size: 16px;
     }
   }
   &:hover {
