@@ -3,7 +3,6 @@ import { Select, MultiSelect, Autocomplete, Chips } from 'ui-components';
 import { Icon } from 'antd';
 import SyntaxHighlighter from "react-syntax-highlighter/prism";
 import {xonokai} from "react-syntax-highlighter/styles/prism/index";
-import ComponentShell from "../common/ComponentShell";
 
 const chipData = [
   'Lays',
@@ -52,7 +51,7 @@ export default class SelectDemo extends Component {
               p44's Select component is an extension of the <a href="https://ant.design/components/select/" target="_blank">Ant Select Component <Icon type="link" theme="outlined" /></a>
               , thus you have full access to their Select <a href="https://ant.design/components/select/#API" target="_blank">API <Icon type="link" theme="outlined" /></a>.
             </p>
-            <h4>Standard Single Select</h4>
+            <h4 className="example-title">Standard Single Select</h4>
             <p>Standard select dropdown allows users to select a single option from the list.</p>
             <div className="example__render">
               <Select
@@ -76,7 +75,7 @@ export default class SelectDemo extends Component {
           </section>
 
           <section className="page-section">
-            <h4>Type-Ahead Single Select</h4>
+            <h4 className="example-title">Type-Ahead Single Select</h4>
             <p> A select dropdown that allows the user to search through the list by typing. The list will filter with items that contain the string entered.</p>
             <div className="example__render">
               <Select
@@ -102,12 +101,12 @@ export default class SelectDemo extends Component {
           </section>
 
           <section className="page-section">
-            <h4>Multi-Select Input</h4>
+            <h3 className="section-title">Multi-Select Input</h3>
             <p>
               p44's Multi-Select component is an extension of the <a href="https://ant.design/components/select/" target="_blank">Ant Select Component <Icon type="link" theme="outlined" /></a>
               , thus you have full access to their Select <a href="https://ant.design/components/select/#API" target="_blank">API <Icon type="link" theme="outlined" /></a>.
             </p>
-            <p className="font-bold">Standard Multi-Select</p>
+            <h4 className="example-title">Standard Multi-Select</h4>
             <p>Standard Multi-Select  dropdown allows users to select a multiple options from the list and populates selected items in a chip display below the input.</p>
             <div className="example__render">
               <MultiSelect
@@ -141,7 +140,7 @@ export default class SelectDemo extends Component {
           </section>
 
           <section className="page-section">
-            <p className="font-bold">Type-Ahead Multi-Select</p>
+            <h4 className="example-title">Type-Ahead Multi-Select</h4>
             <p>Type-Ahead Multi-Select dropdown allows users to select a multiple options from the list and populates selected items in a chip display below the input.</p>
             <div className="example__render">
               <MultiSelect
@@ -173,7 +172,7 @@ export default class SelectDemo extends Component {
           </section>
 
           <section className="page-section">
-            <p className="font-bold">Type-Ahead Multi-Select with Auto-Close</p>
+            <h4 className="example-title">Type-Ahead Multi-Select with Auto-Close</h4>
             <div className="example__render">
               <MultiSelect
                 value={this.state.selectedChips}
@@ -206,7 +205,7 @@ export default class SelectDemo extends Component {
           </section>
 
           <section className="page-section">
-            <p className="font-bold">Auto-Complete Select Input with Chips</p>
+            <h4 className="example-title">Auto-Complete Select Input with Chips</h4>
             <div className="example__render">
               <Autocomplete
                 value={this.state.selectedChips}

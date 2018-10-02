@@ -48,7 +48,7 @@ export default class CheckboxDemo extends Component {
             <p>
               A checkable input that communicates if an option is true, false or indeterminate. Can be displayed horizontally or vertically or styled.
             </p>
-            <h4>Horizontal</h4>
+            <h4 className="example-title">Horizontal</h4>
             <div className="example__render">
               <Checkbox checkboxData={checkboxData}></Checkbox>
             </div>
@@ -61,7 +61,7 @@ export default class CheckboxDemo extends Component {
           </section>
 
           <section className="page-section">
-            <h4>Vertical</h4>
+            <h4 className="example-title">Vertical</h4>
             <div className="example__render">
               <Checkbox checkboxData={checkboxData} layout="column"></Checkbox>
             </div>

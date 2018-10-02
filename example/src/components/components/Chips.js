@@ -43,7 +43,7 @@ export default class ChipsDemo extends Component {
             <p>
               These can be removed or “unapplied” by clicking the “x” icon. These chips can be displayed horizontally or vertically and with a truncated view.
             </p>
-            <h4>Horizontal</h4>
+            <h4 className="example-title">Horizontal</h4>
             <div className="example__render">
               <Chips listData={this.state.chipData} layout="row" deleteFn={this.deleteChip}></Chips>
             </div>
@@ -56,7 +56,7 @@ export default class ChipsDemo extends Component {
           </section>
 
           <section className="page-section">
-            <h4>Vertical</h4>
+            <h4 className="example-title">Vertical</h4>
             <div className="example__render">
               <Chips listData={this.state.chipData} layout="column" deleteFn={this.deleteChip}></Chips>
             </div>
@@ -69,8 +69,7 @@ export default class ChipsDemo extends Component {
           </section>
 
           <section className="page-section">
-            <h4>Truncated</h4>
-
+            <h4 className="example-title">Truncated</h4>
               <Row>
                 <Col span={12}>
                   <div className="example__render">
