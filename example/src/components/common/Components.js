@@ -7,7 +7,6 @@ import InputDemo from '../components/Input';
 import CheckboxDemo from '../components/Checkbox';
 import AutocompleteDemo from "../components/Autocomplete";
 import SelectDemo from "../components/Select";
-import MultiSelectDemo from "../components/MultiSelect";
 import SubHeaderDemo from '../components/SubHeader'
 
 export default (props) => {
@@ -21,7 +20,6 @@ export default (props) => {
       <Route exact path={`${match.url}/checkbox`} component={CheckboxDemo} />
       <Route exact path={`${match.url}/autocomplete`} component={AutocompleteDemo} />
       <Route exact path={`${match.url}/select`} component={SelectDemo} />
-      <Route exact path={`${match.url}/multi-select`} component={MultiSelectDemo} />
       <Route exact path={`${match.url}/sub-header`} component={SubHeaderDemo} />
     </div>
   )

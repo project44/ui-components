@@ -79,11 +79,6 @@ class SideNav extends Component {
                 Select
               </Link>
             </Menu.Item>
-            <Menu.Item key="14">
-              <Link to={'/components/multi-select'}>
-                Multi-Select
-              </Link>
-            </Menu.Item>
           </SubMenu>
         </Menu>
     );

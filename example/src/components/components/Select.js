@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import { Select } from 'ui-components';
+import { Select, MultiSelect, Chips } from 'ui-components';
 import { Icon } from 'antd';
 import SyntaxHighlighter from "react-syntax-highlighter/prism";
 import {xonokai} from "react-syntax-highlighter/styles/prism/index";
+import ComponentShell from "../common/ComponentShell";
 
 const chipData = [
   'Lays',
@@ -18,8 +19,21 @@ export default class SelectDemo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: chipData
+      dataSource: chipData,
+      selectedChips: []
     };
+  }
+
+  deleteChip = (index) => {
+    this.setState({
+      selectedChips: this.state.selectedChips.filter((_, i) => i !== index)
+    });
+  }
+
+  handleChange = (values) => {
+    this.setState({
+      selectedChips: values,
+    })
   }
 
   render() {
@@ -48,9 +62,9 @@ export default class SelectDemo extends Component {
               >
               </Select>
             </div>
-            <div className="component__usage">
+            <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>
-                {`import { Button } from 'ui-components';\n
+                {`import { Select } from 'ui-components';\n
 <Select
   dataSource={this.state.dataSource}
   placeholder="Standard Select"
@@ -60,27 +74,137 @@ export default class SelectDemo extends Component {
               </SyntaxHighlighter>
             </div>
           </section>
-          <div className="example__render">
-            <Select
-              dataSource={this.state.dataSource}
-              placeholder="Search Select"
-              label="Search Select"
-              showSearch={true}
-            >
-            </Select>
-          </div>
-          <div className="component__usage">
-            <SyntaxHighlighter language='jsx' style={xonokai}>
-              {`import { Button } from 'ui-components';\n
- <Select
+
+          <section className="page-section">
+            <h4>Type-Ahead Single Select</h4>
+            <p> A select dropdown that allows the user to search through the list by typing. The list will filter with items that contain the string entered.</p>
+            <div className="example__render">
+              <Select
+                dataSource={this.state.dataSource}
+                placeholder="Type-Ahead Single Select"
+                label="Type-Ahead Select"
+                showSearch={true}
+              >
+              </Select>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { Select } from 'ui-components';\n
+<Select
   dataSource={this.state.dataSource}
-  placeholder="Search Select"
-  label="Search Select"
+  placeholder="Type-Ahead Single Select"
+  label="Type-Ahead Select"
   showSearch={true}
 >
 </Select>`}
-            </SyntaxHighlighter>
-          </div>
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h4>Multi-Select Input</h4>
+            <p>
+              p44's Multi-Select component is an extension of the <a href="https://ant.design/components/select/" target="_blank">Ant Select Component <Icon type="link" theme="outlined" /></a>
+              , thus you have full access to their Select <a href="https://ant.design/components/select/#API" target="_blank">API <Icon type="link" theme="outlined" /></a>.
+            </p>
+            <p className="font-bold">Standard Multi-Select</p>
+            <p>Standard Multi-Select  dropdown allows users to select a multiple options from the list and populates selected items in a chip display below the input.</p>
+            <div className="example__render">
+              <MultiSelect
+                value={this.state.selectedChips}
+                dataSource={this.state.dataSource}
+                placeholder="Select Multiple"
+                label="Standard Multi-Select"
+                onChange={(value) => this.handleChange(value)}
+                open={this.state.open}
+                allowSearch={false}
+              >
+              </MultiSelect>
+              <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { MultiSelect } from 'ui-components';\n
+<MultiSelect
+  value={this.state.selectedChips}
+  dataSource={this.state.dataSource}
+  placeholder="Select Multiple"
+  label="Sample multi-select dropdown"
+  onChange={(value) => this.handleChange(value)}
+  open={this.state.open}
+  allowSearch={false}
+>
+</MultiSelect>
+<Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <p className="font-bold">Type-Ahead Multi-Select</p>
+            <p>Type-Ahead Multi-Select dropdown allows users to select a multiple options from the list and populates selected items in a chip display below the input.</p>
+            <div className="example__render">
+              <MultiSelect
+                value={this.state.selectedChips}
+                dataSource={this.state.dataSource}
+                placeholder="Select Multiple"
+                label="Type-Ahead Multi-Select"
+                onChange={(value) => this.handleChange(value)}
+                open={this.state.open}
+              >
+              </MultiSelect>
+              <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { MultiSelect } from 'ui-components';\n
+<MultiSelect
+  value={this.state.selectedChips}
+  dataSource={this.state.dataSource}
+  placeholder="Select Multiple"
+  label="Sample multi-select dropdown"
+  onChange={(value) => this.handleChange(value)}
+  open={this.state.open}
+>
+</MultiSelect>
+<Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <p className="font-bold">Type-Ahead Multi-Select with Auto-Close</p>
+            <div className="example__render">
+              <MultiSelect
+                value={this.state.selectedChips}
+                dataSource={this.state.dataSource}
+                placeholder="Select Multiple"
+                label="Type-Ahead Multi-Select"
+                onChange={(value) => this.handleChange(value)}
+                open={this.state.open}
+                closeOnSelect={true}
+              >
+              </MultiSelect>
+              <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { MultiSelect } from 'ui-components';\n
+<MultiSelect
+  value={this.state.selectedChips}
+  dataSource={this.state.dataSource}
+  placeholder="Select Multiple"
+  label="Sample multi-select dropdown"
+  onChange={(value) => this.handleChange(value)}
+  open={this.state.open}
+  closeOnSelect={true}
+>
+</MultiSelect>
+<Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
         </div>
       </div>
     )
