@@ -1,0 +1,36 @@
+.checkbox-group {
+  &.styled {
+    .ant-checkbox-group {
+      display: flex;
+      flex-direction: row;
+      border: solid 1px #d8d8d8;
+      text-align: center;
+      .ant-checkbox-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-right: solid 1px #d8d8d8;
+        .item-icon {
+          height: 15px;
+          opacity: .25;
+        }
+        .item-title {
+          display: block;
+          align-self: center;
+          font-size: 12px;
+          font-weight: bold;
+          line-height: 1.25;
+          text-transform: uppercase;
+          color: #575451;
+          margin-top: 8px;
+        }
+      }
+      .ant-checkbox {
+        display: none;
+      }
+    }
+  }
+}

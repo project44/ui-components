@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ComponentShell from '../common/ComponentShell';
 import { Chips } from 'ui-components';
 import {Row, Col} from "antd";
 import SyntaxHighlighter from "react-syntax-highlighter/prism";

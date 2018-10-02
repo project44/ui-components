@@ -14,7 +14,7 @@ export default (props) => {
         <p className="page-intro">
           A button indicates an action upon touch or click and is typically labeled using text, an icon, or both.
         </p>
-        <p>Note that you can add any class name from the list of <a href="/ui-components/colors">colors</a> and the theme will be overwritten.</p>
+        <p className="mb-8">Note that you can add any class name from the list of <a href="/ui-components/colors">colors</a> and the theme will be overwritten.</p>
         <section className="page-section">
           <h3 className="section-title">Primary Brand Button</h3>
           <p>The primary brand button is to indicate app level primary actions. The brand color can be overwritten for theme specific usage.</p>

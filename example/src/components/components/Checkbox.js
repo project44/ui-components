@@ -1,11 +1,28 @@
 import React, {Component} from 'react';
-import ComponentShell from '../common/ComponentShell';
 import { Checkbox } from 'ui-components';
-import {Divider, Icon} from "antd";
+import SyntaxHighlighter from "react-syntax-highlighter/prism";
+import {xonokai} from "react-syntax-highlighter/styles/prism/index";
+import ltlIcon from '../../assets/images/ltl-sm.svg';
+import oceanIcon from '../../assets/images/ocean-sm.svg';
+import parcelIcon from '../../assets/images/parcel-sm.svg';
+import railIcon from '../../assets/images/rail-sm.svg';
+import tlIcon from '../../assets/images/tl-sm.svg';
+import vltlIcon from '../../assets/images/vltl-sm.svg';
+import allIcon from '../../assets/images/all-modes-sm.svg';
 
 const checkboxData = [
   {label: 'test1', value: 'test1'},
   {label: 'test2', value: 'test2'},
+]
+
+const modalFilterData = [
+  { label: 'All Modes', value: 'All Modes', icon: allIcon },
+  { label: 'Truckload', value: 'Truckload', icon: tlIcon},
+  { label: 'Ocean', value: 'Ocean', icon: oceanIcon},
+  { label: 'Rail', value: 'Rail', icon: railIcon},
+  { label: 'LTL', value: 'LTL', icon: ltlIcon},
+  { label: 'VLTL', value: 'VLTL', icon: vltlIcon },
+  { label: 'Parcel', value: 'Parcel', icon: parcelIcon }
 ]
 
 export default class CheckboxDemo extends Component {
@@ -14,21 +31,64 @@ export default class CheckboxDemo extends Component {
     super(props);
     this.state = {
     };
-
   }
 
   render(){
     return (
-      <ComponentShell name="Checkbox">
-        <h2>Checkbox Example</h2>
-        <Divider />
-        <h4>Checkbox Row</h4>
-        <Checkbox checkboxData={checkboxData}></Checkbox>
-        <Divider />
-        <h4>Checkbox Column</h4>
-        <Checkbox checkboxData={checkboxData} layout="column"></Checkbox>
-        <Divider />
-      </ComponentShell>
+      <div className="p44-ui__page">
+        <div className="page-header">
+          <h1>Checkbox</h1>
+        </div>
+        <div className="page-content">
+          <p className="page-intro">
+            Selectable inputs to communicate that one or many things are true or false.
+          </p>
+          <section className="page-section">
+            <h3 className="section-title">Checkbox</h3>
+            <p>
+              A checkable input that communicates if an option is true, false or indeterminate. Can be displayed horizontally or vertically or styled.
+            </p>
+            <h4>Horizontal</h4>
+            <div className="example__render">
+              <Checkbox checkboxData={checkboxData}></Checkbox>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { Checkbox } from 'ui-components';\n
+<Checkbox checkboxData={checkboxData}></Checkbox>`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h4>Vertical</h4>
+            <div className="example__render">
+              <Checkbox checkboxData={checkboxData} layout="column"></Checkbox>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { Checkbox } from 'ui-components';\n
+<Checkbox checkboxData={checkboxData} layout="column"></Checkbox>`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h3 className="section-title">Styled Checkbox</h3>
+            <p>A styled checkbox group that communicates  an option is true or false. This example is specific to Multi-Modal Search Filter.</p>
+            <div className="example__render">
+              <Checkbox checkboxData={modalFilterData} styled={true}></Checkbox>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { Checkbox } from 'ui-components';\n
+<Checkbox checkboxData={modalFilterData} styled={true}></Checkbox>`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+        </div>
+      </div>
     )
   }
 }
