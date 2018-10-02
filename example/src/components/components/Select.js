@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Select, MultiSelect, Chips } from 'ui-components';
+import { Select, MultiSelect, Autocomplete, Chips } from 'ui-components';
 import { Icon } from 'antd';
 import SyntaxHighlighter from "react-syntax-highlighter/prism";
 import {xonokai} from "react-syntax-highlighter/styles/prism/index";
@@ -200,6 +200,37 @@ export default class SelectDemo extends Component {
   closeOnSelect={true}
 >
 </MultiSelect>
+<Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <p className="font-bold">Auto-Complete Select Input with Chips</p>
+            <div className="example__render">
+              <Autocomplete
+                value={this.state.selectedChips}
+                dataSource={this.state.dataSource}
+                placeholder="Start typing"
+                label="Auto-Complete Select Input"
+                onChange={(value) => this.handleChange(value)}
+                open={this.state.open}
+              >
+              </Autocomplete>
+              <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { Autocomplete } from 'ui-components';\n
+<Autocomplete
+  value={this.state.selectedChips}
+  dataSource={this.state.dataSource}
+  placeholder="Start typing"
+  label="Auto-Complete Select Input"
+  onChange={(value) => this.handleChange(value)}
+  open={this.state.open}
+>
+</Autocomplete>
 <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>`}
               </SyntaxHighlighter>
             </div>

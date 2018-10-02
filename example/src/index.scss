@@ -93,4 +93,7 @@ html {
 /* PRISM OVERRIDES */
 pre {
   border-radius: 0 !important;
+  code, span {
+    font-size: 12px !important;
+  }
 }
