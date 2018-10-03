@@ -11,9 +11,13 @@
       width: 100%;
       position: absolute;
       z-index: 1;
+      ul > li {
+        font-size: 12px;
+      }
     }
     &__placeholder {
       left: 11px;
+      font-size: 12px;
     }
     &-selected-value {
       margin-left: 11px;

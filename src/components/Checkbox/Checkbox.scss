@@ -4,6 +4,7 @@
       display: flex;
       flex-direction: row;
       border: solid 1px #d8d8d8;
+      border-right: none;
       text-align: center;
       .ant-checkbox-wrapper {
         flex: 1;
@@ -13,9 +14,29 @@
         align-items: center;
         padding: 10px;
         border-right: solid 1px #d8d8d8;
+        position: relative;
+        margin-left: 0;
+        .ant-checkbox-inner {
+          display: none;
+        }
+        .ant-checkbox-checked {
+          background-color: #e3ebf1;
+          position: absolute;
+          bottom: 0;
+          top: 0;
+          right: 0;
+          left: 0;
+        }
+        .ant-checkbox + span {
+          opacity: .25;
+        }
+        .ant-checkbox-checked + span {
+          opacity: 1;
+        }
         .item-icon {
           height: 15px;
-          opacity: .25;
+          z-index: 1;
+          position: relative;
         }
         .item-title {
           display: block;
@@ -26,10 +47,9 @@
           text-transform: uppercase;
           color: #575451;
           margin-top: 8px;
+          z-index: 1;
+          position: relative;
         }
-      }
-      .ant-checkbox {
-        display: none;
       }
     }
   }

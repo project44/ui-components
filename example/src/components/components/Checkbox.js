@@ -75,7 +75,7 @@ export default class CheckboxDemo extends Component {
 
           <section className="page-section">
             <h3 className="section-title">Styled Checkbox</h3>
-            <p>A styled checkbox group that communicates  an option is true or false. This example is specific to Multi-Modal Search Filter.</p>
+            <p>A styled checkbox group that communicates an option is true or false. This example is specific to Multi-Modal Search Filter.</p>
             <div className="example__render">
               <Checkbox checkboxData={modalFilterData} styled={true}></Checkbox>
             </div>

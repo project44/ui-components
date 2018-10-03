@@ -7,7 +7,7 @@ export default class Checkbox extends Component {
 
   render() {
     const { checkboxData, layout = 'row', styled, onChange } = this.props;
-    console.log(checkboxData)
+
     return (
       <div className={styled ? 'checkbox-group styled' : 'checkbox-group'}>
         <AntCheckbox.Group onChange={onChange}>
