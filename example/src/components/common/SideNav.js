@@ -74,6 +74,16 @@ class SideNav extends Component {
                 Select
               </Link>
             </Menu.Item>
+            <Menu.Item key="14">
+              <Link to={'/components/multi-select'}>
+                Multi-Select
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="15">
+              <Link to={'/components/shipment-mode-icon'}>
+                Shipment Mode Icon
+              </Link>
+            </Menu.Item>
           </SubMenu>
         </Menu>
     );

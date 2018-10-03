@@ -21,24 +21,30 @@
 //   }
 // }
 
-import Button from './components/Button/Button'
-import DatePicker from './components/DatePicker/DatePicker'
-import Chips from './components/Chips/Chips'
-import Input from './components/Input/Input'
-import Checkbox from './components/Checkbox/Checkbox'
-import Autocomplete from './components/Autocomplete/Autocomplete'
-import Select from './components/Select/Select'
-import MultiSelect from './components/MultiSelect/MultiSelect'
-import SubHeader from './components/SubHeader/SubHeader'
+import Autocomplete from './components/Autocomplete/Autocomplete';
+import Button from './components/Button/Button';
+import Checkbox from './components/Checkbox/Checkbox';
+import Chips from './components/Chips/Chips';
+import DatePicker from './components/DatePicker/DatePicker';
+import Input from './components/Input/Input';
+import MultiSelect from './components/MultiSelect/MultiSelect';
+import Select from './components/Select/Select';
+import ShipmentModeIcon from './components/ShipmentModeIcon/ShipmentModeIcon';
+import SubHeader from './components/SubHeader/SubHeader';
 
 // Our global styles
 import './styles/init.scss';
 
 // export Components as named exports
-export { Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select, MultiSelect, SubHeader }
-
-// alternative, more concise syntax for named exports
-// export { default as Foo } from './Foo'
-
-// you can optionally also set a default export for your module
-export default { Button, DatePicker, Chips, Input, Checkbox, Autocomplete, Select, MultiSelect, SubHeader }
+export {
+  Autocomplete,
+  Button,
+  Checkbox,
+  Chips,
+  DatePicker,
+  Input,
+  MultiSelect,
+  Select,
+  ShipmentModeIcon,
+  SubHeader
+};
