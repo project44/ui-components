@@ -5,7 +5,7 @@ import './Input.scss';
 export default class Input extends Component {
 
   render() {
-    const { label, placeholder, custom, defaultValue, onPressEnter, onBlur, onChange } = this.props;
+    const { label, placeholder, custom, defaultValue, onSearch, size, search = 'primary', onPressEnter, onBlur, onChange } = this.props;
 
     return (
       <div className="input-group">
@@ -14,6 +14,23 @@ export default class Input extends Component {
             <label title={label}>{label}</label>
           </div>
         }
+        { search &&
+        <AntInput.Search
+          className={search}
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+          onPressEnter={onPressEnter}
+          onSearch={onSearch}
+          onChange={onChange}
+          onBlur={onBlur}
+          enterButton={ search === 'super' || search === 'primary'}
+          size={ search === 'super' || search === 'primary' || search === 'secondary' ? 'large' : size}
+          {...custom}
+        >
+          {this.props.children}
+        </AntInput.Search>
+        }
+        { !search &&
         <AntInput
           placeholder={placeholder}
           defaultValue={defaultValue}
@@ -24,6 +41,7 @@ export default class Input extends Component {
         >
           {this.props.children}
         </AntInput>
+        }
       </div>
     )
   }

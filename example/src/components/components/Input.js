@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import ComponentShell from '../common/ComponentShell';
 import { Input } from 'ui-components';
-import {Divider} from "antd";
+import {Col, Divider, Row} from "antd";
+import SyntaxHighlighter from "react-syntax-highlighter/prism";
+import {xonokai} from "react-syntax-highlighter/styles/prism/index";
 
 export default class InputDemo extends Component {
 
@@ -9,18 +10,59 @@ export default class InputDemo extends Component {
     super(props);
     this.state = {
     };
-
   }
 
   render(){
     return (
-      <ComponentShell name="Input">
-        <h2>Input Example</h2>
-        <Divider />
-        <h4>Basic Input</h4>
-        <Input placeholder="Sample input" label="Sample input"></Input>
-        <Divider />
-      </ComponentShell>
+      <div className="p44-ui__page">
+        <div className="page-header">
+          <h1>Text Inputs</h1>
+        </div>
+        <div className="page-content">
+          <p className="page-intro">
+            Text Inputs are used for freeform data entry.
+          </p>
+          <section className="page-section">
+            <h3 className="section-title">Base Text</h3>
+            <p>
+              A freeform text entry field including a label, placeholder text, helper text (if needed) and validation text and styling.
+            </p>
+            <p>
+              This input element includes support for the following HTML5 types: text, password, number, email, url, search and tel.
+            </p>
+            <div className="example__render">
+              <Input placeholder="Sample input" label="Sample input"></Input>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { Input } from 'ui-components';\n
+<Input placeholder="Sample input" label="Sample input"></Input>`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h3 className="section-title">Search</h3>
+            <p>
+              A freeform text entry field including a label, placeholder text, and search icon or button
+            </p>
+            <h4 className="example-title">Super Search</h4>
+            <p>
+              This particular styling of the search bar is limited to the tracking landing page.
+            </p>
+            <div className="example__render">
+              <Input search="super" label="Super Search"></Input>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { Input } from 'ui-components';\n
+<Input placeholder="Sample input" label="Sample input"></Input>`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+        </div>
+      </div>
     )
   }
 }

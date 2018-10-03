@@ -81,7 +81,24 @@ export default class CheckboxDemo extends Component {
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>
-                {`import { Checkbox } from 'ui-components';\n
+                {`import { Checkbox } from 'ui-components';
+import ltlIcon from '../../assets/images/ltl-sm.svg';
+import oceanIcon from '../../assets/images/ocean-sm.svg';
+import parcelIcon from '../../assets/images/parcel-sm.svg';
+import railIcon from '../../assets/images/rail-sm.svg';
+import tlIcon from '../../assets/images/tl-sm.svg';
+import vltlIcon from '../../assets/images/vltl-sm.svg';
+import allIcon from '../../assets/images/all-modes-sm.svg';
+
+const modalFilterData = [
+  { label: 'All Modes', value: 'All Modes', icon: allIcon },
+  { label: 'Truckload', value: 'Truckload', icon: tlIcon},
+  { label: 'Ocean', value: 'Ocean', icon: oceanIcon},
+  { label: 'Rail', value: 'Rail', icon: railIcon},
+  { label: 'LTL', value: 'LTL', icon: ltlIcon},
+  { label: 'VLTL', value: 'VLTL', icon: vltlIcon },
+  { label: 'Parcel', value: 'Parcel', icon: parcelIcon }
+]
 <Checkbox checkboxData={modalFilterData} styled={true}></Checkbox>`}
               </SyntaxHighlighter>
             </div>
