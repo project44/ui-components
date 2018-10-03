@@ -1,0 +1,24 @@
+.input-group {
+  .super {
+    input {
+      background-color: var(--primary-grey-05);
+      color: var(--primary-grey-80);
+      border: none;
+    }
+  }
+  .primary {
+    input {
+      background-color: #ffffff;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      border: none;
+    }
+  }
+  input {
+    &.ant-input-lg {
+      font-size: 14px;
+    }
+  }
+  .ant-btn-lg {
+    height: 48px;
+  }
+}

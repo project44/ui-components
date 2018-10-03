@@ -5,7 +5,7 @@ import './Input.scss';
 export default class Input extends Component {
 
   render() {
-    const { label, placeholder, custom, defaultValue, onSearch, size, search = 'primary', onPressEnter, onBlur, onChange } = this.props;
+    const { label, placeholder, custom, defaultValue, onSearch, size, search, onPressEnter, onBlur, onChange } = this.props;
 
     return (
       <div className="input-group">

@@ -51,12 +51,44 @@ export default class InputDemo extends Component {
               This particular styling of the search bar is limited to the tracking landing page.
             </p>
             <div className="example__render">
-              <Input search="super" label="Super Search"></Input>
+              <Input search="super" placeholder="Super Search"></Input>
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>
                 {`import { Input } from 'ui-components';\n
-<Input placeholder="Sample input" label="Sample input"></Input>`}
+<Input search="super" placeholder="Super Search"></Input>`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h4 className="example-title">Primary Search</h4>
+            <p>
+              This search bar is for page level search actions. Typically seen in the page subheader.
+            </p>
+            <div className="example__render">
+              <Input search="primary" placeholder="Primary Search"></Input>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { Input } from 'ui-components';\n
+<Input search="primary" placeholder="Primary Search"></Input>`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h4 className="example-title">Secondary Search</h4>
+            <p>
+              This search bar is for searching within content sections or inline search scenarios.
+            </p>
+            <div className="example__render">
+              <Input search="secondary" placeholder="Secondary Search"></Input>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { Input } from 'ui-components';\n
+<Input search="secondary" placeholder="Secondary Search"></Input>`}
               </SyntaxHighlighter>
             </div>
           </section>
