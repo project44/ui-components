@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="72px" height="66px" viewBox="0 0 72 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>inter-ocean-rail</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-7" transform="translate(-71.000000, -16.000000)" fill="#575451">
+            <g id="shipment-details/timeline/card-stop-origin-copy">
+                <g id="inter-ocean-rail" transform="translate(71.000000, 15.000000)">
+                    <g id="ic/multi-modal/ocean-mini" opacity="0.33">
+                        <path d="M72,13 C71.9422246,18.545997 68.3154332,22.1308061 65,22 C62.8228128,22.2048273 61.0254439,26 61,26 L10,26 C9.56467807,26 10.1105765,23.6602364 5,22 C0.682303743,20.4281606 0.00079144385,16.5063364 0,17 L50,17 L58,14 L60,13 L72,13 Z M20,16 L29,16 L29,13 L20,13 L20,16 Z M3,16 L12,16 L12,13 L3,13 L3,16 Z M30,16 L39,16 L39,13 L30,13 L30,16 Z M40,16 L49,16 L49,13 L40,13 L40,16 Z M13,16 L19,16 L19,1 L13,1 L13,16 Z M58,13 L50,16 L50,13 L58,13 Z M20,12 L29,12 L29,9 L20,9 L20,12 Z M3,12 L12,12 L12,9 L3,9 L3,12 Z M30,12 L39,12 L39,9 L30,9 L30,12 Z M40,12 L49,12 L49,9 L40,9 L40,12 Z M50,12 L59,12 L59,9 L50,9 L50,12 Z M60,12 L69,12 L69,9 L60,9 L60,12 Z M20,8 L29,8 L29,5 L20,5 L20,8 Z M3,8 L12,8 L12,5 L3,5 L3,8 Z M30,8 L39,8 L39,5 L30,5 L30,8 Z M40,8 L49,8 L49,5 L40,5 L40,8 Z" id="Ocean-mini"></path>
+                    </g>
+                    <path d="M41,35 L41,42 L32,42 L32,35 L26,35 L36.5,29 L47,35 L41,35 Z" id="Combined-Shape" opacity="0.332645089" transform="translate(36.500000, 35.500000) scale(1, -1) translate(-36.500000, -35.500000) "></path>
+                    <g id="ic/multi-modal/rail-mini" transform="translate(0.000000, 44.000000)">
+                        <path d="M55,19 C56.1933675,19.0000445 57,19.8962065 57,21 C57,22.103838 56.1933675,23 55,23 C54.5324415,23 53.9492951,22.5953276 54,22 L49,22 C49.0510253,22.5953276 48.4676786,23 48,23 C46.8065924,23 46,22.103838 46,21 C46,19.8962065 46.8065924,19 48,19 L55,19 Z M22,19 C23.1934193,19.0000445 24,19.8962065 24,21 C24,22.103838 23.1934193,23 22,23 C21.5323173,23 20.9490992,22.5953276 21,22 L16,22 C16.0509008,22.5953276 15.4676827,23 15,23 C13.8065807,23 13,22.103838 13,21 C13,19.8962065 13.8065807,19 15,19 L22,19 Z M9,17 L62,17 L62,20 L59,20 L59,18 L12,18 L12,20 L9,20 L9,17 Z M25,18 L45,18 L44,20 L26,20 L25,18 Z M12,17 L58,17 L58,4 L12,4 L12,17 Z" id="Rail-mini"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
