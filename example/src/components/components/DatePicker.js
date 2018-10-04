@@ -1,16 +1,35 @@
 import React from 'react';
-import ComponentShell from '../common/ComponentShell';
 import { DatePicker } from 'ui-components';
-import {Divider} from "antd";
+import SyntaxHighlighter from "react-syntax-highlighter/prism";
+import {xonokai} from "react-syntax-highlighter/styles/prism/index";
 
 export default (props) => {
   return (
-    <ComponentShell name="Date Picker">
-      <h2>Date Picker Example</h2>
-      <Divider />
-      <h4>Basic Datepicker</h4>
-      <DatePicker placeholder="Select Date"></DatePicker>
-      <Divider />
-    </ComponentShell>
+    <div className="p44-ui__page">
+      <div className="page-header">
+        <h1>Datepicker</h1>
+      </div>
+      <div className="page-content">
+        <p className="page-intro">
+          A datepicker is an input to capture a date. You can select a single date, date range or date and time
+        </p>
+        <section className="page-section">
+          <h3 className="section-title">Basic</h3>
+          <p>
+            Users can input or select or input a date in a panel.
+          </p>
+          <div className="example__render">
+            <DatePicker placeholder="Select Date"></DatePicker>
+          </div>
+          <div className="component__usage mt-8">
+            <SyntaxHighlighter language='jsx' style={xonokai}>
+              {`import { DatePicker } from 'ui-components';\n
+<DatePicker placeholder="Select Date"></DatePicker>`}
+            </SyntaxHighlighter>
+          </div>
+        </section>
+
+      </div>
+    </div>
   )
 }

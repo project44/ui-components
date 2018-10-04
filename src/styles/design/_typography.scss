@@ -135,3 +135,9 @@ p {
 .primary-grey {
   color: var(--primary-grey);
 }
+
+.ant-form-item-label {
+  label {
+    font-weight: 300;
+  }
+}
