@@ -1,11 +1,12 @@
-import babel from 'rollup-plugin-babel'
-import commonjs from 'rollup-plugin-commonjs'
-import external from 'rollup-plugin-peer-deps-external'
-import postcss from 'rollup-plugin-postcss'
-import resolve from 'rollup-plugin-node-resolve'
-import url from 'rollup-plugin-url'
+import babel from 'rollup-plugin-babel';
+import commonjs from 'rollup-plugin-commonjs';
+import external from 'rollup-plugin-peer-deps-external';
+import postcss from 'rollup-plugin-postcss';
+import resolve from 'rollup-plugin-node-resolve';
+import url from 'rollup-plugin-url';
+import less from 'rollup-plugin-less';
 
-import pkg from './package.json'
+import pkg from './package.json';
 
 export default {
   input: 'src/index.js',
@@ -27,7 +28,10 @@ export default {
   plugins: [
     external(),
     postcss({
-      sourceMap: true
+      sourceMap: true,
+      use: [['sass'],['less', { javascriptEnabled: true }]],
+      extensions: [ '.scss', '.less' ],
+      extract: 'dist/build.css',
     }),
     url(),
     babel({
@@ -37,4 +41,4 @@ export default {
     resolve(),
     commonjs()
   ]
-}
+};

@@ -16,13 +16,13 @@ const checkboxData = [
 ]
 
 const modalFilterData = [
-  { label: 'All Modes', value: 'All Modes', icon: allIcon },
-  { label: 'Truckload', value: 'Truckload', icon: tlIcon},
-  { label: 'Ocean', value: 'Ocean', icon: oceanIcon},
-  { label: 'Rail', value: 'Rail', icon: railIcon},
-  { label: 'LTL', value: 'LTL', icon: ltlIcon},
-  { label: 'VLTL', value: 'VLTL', icon: vltlIcon },
-  { label: 'Parcel', value: 'Parcel', icon: parcelIcon }
+  { label: 'All Modes', value: 'ALL' },
+  { label: 'Truckload', value: 'TL' },
+  { label: 'Ocean', value: 'OCEAN' },
+  { label: 'Rail', value: 'RAIL' },
+  { label: 'LTL', value: 'LTL' },
+  { label: 'VLTL', value: 'VLTL' },
+  { label: 'Parcel', value: 'PARCEL' }
 ]
 
 export default class CheckboxDemo extends Component {
