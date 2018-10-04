@@ -1,0 +1,19 @@
+.radio-group {
+  &.styled {
+    color: #575451;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    .ant-radio-button-wrapper {
+      &.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+        background-color: #e3ebf1;
+        border-color: inherit;
+        color: #575451;
+        box-shadow: none;
+      }
+      &:hover {
+        color: #575451;
+      }
+    }
+  }
+}

@@ -31,6 +31,7 @@ import MultiSelect from './components/MultiSelect/MultiSelect';
 import Select from './components/Select/Select';
 import ShipmentModeIcon from './components/ShipmentModeIcon/ShipmentModeIcon';
 import SubHeader from './components/SubHeader/SubHeader';
+import Radio from './components/Radio/Radio';
 
 // Our global styles
 import './styles/init.scss';
@@ -46,5 +47,6 @@ export {
   MultiSelect,
   Select,
   ShipmentModeIcon,
-  SubHeader
+  SubHeader,
+  Radio
 };

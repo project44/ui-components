@@ -6,6 +6,7 @@ import ChipsDemo from '../components/Chips';
 import InputDemo from '../components/Input';
 import CheckboxDemo from '../components/Checkbox';
 import SelectDemo from "../components/Select";
+import RadioDemo from "../components/Radio";
 import SubHeaderDemo from '../components/SubHeader'
 import ShipmentModeIconDemo from "../components/ShipmentModeIcon";
 
@@ -19,6 +20,7 @@ export default (props) => {
       <Route exact path={`${match.url}/input`} component={InputDemo} />
       <Route exact path={`${match.url}/checkbox`} component={CheckboxDemo} />
       <Route exact path={`${match.url}/select`} component={SelectDemo} />
+      <Route exact path={`${match.url}/radio`} component={RadioDemo} />
       <Route exact path={`${match.url}/sub-header`} component={SubHeaderDemo} />
       <Route exact path={`${match.url}/shipment-mode-icon`} component={ShipmentModeIconDemo} />
     </div>
