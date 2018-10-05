@@ -1,0 +1,44 @@
+.ant-calendar {
+  &-input {
+    font-size: 12px;
+  }
+  &-date {
+    &:hover {
+      border-radius: 50%;
+    }
+  }
+  &-today {
+    &:not(.ant-calendar-disabled-cell) {
+      .ant-calendar-date {
+        border-radius: 50%;
+      }
+    }
+  }
+  &-selected-day {
+    &:not(.ant-calendar-disabled-cell) {
+      .ant-calendar-date {
+        background: #236192;
+        font-weight: bold;
+        color: #FFF;
+        border-radius: 50%;
+        border-color: #236192;
+        &:hover {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  .ant-calendar-footer-btn {
+    .ant-calendar-today-btn {
+      color: #2091a9;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+}
+
+.ant-calendar-picker {
+  .ant-calendar-picker-input {
+    font-size: 12px;
+  }
+}

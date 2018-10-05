@@ -2,13 +2,6 @@ import React, {Component} from 'react';
 import { Checkbox } from 'ui-components';
 import SyntaxHighlighter from "react-syntax-highlighter/prism";
 import {xonokai} from "react-syntax-highlighter/styles/prism/index";
-import ltlIcon from '../../assets/images/ltl-sm.svg';
-import oceanIcon from '../../assets/images/ocean-sm.svg';
-import parcelIcon from '../../assets/images/parcel-sm.svg';
-import railIcon from '../../assets/images/rail-sm.svg';
-import tlIcon from '../../assets/images/tl-sm.svg';
-import vltlIcon from '../../assets/images/vltl-sm.svg';
-import allIcon from '../../assets/images/all-modes-sm.svg';
 import _ from 'lodash';
 
 export default class CheckboxDemo extends Component {

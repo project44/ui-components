@@ -31,12 +31,24 @@ export default class InputDemo extends Component {
               This input element includes support for the following HTML5 types: text, password, number, email, url, search and tel.
             </p>
             <div className="example__render">
-              <Input placeholder="Sample input" label="Sample input"></Input>
+              <Input placeholder="Static Input with Placeholder Text" label="Label"></Input>
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>
                 {`import { Input } from 'ui-components';\n
-<Input placeholder="Sample input" label="Sample input"></Input>`}
+<Input placeholder="Static Input with Placeholder Text" label="Label"></Input>`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <div className="example__render">
+              <Input placeholder="Invalid Entry" label="Label" hasError={true} errorMessage="Validation Help Text"></Input>
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { Input } from 'ui-components';\n
+<Input placeholder="Invalid Entry" label="Label"></Input>`}
               </SyntaxHighlighter>
             </div>
           </section>

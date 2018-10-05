@@ -1,4 +1,8 @@
 .input-group {
+  .has-error .ant-form-explain, .has-error .ant-form-split {
+    font-size: 11px;
+    margin-top: 0;
+  }
   .super {
     input {
       background-color: var(--primary-grey-05);

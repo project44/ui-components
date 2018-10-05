@@ -1,5 +1,5 @@
 import React from 'react';
-import { DatePicker } from 'ui-components';
+import { DatePicker, DateRange } from 'ui-components';
 import SyntaxHighlighter from "react-syntax-highlighter/prism";
 import {xonokai} from "react-syntax-highlighter/styles/prism/index";
 
@@ -24,6 +24,22 @@ export default (props) => {
           <div className="component__usage mt-8">
             <SyntaxHighlighter language='jsx' style={xonokai}>
               {`import { DatePicker } from 'ui-components';\n
+<DatePicker placeholder="Select Date"></DatePicker>`}
+            </SyntaxHighlighter>
+          </div>
+        </section>
+
+        <section className="page-section">
+          <h3 className="section-title">Date Range</h3>
+          <p>
+            Users can input or select or input a date range in a panel.
+          </p>
+          <div className="example__render">
+            <DateRange placeholder="MM/DD/YYYY" startLabel="Start Date" endLabel="End Date"></DateRange>
+          </div>
+          <div className="component__usage mt-8">
+            <SyntaxHighlighter language='jsx' style={xonokai}>
+              {`import { DateRange } from 'ui-components';\n
 <DatePicker placeholder="Select Date"></DatePicker>`}
             </SyntaxHighlighter>
           </div>
