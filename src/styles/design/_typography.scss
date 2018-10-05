@@ -139,5 +139,6 @@ p {
 .ant-form-item-label {
   label {
     font-weight: 300;
+    @include toRem(font-size, 12px);
   }
 }

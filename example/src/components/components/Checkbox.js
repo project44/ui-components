@@ -9,11 +9,8 @@ import railIcon from '../../assets/images/rail-sm.svg';
 import tlIcon from '../../assets/images/tl-sm.svg';
 import vltlIcon from '../../assets/images/vltl-sm.svg';
 import allIcon from '../../assets/images/all-modes-sm.svg';
+import _ from 'lodash';
 
-const checkboxData = [
-  {label: 'test1', value: 'test1'},
-  {label: 'test2', value: 'test2'},
-]
 
 const modalFilterData = [
   { label: 'All Modes', value: 'ALL' },
@@ -30,7 +27,27 @@ export default class CheckboxDemo extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      checkboxData: [
+        {label: 'Unselected + Label', value: '1', checked: false},
+        {label: 'Selected + Label', value: '2', checked: true},
+        {label: 'Unselected + Label', value: '3', checked: false},
+        {label: 'Selected + Label', value: '4', checked: true}
+      ]
     };
+  }
+
+  onChange = (e) => {
+    const updatedValues = _.map(this.state.checkboxData, (checkbox) => {
+      checkbox.checked = checkbox.value === e.target.value ? !checkbox.checked : checkbox.checked
+      return checkbox;
+    });
+
+    this.setState({
+      checkboxData: this.state.checkboxData.map(checkbox => {
+        checkbox.label = checkbox.checked ? 'Selected + Label' : 'Unselected + Label';
+        return checkbox;
+      })
+    });
   }
 
   render(){
@@ -50,7 +67,7 @@ export default class CheckboxDemo extends Component {
             </p>
             <h4 className="example-title">Horizontal</h4>
             <div className="example__render">
-              <Checkbox checkboxData={checkboxData}></Checkbox>
+              <Checkbox checkboxData={this.state.checkboxData} onChange={this.onChange} defaultValue={this.state.selectedValues}></Checkbox>
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>
@@ -63,7 +80,7 @@ export default class CheckboxDemo extends Component {
           <section className="page-section">
             <h4 className="example-title">Vertical</h4>
             <div className="example__render">
-              <Checkbox checkboxData={checkboxData} layout="column"></Checkbox>
+              <Checkbox checkboxData={this.state.checkboxData} onChange={this.onChange} defaultValue={this.state.selectedValues} layout="column"></Checkbox>
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>

@@ -19,7 +19,7 @@ export default class Checkbox extends Component {
                   { styled && item.value &&
                     <ShipmentModeIcon className="item-icon" mode={item.value} small={true} />
                   }
-                  <span className="item-title">{_.get(item, 'value', item)}</span>
+                  <span className="item-title">{_.get(item, 'label', item)}</span>
                 </AntCheckbox>
             )
             } else {
@@ -28,7 +28,7 @@ export default class Checkbox extends Component {
                   { styled && item.value &&
                     <ShipmentModeIcon className="item-icon" mode={item.value} small={true} />
                   }
-                  <span className="item-title">{_.get(item, 'value', item)}</span>
+                  <span className="item-title">{_.get(item, 'label', item)}</span>
                 </AntCheckbox>
               </Col>
             }

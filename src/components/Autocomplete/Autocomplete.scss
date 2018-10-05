@@ -2,15 +2,24 @@
   &__input{
     min-width: 200px;
     margin-bottom: 16px;
-  }
-  .ant-select-selection__choice {
-    display: none;
-  }
-  .autocomplete__input {
     &:not(.ant-select-focused) {
       .ant-select-selection__placeholder {
         display: block !important;
       }
     }
+    .ant-select-selection {
+      border-radius: 0;
+      &__choice {
+        display: none;
+      }
+      &__placeholder {
+        font-size: 12px;
+        color: #aba9a8;
+      }
+      &__choice {
+        border-radius: 0;
+      }
+    }
   }
+
 }
