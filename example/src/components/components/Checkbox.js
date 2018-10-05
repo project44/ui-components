@@ -38,15 +38,13 @@ export default class CheckboxDemo extends Component {
 
   onChange = (e) => {
     const updatedValues = _.map(this.state.checkboxData, (checkbox) => {
-      checkbox.checked = checkbox.value === e.target.value ? !checkbox.checked : checkbox.checked
+      checkbox.checked = checkbox.value === e.target.value ? !checkbox.checked : checkbox.checked;
+      checkbox.label = checkbox.checked ? 'Selected + Label' : 'Unselected + Label';
       return checkbox;
     });
 
     this.setState({
-      checkboxData: this.state.checkboxData.map(checkbox => {
-        checkbox.label = checkbox.checked ? 'Selected + Label' : 'Unselected + Label';
-        return checkbox;
-      })
+      checkboxData: updatedValues
     });
   }
 
