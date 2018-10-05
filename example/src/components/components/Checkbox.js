@@ -11,17 +11,6 @@ import vltlIcon from '../../assets/images/vltl-sm.svg';
 import allIcon from '../../assets/images/all-modes-sm.svg';
 import _ from 'lodash';
 
-
-const modalFilterData = [
-  { label: 'All Modes', value: 'ALL' },
-  { label: 'Truckload', value: 'TL' },
-  { label: 'Ocean', value: 'OCEAN' },
-  { label: 'Rail', value: 'RAIL' },
-  { label: 'LTL', value: 'LTL' },
-  { label: 'VLTL', value: 'VLTL' },
-  { label: 'Parcel', value: 'PARCEL' }
-]
-
 export default class CheckboxDemo extends Component {
 
   constructor(props) {
@@ -32,6 +21,15 @@ export default class CheckboxDemo extends Component {
         {label: 'Selected + Label', value: '2', checked: true},
         {label: 'Unselected + Label', value: '3', checked: false},
         {label: 'Selected + Label', value: '4', checked: true}
+      ],
+      modalFilterData: [
+        { label: 'All Modes', value: 'ALL', checked: false },
+        { label: 'Truckload', value: 'TL', checked: false },
+        { label: 'Ocean', value: 'OCEAN', checked: true },
+        { label: 'Rail', value: 'RAIL', checked: false },
+        { label: 'LTL', value: 'LTL', checked: false },
+        { label: 'VLTL', value: 'VLTL', checked: false },
+        { label: 'Parcel', value: 'PARCEL', checked: true }
       ]
     };
   }
@@ -45,6 +43,17 @@ export default class CheckboxDemo extends Component {
 
     this.setState({
       checkboxData: updatedValues
+    });
+  }
+
+  onStyledChange = (e) => {
+    const updatedValues = _.map(this.state.modalFilterData, (checkbox) => {
+      checkbox.checked = checkbox.value === e.target.value ? !checkbox.checked : checkbox.checked;
+      return checkbox;
+    });
+
+    this.setState({
+      modalFilterData: updatedValues
     });
   }
 
@@ -92,7 +101,7 @@ export default class CheckboxDemo extends Component {
             <h3 className="section-title">Styled Checkbox</h3>
             <p>A styled checkbox group that communicates an option is true or false. This example is specific to Multi-Modal Search Filter.</p>
             <div className="example__render">
-              <Checkbox checkboxData={modalFilterData} styled={true}></Checkbox>
+              <Checkbox checkboxData={this.state.modalFilterData} onChange={this.onStyledChange} styled={true}></Checkbox>
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>
