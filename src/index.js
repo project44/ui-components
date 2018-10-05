@@ -34,7 +34,7 @@ import SubHeader from './components/SubHeader/SubHeader';
 import Radio from './components/Radio/Radio';
 
 // Ant Design Styles
-import './config/ant.less';
+import './styles/ant/ant.less';
 // Our global styles
 import './styles/init.scss';
 

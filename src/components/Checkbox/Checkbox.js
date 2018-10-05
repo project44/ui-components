@@ -7,10 +7,10 @@ import './Checkbox.scss'
 export default class Checkbox extends Component {
 
   render() {
-    const { checkboxData, layout = 'row', styled, onChange } = this.props;
+    const { checkboxData, layout = 'row', styled, onChange, className } = this.props;
 
     return (
-      <div className={styled ? 'checkbox-group styled' : 'checkbox-group'}>
+      <div className={styled ? `checkbox-group styled ${className}` : `checkbox-group ${className}`}>
         <Row className={styled && 'ant-checkbox-group'}>
           { checkboxData.map((item, index) => {
             if (layout === 'row') {

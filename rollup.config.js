@@ -29,7 +29,14 @@ export default {
     external(),
     postcss({
       sourceMap: true,
-      use: [['sass'],['less', { javascriptEnabled: true }]],
+      use: [
+        ['sass'],
+        ['less',
+          {
+            javascriptEnabled: true,
+          }
+        ]
+      ],
       extensions: [ '.scss', '.less' ],
       extract: 'dist/build.css',
     }),
