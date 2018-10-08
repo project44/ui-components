@@ -32,7 +32,7 @@ When you are ready to publish a new version of ui-components, we recommend the [
 
 - [ ] make sure you have `np` installed `npm install --global np`
 - [ ] run `yarn build` to generate the static assets
-- [ ] run `np <version>`
+- [ ] run `np <version>` or `yarn publish`
   - Version can be: `patch | minor | major | prepatch | preminor | premajor | prerelease | 1.2.3`
 
 ## License
