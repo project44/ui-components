@@ -1,6 +1,6 @@
 {
   "name": "ui-components",
-  "version": "1.0.1",
+  "version": "0.0.1",
   "description": "project44&#x27;s UI Component Library",
   "author": "project44",
   "license": "MIT",
@@ -23,7 +23,8 @@
     "build": "rollup -c && react-app-rewired build",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "publish": "yarn build && np"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
