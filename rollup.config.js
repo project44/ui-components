@@ -29,6 +29,7 @@ export default {
     external(),
     postcss({
       sourceMap: true,
+      minimize: true,
       use: [
         ['sass'],
         ['less',

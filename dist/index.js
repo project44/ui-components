@@ -17288,6 +17288,8 @@ var Autocomplete = function (_Component) {
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
+ *
+ * @providesModule warning
  */
 
 /**
@@ -17343,67 +17345,6 @@ if (__DEV__) {
 }
 
 var warning_1 = warning;
-
-/**
- * Copyright 2014-2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var __DEV__$1 = process.env.NODE_ENV !== 'production';
-
-var warning$1 = function() {};
-
-if (__DEV__$1) {
-  warning$1 = function(condition, format, args) {
-    var len = arguments.length;
-    args = new Array(len > 2 ? len - 2 : 0);
-    for (var key = 2; key < len; key++) {
-      args[key - 2] = arguments[key];
-    }
-    if (format === undefined) {
-      throw new Error(
-        '`warning(condition, format, ...args)` requires a warning ' +
-        'message argument'
-      );
-    }
-
-    if (format.length < 10 || (/^[s\W]*$/).test(format)) {
-      throw new Error(
-        'The warning format should be able to uniquely identify this ' +
-        'warning. Please, use a more descriptive format than: ' + format
-      );
-    }
-
-    if (!condition) {
-      var argIndex = 0;
-      var message = 'Warning: ' +
-        format.replace(/%s/g, function() {
-          return args[argIndex++];
-        });
-      if (typeof console !== 'undefined') {
-        console.error(message);
-      }
-      try {
-        // This error was thrown as a convenience so that you can use this stack
-        // to find the callsite that caused this warning to fire.
-        throw new Error(message);
-      } catch(x) {}
-    }
-  };
-}
-
-var warning_1$1 = warning$1;
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -17686,7 +17627,7 @@ var createTransitionManager = function createTransitionManager() {
   var prompt = null;
 
   var setPrompt = function setPrompt(nextPrompt) {
-    warning_1$1(prompt == null, 'A history supports only one prompt at a time');
+    warning_1(prompt == null, 'A history supports only one prompt at a time');
 
     prompt = nextPrompt;
 
@@ -17706,7 +17647,7 @@ var createTransitionManager = function createTransitionManager() {
         if (typeof getUserConfirmation === 'function') {
           getUserConfirmation(result, callback);
         } else {
-          warning_1$1(false, 'A history needs a getUserConfirmation function in order to use a prompt message');
+          warning_1(false, 'A history needs a getUserConfirmation function in order to use a prompt message');
 
           callback(true);
         }
@@ -17861,7 +17802,7 @@ var createBrowserHistory = function createBrowserHistory() {
 
     var path = pathname + search + hash;
 
-    warning_1$1(!basename || hasBasename(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path "' + path + '" to begin with "' + basename + '".');
+    warning_1(!basename || hasBasename(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path "' + path + '" to begin with "' + basename + '".');
 
     if (basename) path = stripBasename(path, basename);
 
@@ -17945,7 +17886,7 @@ var createBrowserHistory = function createBrowserHistory() {
   };
 
   var push = function push(path, state) {
-    warning_1$1(!((typeof path === 'undefined' ? 'undefined' : _typeof$2(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
+    warning_1(!((typeof path === 'undefined' ? 'undefined' : _typeof$2(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
 
     var action = 'PUSH';
     var location = createLocation(path, state, createKey(), history.location);
@@ -17973,7 +17914,7 @@ var createBrowserHistory = function createBrowserHistory() {
           setState({ action: action, location: location });
         }
       } else {
-        warning_1$1(state === undefined, 'Browser history cannot push state in browsers that do not support HTML5 history');
+        warning_1(state === undefined, 'Browser history cannot push state in browsers that do not support HTML5 history');
 
         window.location.href = href;
       }
@@ -17981,7 +17922,7 @@ var createBrowserHistory = function createBrowserHistory() {
   };
 
   var replace = function replace(path, state) {
-    warning_1$1(!((typeof path === 'undefined' ? 'undefined' : _typeof$2(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
+    warning_1(!((typeof path === 'undefined' ? 'undefined' : _typeof$2(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
 
     var action = 'REPLACE';
     var location = createLocation(path, state, createKey(), history.location);
@@ -18007,7 +17948,7 @@ var createBrowserHistory = function createBrowserHistory() {
           setState({ action: action, location: location });
         }
       } else {
-        warning_1$1(state === undefined, 'Browser history cannot replace state in browsers that do not support HTML5 history');
+        warning_1(state === undefined, 'Browser history cannot replace state in browsers that do not support HTML5 history');
 
         window.location.replace(href);
       }
@@ -18155,7 +18096,7 @@ var createHashHistory = function createHashHistory() {
   var getDOMLocation = function getDOMLocation() {
     var path = decodePath(getHashPath());
 
-    warning_1$1(!basename || hasBasename(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path "' + path + '" to begin with "' + basename + '".');
+    warning_1(!basename || hasBasename(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path "' + path + '" to begin with "' + basename + '".');
 
     if (basename) path = stripBasename(path, basename);
 
@@ -18252,7 +18193,7 @@ var createHashHistory = function createHashHistory() {
   };
 
   var push = function push(path, state) {
-    warning_1$1(state === undefined, 'Hash history cannot push state; it is ignored');
+    warning_1(state === undefined, 'Hash history cannot push state; it is ignored');
 
     var action = 'PUSH';
     var location = createLocation(path, undefined, undefined, history.location);
@@ -18279,7 +18220,7 @@ var createHashHistory = function createHashHistory() {
 
         setState({ action: action, location: location });
       } else {
-        warning_1$1(false, 'Hash history cannot PUSH the same path; a new entry will not be added to the history stack');
+        warning_1(false, 'Hash history cannot PUSH the same path; a new entry will not be added to the history stack');
 
         setState();
       }
@@ -18287,7 +18228,7 @@ var createHashHistory = function createHashHistory() {
   };
 
   var replace = function replace(path, state) {
-    warning_1$1(state === undefined, 'Hash history cannot replace state; it is ignored');
+    warning_1(state === undefined, 'Hash history cannot replace state; it is ignored');
 
     var action = 'REPLACE';
     var location = createLocation(path, undefined, undefined, history.location);
@@ -18316,7 +18257,7 @@ var createHashHistory = function createHashHistory() {
   };
 
   var go = function go(n) {
-    warning_1$1(canGoWithoutReload, 'Hash history go(n) causes a full page reload in this browser');
+    warning_1(canGoWithoutReload, 'Hash history go(n) causes a full page reload in this browser');
 
     globalHistory.go(n);
   };
@@ -18436,7 +18377,7 @@ var createMemoryHistory = function createMemoryHistory() {
   var createHref = createPath;
 
   var push = function push(path, state) {
-    warning_1$1(!((typeof path === 'undefined' ? 'undefined' : _typeof$3(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
+    warning_1(!((typeof path === 'undefined' ? 'undefined' : _typeof$3(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
 
     var action = 'PUSH';
     var location = createLocation(path, state, createKey(), history.location);
@@ -18464,7 +18405,7 @@ var createMemoryHistory = function createMemoryHistory() {
   };
 
   var replace = function replace(path, state) {
-    warning_1$1(!((typeof path === 'undefined' ? 'undefined' : _typeof$3(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
+    warning_1(!((typeof path === 'undefined' ? 'undefined' : _typeof$3(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
 
     var action = 'REPLACE';
     var location = createLocation(path, state, createKey(), history.location);
@@ -18541,67 +18482,6 @@ var createMemoryHistory = function createMemoryHistory() {
   return history;
 };
 
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var __DEV__$2 = process.env.NODE_ENV !== 'production';
-
-var warning$2 = function() {};
-
-if (__DEV__$2) {
-  var printWarning$1 = function printWarning(format, args) {
-    var len = arguments.length;
-    args = new Array(len > 2 ? len - 2 : 0);
-    for (var key = 2; key < len; key++) {
-      args[key - 2] = arguments[key];
-    }
-    var argIndex = 0;
-    var message = 'Warning: ' +
-      format.replace(/%s/g, function() {
-        return args[argIndex++];
-      });
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-
-  warning$2 = function(condition, format, args) {
-    var len = arguments.length;
-    args = new Array(len > 2 ? len - 2 : 0);
-    for (var key = 2; key < len; key++) {
-      args[key - 2] = arguments[key];
-    }
-    if (format === undefined) {
-      throw new Error(
-          '`warning(condition, format, ...args)` requires a warning ' +
-          'message argument'
-      );
-    }
-    if (!condition) {
-      printWarning$1.apply(null, [format].concat(args));
-    }
-  };
-}
-
-var warning_1$2 = warning$2;
-
 var _extends$5 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18673,7 +18553,7 @@ var Router = function (_React$Component) {
   };
 
   Router.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-    warning_1$2(this.props.history === nextProps.history, "You cannot change <Router history>");
+    warning_1(this.props.history === nextProps.history, "You cannot change <Router history>");
   };
 
   Router.prototype.componentWillUnmount = function componentWillUnmount() {
@@ -18912,7 +18792,7 @@ var MemoryRouter = function (_React$Component) {
   }
 
   MemoryRouter.prototype.componentWillMount = function componentWillMount() {
-    warning_1$2(!this.props.history, "<MemoryRouter> ignores the history prop. To use a custom history, " + "use `import { Router }` instead of `import { MemoryRouter as Router }`.");
+    warning_1(!this.props.history, "<MemoryRouter> ignores the history prop. To use a custom history, " + "use `import { Router }` instead of `import { MemoryRouter as Router }`.");
   };
 
   MemoryRouter.prototype.render = function render() {
@@ -19498,17 +19378,17 @@ var Route = function (_React$Component) {
   };
 
   Route.prototype.componentWillMount = function componentWillMount() {
-    warning_1$2(!(this.props.component && this.props.render), "You should not use <Route component> and <Route render> in the same route; <Route render> will be ignored");
+    warning_1(!(this.props.component && this.props.render), "You should not use <Route component> and <Route render> in the same route; <Route render> will be ignored");
 
-    warning_1$2(!(this.props.component && this.props.children && !isEmptyChildren(this.props.children)), "You should not use <Route component> and <Route children> in the same route; <Route children> will be ignored");
+    warning_1(!(this.props.component && this.props.children && !isEmptyChildren(this.props.children)), "You should not use <Route component> and <Route children> in the same route; <Route children> will be ignored");
 
-    warning_1$2(!(this.props.render && this.props.children && !isEmptyChildren(this.props.children)), "You should not use <Route render> and <Route children> in the same route; <Route children> will be ignored");
+    warning_1(!(this.props.render && this.props.children && !isEmptyChildren(this.props.children)), "You should not use <Route render> and <Route children> in the same route; <Route children> will be ignored");
   };
 
   Route.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps, nextContext) {
-    warning_1$2(!(nextProps.location && !this.props.location), '<Route> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.');
+    warning_1(!(nextProps.location && !this.props.location), '<Route> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.');
 
-    warning_1$2(!(!nextProps.location && this.props.location), '<Route> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
+    warning_1(!(!nextProps.location && this.props.location), '<Route> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
 
     this.setState({
       match: this.computeMatch(nextProps, nextContext.router)
@@ -19785,7 +19665,7 @@ var Redirect = function (_React$Component) {
     var nextTo = createLocation(this.props.to);
 
     if (locationsAreEqual(prevTo, nextTo)) {
-      warning_1$2(false, "You tried to redirect to the same route you're currently on: " + ("\"" + nextTo.pathname + nextTo.search + "\""));
+      warning_1(false, "You tried to redirect to the same route you're currently on: " + ("\"" + nextTo.pathname + nextTo.search + "\""));
       return;
     }
 
@@ -19949,7 +19829,7 @@ var StaticRouter = function (_React$Component) {
   };
 
   StaticRouter.prototype.componentWillMount = function componentWillMount() {
-    warning_1$2(!this.props.history, "<StaticRouter> ignores the history prop. To use a custom history, " + "use `import { Router }` instead of `import { StaticRouter as Router }`.");
+    warning_1(!this.props.history, "<StaticRouter> ignores the history prop. To use a custom history, " + "use `import { Router }` instead of `import { StaticRouter as Router }`.");
   };
 
   StaticRouter.prototype.render = function render() {
@@ -20017,9 +19897,9 @@ var Switch = function (_React$Component) {
   };
 
   Switch.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-    warning_1$2(!(nextProps.location && !this.props.location), '<Switch> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.');
+    warning_1(!(nextProps.location && !this.props.location), '<Switch> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.');
 
-    warning_1$2(!(!nextProps.location && this.props.location), '<Switch> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
+    warning_1(!(!nextProps.location && this.props.location), '<Switch> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
   };
 
   Switch.prototype.render = function render() {
