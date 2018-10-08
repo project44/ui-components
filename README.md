@@ -1,6 +1,6 @@
 # ui-components
 
-> project44&#x27;s UI Component Library
+> project44&#x27;s UI Component Library https://project44.github.io/ui-components/
 
 [![NPM](https://img.shields.io/npm/v/ui-components.svg)](https://www.npmjs.com/package/ui-components) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
