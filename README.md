@@ -6,9 +6,12 @@
 
 ## Install
 
+We are using GitHub as our registry for the time being, so the correct way to add `ui-components` to your project is using the following syntax:
+
 ```bash
-npm install --save project44/ui-components
+yarn add project44/ui-components#0.0.2
 ```
+> Change the version number to support your needs
 
 ## Usage
 
