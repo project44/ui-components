@@ -16,6 +16,14 @@ yarn add project44/ui-components#0.0.2
 
 ## Usage
 
+You will need to reference the bundled styles in your application:
+
+```scss
+@import '~ui-components/dist/ant.css';
+@import '~ui-components/dist/build.css';
+```
+> Note: the ordering is important!  Make sure `build.css` follows `ant.css`.
+
 ```jsx
 import React, { Component } from 'react'
 
