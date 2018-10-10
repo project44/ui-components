@@ -7,8 +7,8 @@ import InputDemo from '../components/Input';
 import CheckboxDemo from '../components/Checkbox';
 import SelectDemo from "../components/Select";
 import RadioDemo from "../components/Radio";
-import SubHeaderDemo from '../components/SubHeader'
 import ShipmentModeIconDemo from "../components/ShipmentModeIcon";
+import SubHeaderDemo from "../components/SubHeader";
 
 export default (props) => {
   let { match } = props;

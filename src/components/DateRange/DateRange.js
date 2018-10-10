@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import {DatePicker as AntDatePicker} from 'antd';
+import PropTypes from 'prop-types';
+import { DatePicker as AntDatePicker } from 'antd';
 import './DateRange.scss';
 
 export default class DateRange extends Component {
+  static propTypes = {
+    placeholder: PropTypes.string,
+    startLabel: PropTypes.string,
+    endLabel: PropTypes.string,
+    format: PropTypes.string
+  }
 
   constructor(props) {
     super(props);
     this.state = {
       startValue: null,
       endValue: null,
-      endOpen: false,
+      endOpen: false
     };
   }
 
@@ -31,12 +38,11 @@ export default class DateRange extends Component {
 
   onChange = (field, value) => {
     this.setState({
-      [field]: value,
+      [field]: value
     });
   }
 
   onStartChange = (value) => {
-    console.log(value)
     this.onChange('startValue', value);
   }
 
@@ -54,58 +60,55 @@ export default class DateRange extends Component {
     this.setState({ endOpen: open });
   }
 
-
   render() {
-    const { placeholder = 'MM/DD/YYYY', startLabel, endLabel, onChange, format = 'MM/DD/YYYY' } = this.props;
+    const { placeholder = 'MM/DD/YYYY', startLabel, endLabel, format = 'MM/DD/YYYY' } = this.props;
 
-    const calendarIcon = () => <i className="material-icons">
+    const calendarIcon = () => <i className='material-icons'>
       calendar_today
-    </i>
+    </i>;
 
     return (
-      <div className="date-range flex">
-        <div className="ant-form-vertical">
+      <div className='date-range flex'>
+        <div className='ant-form-vertical'>
           { startLabel &&
-            <div className="ant-form-item-label">
+            <div className='ant-form-item-label'>
               <label title={startLabel}>{startLabel}</label>
             </div>
           }
           <AntDatePicker
             placeholder={placeholder}
-            className="start-date"
+            className='start-date'
             disabledDate={this.disabledStartDate}
             format={format}
             value={this.state.startValue}
             onChange={(value) => {
               this.onStartChange(value);
-              onChange;
             }}
             onOpenChange={this.handleStartOpenChange}
-            suffixIcon={calendarIcon}>
-          </AntDatePicker>
+            suffixIcon={calendarIcon}
+          />
         </div>
-        <div className="ant-form-vertical">
+        <div className='ant-form-vertical'>
           { endLabel &&
-          <div className="ant-form-item-label">
+          <div className='ant-form-item-label'>
             <label title={endLabel}>{endLabel}</label>
           </div>
           }
           <AntDatePicker
             placeholder={placeholder}
-            className="end-date"
+            className='end-date'
             disabledDate={this.disabledEndDate}
             format={format}
             value={this.state.endValue}
             onChange={(value) => {
               this.onEndChange(value);
-              onChange;
             }}
             open={this.state.endOpen}
             onOpenChange={this.handleEndOpenChange}
-            suffixIcon={calendarIcon}>
-          </AntDatePicker>
+            suffixIcon={calendarIcon}
+          />
         </div>
       </div>
-    )
+    );
   }
 };

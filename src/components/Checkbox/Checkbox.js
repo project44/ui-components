@@ -1,11 +1,18 @@
-import _ from 'lodash'
-import React, { Component } from 'react'
+import _ from 'lodash';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ShipmentModeIcon from '../ShipmentModeIcon/ShipmentModeIcon';
-import { Checkbox as AntCheckbox, Col, Row } from 'antd'
-import './Checkbox.scss'
+import { Checkbox as AntCheckbox, Col, Row } from 'antd';
+import './Checkbox.scss';
 
 export default class Checkbox extends Component {
-
+  static propTypes = {
+    checkboxData: PropTypes.obj,
+    layout: PropTypes.string,
+    styled: PropTypes.bool,
+    onChange: PropTypes.func,
+    className: PropTypes.string
+  }
   render() {
     const { checkboxData, layout = 'row', styled, onChange, className } = this.props;
 
@@ -17,24 +24,26 @@ export default class Checkbox extends Component {
               return (
                 <AntCheckbox key={index} value={_.get(item, 'value', item)} checked={_.get(item, 'checked', false)} onChange={onChange}>
                   { styled && item.value &&
-                    <ShipmentModeIcon className="item-icon" mode={item.value} small={true} />
+                    <ShipmentModeIcon className='item-icon' mode={item.value} small={true} />
                   }
-                  <span className="item-title">{_.get(item, 'label', item)}</span>
+                  <span className='item-title'>{_.get(item, 'label', item)}</span>
                 </AntCheckbox>
-            )
+              );
             } else {
-              return <Col key={index}>
-                <AntCheckbox key={index} value={_.get(item, 'value', item)} checked={_.get(item, 'checked', false)} onChange={onChange}>
-                  { styled && item.value &&
-                    <ShipmentModeIcon className="item-icon" mode={item.value} small={true} />
-                  }
-                  <span className="item-title">{_.get(item, 'label', item)}</span>
-                </AntCheckbox>
-              </Col>
+              return (
+                <Col key={index}>
+                  <AntCheckbox key={index} value={_.get(item, 'value', item)} checked={_.get(item, 'checked', false)} onChange={onChange}>
+                    { styled && item.value &&
+                      <ShipmentModeIcon className='item-icon' mode={item.value} small={true} />
+                    }
+                    <span className='item-title'>{_.get(item, 'label', item)}</span>
+                  </AntCheckbox>
+                </Col>
+              );
             }
           })}
         </Row>
       </div>
-    )
+    );
   }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Button as AntButton } from 'antd';
 import './Button.scss';
 
@@ -15,28 +14,28 @@ class Button extends Component {
     } = this.props;
 
     if (upload) {
-        return (
-          <label htmlFor={upload}>
-            <AntButton
-              className={className ? `p44-btn ${className}` : `p44-btn`}
-              onClick={clickFn}
-              onBlur={blurFn}
-            >
-              {this.props.children}
-            </AntButton>
-          </label>
-        );
-    } else {
       return (
+        <label htmlFor={upload}>
           <AntButton
-            {...props}
             className={className ? `p44-btn ${className}` : `p44-btn`}
             onClick={clickFn}
             onBlur={blurFn}
-            download={download}
           >
             {this.props.children}
           </AntButton>
+        </label>
+      );
+    } else {
+      return (
+        <AntButton
+          {...props}
+          className={className ? `p44-btn ${className}` : `p44-btn`}
+          onClick={clickFn}
+          onBlur={blurFn}
+          download={download}
+        >
+          {this.props.children}
+        </AntButton>
       );
     }
   }

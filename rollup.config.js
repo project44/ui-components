@@ -1,11 +1,15 @@
 import autoprefixer from 'autoprefixer';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
+import { eslint } from 'rollup-plugin-eslint';
 import external from 'rollup-plugin-peer-deps-external';
 import less from 'rollup-plugin-less';
+import minify from 'rollup-plugin-babel-minify';
 import postcss from 'rollup-plugin-postcss';
 import resolve from 'rollup-plugin-node-resolve';
+import uglify from 'rollup-plugin-uglify-es';
 import url from 'rollup-plugin-url';
+import stylelint from 'stylelint';
 
 import pkg from './package.json';
 
@@ -25,7 +29,7 @@ export default {
       exports: 'named'
     }
   ],
-  external: [ 'antd' ],
+  external: [ 'antd', 'react' ],
   plugins: [
     external(),
     less({
@@ -33,20 +37,24 @@ export default {
       option: { compress: true }
     }),
     postcss({
-      sourceMap: true,
+      sourceMap: 'inline',
       minimize: true,
-      plugins: [ autoprefixer ],
-      use: [['sass']],
+      plugins: [ autoprefixer, stylelint ],
       extensions: ['.scss'],
       extract: 'dist/build.css',
       exclude: '**/*.less'
     }),
     url(),
+    eslint({
+      throwOnError: true
+    }),
     babel({
       exclude: 'node_modules/**',
       plugins: [ 'external-helpers' ]
     }),
     resolve(),
-    commonjs()
+    commonjs(),
+    minify(),
+    uglify()
   ]
 };

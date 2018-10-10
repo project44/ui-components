@@ -48,8 +48,8 @@ export default class SelectDemo extends Component {
           <section className="page-section">
             <h3 className="section-title">Select Input</h3>
             <p>
-              p44's Select component is an extension of the <a href="https://ant.design/components/select/" target="_blank">Ant Select Component <Icon type="link" theme="outlined" /></a>
-              , thus you have full access to their Select <a href="https://ant.design/components/select/#API" target="_blank">API <Icon type="link" theme="outlined" /></a>.
+              p44's Select component is an extension of the <a href="https://ant.design/components/select/" target="_blank" rel="noopener noreferrer">Ant Select Component <Icon type="link" theme="outlined" /></a>
+              , thus you have full access to their Select <a href="https://ant.design/components/select/#API" target="_blank" rel="noopener noreferrer">API <Icon type="link" theme="outlined" /></a>.
             </p>
             <h4 className="example-title">Standard Single Select</h4>
             <p>Standard select dropdown allows users to select a single option from the list.</p>
@@ -103,8 +103,8 @@ export default class SelectDemo extends Component {
           <section className="page-section">
             <h3 className="section-title">Multi-Select Input</h3>
             <p>
-              p44's Multi-Select component is an extension of the <a href="https://ant.design/components/select/" target="_blank">Ant Select Component <Icon type="link" theme="outlined" /></a>
-              , thus you have full access to their Select <a href="https://ant.design/components/select/#API" target="_blank">API <Icon type="link" theme="outlined" /></a>.
+              p44's Multi-Select component is an extension of the <a href="https://ant.design/components/select/" target="_blank" rel="noopener noreferrer">Ant Select Component <Icon type="link" theme="outlined" /></a>
+              , thus you have full access to their Select <a href="https://ant.design/components/select/#API" target="_blank" rel="noopener noreferrer">API <Icon type="link" theme="outlined" /></a>.
             </p>
             <h4 className="example-title">Standard Multi-Select</h4>
             <p>Standard Multi-Select  dropdown allows users to select a multiple options from the list and populates selected items in a chip display below the input.</p>

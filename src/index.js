@@ -32,7 +32,7 @@ import Select from './components/Select/Select';
 import ShipmentModeIcon from './components/ShipmentModeIcon/ShipmentModeIcon';
 import SubHeader from './components/SubHeader/SubHeader';
 import Radio from './components/Radio/Radio';
-import DateRange from './components/DateRange/DateRange'
+import DateRange from './components/DateRange/DateRange';
 
 // Ant Design Styles
 import './styles/ant/ant.less';

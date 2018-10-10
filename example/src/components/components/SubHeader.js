@@ -1,6 +1,5 @@
 import React from 'react';
 import ComponentShell from '../common/ComponentShell';
-import { Divider, Icon } from 'antd';
 
 import SyntaxHighlighter from 'react-syntax-highlighter/prism';
 import { xonokai } from 'react-syntax-highlighter/styles/prism';

@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Input } from 'ui-components';
-import {Col, Divider, Row} from "antd";
 import SyntaxHighlighter from "react-syntax-highlighter/prism";
-import {xonokai} from "react-syntax-highlighter/styles/prism/index";
+import { xonokai } from "react-syntax-highlighter/styles/prism/index";
 
 export default class InputDemo extends Component {
 

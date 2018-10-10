@@ -16,21 +16,26 @@ import vltlIconSm from '../../assets/images/mode-icons/sm/vltl.svg';
 import allIcon from '../../assets/images/mode-icons/sm/all-modes.svg';
 
 class ShipmentModeIcon extends Component {
+  static propTypes = {
+    mode: PropTypes.string,
+    small: PropTypes.bool
+  }
+
   getModeIcon = (mode, small) => {
     switch (mode) {
-      case "LTL":
+      case 'LTL':
         return small ? ltlIconSm : ltlIcon;
-      case "OCEAN":
+      case 'OCEAN':
         return small ? oceanIconSm : oceanIcon;
-      case "PARCEL":
+      case 'PARCEL':
         return small ? parcelIconSm : parcelIcon;
-      case "RAIL":
+      case 'RAIL':
         return small ? railIconSm : railIcon;
-      case "TL":
+      case 'TL':
         return small ? tlIconSm : tlIcon;
-      case "VLTL":
+      case 'VLTL':
         return small ? vltlIconSm : vltlIcon;
-      case "ALL":
+      case 'ALL':
         return allIcon;
       default:
         return tlIcon;
@@ -39,20 +44,20 @@ class ShipmentModeIcon extends Component {
 
   getAltText = (mode) => {
     switch (mode) {
-      case "LTL":
-        return "LTL";
-      case "OCEAN":
-        return "Ocean";
-      case "PARCEL":
-        return "Parcel";
-      case "RAIL":
-        return "Rail";
-      case "TL":
-        return "Trucklaod";
-      case "VLTL":
-        return "VLTL";
+      case 'LTL':
+        return 'LTL';
+      case 'OCEAN':
+        return 'Ocean';
+      case 'PARCEL':
+        return 'Parcel';
+      case 'RAIL':
+        return 'Rail';
+      case 'TL':
+        return 'Trucklaod';
+      case 'VLTL':
+        return 'VLTL';
       default:
-        return "Unknown";
+        return 'Unknown';
     }
   }
 
@@ -67,11 +72,6 @@ class ShipmentModeIcon extends Component {
       />
     );
   }
-}
-
-ShipmentModeIcon.propTypes = {
-  mode: PropTypes.string,
-  small: PropTypes.bool
-}
+};
 
 export default ShipmentModeIcon;

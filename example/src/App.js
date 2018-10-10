@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-import AppHeader from './components/common/Header';
 import SideNav from './components/common/SideNav';
 import Components from './components/common/Components';
 import Landing from './components/Landing';
@@ -39,7 +38,7 @@ class App extends Component {
           >
             <div className={`logo`}>
               <Link to={'/'}>
-                <img className={logoClassNames} src={logoImage} />
+                <img className={logoClassNames} src={logoImage} alt="p44 logo" />
               </Link>
             </div>
             <SideNav />
@@ -51,7 +50,6 @@ class App extends Component {
                 type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                 onClick={this.toggle}
               />
-              {/* <AppHeader /> */}
             </Header>
             <Content className="p44-ui__wrapper">
               <Route exact path="/" component={Landing} />

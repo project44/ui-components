@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
-import { Menu, Icon, Button } from 'antd';
+import { Link } from 'react-router-dom';
+import { Menu, Icon } from 'antd';
 
 const SubMenu = Menu.SubMenu;
-const MenuGroup = Menu.ItemGroup;
 
 class SideNav extends Component {
   state = {
@@ -82,6 +81,11 @@ class SideNav extends Component {
             <Menu.Item key="15">
               <Link to={'/components/shipment-mode-icon'}>
                 Shipment Mode Icon
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="15">
+              <Link to={'/components/sub-header'}>
+                Sub-Header
               </Link>
             </Menu.Item>
           </SubMenu>

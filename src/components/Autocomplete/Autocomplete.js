@@ -4,7 +4,6 @@ import './Autocomplete.scss';
 import _ from 'lodash';
 
 export default class Autocomplete extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -16,34 +15,34 @@ export default class Autocomplete extends Component {
   closeDropDown = () => {
     this.setState({
       open: false
-    })
+    });
   }
 
   handleSearch = (value) => {
     this.setState({
       open: value.length > 0 && this.state.options.length > -1
-    })
+    });
   }
 
   render() {
-    const { mode = 'tags', onSearch, value, label, placeholder, custom, defaultValue, onChange} = this.props;
+    const { mode = 'tags', onSearch, value, label, placeholder, custom, defaultValue, onChange } = this.props;
     return (
-      <div className="autocomplete ant-form-vertical">
+      <div className='autocomplete ant-form-vertical'>
         { label &&
-        <div className="ant-form-item-label">
+        <div className='ant-form-item-label'>
           <label title={label}>{label}</label>
         </div>
         }
         <AntAutoComplete
-          className="autocomplete__input"
+          className='autocomplete__input'
           value={value}
           placeholder={placeholder}
           onSelect={this.closeDropDown}
           defaultValue={defaultValue}
           onChange={onChange}
           onSearch={(val) => {
-            this.handleSearch(val)
-            if (onSearch) { onSearch() }
+            this.handleSearch(val);
+            if (onSearch) { onSearch(); }
           }}
           mode={mode}
           open={this.state.open}
@@ -58,6 +57,6 @@ export default class Autocomplete extends Component {
 
         </AntAutoComplete>
       </div>
-    )
+    );
   }
 };
