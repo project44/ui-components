@@ -46,7 +46,7 @@ export default {
     }),
     url(),
     eslint({
-      throwOnError: true
+      throwOnError: false
     }),
     babel({
       exclude: 'node_modules/**',
