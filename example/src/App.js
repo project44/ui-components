@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 
 import SideNav from './components/common/SideNav';
 import Components from './components/common/Components';
@@ -59,10 +59,13 @@ class App extends Component {
               </a>
             </Header>
             <Content className="p44-ui__wrapper">
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/colors" component={Colors} />
-              <Route exact path="/typography" component={Typography} />
-              <Route path="/components" component={Components} />
+              <Switch>
+                <Route exact path="/" component={Landing} />
+                <Route exact path="/colors" component={Colors} />
+                <Route exact path="/typography" component={Typography} />
+                <Route path="/components" component={Components} />
+                <Redirect to="/" />
+              </Switch>
             </Content>
           </Layout>
         </Layout>
