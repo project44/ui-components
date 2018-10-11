@@ -50,6 +50,13 @@ class App extends Component {
                 type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                 onClick={this.toggle}
               />
+              <a href="https://github.com/project44/ui-components">
+                <Icon
+                  type="github"
+                  theme="outlined"
+                  className="header__github"
+                />
+              </a>
             </Header>
             <Content className="p44-ui__wrapper">
               <Route exact path="/" component={Landing} />

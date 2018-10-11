@@ -27,12 +27,22 @@ html {
 .logo .sm {
   width: 25px;
 }
-.p44-ui__header {}
+.p44-ui__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
   .header__trigger {
     margin-left: 18px;
   }
   .header__trigger:hover {
     cursor: pointer;
+  }
+  .header__github {
+    margin-right: 18px;
+    color: #333;
+    font-size: 18px;
   }
 .p44-ui__wrapper {
   background-color: #fff;
