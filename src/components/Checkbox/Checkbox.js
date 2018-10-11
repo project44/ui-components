@@ -7,7 +7,7 @@ import './Checkbox.scss';
 
 export default class Checkbox extends Component {
   static propTypes = {
-    checkboxData: PropTypes.obj,
+    checkboxData: PropTypes.array,
     layout: PropTypes.string,
     styled: PropTypes.bool,
     onChange: PropTypes.func,
