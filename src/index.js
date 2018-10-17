@@ -33,7 +33,7 @@ import ShipmentModeIcon from './components/ShipmentModeIcon/ShipmentModeIcon';
 import SubHeader from './components/SubHeader/SubHeader';
 import Radio from './components/Radio/Radio';
 import DateRange from './components/DateRange/DateRange';
-import {Row, Col} from 'antd';
+import { Row, Col } from 'antd';
 
 // Ant Design Styles
 import './styles/ant/ant.less';
