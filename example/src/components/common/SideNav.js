@@ -83,7 +83,7 @@ class SideNav extends Component {
                 Shipment Mode Icon
               </Link>
             </Menu.Item>
-            <Menu.Item key="15">
+            <Menu.Item key="16">
               <Link to={'/components/sub-header'}>
                 Sub-Header
               </Link>
