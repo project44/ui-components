@@ -9,26 +9,18 @@ export default class SubHeader extends Component {
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
     ]),
-    screenWidth: PropTypes.bool,
-    overlay: PropTypes.bool
+    screenWidth: PropTypes.bool
   }
 
   render() {
-    const { children, screenWidth, overlay } = this.props;
+    const { children, screenWidth } = this.props;
     return (
-      <header key={screenWidth} className='sub-header d-flex align-items-center'>
-        <Row>
-          <Col xs={2} sm={4} md={6} lg={8} xl={10}>Col</Col>
-          <Col xs={20} sm={16} md={12} lg={8} xl={4}>Col</Col>
-          <Col xs={2} sm={4} md={6} lg={8} xl={10}>Col</Col>
+      <header key={screenWidth} className='sub-header'>
+        <Row type='flex' align='middle'>
+          <Col className='action-line flex flex-grow relative' />
+          <Col className='p44-container'>{children}</Col>
+          <Col className='flex flex-grow relative' />
         </Row>
-        <div className='col action-line d-none d-sm-flex' />
-        <div className='container'>
-          <div className={!overlay ? 'mobile-column d-flex flex-column flex-sm-row align-items-center' : 'mobile-row d-flex flex-sm-row no-gutters'}>
-            {children}
-          </div>
-        </div>
-        <div className='col d-none d-sm-flex' />
       </header>
     );
   }
