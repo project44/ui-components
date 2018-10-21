@@ -7,6 +7,7 @@ export default class Popover extends Component {
   static propTypes = {
     trigger: PropTypes.string,
     title: PropTypes.string,
+    placement: PropTypes.string,
     content: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
@@ -18,10 +19,10 @@ export default class Popover extends Component {
   }
 
   render() {
-    const { content, trigger, title, children } = this.props;
+    const { content, trigger, title, children, placement = 'bottom' } = this.props;
     return (
-      <div className='sticky-nav'>
-        <AntPopover content={content} title={title} trigger={trigger}>
+      <div className='p44-popover'>
+        <AntPopover content={content} title={title} trigger={trigger} placement={placement}>
           {children}
         </AntPopover>
       </div>
