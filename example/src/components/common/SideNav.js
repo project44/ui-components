@@ -88,6 +88,11 @@ class SideNav extends Component {
               Sub-Header
             </Link>
           </Menu.Item>
+          <Menu.Item key='17'>
+            <Link to={'/components/sticky-nav'}>
+              Sticky Nav
+            </Link>
+          </Menu.Item>
         </SubMenu>
       </Menu>
     );

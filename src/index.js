@@ -33,6 +33,7 @@ import ShipmentModeIcon from './components/ShipmentModeIcon/ShipmentModeIcon';
 import SubHeader from './components/SubHeader/SubHeader';
 import Radio from './components/Radio/Radio';
 import DateRange from './components/DateRange/DateRange';
+import StickyNav from './components/StickyNav/StickyNav';
 import { Row, Col } from 'antd';
 
 // Ant Design Styles
@@ -54,6 +55,7 @@ export {
   SubHeader,
   Radio,
   DateRange,
+  StickyNav,
   Row,
   Col
 };

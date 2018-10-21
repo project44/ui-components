@@ -9,6 +9,7 @@ import SelectDemo from "../components/Select";
 import RadioDemo from "../components/Radio";
 import ShipmentModeIconDemo from "../components/ShipmentModeIcon";
 import SubHeaderDemo from "../components/SubHeader";
+import StickyNavDemo from "../components/StickyNav";
 
 export default (props) => {
   let { match } = props;
@@ -22,6 +23,7 @@ export default (props) => {
       <Route exact path={`${match.url}/select`} component={SelectDemo} />
       <Route exact path={`${match.url}/radio`} component={RadioDemo} />
       <Route exact path={`${match.url}/sub-header`} component={SubHeaderDemo} />
+      <Route exact path={`${match.url}/sticky-nav`} component={StickyNavDemo} />
       <Route exact path={`${match.url}/shipment-mode-icon`} component={ShipmentModeIconDemo} />
     </div>
   )
