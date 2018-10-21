@@ -46,7 +46,7 @@ const menuItems = [
     icon: 'map',
     link: 'mapRef'
   }
-]
+];
 
 export default class StickyNavDemo extends Component {
 
