@@ -52,9 +52,9 @@
     "gh-pages": "^1.2.0",
     "less": "^3.8.1",
     "node-sass": "^4.9.3",
-    "react": "^16.4.1",
+    "react": "^16.5.2",
     "react-app-rewire-scss": "^1.0.2",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.5.2",
     "react-scripts": "^1.1.4",
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^3.0.7",
@@ -73,7 +73,7 @@
     "dist"
   ],
   "dependencies": {
-    "antd": "^3.9.2",
+    "antd": "^3.10.1",
     "autoprefixer": "^9.1.5",
     "babel-plugin-import": "^1.8.0",
     "concurrently": "^4.0.1",

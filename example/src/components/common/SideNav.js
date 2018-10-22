@@ -42,48 +42,48 @@ class SideNav extends Component {
             <span>Typography</span>
           </Link>
         </Menu.Item>
-        <SubMenu key='sub1' title={<span><Icon type='layout' /><span>Components</span></span>}>
-          <Menu.Item key='7'>
+        <SubMenu key="sub1" title={<span><Icon type="layout" /><span>Components</span></span>}>
+          <Menu.Item key="7">
             <Link to={'/components/buttons'}>
               Buttons
             </Link>
           </Menu.Item>
-          <Menu.Item key='8'>
+          <Menu.Item key="8">
             <Link to={'/components/date-picker'}>
               Date Picker
             </Link>
           </Menu.Item>
-          <Menu.Item key='9'>
+          <Menu.Item key="9">
             <Link to={'/components/chips'}>
               Chips
             </Link>
           </Menu.Item>
-          <Menu.Item key='10'>
+          <Menu.Item key="10">
             <Link to={'/components/input'}>
               Input
             </Link>
           </Menu.Item>
-          <Menu.Item key='11'>
+          <Menu.Item key="11">
             <Link to={'/components/checkbox'}>
               Checkbox
             </Link>
           </Menu.Item>
-          <Menu.Item key='13'>
+          <Menu.Item key="13">
             <Link to={'/components/select'}>
               Select
             </Link>
           </Menu.Item>
-          <Menu.Item key='14'>
+          <Menu.Item key="14">
             <Link to={'/components/radio'}>
               Radio
             </Link>
           </Menu.Item>
-          <Menu.Item key='15'>
+          <Menu.Item key="15">
             <Link to={'/components/shipment-mode-icon'}>
               Shipment Mode Icon
             </Link>
           </Menu.Item>
-          <Menu.Item key='16'>
+          <Menu.Item key="16">
             <Link to={'/components/sub-header'}>
               Sub-Header
             </Link>

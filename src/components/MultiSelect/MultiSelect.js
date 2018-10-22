@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Select as AntMultiSelect } from 'antd';
 import './MultiSelect.scss';
 import _ from 'lodash';
 
 export default class MultiSelect extends Component {
   static propTypes = {
+    dataSource: PropTypes.array.isRequired,
     mode: PropTypes.string,
     onSearch: PropTypes.func,
-    value: PropTypes.string,
+    value: PropTypes.array,
     label: PropTypes.string,
     allowSearch: PropTypes.bool,
     closeOnSelect: PropTypes.bool,
@@ -16,7 +18,8 @@ export default class MultiSelect extends Component {
     custom: PropTypes.string,
     defaultValue: PropTypes.string,
     onChange: PropTypes.func,
-    icon: PropTypes.string
+    icon: PropTypes.string,
+    className: PropTypes.string
   }
 
   constructor(props) {
@@ -28,15 +31,37 @@ export default class MultiSelect extends Component {
   }
 
   closeDropDown = () => {
-    this.setState({
-      open: false
+    this.setState((state, props) => {
+      return {
+        open: false
+      }
     });
   }
 
   openDropDown = () => {
-    this.setState({
-      open: true
+    this.setState((state, props) => {
+      return {
+        open: true
+      }
     });
+  }
+
+  toggleDropdown = () => {
+    const { open } = this.state;
+
+    if (!open) {
+      this.MultiSelect.focus();
+
+      this.setState((state, props) => {
+        return { open: true }
+      });
+    } else {
+      this.MultiSelect.blur();
+
+      this.setState((state, props) => {
+        return { open: false }
+      });
+    }
   }
 
   render() {
@@ -51,8 +76,11 @@ export default class MultiSelect extends Component {
       custom,
       defaultValue,
       onChange,
-      icon = 'arrow_drop_down'
+      icon = 'arrow_drop_down',
+      className
     } = this.props;
+
+    const { options, open } = this.state;
 
     return (
       <div className='multi-select ant-form-vertical'>
@@ -63,7 +91,7 @@ export default class MultiSelect extends Component {
         }
         <div className={allowSearch ? 'multi-select__dropdown' : 'multi-select__dropdown no-search'}>
           <AntMultiSelect
-            className='multi-select__input'
+            className={classNames('multi-select__input', className)}
             value={value}
             placeholder={placeholder}
             onSelect={() => closeOnSelect && this.closeDropDown()}
@@ -71,19 +99,20 @@ export default class MultiSelect extends Component {
             onChange={onChange}
             onSearch={onSearch}
             onFocus={this.openDropDown}
-            open={this.state.open}
+            open={open}
             mode={mode}
             onBlur={this.closeDropDown}
             onDeselect={this.closeDropDown}
             filterOption={allowSearch ? (input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0 : false}
+            ref={(input) => { this.MultiSelect = input; }}
             {...custom}
           >
-            {this.state.options.map((item) => {
-              return <AntMultiSelect.Option key={item}>{item}</AntMultiSelect.Option>;
+            {options && options.map((item) => {
+              return <AntMultiSelect.Option key={item.value}>{item.value}</AntMultiSelect.Option>;
             })}
           </AntMultiSelect>
-          <div className='select__icon'>
-            <i className={`material-icons ${this.state.open ? 'open' : 'closed'}`}>{icon}</i>
+          <div className={classNames('select__icon', { 'open': open })} onClick={this.toggleDropdown} onBlur={this.toggleDropdown}>
+            <i className={`material-icons ${open ? 'open' : 'closed'}`}>{icon}</i>
           </div>
         </div>
       </div>

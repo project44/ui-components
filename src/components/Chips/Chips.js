@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './Chips.scss';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 export default class Chips extends Component {
   static propTypes = {
-    listData: PropTypes.array.required,
+    listData: PropTypes.array,
     showCount: PropTypes.bool,
     deleteFn: PropTypes.func,
     layout: PropTypes.string
@@ -28,13 +29,16 @@ export default class Chips extends Component {
 
     return (
       <div className='chips'>
-        <div className={layout}>
+        <div className={classNames({
+          'chips__row': layout === 'row',
+          'chips__column': layout === 'column'
+        })}>
           {listData.map((item, index) => {
             if (!showCount || this.state.showAll || index < showCount) {
               return (
-                <div className='chip' key={index}>
+                <div className='chip' key={item}>
                   <span className='chip__label'>{item}</span>
-                  <i className='chip__delete material-icons' onClick={() => deleteFn(index)}>close</i>
+                  <i className='chip__delete material-icons' onClick={() => deleteFn(item)}>close</i>
                 </div>
               );
             } else {

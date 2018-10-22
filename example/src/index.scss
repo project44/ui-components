@@ -48,6 +48,8 @@ html {
   background-color: #fff;
   margin: 24px 16px;
   border:1px solid #cecece;
+  height:auto;
+  min-height: inherit !important;
 
   .page-header {
     background-color: #f3f3f3;

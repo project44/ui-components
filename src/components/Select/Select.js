@@ -50,8 +50,8 @@ export default class Select extends Component {
             mode={mode}
             {...custom}
           >
-            { this.state.options.map((item) => {
-              return <AntSelect.Option key={item}>{item}</AntSelect.Option>;
+            {this.state.options.map((item, i) => {
+              return <AntSelect.Option key={item.id}>{item.value}</AntSelect.Option>;
             })}
           </AntSelect>
           <div className='select__icon'>

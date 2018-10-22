@@ -25,7 +25,16 @@ export default class Autocomplete extends Component {
   }
 
   render() {
-    const { mode = 'tags', onSearch, value, label, placeholder, custom, defaultValue, onChange } = this.props;
+    const {
+      mode = 'tags',
+      onSearch,
+      value,
+      label,
+      placeholder,
+      custom,
+      defaultValue,
+      onChange 
+    } = this.props;
     return (
       <div className='autocomplete ant-form-vertical'>
         { label &&

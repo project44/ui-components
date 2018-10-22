@@ -1,4 +1,23 @@
 .multi-select {
+  position: relative;
+
+  .select__icon {
+    position: absolute;
+    width: 24px; // NOTE: material-icon has a native width of 24px, so this is matching that
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+
+    &.open {
+      pointer-events: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   &__input{
     min-width: 200px;
   }
@@ -41,10 +60,12 @@
     }
   }
   &__dropdown {
+    position: relative;
     display: flex;
     background: #FFF;
     margin-bottom: 16px;
     cursor: pointer;
+
     &.no-search {
       .ant-select-selection__rendered {
         cursor: pointer;

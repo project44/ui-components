@@ -5,12 +5,30 @@ import SyntaxHighlighter from "react-syntax-highlighter/prism";
 import {xonokai} from "react-syntax-highlighter/styles/prism/index";
 
 const chipData = [
-  'Lays',
-  'Pringles',
-  'Ruffles',
-  'Cheetos',
-  'Thins',
-  'Doritos'
+  {
+    id: 0,
+    value: 'Lays'
+  },
+  {
+    id: 1,
+    value: 'Pringles'
+  },
+  {
+    id: 2,
+    value: 'Ruffles'
+  },
+  {
+    id: 3,
+    value: 'Cheetos'
+  },
+  {
+    id: 4,
+    value: 'Thins'
+  },
+  {
+    id: 5,
+    value: 'Doritos'
+  }
 ];
 
 export default class SelectDemo extends Component {
@@ -24,8 +42,10 @@ export default class SelectDemo extends Component {
   }
 
   deleteChip = (index) => {
+    const selectedChips = this.state.selectedChips.filter((_, i) => i !== index);
+    console.log(selectedChips);
     this.setState({
-      selectedChips: this.state.selectedChips.filter((_, i) => i !== index)
+      selectedChips: selectedChips
     });
   }
 
@@ -36,6 +56,7 @@ export default class SelectDemo extends Component {
   }
 
   render() {
+
     return (
       <div className="p44-ui__page">
         <div className="page-header">
@@ -119,7 +140,7 @@ export default class SelectDemo extends Component {
                 allowSearch={false}
               >
               </MultiSelect>
-              <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>
+              <Chips listData={this.state.selectedChips} showCount={true} layout="row" deleteFn={this.deleteChip}></Chips>
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>
@@ -134,7 +155,7 @@ export default class SelectDemo extends Component {
   allowSearch={false}
 >
 </MultiSelect>
-<Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>`}
+<Chips listData={this.state.selectedChips} showCount={true} layout="row" deleteFn={this.deleteChip}></Chips>`}
               </SyntaxHighlighter>
             </div>
           </section>
@@ -152,7 +173,7 @@ export default class SelectDemo extends Component {
                 open={this.state.open}
               >
               </MultiSelect>
-              <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>
+              <Chips listData={this.state.selectedChips} showCount={true} layout="row" deleteFn={this.deleteChip}></Chips>
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>
@@ -166,7 +187,7 @@ export default class SelectDemo extends Component {
   open={this.state.open}
 >
 </MultiSelect>
-<Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>`}
+<Chips listData={this.state.selectedChips} showCount={true} layout="row" deleteFn={this.deleteChip}></Chips>`}
               </SyntaxHighlighter>
             </div>
           </section>
@@ -184,7 +205,7 @@ export default class SelectDemo extends Component {
                 closeOnSelect={true}
               >
               </MultiSelect>
-              <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>
+              <Chips listData={this.state.selectedChips} showCount={true} layout="row" deleteFn={this.deleteChip}></Chips>
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>
@@ -199,7 +220,7 @@ export default class SelectDemo extends Component {
   closeOnSelect={true}
 >
 </MultiSelect>
-<Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>`}
+<Chips listData={this.state.selectedChips} showCount={true} layout="row" deleteFn={this.deleteChip}></Chips>`}
               </SyntaxHighlighter>
             </div>
           </section>
@@ -216,7 +237,7 @@ export default class SelectDemo extends Component {
                 open={this.state.open}
               >
               </Autocomplete>
-              <Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>
+              <Chips listData={this.state.selectedChips} showCount={true} layout="row" deleteFn={this.deleteChip}></Chips>
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>
@@ -230,7 +251,7 @@ export default class SelectDemo extends Component {
   open={this.state.open}
 >
 </Autocomplete>
-<Chips listData={this.state.selectedChips} showCount={3} layout="row" deleteFn={this.deleteChip}></Chips>`}
+<Chips listData={this.state.selectedChips} showCount={true} layout="row" deleteFn={this.deleteChip}></Chips>`}
               </SyntaxHighlighter>
             </div>
           </section>

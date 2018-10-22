@@ -12,7 +12,11 @@ class Button extends Component {
     blurFn: PropTypes.func,
     type: PropTypes.string,
     size: PropTypes.string,
-    className: PropTypes.string
+    className: PropTypes.string,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ])
   }
 
   render() {
@@ -44,6 +48,7 @@ class Button extends Component {
             })}
             onClick={clickFn}
             onBlur={blurFn}
+            {...props}
           >
             {this.props.children}
           </AntButton>
@@ -52,7 +57,6 @@ class Button extends Component {
     } else {
       return (
         <AntButton
-          {...props}
           className={classNames(className, {
             'p44-btn': type === 'default',
             'p44-btn--primary': type === 'primary',
@@ -67,6 +71,7 @@ class Button extends Component {
           onClick={clickFn}
           onBlur={blurFn}
           download={download}
+          {...props}
         >
           {this.props.children}
         </AntButton>
