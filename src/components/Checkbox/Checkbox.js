@@ -14,12 +14,17 @@ export default class Checkbox extends Component {
     onChange: PropTypes.func,
     className: PropTypes.string,
     theme: PropTypes.string,
-    label: PropTypes.string,
-    name: PropTypes.string
   }
 
   render() {
-    const { label, name, value, checkboxData, layout = 'row', styled = false, theme = 'dark', onChange, className = null } = this.props;
+    const {
+      checkboxData,
+      layout = 'row',
+      styled = false,
+      theme = 'dark',
+      onChange,
+      className = null
+    } = this.props;
 
     return (
       <div className={classNames('checkbox-group', className, {
