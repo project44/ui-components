@@ -37,7 +37,6 @@ export default {
       option: { compress: true }
     }),
     postcss({
-      sourceMap: 'inline',
       minimize: true,
       plugins: [ autoprefixer, stylelint ],
       extensions: ['.scss'],
