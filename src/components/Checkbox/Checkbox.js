@@ -13,7 +13,7 @@ export default class Checkbox extends Component {
     styled: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
-    theme: PropTypes.string,
+    theme: PropTypes.string
   }
 
   render() {

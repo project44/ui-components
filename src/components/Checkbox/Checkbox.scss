@@ -17,6 +17,24 @@
     }
   }
 
+  &.dark {
+    .ant-checkbox-wrapper {
+      .ant-checkbox {
+
+        .ant-checkbox-inner {
+
+        }
+
+        &.ant-checkbox-checked {
+
+        }
+      }
+      .item-title {
+        color: var(--primary-grey-80);
+      }
+    }
+  }
+
 
   &.styled {
 

@@ -34,7 +34,7 @@ export default class MultiSelect extends Component {
     this.setState((state, props) => {
       return {
         open: false
-      }
+      };
     });
   }
 
@@ -42,7 +42,7 @@ export default class MultiSelect extends Component {
     this.setState((state, props) => {
       return {
         open: true
-      }
+      };
     });
   }
 
@@ -53,13 +53,13 @@ export default class MultiSelect extends Component {
       this.MultiSelect.focus();
 
       this.setState((state, props) => {
-        return { open: true }
+        return { open: true };
       });
     } else {
       this.MultiSelect.blur();
 
       this.setState((state, props) => {
-        return { open: false }
+        return { open: false };
       });
     }
   }
@@ -96,6 +96,7 @@ export default class MultiSelect extends Component {
             placeholder={placeholder}
             onSelect={() => closeOnSelect && this.closeDropDown()}
             defaultValue={defaultValue}
+            dropdownStyle={{ zIndex: 9999 }}
             onChange={onChange}
             onSearch={onSearch}
             onFocus={this.openDropDown}
