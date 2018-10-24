@@ -25,7 +25,6 @@ export default class MultiSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      options: _.get(props, 'dataSource', []),
       open: false
     };
   }
@@ -66,6 +65,7 @@ export default class MultiSelect extends Component {
 
   render() {
     const {
+      dataSource,
       mode = 'multiple',
       onSearch,
       value,
@@ -108,7 +108,7 @@ export default class MultiSelect extends Component {
             ref={(input) => { this.MultiSelect = input; }}
             {...custom}
           >
-            {options && options.map((item) => {
+            {dataSource && dataSource.map((item) => {
               return <AntMultiSelect.Option key={item.value}>{item.value}</AntMultiSelect.Option>;
             })}
           </AntMultiSelect>
