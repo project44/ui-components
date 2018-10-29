@@ -77,7 +77,7 @@ export default class RadioDemo extends Component {
             <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>
                 {`import { Radio } from 'ui-components';
-]
+
 <Radio radioData={this.state.radioData} styled={true}></Radio>`}
               </SyntaxHighlighter>
             </div>

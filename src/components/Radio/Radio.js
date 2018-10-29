@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import './Radio.scss';
 import { Radio as AntRadio, Col } from 'antd';
@@ -6,7 +7,7 @@ import _ from 'lodash';
 
 export default class Radio extends Component {
   static propTypes = {
-    radioData: PropTypes.obj,
+    radioData: PropTypes.array,
     layout: PropTypes.string,
     styled: PropTypes.bool,
     onChange: PropTypes.func,
@@ -14,15 +15,22 @@ export default class Radio extends Component {
   }
 
   render() {
-    const { radioData, layout = 'row', styled = false, onChange, value } = this.props;
-
+    const { radioData, layout = 'row', styled = false, block = false, onChange = null, value } = this.props;
     return (
-      <AntRadio.Group className={styled ? 'radio-group styled' : 'radio-group'} value={value} buttonStyle='solid' onChange={onChange}>
-        { radioData.map((item, index) => {
+      <AntRadio.Group
+        className={classNames('radio-group', {
+          'styled': styled,
+          'block': block
+        })}
+        value={value}
+        buttonStyle='solid'
+        onChange={onChange}
+      >
+        {radioData.map((item, index) => {
           if (layout === 'row') {
             if (styled) {
               return (
-                <AntRadio.Button key={index} value={_.get(item, 'value', item)}>
+                <AntRadio.Button key={item.value} value={_.get(item, 'value', item)}>
                   <span className='item-title'>{_.get(item, 'label', item)}</span>
                 </AntRadio.Button>
               );
@@ -37,7 +45,7 @@ export default class Radio extends Component {
             if (styled) {
               return (
                 <Col key={index}>
-                  <AntRadio.Button key={index} value={_.get(item, 'value', item)}>
+                  <AntRadio.Button key={item.value} value={_.get(item, 'value', item)}>
                     <span className='item-title'>{_.get(item, 'label', item)}</span>
                   </AntRadio.Button>
                 </Col>
@@ -45,7 +53,7 @@ export default class Radio extends Component {
             } else {
               return (
                 <Col key={index}>
-                  <AntRadio key={index} value={_.get(item, 'value', item)}>
+                  <AntRadio key={item.value} value={_.get(item, 'value', item)}>
                     <span className='item-title'>{_.get(item, 'label', item)}</span>
                   </AntRadio>
                 </Col>
