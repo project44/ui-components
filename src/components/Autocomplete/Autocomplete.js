@@ -33,22 +33,26 @@ export default class Autocomplete extends Component {
       placeholder,
       custom,
       defaultValue,
-      onChange 
+      onChange,
+      onSelect
     } = this.props;
     return (
       <div className='autocomplete ant-form-vertical'>
-        { label &&
-        <div className='ant-form-item-label'>
-          <label title={label}>{label}</label>
-        </div>
-        }
+        {label && (
+          <div className='ant-form-item-label'>
+            <label title={label}>{label}</label>
+          </div>
+        )}
         <AntAutoComplete
           className='autocomplete__input'
           value={value}
           placeholder={placeholder}
           onSelect={this.closeDropDown}
           defaultValue={defaultValue}
-          onChange={onChange}
+          onChange={(value) => {
+            console.log(value);
+            onChange(value);
+          }}
           onSearch={(val) => {
             this.handleSearch(val);
             if (onSearch) { onSearch(); }
@@ -61,6 +65,7 @@ export default class Autocomplete extends Component {
           {...custom}
         >
           { this.state.options.map((item) => {
+            console.log(item);
             return <AntAutoComplete.Option key={item}>{item}</AntAutoComplete.Option>;
           })}
 

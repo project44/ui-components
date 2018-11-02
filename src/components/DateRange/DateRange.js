@@ -17,46 +17,19 @@ export default class DateRange extends Component {
     boundEndDateValue: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
-    ])
+    ]),
+    datepickerStartChangeFn: PropTypes.func,
+    datepickerEndChangeFn: PropTypes.func
   }
 
   constructor(props) {
     super(props);
+
     this.state = {
-      startValue: null,
-      endValue: null,
+      startValue: props.boundStartDateValue ? moment(props.boundStartDateValue) : null,
+      endValue: props.boundEndDateValue ? moment(props.boundEndDateValue) : null,
       endOpen: false
     };
-  }
-
-  componentDidMount() {
-    const { boundEndDateValue, boundStartDateValue, format } = this.props;
-    let startValue, endValue;
-
-    if (boundStartDateValue && typeof boundStartDateValue === 'string') {
-      startValue = moment(boundStartDateValue);
-    }
-
-    if (boundEndDateValue && typeof boundEndDateValue === 'string') {
-      endValue = moment(boundEndDateValue);
-    }
-
-    if (boundStartDateValue) {
-      this.setState((state, props) => {
-        return {
-          startValue
-        };
-      });
-    }
-
-    if (boundEndDateValue) {
-      this.setState((state, props) => {
-        return {
-          endValue
-        };
-      });
-    }
-
   }
 
   disabledStartDate = (startValue) => {
@@ -82,12 +55,10 @@ export default class DateRange extends Component {
   }
 
   onStartChange = (value) => {
-    console.log("onStartChange", value);
     this.onChange('startValue', value);
   }
 
   onEndChange = (value) => {
-    console.log("onEndChange", value);
     this.onChange('endValue', value);
   }
 
@@ -141,6 +112,7 @@ export default class DateRange extends Component {
             }}
             onOpenChange={this.handleStartOpenChange}
             suffixIcon={calendarIcon}
+            boundStartDateValue={boundStartDateValue}
           />
         </div>
         <div className='ant-form-vertical'>
@@ -162,6 +134,7 @@ export default class DateRange extends Component {
             open={this.state.endOpen}
             onOpenChange={this.handleEndOpenChange}
             suffixIcon={calendarIcon}
+            boundEndDateValue={boundEndDateValue}
           />
         </div>
       </div>
