@@ -26,11 +26,12 @@ export default class Chips extends Component {
 
   render() {
     const { listData, showCount, deleteFn, layout = 'row' } = this.props;
+    const hasChips = listData.length > 0;
 
     return (
       <div className='chips'>
         <div className={classNames({
-          'chips__row': layout === 'row',
+          'chips__row': layout === 'row' && hasChips,
           'chips__column': layout === 'column'
         })}>
           {listData.map((item, index) => {
