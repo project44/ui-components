@@ -85,14 +85,14 @@ button {
       @extend .p44-btn;
       background-color: transparent;
       box-shadow: none;
-      color: $primary-grey-40;
+      color: var(--primary-grey-40);
       &:hover, &:focus {
-        color: $primary-grey-40;
+        color: var(--primary-grey-80);
         background-color: var(--primary-grey-05);
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
       }
     }
-    &--destructive-text { // basically a link with/without an icon
+    &--destructive-text { // basically a link an optional icon
       @extend .p44-btn;
       box-shadow: none;
       background-color: transparent;
@@ -103,7 +103,7 @@ button {
       }
     }
     // NOTE: NOT CURRENTLY USED OPTIONS
-    &--basic { // basically a link with/without an icon
+    &--basic { // basically a link an optional icon
       @extend .p44-btn;
       box-shadow: none;
       background-color: transparent;

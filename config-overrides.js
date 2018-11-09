@@ -7,13 +7,13 @@ module.exports = function override(config, env) {
   config = injectBabelPlugin(
     ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }],
     config
-  )
+  );
 
-  // config = rewireSass(config, env)
   config = rewireSass.withLoaderOptions({ sourceMap: true })(config, env);
 
   config = rewireLess.withLoaderOptions({
     javascriptEnabled: true,
-  })(config, env)
-  return config
+  })(config, env);
+  
+  return config;
 }

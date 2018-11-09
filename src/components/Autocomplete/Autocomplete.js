@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Select as AntAutoComplete } from 'antd';
 import './Autocomplete.scss';
 import _ from 'lodash';
 
 export default class Autocomplete extends Component {
+  static propTypes = {
+    mode: PropTypes.string,
+    onSearch: PropTypes.func,
+    value: PropTypes.string,
+    label: PropTypes.string,
+    placeholder: PropTypes.string,
+    defaultValue: PropTypes.string,
+    onChange: PropTypes.func
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -33,8 +44,7 @@ export default class Autocomplete extends Component {
       placeholder,
       custom,
       defaultValue,
-      onChange,
-      onSelect
+      onChange
     } = this.props;
     return (
       <div className='autocomplete ant-form-vertical'>

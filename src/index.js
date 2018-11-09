@@ -1,26 +1,3 @@
-// import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
-//
-// import styles from './styles.css'
-//
-// export default class ExampleComponent extends Component {
-//   static propTypes = {
-//     text: PropTypes.string
-//   }
-//
-//   render() {
-//     const {
-//       text
-//     } = this.props
-//
-//     return (
-//       <div className={styles.test}>
-//         Example Component: {text}
-//       </div>
-//     )
-//   }
-// }
-
 import Autocomplete from './components/Autocomplete/Autocomplete';
 import Button from './components/Button/Button';
 import Checkbox from './components/Checkbox/Checkbox';

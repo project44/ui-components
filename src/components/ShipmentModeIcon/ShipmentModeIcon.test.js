@@ -11,14 +11,14 @@ import ShipmentModeIcon from './ShipmentModeIcon';
 
 describe('ShipmentModeIcon', () => {
   let props;
-  let mountedShipmentModeIcon;
-  const shipmentModeIcon = () => {
-    if (!mountedShipmentModeIcon) {
-      mountedShipmentModeIcon = mount(
+  let mountedComponent;
+  const shipmentModeIconComponent = () => {
+    if (!mountedComponent) {
+      mountedComponent = mount(
         <ShipmentModeIcon {...props} />
       );
     }
-    return mountedShipmentModeIcon;
+    return mountedComponent;
   }
 
   beforeEach(() => {
@@ -26,15 +26,15 @@ describe('ShipmentModeIcon', () => {
       mode: undefined,
       small: undefined,
     };
-    mountedShipmentModeIcon = undefined;
+    mountedComponent = undefined;
   });
 
   it('is truthy', () => {
-    expect(ShipmentModeIcon).toBeTruthy()
+    expect(shipmentModeIconComponent).toBeTruthy()
   });
 
   it("always renders an img", () => {
-    const imgTag = shipmentModeIcon().find("img");
+    const imgTag = shipmentModeIconComponent().find("img");
     expect(imgTag.length).toBe(1);
   });
 });
