@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Select as AntMultiSelect } from 'antd';
 import './MultiSelect.scss';
-import _ from 'lodash';
 
 export default class MultiSelect extends Component {
   static propTypes = {
@@ -80,7 +79,7 @@ export default class MultiSelect extends Component {
       className
     } = this.props;
 
-    const { options, open } = this.state;
+    const { open } = this.state;
 
     return (
       <div className='multi-select ant-form-vertical'>

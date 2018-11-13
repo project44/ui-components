@@ -26,8 +26,8 @@ export default class DateRange extends Component {
     super(props);
 
     this.state = {
-      startValue: props.boundStartDateValue ? moment(props.boundStartDateValue) : null,
-      endValue: props.boundEndDateValue ? moment(props.boundEndDateValue) : null,
+      startValue: null,
+      endValue: null,
       endOpen: false
     };
   }
@@ -72,6 +72,18 @@ export default class DateRange extends Component {
     this.setState({ endOpen: open });
   }
 
+  formatDateValue = (date, stateDate) => {
+    if (typeof date === 'string') {
+      return moment(date);
+    } else if (moment.isMoment(date)) {
+      return date;
+    } else if (date === undefined) {
+      return stateDate;
+    } else {
+      return null;
+    }
+  }
+
   render() {
     const {
       placeholder = 'MM/DD/YYYY',
@@ -85,6 +97,8 @@ export default class DateRange extends Component {
     } = this.props;
 
     let { startValue, endValue } = this.state;
+    const startValueBound = this.formatDateValue(boundStartDateValue, startValue);
+    const endValueBound = this.formatDateValue(boundEndDateValue, endValue);
 
     const calendarIcon = (
       <i className='material-icons'>
@@ -105,14 +119,15 @@ export default class DateRange extends Component {
             className='start-date'
             disabledDate={this.disabledStartDate}
             format={format}
-            value={startValue}
+            value={startValueBound}
             onChange={(value) => {
               this.onStartChange(value);
-              datepickerStartChangeFn(value);
+              if (datepickerStartChangeFn) {
+                datepickerStartChangeFn(value);
+              }
             }}
             onOpenChange={this.handleStartOpenChange}
             suffixIcon={calendarIcon}
-            boundStartDateValue={boundStartDateValue}
           />
         </div>
         <div className='ant-form-vertical'>
@@ -126,10 +141,12 @@ export default class DateRange extends Component {
             className='end-date'
             disabledDate={this.disabledEndDate}
             format={format}
-            value={endValue}
+            value={endValueBound}
             onChange={(value) => {
               this.onEndChange(value);
-              datepickerEndChangeFn(value);
+              if (datepickerEndChangeFn) {
+                datepickerEndChangeFn(value);
+              }
             }}
             open={this.state.endOpen}
             onOpenChange={this.handleEndOpenChange}
