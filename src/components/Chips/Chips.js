@@ -25,7 +25,13 @@ export default class Chips extends Component {
   }
 
   render() {
-    const { listData, showCount, deleteFn, layout = 'row' } = this.props;
+    const { 
+      listData, 
+      showCount, 
+      deleteFn, 
+      layout = 'row' 
+    } = this.props;
+    
     const hasChips = listData.length > 0;
 
     return (

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Select as AntAutoComplete } from 'antd';
-import './Autocomplete.scss';
+import { AutoComplete as AntAutoComplete } from 'antd';
+import './AutoComplete.scss';
 import _ from 'lodash';
 
-export default class Autocomplete extends Component {
+export default class AutoComplete extends Component {
   static propTypes = {
     mode: PropTypes.string,
     onSearch: PropTypes.func,
@@ -19,7 +19,8 @@ export default class Autocomplete extends Component {
     super(props);
     this.state = {
       options: _.get(props, 'dataSource', []),
-      open: false
+      open: false,
+      value: ''
     };
   }
 
@@ -35,17 +36,24 @@ export default class Autocomplete extends Component {
     });
   }
 
+  handleSelect = () => {
+    this.setState({
+      value: ''
+    });
+  }
+
   render() {
     const {
       mode = 'tags',
-      onSearch,
-      value,
       label,
       placeholder,
       custom,
       defaultValue,
-      onChange
+      dataSource,
+      onSelect,
+      onSearch
     } = this.props;
+
     return (
       <div className='autocomplete ant-form-vertical'>
         {label && (
@@ -55,31 +63,27 @@ export default class Autocomplete extends Component {
         )}
         <AntAutoComplete
           className='autocomplete__input'
-          value={value}
+          value={this.state.value}
           placeholder={placeholder}
-          onSelect={this.closeDropDown}
           defaultValue={defaultValue}
-          onChange={(value) => {
-            console.log(value);
-            onChange(value);
+          dataSource={dataSource}
+          onChange={(val) => {
+            this.setState(() => {
+              return {
+                value: val
+              }
+            });
           }}
-          onSearch={(val) => {
-            this.handleSearch(val);
-            if (onSearch) { onSearch(); }
+          onSearch={onSearch}
+          onSelect={(val) => {
+            onSelect(val);
+            this.setState(() => { return { value: '' } });
+            this.closeDropDown();
           }}
           mode={mode}
-          open={this.state.open}
-          onBlur={this.closeDropDown}
-          onDeselect={this.closeDropDown}
           filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
           {...custom}
-        >
-          { this.state.options.map((item) => {
-            console.log(item);
-            return <AntAutoComplete.Option key={item}>{item}</AntAutoComplete.Option>;
-          })}
-
-        </AntAutoComplete>
+        />
       </div>
     );
   }

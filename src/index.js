@@ -1,8 +1,9 @@
-import Autocomplete from './components/Autocomplete/Autocomplete';
+import AutoComplete from './components/AutoComplete/AutoComplete';
 import Button from './components/Button/Button';
 import Checkbox from './components/Checkbox/Checkbox';
 import Chips from './components/Chips/Chips';
 import DatePicker from './components/DatePicker/DatePicker';
+import { Dropdown, DropdownItem } from './components/Dropdown/Dropdown';
 import Input from './components/Input/Input';
 import MultiSelect from './components/MultiSelect/MultiSelect';
 import Select from './components/Select/Select';
@@ -21,11 +22,13 @@ import './styles/init.scss';
 
 // export Components as named exports
 export {
-  Autocomplete,
+  AutoComplete,
   Button,
   Checkbox,
   Chips,
   DatePicker,
+  Dropdown,
+  DropdownItem,
   Input,
   MultiSelect,
   Select,

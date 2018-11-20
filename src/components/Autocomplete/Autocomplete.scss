@@ -1,6 +1,5 @@
 .autocomplete {
   &__input{
-    min-width: 200px;
     margin-bottom: 16px;
     &:not(.ant-select-focused) {
       .ant-select-selection__placeholder {

@@ -75,11 +75,13 @@ export default class MultiSelect extends Component {
       custom,
       defaultValue,
       onChange,
+      onSelect,
       icon = 'arrow_drop_down',
       className
     } = this.props;
 
     const { open } = this.state;
+    console.log(value);
 
     return (
       <div className='multi-select ant-form-vertical'>
@@ -93,7 +95,10 @@ export default class MultiSelect extends Component {
             className={classNames('multi-select__input', className)}
             value={value}
             placeholder={placeholder}
-            onSelect={() => closeOnSelect && this.closeDropDown()}
+            onSelect={(val) => { 
+              if(closeOnSelect) this.closeDropDown();
+              onSelect(val);
+            }}
             defaultValue={defaultValue}
             dropdownStyle={{ zIndex: 9999 }}
             onChange={onChange}
@@ -108,7 +113,7 @@ export default class MultiSelect extends Component {
             {...custom}
           >
             {dataSource && dataSource.map((item) => {
-              return <AntMultiSelect.Option key={item.value}>{item.value}</AntMultiSelect.Option>;
+              return <AntMultiSelect.Option key={item && item.value || item}>{item && item.value || item}</AntMultiSelect.Option>;
             })}
           </AntMultiSelect>
           <div className={classNames('select__icon', { 'open': open })} onClick={this.toggleDropdown} onBlur={this.toggleDropdown}>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Input as AntInput } from 'antd';
 import './Input.scss';
 
@@ -20,12 +21,32 @@ export default class Input extends Component {
   }
 
   render() {
-    const { label, placeholder, custom, defaultValue, onSearch, size, search, onPressEnter, onBlur, onChange, hasError, errorMessage } = this.props;
+    const { 
+      label, 
+      placeholder, 
+      custom, 
+      defaultValue, 
+      onSearch, 
+      size, 
+      search, 
+      onPressEnter, 
+      onBlur, 
+      onChange, 
+      hasError, 
+      errorMessage 
+    } = this.props;
 
     return (
       <div className='input-group'>
-        <div className='ant-form-vertical ant-form-item-control-wrapper'>
-          <div className={hasError ? 'has-feedback has-error ant-form-item-control' : 'ant-form-item-control'}>
+        <div className={classNames('ant-form-vertical ant-form-item-control-wrapper', {
+          'w-full': search === 'primary'
+        })}>
+          <div 
+            className={classNames('ant-form-item-control', {
+              'has-error': hasError,
+              'has-feedback': hasError
+            })}
+          >
             {label &&
               <div className='ant-form-item-label'>
                 <label title={label}>{label}</label>
