@@ -5,7 +5,10 @@ import { Menu, Dropdown as AntDropdown } from 'antd';
 export default class Dropdown extends Component {
   static propTypes = {
     handleChange: PropTypes.func,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
     dropdownItems: PropTypes.array,
     selectedColor: PropTypes.string,
     icon: PropTypes.string,
