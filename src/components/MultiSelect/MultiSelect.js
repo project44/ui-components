@@ -81,7 +81,6 @@ export default class MultiSelect extends Component {
     } = this.props;
 
     const { open } = this.state;
-    console.log(value);
 
     return (
       <div className='multi-select ant-form-vertical'>

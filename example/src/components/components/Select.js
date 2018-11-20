@@ -43,7 +43,6 @@ export default class SelectDemo extends Component {
 
   deleteChip = (index) => {
     const selectedChips = this.state.selectedChips.filter((_, i) => i !== index);
-    console.log(selectedChips);
     this.setState({
       selectedChips: selectedChips
     });
