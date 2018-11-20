@@ -28,7 +28,6 @@ export {
   Chips,
   DatePicker,
   Dropdown,
-  DropdownItem,
   Input,
   MultiSelect,
   Select,

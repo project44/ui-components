@@ -95,7 +95,7 @@ export default class MultiSelect extends Component {
             className={classNames('multi-select__input', className)}
             value={value}
             placeholder={placeholder}
-            onSelect={(val) => { 
+            onSelect={(val) => {
               if(closeOnSelect) this.closeDropDown();
               onSelect(val);
             }}
@@ -113,7 +113,7 @@ export default class MultiSelect extends Component {
             {...custom}
           >
             {dataSource && dataSource.map((item) => {
-              return <AntMultiSelect.Option key={item && item.value || item}>{item && item.value || item}</AntMultiSelect.Option>;
+              return <AntMultiSelect.Option key={(item && item.value) || item}>{(item && item.value) || item}</AntMultiSelect.Option>;
             })}
           </AntMultiSelect>
           <div className={classNames('select__icon', { 'open': open })} onClick={this.toggleDropdown} onBlur={this.toggleDropdown}>
