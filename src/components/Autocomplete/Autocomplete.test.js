@@ -15,10 +15,6 @@ describe('Autocomplete', () => {
   }
 
   beforeEach(() => {
-    props = {
-      mode: undefined,
-      small: undefined,
-    };
     mountedComponent = undefined;
   });
 
