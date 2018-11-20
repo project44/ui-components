@@ -9,7 +9,10 @@ export default class MultiSelect extends Component {
     dataSource: PropTypes.array.isRequired,
     mode: PropTypes.string,
     onSearch: PropTypes.func,
-    value: PropTypes.array,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array
+    ]),
     label: PropTypes.string,
     allowSearch: PropTypes.bool,
     closeOnSelect: PropTypes.bool,
@@ -76,6 +79,7 @@ export default class MultiSelect extends Component {
       defaultValue,
       onChange,
       onSelect,
+      onDeselect,
       icon = 'arrow_drop_down',
       className
     } = this.props;
@@ -95,8 +99,8 @@ export default class MultiSelect extends Component {
             value={value}
             placeholder={placeholder}
             onSelect={(val) => {
-              if(closeOnSelect) this.closeDropDown();
-              onSelect(val);
+              if (closeOnSelect) this.closeDropDown();
+              if (typeof onSelect === 'function') onSelect(val);
             }}
             defaultValue={defaultValue}
             dropdownStyle={{ zIndex: 9999 }}
@@ -106,7 +110,10 @@ export default class MultiSelect extends Component {
             open={open}
             mode={mode}
             onBlur={this.closeDropDown}
-            onDeselect={this.closeDropDown}
+            onDeselect={(val) => {
+              if (typeof onDeselect === 'function') onDeselect(val);
+              if (closeOnSelect) this.closeDropDown();
+            }}
             filterOption={allowSearch ? (input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0 : false}
             ref={(input) => { this.MultiSelect = input; }}
             {...custom}
