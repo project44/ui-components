@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
-import { Menu, Dropdown as AntDropdown, Icon } from 'antd';
+import PropTypes from 'prop-types';
+import { Menu, Dropdown as AntDropdown } from 'antd';
 
-export const DropdownItem = (props) => {
-  const {
-    key,
-    value,
-    primaryText
-  } = props;
+export default class Dropdown extends Component {
+  static propTypes = {
+    handleChange: PropTypes.func,
+    value: PropTypes.string,
+    dropdownItems: PropTypes.array,
+    selectedColor: PropTypes.string,
+    icon: PropTypes.string,
+    origin: PropTypes.string
+  }
 
-  console.log(this);
-
-  return (
-    <Menu.Item key={key} value={value}>
-      {primaryText}
-    </Menu.Item>
-  );
-}
-
-export class Dropdown extends Component {
-    
   renderMenu = () => {
-    const { 
+    const {
       handleChange,
       value,
       dropdownItems
@@ -35,35 +28,35 @@ export class Dropdown extends Component {
           <Menu.Item key={index} value={index}>{sortField.displayName}</Menu.Item>
         ))}
       </Menu>
-    )
+    );
   }
-  
+
   render() {
-    const { 
+    const {
       dropdownItems,
       value,
       origin,
       icon = 'arrow_drop_down',
       selectedColor
     } = this.props;
-    
+
     return (
-      <AntDropdown 
+      <AntDropdown
         overlay={this.renderMenu()}
-        trigger={['click']} 
+        trigger={['click']}
         placement={origin}
       >
-        <a 
-          className="ant-dropdown-link flex flex-row-reverse items-center" 
+        <a
+          className='ant-dropdown-link flex flex-row-reverse items-center'
           style={{
             color: `var(${selectedColor})`
           }}
-          href="#"
+          href='#'
         >
           <i className={`material-icons`}>{icon}</i>
           <span>{dropdownItems[value].displayName}</span>
         </a>
       </AntDropdown>
-    )
+    );
   }
 }

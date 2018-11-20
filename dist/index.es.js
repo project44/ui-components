@@ -17764,30 +17764,13 @@ DatePicker$1.propTypes = {
   format: PropTypes.string
 };
 
-var _this = undefined;
-
-var DropdownItem = function DropdownItem(props) {
-  var key = props.key,
-      value = props.value,
-      primaryText = props.primaryText;
-
-
-  console.log(_this);
-
-  return React.createElement(
-    Menu.Item,
-    { key: key, value: value },
-    primaryText
-  );
-};
-
 var Dropdown$1 = function (_Component) {
   inherits(Dropdown$$1, _Component);
 
   function Dropdown$$1() {
     var _ref;
 
-    var _temp, _this2, _ret;
+    var _temp, _this, _ret;
 
     classCallCheck(this, Dropdown$$1);
 
@@ -17795,11 +17778,11 @@ var Dropdown$1 = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this2 = possibleConstructorReturn(this, (_ref = Dropdown$$1.__proto__ || Object.getPrototypeOf(Dropdown$$1)).call.apply(_ref, [this].concat(args))), _this2), _this2.renderMenu = function () {
-      var _this2$props = _this2.props,
-          handleChange = _this2$props.handleChange,
-          value = _this2$props.value,
-          dropdownItems = _this2$props.dropdownItems;
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Dropdown$$1.__proto__ || Object.getPrototypeOf(Dropdown$$1)).call.apply(_ref, [this].concat(args))), _this), _this.renderMenu = function () {
+      var _this$props = _this.props,
+          handleChange = _this$props.handleChange,
+          value = _this$props.value,
+          dropdownItems = _this$props.dropdownItems;
 
 
       return React.createElement(
@@ -17816,7 +17799,7 @@ var Dropdown$1 = function (_Component) {
           );
         })
       );
-    }, _temp), possibleConstructorReturn(_this2, _ret);
+    }, _temp), possibleConstructorReturn(_this, _ret);
   }
 
   createClass(Dropdown$$1, [{
@@ -17863,6 +17846,15 @@ var Dropdown$1 = function (_Component) {
   }]);
   return Dropdown$$1;
 }(Component);
+
+Dropdown$1.propTypes = {
+  handleChange: PropTypes.func,
+  value: PropTypes.string,
+  dropdownItems: PropTypes.array,
+  selectedColor: PropTypes.string,
+  icon: PropTypes.string,
+  origin: PropTypes.string
+};
 
 var Input$1 = function (_Component) {
   inherits(Input$$1, _Component);

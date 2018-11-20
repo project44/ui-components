@@ -71,13 +71,13 @@ export default class AutoComplete extends Component {
             this.setState(() => {
               return {
                 value: val
-              }
+              };
             });
           }}
           onSearch={onSearch}
           onSelect={(val) => {
             onSelect(val);
-            this.setState(() => { return { value: '' } });
+            this.setState(() => { return { value: '' }; });
             this.closeDropDown();
           }}
           mode={mode}
