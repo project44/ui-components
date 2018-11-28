@@ -26,14 +26,12 @@ export default class DateRange extends Component {
     super(props);
 
     this.state = {
-      startValue: null,
-      endValue: null,
       endOpen: false
     };
   }
 
   disabledStartDate = (startValue) => {
-    const endValue = this.state.endValue;
+    const endValue = this.props.boundEndDateValue;
     if (!startValue || !endValue) {
       return false;
     }
@@ -41,7 +39,7 @@ export default class DateRange extends Component {
   }
 
   disabledEndDate = (endValue) => {
-    const startValue = this.state.startValue;
+    const startValue = this.props.boundStartDateValue;
     if (!endValue || !startValue) {
       return false;
     }
@@ -72,13 +70,11 @@ export default class DateRange extends Component {
     this.setState({ endOpen: open });
   }
 
-  formatDateValue = (date, stateDate) => {
+  formatDateValue = (date) => {
     if (typeof date === 'string') {
       return moment(date);
     } else if (moment.isMoment(date)) {
       return date;
-    } else if (date === undefined) {
-      return stateDate;
     } else {
       return null;
     }
@@ -96,9 +92,10 @@ export default class DateRange extends Component {
       boundEndDateValue
     } = this.props;
 
-    let { startValue, endValue } = this.state;
-    const startValueBound = this.formatDateValue(boundStartDateValue, startValue);
-    const endValueBound = this.formatDateValue(boundEndDateValue, endValue);
+    const startValueBound = this.formatDateValue(boundStartDateValue);
+    const endValueBound = this.formatDateValue(boundEndDateValue);
+
+    console.log(startValueBound);
 
     const calendarIcon = (
       <i className='material-icons'>
@@ -139,7 +136,7 @@ export default class DateRange extends Component {
           <AntDatePicker
             placeholder={placeholder}
             className='end-date'
-            disabledDate={this.disabledEndDate}
+            disabledDate={endValueBound ? this.disabledEndDate : null}
             format={format}
             value={endValueBound}
             onChange={(value) => {
