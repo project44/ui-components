@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Dropdown as AntDropdown } from 'antd';
 
+import './Dropdown.scss';
+
 export default class Dropdown extends Component {
   static propTypes = {
     handleChange: PropTypes.func,
