@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
 
@@ -7,6 +8,12 @@ import routes from '../../routes';
 const SubMenu = Menu.SubMenu;
 
 class SideNav extends Component {
+  static propTypes = {
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+    }),
+  }
+
   state = {
     collapsed: false,
   }
