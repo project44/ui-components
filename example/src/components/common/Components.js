@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import routes from '../routes';
+import routes from '../../routes';
 import Buttons from '../components/Buttons';
 import DatePicker from '../components/DatePicker';
 import ChipsDemo from '../components/Chips';

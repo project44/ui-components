@@ -7,6 +7,8 @@ import Landing from './components/Landing';
 import Colors from './components/pages/colors/Colors';
 import Typography from './components/pages/typography/Typography';
 
+import routes from './routes';
+
 import logoImg from './assets/images/logo.svg';
 import logoImgSm from './assets/images/logo-small.svg';
 
@@ -37,7 +39,7 @@ class App extends Component {
             collapsed={this.state.collapsed}
           >
             <div className={`logo`}>
-              <Link to={'/'}>
+              <Link to={routes.about}>
                 <img className={logoClassNames} src={logoImage} alt="p44 logo" />
               </Link>
             </div>
@@ -60,11 +62,11 @@ class App extends Component {
             </Header>
             <Content className="p44-ui__wrapper">
               <Switch>
-                <Route exact path="/" component={Landing} />
-                <Route exact path="/colors" component={Colors} />
-                <Route exact path="/typography" component={Typography} />
-                <Route path="/components" component={Components} />
-                <Redirect to="/" />
+                <Route exact path={routes.about} component={Landing} />
+                <Route exact path={routes.colors} component={Colors} />
+                <Route exact path={routes.typography} component={Typography} />
+                <Route path={routes.components} component={Components} />
+                <Redirect to={routes.about} />
               </Switch>
             </Content>
           </Layout>

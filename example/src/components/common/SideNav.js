@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
 
-import routes from '../routes';
+import routes from '../../routes';
 
 const SubMenu = Menu.SubMenu;
 
@@ -27,71 +27,71 @@ class SideNav extends Component {
         inlineCollapsed={this.state.collapsed}
       >
         <Menu.Item key={routes.about}>
-          <Link to={'/'}>
+          <Link to={routes.about}>
             <Icon type='book' />
             <span>About</span>
           </Link>
         </Menu.Item>
         <Menu.Item key={routes.colors}>
-          <Link to={'/colors'}>
+          <Link to={routes.colors}>
             <Icon type='bg-colors' />
             <span>Colors</span>
           </Link>
         </Menu.Item>
         <Menu.Item key={routes.typography}>
-          <Link to={'/typography'}>
+          <Link to={routes.typography}>
             <Icon type='font-size' />
             <span>Typography</span>
           </Link>
         </Menu.Item>
         <SubMenu key="sub1" title={<span><Icon type="layout" /><span>Components</span></span>}>
           <Menu.Item key={`${routes.components}${routes.buttons}`}>
-            <Link to={'/components/buttons'}>
+            <Link to={`${routes.components}${routes.buttons}`}>
               Buttons
             </Link>
           </Menu.Item>
           <Menu.Item key={`${routes.components}${routes.datepicker}`}>
-            <Link to={'/components/date-picker'}>
+            <Link to={`${routes.components}${routes.datepicker}`}>
               Date Picker
             </Link>
           </Menu.Item>
           <Menu.Item key={`${routes.components}${routes.chips}`}>
-            <Link to={'/components/chips'}>
+            <Link to={`${routes.components}${routes.chips}`}>
               Chips
             </Link>
           </Menu.Item>
           <Menu.Item key={`${routes.components}${routes.input}`}>
-            <Link to={'/components/input'}>
+            <Link to={`${routes.components}${routes.input}`}>
               Input
             </Link>
           </Menu.Item>
           <Menu.Item key={`${routes.components}${routes.checkbox}`}>
-            <Link to={'/components/checkbox'}>
+            <Link to={`${routes.components}${routes.checkbox}`}>
               Checkbox
             </Link>
           </Menu.Item>
           <Menu.Item key={`${routes.components}${routes.select}`}>
-            <Link to={'/components/select'}>
+            <Link to={`${routes.components}${routes.select}`}>
               Select
             </Link>
           </Menu.Item>
           <Menu.Item key={`${routes.components}${routes.radio}`}>
-            <Link to={'/components/radio'}>
+            <Link to={`${routes.components}${routes.radio}`}>
               Radio
             </Link>
           </Menu.Item>
           <Menu.Item key={`${routes.components}${routes.shipmentModeIcon}`}>
-            <Link to={'/components/shipment-mode-icon'}>
+            <Link to={`${routes.components}${routes.shipmentModeIcon}`}>
               Shipment Mode Icon
             </Link>
           </Menu.Item>
           <Menu.Item key={`${routes.components}${routes.subHeader}`}>
-            <Link to={'/components/sub-header'}>
+            <Link to={`${routes.components}${routes.subHeader}`}>
               Sub-Header
             </Link>
           </Menu.Item>
           <Menu.Item key={`${routes.components}${routes.stickyNav}`}>
-            <Link to={'/components/sticky-nav'}>
+            <Link to={`${routes.components}${routes.stickyNav}`}>
               Sticky Nav
             </Link>
           </Menu.Item>
