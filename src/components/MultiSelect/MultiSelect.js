@@ -32,18 +32,14 @@ export default class MultiSelect extends Component {
   }
 
   closeDropDown = () => {
-    this.setState((state, props) => {
-      return {
-        open: false
-      };
+    this.setState({
+      open: false
     });
   }
 
   openDropDown = () => {
-    this.setState((state, props) => {
-      return {
-        open: true
-      };
+    this.setState({
+      open: true
     });
   }
 
@@ -53,15 +49,11 @@ export default class MultiSelect extends Component {
     if (!open) {
       this.MultiSelect.focus();
 
-      this.setState((state, props) => {
-        return { open: true };
-      });
+      this.setState({ open: true });
     } else {
       this.MultiSelect.blur();
 
-      this.setState((state, props) => {
-        return { open: false };
-      });
+      this.setState({ open: false });
     }
   }
 
@@ -129,4 +121,4 @@ export default class MultiSelect extends Component {
       </div>
     );
   }
-};
+}

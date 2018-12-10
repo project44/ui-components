@@ -43,7 +43,7 @@ class ShipmentModeIcon extends Component {
   }
 
   getAltText = (mode) => {
-    switch (mode) {
+    switch(mode) {
       case 'LTL':
         return 'LTL';
       case 'OCEAN':
@@ -72,6 +72,6 @@ class ShipmentModeIcon extends Component {
       />
     );
   }
-};
+}
 
 export default ShipmentModeIcon;

@@ -66,4 +66,4 @@ export default class Chips extends Component {
       </div>
     );
   }
-};
+}
