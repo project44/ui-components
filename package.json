@@ -19,11 +19,12 @@
     "start": "rollup -c -w && react-app-rewired start",
     "example:start": "npm run start --prefix example",
     "concurrent": "concurrently \"npm run start\" \"npm run example:start\"",
-    "build": "rollup -c && react-app-rewired build",
+    "build": "rollup -c",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
-    "publish": "np"
+    "publish": "np",
+    "lint": "./node_modules/react-scripts/node_modules/.bin/eslint src"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -43,6 +44,7 @@
     "cross-env": "^5.1.4",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
+    "eslint": "^5.10.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-config-standard-react": "^7.0.2",
     "eslint-plugin-import": "^2.14.0",

@@ -38,6 +38,7 @@ export default {
     }),
     postcss({
       minimize: true,
+      sourceMap: true,
       plugins: [ autoprefixer, stylelint ],
       extensions: ['.scss'],
       extract: 'dist/build.css',
@@ -45,7 +46,7 @@ export default {
     }),
     url(),
     eslint({
-      throwOnError: false
+      throwOnError: true
     }),
     babel({
       exclude: 'node_modules/**',

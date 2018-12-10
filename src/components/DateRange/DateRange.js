@@ -95,8 +95,6 @@ export default class DateRange extends Component {
     const startValueBound = this.formatDateValue(boundStartDateValue);
     const endValueBound = this.formatDateValue(boundEndDateValue);
 
-    console.log(startValueBound);
-
     const calendarIcon = (
       <i className='material-icons'>
         calendar_today
@@ -154,4 +152,4 @@ export default class DateRange extends Component {
       </div>
     );
   }
-};
+}

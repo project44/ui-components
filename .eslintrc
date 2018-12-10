@@ -1,16 +1,17 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "standard",
-    "standard-react"
+    "eslint:recommended",
+    "plugin:react/recommended"
   ],
   "settings": {
     "react": {
-      "version": "16.0", 
-    },
+      "version": "16.0"
+    }
   },
   "env": {
-    "es6": true
+    "es6": true,
+    "browser": true
   },
   "plugins": [
     "react"
@@ -19,12 +20,9 @@
     "sourceType": "module"
   },
   "rules": {
-    // don't force es6 functions to include space before paren
     "space-before-function-paren": 0,
-
-    // allow specifying true explicitly for boolean props
     "react/jsx-boolean-value": 0,
-
     "semi": [2, "always"],
+    "indent": ["error", 2, {"SwitchCase": 1}]
   }
 }

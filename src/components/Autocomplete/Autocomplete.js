@@ -87,4 +87,4 @@ export default class AutoComplete extends Component {
       </div>
     );
   }
-};
+}

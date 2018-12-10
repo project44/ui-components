@@ -98,4 +98,4 @@ export default class StickyNav extends Component {
       </div>
     );
   }
-};
+}
