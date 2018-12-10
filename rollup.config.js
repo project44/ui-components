@@ -20,16 +20,24 @@ export default {
       file: pkg.main,
       format: 'cjs',
       sourcemap: true,
-      exports: 'named'
+      exports: 'named',
+      globals: {
+        react: 'React',
+        'react-dom': 'ReactDOM'
+      },
     },
     {
       file: pkg.module,
       format: 'es',
       sourcemap: true,
-      exports: 'named'
+      exports: 'named',
+      globals: {
+        react: 'React',
+        'react-dom': 'ReactDOM'
+      },
     }
   ],
-  external: [ 'antd', 'react' ],
+  external: [ 'antd', 'react', 'react-dom' ],
   plugins: [
     external(),
     less({
