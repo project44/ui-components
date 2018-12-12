@@ -22,6 +22,7 @@ $primary-blue-13: #e3ebf1;
 $new-lemon: #f0c825;
 $yellow: #f6c472;
 $orange: #ea8616;
+$michelangelo-orange: #ffab36;
 $new-fruit: #f55449;
 
 $colorsList:
@@ -48,6 +49,7 @@ $colorsList:
   'new-lemon' #f0c825,
   'yellow' #f6c472,
   'orange' #ea8616,
+  'michelangelo-orange' #ffab36,
   'new-fruit' #f55449,
 ;
 
@@ -74,5 +76,6 @@ $colorsList:
   --primary-blue-13: #e3ebf1;
   --yellow: #f6c472;
   --orange: #ea8616;
+  --michelangelo-orange: #ffab36;
   --new-fruit: #f55449;
 }
