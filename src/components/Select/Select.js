@@ -30,7 +30,7 @@ export default class Select extends Component {
   }
 
   render() {
-    const { mode = 'default', label, placeholder, custom, showSearch, defaultValue, onChange, icon = 'arrow_drop_down' } = this.props;
+    const { mode = 'default', label, placeholder, custom, showSearch, defaultValue, onChange, icon = 'arrow_drop_down', ...props } = this.props;
     return (
       <div className='select ant-form-vertical'>
         { label &&
@@ -49,6 +49,7 @@ export default class Select extends Component {
             onChange={onChange}
             mode={mode}
             {...custom}
+            {...props}
           >
             {this.state.options.map((item) => {
               return <AntSelect.Option key={item.id}>{item.value}</AntSelect.Option>;
