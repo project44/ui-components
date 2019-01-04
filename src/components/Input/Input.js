@@ -8,7 +8,6 @@ export default class Input extends Component {
   static propTypes = {
     label: PropTypes.string,
     placeholder: PropTypes.string,
-    custom: PropTypes.string,
     defaultValue: PropTypes.string,
     onSearch: PropTypes.func,
     size: PropTypes.string,
@@ -22,18 +21,17 @@ export default class Input extends Component {
   }
 
   render() {
-    const { 
-      label, 
-      placeholder, 
-      custom, 
-      defaultValue, 
-      onSearch, 
-      size, 
-      search, 
-      onPressEnter, 
-      onBlur, 
-      onChange, 
-      hasError, 
+    const {
+      label,
+      placeholder,
+      defaultValue,
+      onSearch,
+      size,
+      search,
+      onPressEnter,
+      onBlur,
+      onChange,
+      hasError,
       errorMessage,
       type
     } = this.props;
@@ -43,7 +41,7 @@ export default class Input extends Component {
         <div className={classNames('ant-form-vertical ant-form-item-control-wrapper', {
           'w-full': search === 'primary'
         })}>
-          <div 
+          <div
             className={classNames('ant-form-item-control', {
               'has-error': hasError,
               'has-feedback': hasError
@@ -66,7 +64,7 @@ export default class Input extends Component {
                 enterButton={search === 'super' || search === 'primary'}
                 size={search === 'super' || search === 'primary' || search === 'secondary' ? 'large' : size}
                 type={type}
-                {...custom}
+                {...this.props}
               >
                 {this.props.children}
               </AntInput.Search>
@@ -79,7 +77,7 @@ export default class Input extends Component {
                 onChange={onChange}
                 onBlur={onBlur}
                 type={type}
-                {...custom}
+                {...this.props}
               >
                 {this.props.children}
               </AntInput>
