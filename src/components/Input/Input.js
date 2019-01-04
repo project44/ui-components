@@ -17,7 +17,8 @@ export default class Input extends Component {
     onChange: PropTypes.func,
     hasError: PropTypes.bool,
     errorMessage: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    custom: PropTypes.object
   }
 
   render() {
@@ -33,7 +34,8 @@ export default class Input extends Component {
       onChange,
       hasError,
       errorMessage,
-      type
+      type,
+      custom
     } = this.props;
 
     return (
@@ -64,7 +66,7 @@ export default class Input extends Component {
                 enterButton={search === 'super' || search === 'primary'}
                 size={search === 'super' || search === 'primary' || search === 'secondary' ? 'large' : size}
                 type={type}
-                {...this.props}
+                {...custom}
               >
                 {this.props.children}
               </AntInput.Search>
@@ -77,7 +79,7 @@ export default class Input extends Component {
                 onChange={onChange}
                 onBlur={onBlur}
                 type={type}
-                {...this.props}
+                {...custom}
               >
                 {this.props.children}
               </AntInput>
