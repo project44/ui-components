@@ -23,6 +23,6 @@
     "space-before-function-paren": 0,
     "react/jsx-boolean-value": 0,
     "semi": [2, "always"],
-    "indent": ["error", 2, {"SwitchCase": 1}]
+    "indent": ["error", 2, {"SwitchCase": 1, "ignoredNodes": ["TemplateLiteral"] }]
   }
 }
