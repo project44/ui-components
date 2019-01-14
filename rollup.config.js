@@ -1,7 +1,7 @@
 import autoprefixer from 'autoprefixer';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
-import { eslint } from 'rollup-plugin-eslint';
+// import { eslint } from 'rollup-plugin-eslint';
 import external from 'rollup-plugin-peer-deps-external';
 import less from 'rollup-plugin-less';
 import minify from 'rollup-plugin-babel-minify';
@@ -10,7 +10,6 @@ import resolve from 'rollup-plugin-node-resolve';
 import uglify from 'rollup-plugin-uglify-es';
 import url from 'rollup-plugin-url';
 import stylelint from 'stylelint';
-import copy from 'rollup-plugin-copy';
 
 import pkg from './package.json';
 
@@ -61,10 +60,6 @@ export default {
     resolve(),
     commonjs(),
     minify(),
-    uglify(),
-    copy({
-      'src/index.d.ts': 'dist/index.d.ts',
-      verbose: true
-    })
+    uglify()
   ]
 };
