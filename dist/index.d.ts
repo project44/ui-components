@@ -13,4 +13,5 @@ declare module 'ui-components' {
   }
   export const Button: (props: ButtonProps) => React.FunctionComponent;
   export const Layers: (props) => React.FunctionComponent;
+  export const Settings: (props) => React.FunctionComponent;
 };

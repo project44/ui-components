@@ -54,9 +54,6 @@ export default {
       exclude: '**/*.less'
     }),
     url(),
-    eslint({
-      throwOnError: true
-    }),
     babel({
       exclude: 'node_modules/**',
       plugins: [ 'external-helpers' ]

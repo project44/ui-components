@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Layers = () => {
+const Layers = ({ className }) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
       <defs>
         <path id="a" d="M12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16zm0 2.54l-7.38-5.73L3 14.07l9 7 9-7-1.63-1.27L12 18.54z"/>
       </defs>
@@ -18,6 +19,10 @@ const Layers = () => {
       </g>
     </svg>
   );
+};
+
+Layers.propTypes = {
+  className: PropTypes.string,
 };
 
 export default Layers;

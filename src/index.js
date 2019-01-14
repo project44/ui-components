@@ -13,7 +13,7 @@ import Radio from './components/Radio/Radio';
 import DateRange from './components/DateRange/DateRange';
 import StickyNav from './components/StickyNav/StickyNav';
 import Popover from './components/Popover/Popover';
-import { Layers } from './components/Icons';
+import { Layers, Settings } from './components/Icons';
 import { Row, Col } from 'antd';
 
 // Ant Design Styles
@@ -39,6 +39,7 @@ export {
   StickyNav,
   Popover,
   Layers,
+  Settings,
   Row,
   Col
 };
