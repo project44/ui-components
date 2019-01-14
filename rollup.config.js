@@ -10,6 +10,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import uglify from 'rollup-plugin-uglify-es';
 import url from 'rollup-plugin-url';
 import stylelint from 'stylelint';
+import copy from 'rollup-plugin-copy';
 
 import pkg from './package.json';
 
@@ -53,9 +54,6 @@ export default {
       exclude: '**/*.less'
     }),
     url(),
-    eslint({
-      throwOnError: true
-    }),
     babel({
       exclude: 'node_modules/**',
       plugins: [ 'external-helpers' ]
@@ -63,6 +61,10 @@ export default {
     resolve(),
     commonjs(),
     minify(),
-    uglify()
+    uglify(),
+    copy({
+      'src/index.d.ts': 'dist/index.d.ts',
+      verbose: true
+    })
   ]
 };

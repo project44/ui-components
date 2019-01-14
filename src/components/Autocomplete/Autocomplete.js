@@ -12,7 +12,10 @@ export default class AutoComplete extends Component {
     label: PropTypes.string,
     placeholder: PropTypes.string,
     defaultValue: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    custom: PropTypes.object,
+    dataSource: PropTypes.array,
+    onSelect: PropTypes.func
   }
 
   constructor(props) {

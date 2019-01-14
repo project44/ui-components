@@ -21,7 +21,9 @@ export default class MultiSelect extends Component {
     defaultValue: PropTypes.string,
     onChange: PropTypes.func,
     icon: PropTypes.string,
-    className: PropTypes.string
+    className: PropTypes.string,
+    onSelect: PropTypes.func,
+    onDeselect: PropTypes.func
   }
 
   constructor(props) {

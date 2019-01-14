@@ -18,7 +18,11 @@ export default class Input extends Component {
     hasError: PropTypes.bool,
     errorMessage: PropTypes.string,
     type: PropTypes.string,
-    custom: PropTypes.object
+    custom: PropTypes.object,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ])
   }
 
   render() {
