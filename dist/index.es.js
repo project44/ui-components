@@ -26397,5 +26397,39 @@ Close.propTypes = {
   className: PropTypes.string
 };
 
-export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, Layers, Settings, Checkmark, Close };
+var Info = function Info(_ref) {
+  var className = _ref.className;
+
+  return React.createElement(
+    'svg',
+    { xmlns: 'http://www.w3.org/2000/svg', className: className, width: '24', height: '24', viewBox: '0 0 24 24' },
+    React.createElement(
+      'defs',
+      null,
+      React.createElement('path', { id: 'infoa', d: 'M11 9h2V7h-2v2zm1 11c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-18C6.477 2 2 6.477 2 12A10 10 0 1 0 12 2zm-1 15h2v-6h-2v6z' })
+    ),
+    React.createElement(
+      'g',
+      { fill: 'none', fillRule: 'evenodd' },
+      React.createElement('path', { fill: 'none', d: 'M0 0h24v24H0z' }),
+      React.createElement(
+        'mask',
+        { id: 'infob', fill: '#fff' },
+        React.createElement('use', { xlinkHref: '#infoa' })
+      ),
+      React.createElement('use', { fill: '#236192', fillRule: 'nonzero', xlinkHref: '#infoa' }),
+      React.createElement(
+        'g',
+        { fill: '#575451', mask: 'url(#infob)' },
+        React.createElement('path', { d: 'M0 0h24v24H0z' })
+      )
+    )
+  );
+};
+
+Info.propTypes = {
+  className: PropTypes.string
+};
+
+export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, Layers, Settings, Checkmark, Close, Info };
 //# sourceMappingURL=index.es.js.map
