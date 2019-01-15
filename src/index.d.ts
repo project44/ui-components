@@ -11,7 +11,14 @@ declare module 'ui-components' {
     className?: string;
     children?: any;
   }
+
+  interface IconProps {
+    className?: string;
+  }
+
   export const Button: (props: ButtonProps) => React.FunctionComponent<ButtonProps, {}, {}>;
-  export const Layers: (props) => React.FunctionComponent<{}, {}, {}>;
-  export const Settings: (props) => React.FunctionComponent<{}, {}, {}>;
+  export const Layers: (props: IconProps) => React.FunctionComponent<IconProps, {}, {}>;
+  export const Settings: (props: IconProps) => React.FunctionComponent<IconProps, {}, {}>;
+  export const Checkmark: (props: IconProps) => React.FunctionComponent<IconProps, {}, {}>;
+  export const Close: (props: IconProps) => React.FunctionComponent<IconProps, {}, {}>;
 };
