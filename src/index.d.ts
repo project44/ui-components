@@ -1,15 +1,17 @@
 declare module 'ui-components' {
   import React from 'react';
+  import { ButtonProps as AntButtonProps } from 'antd';
 
   interface ButtonProps {
-    upload?: Boolean;
-    download?: Boolean;
+    upload?: boolean;
+    download?: boolean;
     clickFn?: () => any;
     blurFn?: () => any;
     type?: string;
     size?: string;
     className?: string;
     children?: any;
+    loading?: boolean;
   }
 
   interface IconProps {
