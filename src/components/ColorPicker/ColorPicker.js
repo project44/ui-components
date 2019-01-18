@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ChromePicker } from 'react-color';
 import RCColorPicker from 'rc-color-picker';
 
+import { ChevronDown } from '../Icons';
 import 'rc-color-picker/assets/index.css';
 import './ColorPicker.scss';
 
@@ -10,7 +10,7 @@ export default class ColorPicker extends Component {
   static propTypes = {
     color: PropTypes.string,
     onChange: PropTypes.func,
-    onChangeComplete: PropTypes.func,
+    placement: PropTypes.string,
   }
 
   static getDerivedStateFromProps(state, props) {
@@ -26,71 +26,42 @@ export default class ColorPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false,
       color: props.color,
     };
-  }
-
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
   setWrapperRef = (node) => {
     this.wrapperRef = node;
   }
 
-  handleClickOutside = (event) => {
-    if (this.state.isOpen && this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.setState({
-        isOpen: false,
-      });
-    }
-  }
-
-  togglePicker = () => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
-  }
-
   onChange = (color) => {
     this.setState({
-      color: color.hex
+      color: color.color
     });
     if (this.props.onChange) {
-      this.props.onChange(color.hex);
+      this.props.onChange(color.color);
     }
   }
 
-  onChangeComplete = (color) => {
-    if (this.props.onChangeComplete) {
-      this.props.onChangeComplete(color.hex);
+  openColorPicker = () => {
+    if (this.wrapperRef && this.wrapperRef.open) {
+      this.wrapperRef.open();
     }
   }
 
   render() {
     return (
-      <div>
-        <div className={'p44-color-picker'} ref={this.setWrapperRef}>
-          <div className={'picker-button'} onClick={this.togglePicker}>
-            <div className={'picker-color'} style={{ backgroundColor: this.state.color }}/>
-          </div>
-          {this.state.isOpen &&
-          <div className={'picker-wrapper'}>
-            <ChromePicker
-              disableAlpha
-              color={this.props.color}
-              onChange={this.onChange}
-              onChangeComplete={this.onChangeComplete}
-            />
-          </div>
-          }
-        </div>
-        <RCColorPicker enableAlpha={false}><span className="rc-color-picker-trigger picker-button" /></RCColorPicker >
+      <div className="p44-color-picker-wrapper" onClick={this.openColorPicker}>
+        <RCColorPicker
+          ref={this.setWrapperRef}
+          enableAlpha={false}
+          onChange={this.onChange}
+          color={this.state.color}
+          placement={this.props.placement}
+        >
+          <div className="p44-color-picker" />
+        </RCColorPicker>
+        <ChevronDown className="p44-chevron-down-icon" />
       </div>
     );
   }

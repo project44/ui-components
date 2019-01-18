@@ -3,6 +3,7 @@ import Settings from './Settings';
 import Checkmark from './Checkmark';
 import Close from './Close';
 import Info from './Info';
+import ChevronDown from './ChevronDown';
 
 export {
   Layers,
@@ -10,4 +11,5 @@ export {
   Checkmark,
   Close,
   Info,
+  ChevronDown,
 };

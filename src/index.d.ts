@@ -25,4 +25,5 @@ declare module 'ui-components' {
   export const Checkmark: (props: IconProps) => React.FunctionComponent<IconProps, {}, {}>;
   export const Close: (props: IconProps) => React.FunctionComponent<IconProps, {}, {}>;
   export const Info: (props: IconProps) => React.FunctionComponent<IconProps, {}, {}>;
+  export const ChevronDown: (props: IconProps) => React.FunctionComponent<IconProps, {}, {}>;
 };
