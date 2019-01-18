@@ -1,0 +1,68 @@
+$width: 115px;
+$height: 36px;
+$top-bottom-padding: 6px;
+$left-padding: 6px;
+$right-padding: 28px;
+
+.p44-color-picker-wrapper {
+  position: relative;
+  width: $width;
+  height: $height;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid #d5d4d4;
+  display: flex;
+  align-items: center;
+  box-sizing: content-box;
+
+  .p44-color-picker {
+    height: $height - $top-bottom-padding - $top-bottom-padding;
+    width: $width;
+    display: block;
+    position: relative;
+  }
+
+  // Required so positioning of popup stays with the wrapping box
+  .p44-color-picker::before {
+    position: absolute;
+    background-color: white;
+    left: 0;
+    top: 0;
+    width: $left-padding;
+    height: $height - $top-bottom-padding - $top-bottom-padding;
+    content: "";
+  }
+
+  .p44-color-picker::after {
+    position: absolute;
+    background-color: white;
+    right: 0;
+    top: 0;
+    width: $right-padding;
+    height: $height - $top-bottom-padding - $top-bottom-padding;
+    content: "";
+  }
+
+  .p44-chevron-down-icon {
+    position: absolute;
+    right: 2px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// rc-color-picker overrides
+.rc-color-picker {
+  .rc-color-picker-panel-preview {
+    border-radius: 50%;
+
+    span {
+      border-radius: 50%;
+    }
+  }
+  .rc-color-picker-panel-params-input {
+    input, input:focus {
+      border: 1px solid #cacaca;
+    }
+  }
+}

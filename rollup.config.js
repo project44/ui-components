@@ -45,10 +45,12 @@ export default {
       option: { compress: true }
     }),
     postcss({
-      minimize: true,
+      minimize: {
+        safe: true
+      },
       sourceMap: true,
       plugins: [ autoprefixer, stylelint ],
-      extensions: ['.scss'],
+      extensions: ['.scss', '.css'],
       extract: 'dist/build.css',
       exclude: '**/*.less'
     }),
@@ -58,8 +60,6 @@ export default {
       plugins: [ 'external-helpers' ]
     }),
     resolve(),
-    commonjs(),
-    minify(),
-    uglify()
+    commonjs()
   ]
 };
