@@ -19,6 +19,7 @@ declare module 'ui-components' {
   }
 
   export const Button: (props: ButtonProps) => React.FunctionComponent<ButtonProps, {}, {}>;
+  export const ColorPicker: (props: any) => React.Component<{}, {}, {}>
   export const Layers: (props: IconProps) => React.FunctionComponent<IconProps, {}, {}>;
   export const Settings: (props: IconProps) => React.FunctionComponent<IconProps, {}, {}>;
   export const Checkmark: (props: IconProps) => React.FunctionComponent<IconProps, {}, {}>;
