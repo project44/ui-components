@@ -23,12 +23,12 @@ declare module 'ui-components' {
     className?: string;
   }
 
-  export const Button: (props: ButtonProps) => React.FunctionComponent<ButtonProps>;
-  export const ColorPicker: (props: ColorPickerProps) => React.Component<ColorPickerProps, any>
-  export const Layers: (props: IconProps) => React.FunctionComponent<IconProps>;
-  export const Settings: (props: IconProps) => React.FunctionComponent<IconProps>;
-  export const Checkmark: (props: IconProps) => React.FunctionComponent<IconProps>;
-  export const Close: (props: IconProps) => React.FunctionComponent<IconProps>;
-  export const Info: (props: IconProps) => React.FunctionComponent<IconProps>;
-  export const ChevronDown: (props: IconProps) => React.FunctionComponent<IconProps>;
+  export const Button: (props: ButtonProps) => React.FunctionComponent<ButtonProps, {}>;
+  export class ColorPicker extends React.Component<ColorPickerProps, any> {};
+  export const Layers: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
+  export const Settings: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
+  export const Checkmark: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
+  export const Close: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
+  export const Info: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
+  export const ChevronDown: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
 }
