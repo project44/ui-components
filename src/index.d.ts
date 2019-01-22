@@ -1,7 +1,7 @@
 declare module 'ui-components' {
   import React from 'react';
-
-  interface ButtonProps {
+  import { ButtonProps as AntButtonProps } from 'antd/lib/button';
+  interface ButtonProps extends Partial<AntButtonProps> {
     upload?: boolean;
     download?: boolean;
     clickFn?: () => any;
@@ -11,6 +11,7 @@ declare module 'ui-components' {
     className?: string;
     children?: any;
     loading?: boolean;
+    style?: Partial<CSSStyleDeclaration>;
   }
 
   interface ColorPickerProps {
