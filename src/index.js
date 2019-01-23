@@ -5,6 +5,7 @@ import Chips from './components/Chips/Chips';
 import DatePicker from './components/DatePicker/DatePicker';
 import Dropdown from './components/Dropdown/Dropdown';
 import Input from './components/Input/Input';
+import TextArea from './components/TextArea/TextArea';
 import MultiSelect from './components/MultiSelect/MultiSelect';
 import Select from './components/Select/Select';
 import ShipmentModeIcon from './components/ShipmentModeIcon/ShipmentModeIcon';
@@ -31,6 +32,7 @@ export {
   DatePicker,
   Dropdown,
   Input,
+  TextArea,
   MultiSelect,
   Select,
   ShipmentModeIcon,

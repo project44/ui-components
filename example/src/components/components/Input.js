@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input } from 'ui-components';
+import { Input, TextArea } from 'ui-components';
 import SyntaxHighlighter from "react-syntax-highlighter/prism";
 import { xonokai } from "react-syntax-highlighter/styles/prism/index";
 
@@ -104,8 +104,24 @@ export default class InputDemo extends Component {
             </div>
           </section>
 
+          <section className="page-section">
+            <h4 className="example-title">Text Area</h4>
+            <p>
+              TextArea is used for multi line text input.
+            </p>
+            <div className="example__render">
+              <TextArea />
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {`import { TextArea } from 'ui-components';\n
+<TextArea />`}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
         </div>
       </div>
-    )
+    );
   }
 }
