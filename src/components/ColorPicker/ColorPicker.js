@@ -13,7 +13,7 @@ export default class ColorPicker extends Component {
     placement: PropTypes.string,
   }
 
-  static getDerivedStateFromProps(state, props) {
+  static getDerivedStateFromProps(props, state) {
     if (state.color !== props.color) {
       return {
         ...state,

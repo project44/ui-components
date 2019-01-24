@@ -35718,7 +35718,7 @@ var ColorPicker$1 = function (_Component) {
   inherits(ColorPicker, _Component);
   createClass(ColorPicker, null, [{
     key: 'getDerivedStateFromProps',
-    value: function getDerivedStateFromProps(state, props) {
+    value: function getDerivedStateFromProps(props, state) {
       if (state.color !== props.color) {
         return _extends({}, state, {
           color: props.color
