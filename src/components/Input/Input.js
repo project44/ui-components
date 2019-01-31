@@ -5,6 +5,8 @@ import { Input as AntInput } from 'antd';
 import { shade }from 'polished';
 import styled from 'styled-components';
 
+import defaultTheme, { defaultThemeShape } from '../../styles/defaultTheme';
+
 const StyledInput = styled.div`
   width: 100%;
 
@@ -65,13 +67,15 @@ export default class Input extends Component {
     errorMessage: PropTypes.string,
     type: PropTypes.string,
     custom: PropTypes.object,
-    theme: PropTypes.shape({
-      primaryColor: PropTypes.string.isRequired
-    }),
+    theme: PropTypes.shape(defaultThemeShape),
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
     ])
+  }
+
+  static defaultProps = {
+    theme: defaultTheme
   }
 
   render() {

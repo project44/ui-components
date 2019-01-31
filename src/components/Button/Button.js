@@ -2,7 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Button as AntButton } from 'antd';
+import styled from 'styled-components';
+import { shade }from 'polished';
+
+import defaultTheme, { defaultThemeShape } from '../../styles/defaultTheme';
+
 import './Button.scss';
+
+const StyledButton = styled(AntButton)`
+  &.p44-btn {
+    &--primary {
+      background-color: ${props => props.theme && props.theme.primaryColor};
+      &:hover, &:focus {
+        background-color: ${props => shade(.2)(props.theme.primaryColor)};
+      }
+    }
+  }
+`;
 
 class Button extends Component {
   static propTypes = {
@@ -13,10 +29,15 @@ class Button extends Component {
     type: PropTypes.string,
     size: PropTypes.string,
     className: PropTypes.string,
+    theme: PropTypes.shape(defaultThemeShape),
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
     ])
+  }
+
+  static defaultProps = {
+    theme: defaultTheme
   }
 
   render() {
@@ -28,13 +49,15 @@ class Button extends Component {
       download = false,
       type = 'default', // default, primary, secondary, destructive
       size = 'med',
+      theme,
       ...props
     } = this.props;
 
     if (upload) {
       return (
         <label htmlFor={upload}>
-          <AntButton
+          <StyledButton
+            theme={theme}
             className={classNames(className, {
               'p44-btn': type === 'default',
               'p44-btn--primary': type === 'primary',
@@ -51,12 +74,13 @@ class Button extends Component {
             {...props}
           >
             {this.props.children}
-          </AntButton>
+          </StyledButton>
         </label>
       );
     } else {
       return (
-        <AntButton
+        <StyledButton
+          theme={theme}
           className={classNames(className, {
             'p44-btn': type === 'default',
             'p44-btn--primary': type === 'primary',
@@ -74,7 +98,7 @@ class Button extends Component {
           {...props}
         >
           {this.props.children}
-        </AntButton>
+        </StyledButton>
       );
     }
   }
