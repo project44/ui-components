@@ -48,7 +48,6 @@ const StyledInput = styled.div`
   .ant-btn-lg {
     height: 48px;
   }
-  .input:focus
 `;
 
 export default class Input extends Component {
