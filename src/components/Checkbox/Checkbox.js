@@ -4,7 +4,38 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ShipmentModeIcon from '../ShipmentModeIcon/ShipmentModeIcon';
 import { Checkbox as AntCheckbox, Col, Row } from 'antd';
+import styled from 'styled-components';
+
+import { defaultThemeShape } from '../../styles/defaultTheme';
+
 import './Checkbox.scss';
+
+const StyledCheckbox = styled.div`
+  .ant-checkbox-wrapper {
+    margin: 2px 0;
+    .ant-checkbox {
+      .ant-checkbox-inner {
+        background-color: transparent;
+      }
+
+      &.ant-checkbox-checked .ant-checkbox-inner {
+        background-color: ${props => props.mode === 'dark' ? props.theme.primaryColor : 'var(--white)'};
+        border-color: ${props => props.mode === 'dark' ? props.theme.primaryColor : 'var(--white)'};
+        &::after {
+          border-color: ${props => props.mode === 'dark' ? 'var(--white)' : props.theme.primaryColor};
+        }
+      }
+    }
+    .item-title {
+      color: ${props => props.mode === 'dark' ? 'var(--primary-grey-80);' : 'var(--white)'};
+    }
+  }
+  .ant-checkbox-wrapper:hover .ant-checkbox-inner,
+  .ant-checkbox:hover .ant-checkbox-inner,
+  .ant-checkbox-input:focus+.ant-checkbox-inner {
+    border-color: ${props => props.mode === 'dark' ? props.theme.primaryColor : 'var(--white)'};
+  }
+`;
 
 export default class Checkbox extends Component {
   static propTypes = {
@@ -13,7 +44,8 @@ export default class Checkbox extends Component {
     styled: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
-    theme: PropTypes.string
+    mode: PropTypes.string,
+    theme: PropTypes.shape(defaultThemeShape)
   }
 
   render() {
@@ -21,17 +53,20 @@ export default class Checkbox extends Component {
       checkboxData,
       layout = 'row',
       styled = false,
-      theme = 'dark',
+      mode = 'dark',
       onChange,
+      theme,
       className = null
     } = this.props;
 
     return (
-      <div className={classNames('checkbox-group', className, {
-        'styled': styled,
-        'dark': theme === 'dark',
-        'light': theme === 'light'
-      })}>
+      <StyledCheckbox
+        mode={mode}
+        theme={theme}
+        className={classNames('checkbox-group', className, {
+          'styled': styled,
+        })}
+      >
         <Row className={classNames({ 'ant-checkbox-group': styled })}>
           {checkboxData.map((item, index) => {
             if (layout === 'row') {
@@ -57,7 +92,7 @@ export default class Checkbox extends Component {
             }
           })}
         </Row>
-      </div>
+      </StyledCheckbox>
     );
   }
 }

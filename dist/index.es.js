@@ -18807,6 +18807,20 @@ ShipmentModeIcon.propTypes = {
   small: PropTypes.bool
 };
 
+var _templateObject$2 = taggedTemplateLiteral(['\n  .ant-checkbox-wrapper {\n    margin: 2px 0;\n    .ant-checkbox {\n      .ant-checkbox-inner {\n        background-color: transparent;\n      }\n\n      &.ant-checkbox-checked .ant-checkbox-inner {\n        background-color: ', ';\n        border-color: ', ';\n        &::after {\n          border-color: ', ';\n        }\n      }\n    }\n    .item-title {\n      color: ', ';\n    }\n  }\n  .ant-checkbox-wrapper:hover .ant-checkbox-inner,\n  .ant-checkbox:hover .ant-checkbox-inner,\n  .ant-checkbox-input:focus+.ant-checkbox-inner {\n    border-color: ', ';\n  }\n'], ['\n  .ant-checkbox-wrapper {\n    margin: 2px 0;\n    .ant-checkbox {\n      .ant-checkbox-inner {\n        background-color: transparent;\n      }\n\n      &.ant-checkbox-checked .ant-checkbox-inner {\n        background-color: ', ';\n        border-color: ', ';\n        &::after {\n          border-color: ', ';\n        }\n      }\n    }\n    .item-title {\n      color: ', ';\n    }\n  }\n  .ant-checkbox-wrapper:hover .ant-checkbox-inner,\n  .ant-checkbox:hover .ant-checkbox-inner,\n  .ant-checkbox-input:focus+.ant-checkbox-inner {\n    border-color: ', ';\n  }\n']);
+
+var StyledCheckbox = styled.div(_templateObject$2, function (props) {
+  return props.mode === 'dark' ? props.theme.primaryColor : 'var(--white)';
+}, function (props) {
+  return props.mode === 'dark' ? props.theme.primaryColor : 'var(--white)';
+}, function (props) {
+  return props.mode === 'dark' ? 'var(--white)' : props.theme.primaryColor;
+}, function (props) {
+  return props.mode === 'dark' ? 'var(--primary-grey-80);' : 'var(--white)';
+}, function (props) {
+  return props.mode === 'dark' ? props.theme.primaryColor : 'var(--white)';
+});
+
 var Checkbox$1 = function (_Component) {
   inherits(Checkbox$$1, _Component);
 
@@ -18824,20 +18838,23 @@ var Checkbox$1 = function (_Component) {
           layout = _props$layout === undefined ? 'row' : _props$layout,
           _props$styled = _props.styled,
           styled$$1 = _props$styled === undefined ? false : _props$styled,
-          _props$theme = _props.theme,
-          theme = _props$theme === undefined ? 'dark' : _props$theme,
+          _props$mode = _props.mode,
+          mode = _props$mode === undefined ? 'dark' : _props$mode,
           onChange = _props.onChange,
+          theme = _props.theme,
           _props$className = _props.className,
           className = _props$className === undefined ? null : _props$className;
 
 
       return React.createElement(
-        'div',
-        { className: classnames('checkbox-group', className, {
-            'styled': styled$$1,
-            'dark': theme === 'dark',
-            'light': theme === 'light'
-          }) },
+        StyledCheckbox,
+        {
+          mode: mode,
+          theme: theme,
+          className: classnames('checkbox-group', className, {
+            'styled': styled$$1
+          })
+        },
         React.createElement(
           Row,
           { className: classnames({ 'ant-checkbox-group': styled$$1 }) },
@@ -18883,7 +18900,8 @@ Checkbox$1.propTypes = {
   styled: PropTypes.bool,
   onChange: PropTypes.func,
   className: PropTypes.string,
-  theme: PropTypes.string
+  mode: PropTypes.string,
+  theme: PropTypes.shape(defaultThemeShape)
 };
 
 var Chips = function (_Component) {
@@ -19127,9 +19145,9 @@ Dropdown$1.propTypes = {
   origin: PropTypes.string
 };
 
-var _templateObject$2 = taggedTemplateLiteral(['\n  width: 100%;\n\n  .has-error .ant-form-explain, .has-error .ant-form-split {\n    font-size: 11px;\n    margin-top: 0;\n  }\n  input:focus {\n    border: 1px solid #3f789e;\n  }\n  .has-error input:focus {\n    border: 1px solid #ff4d4f;\n  }\n  .super button, .primary button {\n    background-color: ', ';\n    border-color: ', ';\n  }\n  .super button:hover, .primary button:hover {\n    background-color: ', ';\n    border-color: ', ';\n  }\n  .super {\n    input {\n      background-color: var(--primary-grey-05);\n      color: var(--primary-grey-80);\n      border: none;\n    }\n  }\n  .primary {\n    input {\n      background-color: #ffffff;\n      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);\n      border: none;\n    }\n  }\n  input {\n    &.ant-input-lg {\n      font-size: 14px;\n    }\n  }\n  .ant-btn-lg {\n    height: 48px;\n  }\n'], ['\n  width: 100%;\n\n  .has-error .ant-form-explain, .has-error .ant-form-split {\n    font-size: 11px;\n    margin-top: 0;\n  }\n  input:focus {\n    border: 1px solid #3f789e;\n  }\n  .has-error input:focus {\n    border: 1px solid #ff4d4f;\n  }\n  .super button, .primary button {\n    background-color: ', ';\n    border-color: ', ';\n  }\n  .super button:hover, .primary button:hover {\n    background-color: ', ';\n    border-color: ', ';\n  }\n  .super {\n    input {\n      background-color: var(--primary-grey-05);\n      color: var(--primary-grey-80);\n      border: none;\n    }\n  }\n  .primary {\n    input {\n      background-color: #ffffff;\n      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);\n      border: none;\n    }\n  }\n  input {\n    &.ant-input-lg {\n      font-size: 14px;\n    }\n  }\n  .ant-btn-lg {\n    height: 48px;\n  }\n']);
+var _templateObject$3 = taggedTemplateLiteral(['\n  width: 100%;\n\n  .has-error .ant-form-explain, .has-error .ant-form-split {\n    font-size: 11px;\n    margin-top: 0;\n  }\n  input:focus {\n    border: 1px solid #3f789e;\n  }\n  .has-error input:focus {\n    border: 1px solid #ff4d4f;\n  }\n  .super button, .primary button {\n    background-color: ', ';\n    border-color: ', ';\n  }\n  .super button:hover, .primary button:hover {\n    background-color: ', ';\n    border-color: ', ';\n  }\n  .super {\n    input {\n      background-color: var(--primary-grey-05);\n      color: var(--primary-grey-80);\n      border: none;\n    }\n  }\n  .primary {\n    input {\n      background-color: #ffffff;\n      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);\n      border: none;\n    }\n  }\n  input {\n    &.ant-input-lg {\n      font-size: 14px;\n    }\n  }\n  .ant-btn-lg {\n    height: 48px;\n  }\n'], ['\n  width: 100%;\n\n  .has-error .ant-form-explain, .has-error .ant-form-split {\n    font-size: 11px;\n    margin-top: 0;\n  }\n  input:focus {\n    border: 1px solid #3f789e;\n  }\n  .has-error input:focus {\n    border: 1px solid #ff4d4f;\n  }\n  .super button, .primary button {\n    background-color: ', ';\n    border-color: ', ';\n  }\n  .super button:hover, .primary button:hover {\n    background-color: ', ';\n    border-color: ', ';\n  }\n  .super {\n    input {\n      background-color: var(--primary-grey-05);\n      color: var(--primary-grey-80);\n      border: none;\n    }\n  }\n  .primary {\n    input {\n      background-color: #ffffff;\n      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);\n      border: none;\n    }\n  }\n  input {\n    &.ant-input-lg {\n      font-size: 14px;\n    }\n  }\n  .ant-btn-lg {\n    height: 48px;\n  }\n']);
 
-var StyledInput = styled.div(_templateObject$2, function (props) {
+var StyledInput = styled.div(_templateObject$3, function (props) {
   return props.theme.primaryColor;
 }, function (props) {
   return props.theme.primaryColor;
