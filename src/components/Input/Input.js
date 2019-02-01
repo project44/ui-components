@@ -2,7 +2,55 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Input as AntInput } from 'antd';
-import './Input.scss';
+import { shade }from 'polished';
+import styled from 'styled-components';
+
+import defaultTheme, { defaultThemeShape } from '../../styles/defaultTheme';
+
+const StyledInput = styled.div`
+  width: 100%;
+
+  .has-error .ant-form-explain, .has-error .ant-form-split {
+    font-size: 11px;
+    margin-top: 0;
+  }
+  input:focus {
+    border: 1px solid #3f789e;
+  }
+  .has-error input:focus {
+    border: 1px solid #ff4d4f;
+  }
+  .super button, .primary button {
+    background-color: ${props => props.theme.primaryColor};
+    border-color: ${props => props.theme.primaryColor};
+  }
+  .super button:hover, .primary button:hover {
+    background-color: ${props => shade(.2)(props.theme.primaryColor)};
+    border-color: ${props => shade(.2)(props.theme.primaryColor)};
+  }
+  .super {
+    input {
+      background-color: var(--primary-grey-05);
+      color: var(--primary-grey-80);
+      border: none;
+    }
+  }
+  .primary {
+    input {
+      background-color: #ffffff;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      border: none;
+    }
+  }
+  input {
+    &.ant-input-lg {
+      font-size: 14px;
+    }
+  }
+  .ant-btn-lg {
+    height: 48px;
+  }
+`;
 
 export default class Input extends Component {
   static propTypes = {
@@ -19,10 +67,15 @@ export default class Input extends Component {
     errorMessage: PropTypes.string,
     type: PropTypes.string,
     custom: PropTypes.object,
+    theme: PropTypes.shape(defaultThemeShape),
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
     ])
+  }
+
+  static defaultProps = {
+    theme: defaultTheme
   }
 
   render() {
@@ -39,11 +92,12 @@ export default class Input extends Component {
       hasError,
       errorMessage,
       type,
+      theme,
       custom
     } = this.props;
 
     return (
-      <div className='input-group'>
+      <StyledInput theme={theme}>
         <div className={classNames('ant-form-vertical ant-form-item-control-wrapper', {
           'w-full': search === 'primary'
         })}>
@@ -93,7 +147,7 @@ export default class Input extends Component {
             }
           </div>
         </div>
-      </div>
+      </StyledInput>
     );
   }
 }

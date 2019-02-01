@@ -37,7 +37,7 @@ export default {
       },
     }
   ],
-  external: [ 'antd', 'react', 'react-dom' ],
+  external: [ 'antd', 'react', 'react-dom', 'styled-components' ],
   plugins: [
     external(),
     less({

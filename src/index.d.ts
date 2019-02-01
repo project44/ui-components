@@ -15,6 +15,16 @@ declare module 'ui-components' {
     style?: Partial<CSSStyleDeclaration>;
   }
 
+  interface CheckboxProps {
+    checkboxData?: any;
+    layout?: string;
+    styled?: boolean;
+    onChange?: (item: any) => void;
+    className?: string;
+    mode?: string;
+    theme?: any;
+  }
+
   interface ColorPickerProps {
     placement?: string;
     color?: string;
@@ -26,6 +36,7 @@ declare module 'ui-components' {
   }
 
   export const Button: (props: ButtonProps) => React.FunctionComponent<ButtonProps, {}>;
+  export const Checkbox: (props: CheckboxProps) => React.FunctionComponent<CheckboxProps, {}>;
   export class ColorPicker extends React.Component<ColorPickerProps, any> {};
   export const Layers: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const Settings: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
