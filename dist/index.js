@@ -18901,6 +18901,9 @@ var Checkbox = function (_Component) {
   return Checkbox;
 }(React.Component);
 
+Checkbox.defaultProps = {
+  theme: defaultTheme
+};
 Checkbox.propTypes = {
   checkboxData: PropTypes.array,
   layout: PropTypes.string,

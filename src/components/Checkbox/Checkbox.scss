@@ -1,6 +1,5 @@
 .checkbox-group {
   &.styled {
-    margin: 0;
     .ant-checkbox-group {
       display: flex;
       flex-direction: row;
@@ -17,7 +16,7 @@
         padding: 10px;
         border-right: solid 1px #d8d8d8;
         position: relative;
-        margin-left: 0;
+        margin: 0;
 
         .ant-checkbox-inner {
           display: none;

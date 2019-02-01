@@ -6,7 +6,7 @@ import ShipmentModeIcon from '../ShipmentModeIcon/ShipmentModeIcon';
 import { Checkbox as AntCheckbox, Col, Row } from 'antd';
 import styled from 'styled-components';
 
-import { defaultThemeShape } from '../../styles/defaultTheme';
+import defaultTheme, { defaultThemeShape } from '../../styles/defaultTheme';
 
 import './Checkbox.scss';
 
@@ -38,6 +38,10 @@ const StyledCheckbox = styled.div`
 `;
 
 export default class Checkbox extends Component {
+  static defaultProps = {
+    theme: defaultTheme
+  }
+
   static propTypes = {
     checkboxData: PropTypes.array,
     layout: PropTypes.string,

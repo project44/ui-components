@@ -18894,6 +18894,9 @@ var Checkbox$1 = function (_Component) {
   return Checkbox$$1;
 }(Component);
 
+Checkbox$1.defaultProps = {
+  theme: defaultTheme
+};
 Checkbox$1.propTypes = {
   checkboxData: PropTypes.array,
   layout: PropTypes.string,
