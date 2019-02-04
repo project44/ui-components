@@ -13,6 +13,7 @@ declare module 'ui-components' {
     children?: any;
     loading?: boolean;
     style?: Partial<CSSStyleDeclaration>;
+    theme?: any;
   }
 
   interface CheckboxProps {
