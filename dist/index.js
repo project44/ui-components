@@ -27515,13 +27515,13 @@ var StickyNav = function (_Component) {
 
     var _this = possibleConstructorReturn(this, (StickyNav.__proto__ || Object.getPrototypeOf(StickyNav)).call(this, props));
 
-    _this.handleScroll = function () {
+    _this.handleScroll = function (ev) {
       var activeTab = void 0;
 
       _this.state.refs.some(function (item, index$$1) {
-        if (window.scrollY < _this.state.refs[0].offsetTop) {
+        if (ev.target.scrollTop < _this.state.refs[0].offsetTop) {
           activeTab = _this.props.menuItems[0].link;
-        } else if (window.scrollY + 200 > item.offsetTop) {
+        } else if (ev.target.scrollTop + 200 > item.offsetTop) {
           activeTab = _this.props.menuItems[index$$1].link;
         }
       });
@@ -27534,11 +27534,11 @@ var StickyNav = function (_Component) {
     };
 
     _this.navigateToHash = function (location) {
-      _this.setState(function () {
+      /*this.setState(() => {
         return {
           currentView: location
         };
-      });
+      });*/
     };
 
     _this.state = {
@@ -27581,8 +27581,7 @@ var StickyNav = function (_Component) {
 
       var _props = this.props,
           menuItems = _props.menuItems,
-          _props$mode = _props.mode,
-          mode = _props$mode === undefined ? 'follow' : _props$mode;
+          mode = _props.mode;
 
       return React__default.createElement(
         'div',
@@ -27623,7 +27622,12 @@ var StickyNav = function (_Component) {
 
 StickyNav.propTypes = {
   mode: PropTypes.string,
-  menuItems: PropTypes.array
+  menuItems: PropTypes.array,
+  theme: PropTypes.shape(defaultThemeShape)
+};
+StickyNav.defaultProps = {
+  theme: defaultTheme,
+  mode: 'follow'
 };
 
 var Popover = function (_Component) {
@@ -29857,8 +29861,6 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
-var returnThis = function () { return this; };
-
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -29883,8 +29885,6 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -29893,7 +29893,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {
