@@ -78,7 +78,7 @@
   ],
   "dependencies": {
     "@types/react": "*",
-    "antd": "^3.13.1",
+    "antd": "3.12.1",
     "autoprefixer": "^9.1.5",
     "babel-plugin-import": "^1.8.0",
     "concurrently": "^4.0.1",
