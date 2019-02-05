@@ -19576,7 +19576,7 @@ var SubHeader = function (_Component) {
         React.createElement(
           Row,
           { type: 'flex', align: 'middle' },
-          React.createElement(Col, { className: 'action-line flex flex-grow relative' }),
+          React.createElement(Col, { className: 'flex flex-grow relative' }),
           React.createElement(
             Col,
             { className: 'p44-container' },
@@ -27500,6 +27500,19 @@ var lib_1 = lib.genericHashLink;
 var lib_2 = lib.HashLink;
 var lib_3 = lib.NavHashLink;
 
+var _templateObject$4 = taggedTemplateLiteral(['\n  &.selected {\n    color: ', ';\n    background-color: var(--white);\n    border-right: 8px solid ', ';\n    svg g {\n      fill: ', ';\n    }\n    i {\n      color: ', ';\n    }\n    span {\n      color: ', ';\n      font-weight: bold;\n    }\n  }\n'], ['\n  &.selected {\n    color: ', ';\n    background-color: var(--white);\n    border-right: 8px solid ', ';\n    svg g {\n      fill: ', ';\n    }\n    i {\n      color: ', ';\n    }\n    span {\n      color: ', ';\n      font-weight: bold;\n    }\n  }\n']);
+var StyledNavItem = styled.div(_templateObject$4, function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return props.theme.primaryColor;
+});
+
 var StickyNav = function (_Component) {
   inherits(StickyNav, _Component);
 
@@ -27509,9 +27522,9 @@ var StickyNav = function (_Component) {
     var _this = possibleConstructorReturn(this, (StickyNav.__proto__ || Object.getPrototypeOf(StickyNav)).call(this, props));
 
     _this.handleScroll = function (ev) {
-      var activeTab = void 0;
+      var activeTab = _this.state.currentView;
 
-      _this.state.refs.some(function (item, index$$1) {
+      _this.state.refs.forEach(function (item, index$$1) {
         if (ev.target.scrollTop < _this.state.refs[0].offsetTop) {
           activeTab = _this.props.menuItems[0].link;
         } else if (ev.target.scrollTop + 200 > item.offsetTop) {
@@ -27524,14 +27537,6 @@ var StickyNav = function (_Component) {
           currentView: activeTab
         };
       });
-    };
-
-    _this.navigateToHash = function (location) {
-      /*this.setState(() => {
-        return {
-          currentView: location
-        };
-      });*/
     };
 
     _this.state = {
@@ -27574,25 +27579,24 @@ var StickyNav = function (_Component) {
 
       var _props = this.props,
           menuItems = _props.menuItems,
-          mode = _props.mode;
+          mode = _props.mode,
+          theme = _props.theme;
 
       return React.createElement(
         'div',
         { className: 'sticky-nav' },
         menuItems.map(function (item, index$$1) {
           return React.createElement(
-            'div',
-            { key: index$$1, className: _this2.state.currentView === item.link ? 'sticky-nav__item selected' : 'sticky-nav__item' },
+            StyledNavItem,
+            {
+              key: index$$1,
+              theme: theme,
+              className: _this2.state.currentView === item.link ? 'sticky-nav__item selected' : 'sticky-nav__item' },
             React.createElement(
               lib_2,
               {
                 to: mode === 'follow' ? '#' + item.link : item.link,
-                smooth: true,
-                onClick: mode === 'follow' ? function () {
-                  return _this2.navigateToHash(item.link);
-                } : function () {
-                  return false;
-                }
+                smooth: true
               },
               item.icon && React.createElement(
                 'i',

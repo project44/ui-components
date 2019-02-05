@@ -15,20 +15,5 @@
         margin: 0;
       }
     }
-    .action-line {
-      border-top: 1px solid var(--primary-blue);
-      z-index: 0;
-      &:after {
-        content: "";
-        width: 11px;
-        height: 11px;
-        background: var(--primary-blue);
-        border-radius: 5px;
-        position: absolute;
-        top: -6px;
-        right: 0;
-        z-index: 1;
-      }
-    }
   }
 }

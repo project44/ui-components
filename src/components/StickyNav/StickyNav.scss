@@ -51,20 +51,5 @@
     svg g {
       fill: #9b9b9b;
     }
-    &.selected {
-      color: var(--primary-blue);
-      background-color: var(--white);
-      border-right: 8px solid var(--primary-blue);
-      svg g {
-        fill: var(--primary-blue);
-      }
-      i {
-        color: var(--primary-blue);
-      }
-      span {
-        color: var(--primary-blue);
-        font-weight: bold;
-      }
-    }
   }
 }
