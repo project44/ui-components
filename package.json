@@ -27,7 +27,6 @@
     "lint": "./node_modules/react-scripts/node_modules/.bin/eslint src"
   },
   "peerDependencies": {
-    "antd": ">=3",
     "prop-types": ">=15",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
@@ -39,7 +38,6 @@
   "devDependencies": {
     "@types/react": "^16.7.20",
     "@types/react-dom": "^16.0.11",
-    "antd": "^3.13.0",
     "babel-core": "^6.26.3",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.7.0",
@@ -80,6 +78,7 @@
   ],
   "dependencies": {
     "@types/react": "*",
+    "antd": "^3.13.1",
     "autoprefixer": "^9.1.5",
     "babel-plugin-import": "^1.8.0",
     "concurrently": "^4.0.1",
