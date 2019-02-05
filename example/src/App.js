@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 
 import SideNav from './components/common/SideNav';
@@ -28,7 +28,7 @@ class App extends Component {
   }
   render () {
     let logoImage = this.state.collapsed ? logoImgSm : logoImg;
-    let logoClassNames = this.state.collapsed ? 'sm' : ''
+    let logoClassNames = this.state.collapsed ? 'sm' : '';
     return (
       <BrowserRouter  basename="/ui-components">
         <Layout className="p44-ui">
@@ -72,7 +72,7 @@ class App extends Component {
           </Layout>
         </Layout>
       </BrowserRouter>
-    )
+    );
   }
 }
 

@@ -1,12 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './StickyNav.scss';
 import { HashLink as Link } from 'react-router-hash-link';
+import styled from 'styled-components';
 
+import defaultTheme, { defaultThemeShape } from '../../styles/defaultTheme';
+
+import './StickyNav.scss';
+const StyledNavItem = styled.div`
+  &.selected {
+    color: ${props => props.theme.primaryColor};
+    background-color: var(--white);
+    border-right: 8px solid ${props => props.theme.primaryColor};
+    svg g {
+      fill: ${props => props.theme.primaryColor};
+    }
+    i {
+      color: ${props => props.theme.primaryColor};
+    }
+    span {
+      color: ${props => props.theme.primaryColor};
+      font-weight: bold;
+    }
+  }
+`;
 export default class StickyNav extends Component {
   static propTypes = {
     mode: PropTypes.string,
-    menuItems: PropTypes.array
+    menuItems: PropTypes.array,
+    theme: PropTypes.shape(defaultThemeShape),
+  }
+
+  static defaultProps = {
+    theme: defaultTheme,
+    mode: 'follow'
   }
 
   constructor(props) {
@@ -18,13 +44,13 @@ export default class StickyNav extends Component {
     this.props = props;
   }
 
-  handleScroll = () => {
-    let activeTab;
+  handleScroll = (ev) => {
+    let activeTab = this.state.currentView;
 
-    this.state.refs.some((item, index) => {
-      if (window.scrollY < this.state.refs[0].offsetTop) {
+    this.state.refs.forEach((item, index) => {
+      if (ev.target.scrollTop < this.state.refs[0].offsetTop) {
         activeTab = this.props.menuItems[0].link;
-      } else if (window.scrollY + 200 > item.offsetTop) {
+      } else if (ev.target.scrollTop + 200 > item.offsetTop) {
         activeTab = this.props.menuItems[index].link;
       }
     });
@@ -32,14 +58,6 @@ export default class StickyNav extends Component {
     this.setState(() => {
       return {
         currentView: activeTab
-      };
-    });
-  };
-
-  navigateToHash = location => {
-    this.setState(() => {
-      return {
-        currentView: location
       };
     });
   };
@@ -68,20 +86,22 @@ export default class StickyNav extends Component {
   }
 
   render() {
-    const { menuItems, mode = 'follow' } = this.props;
+    const { menuItems, mode, theme } = this.props;
     return (
       <div className='sticky-nav'>
         { menuItems.map((item, index) => {
           return (
-            <div key={index} className={
-              this.state.currentView === item.link
-                ? 'sticky-nav__item selected'
-                : 'sticky-nav__item'
-            }>
+            <StyledNavItem
+              key={index}
+              theme={theme}
+              className={
+                this.state.currentView === item.link
+                  ? 'sticky-nav__item selected'
+                  : 'sticky-nav__item'
+              }>
               <Link
                 to={mode === 'follow' ? `#${item.link}` : item.link}
                 smooth
-                onClick={mode === 'follow' ? () => this.navigateToHash(item.link) : () => { return false; }}
               >
                 { item.icon &&
                 <i className='material-icons sticky-nav__icon'>{item.icon}</i>
@@ -92,7 +112,7 @@ export default class StickyNav extends Component {
                 </span>
                 }
               </Link>
-            </div>
+            </StyledNavItem>
           );
         })}
       </div>
