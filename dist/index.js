@@ -27940,7 +27940,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: _library ? 'pure' : 'global',
+  mode: 'pure',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -29865,8 +29865,6 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
-var returnThis = function () { return this; };
-
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -29891,8 +29889,6 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -29901,7 +29897,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {
@@ -30052,7 +30048,7 @@ var _meta_5 = _meta.onFreeze;
 
 var defineProperty$5 = _objectDp.f;
 var _wksDefine = function (name) {
-  var $Symbol = _core.Symbol || (_core.Symbol = _library ? {} : _global.Symbol || {});
+  var $Symbol = _core.Symbol || (_core.Symbol = {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty$5($Symbol, name, { value: _wksExt.f(name) });
 };
 
@@ -36937,11 +36933,11 @@ var Settings = function Settings(_ref) {
 
   return React__default.createElement(
     'svg',
-    { className: className, width: '20px', height: '20px', viewBox: '0 0 20 20', version: '1.1', xmlns: 'http://www.w3.org/2000/svg' },
+    { className: className, width: '36px', height: '36px', viewBox: '0 0 36 36', version: '1.1', xmlns: 'http://www.w3.org/2000/svg' },
     React__default.createElement(
       'title',
       null,
-      'icons/general/settings'
+      'settings'
     ),
     React__default.createElement(
       'desc',
@@ -36951,36 +36947,27 @@ var Settings = function Settings(_ref) {
     React__default.createElement(
       'defs',
       null,
-      React__default.createElement('path', { d: 'M15,18.5 C13.0670034,18.5 11.5,16.9329966 11.5,15 C11.5,13.0670034 13.0670034,11.5 15,11.5 C16.9329966,11.5 18.5,13.0670034 18.5,15 C18.5,16.9329966 16.9329966,18.5 15,18.5 L15,18.5 Z M22.43,15.97 C22.47,15.65 22.5,15.33 22.5,15 C22.5,14.67 22.47,14.34 22.43,14 L24.54,12.37 C24.73,12.22 24.78,11.95 24.66,11.73 L22.66,8.27 C22.54,8.05 22.27,7.96 22.05,8.05 L19.56,9.05 C19.04,8.66 18.5,8.32 17.87,8.07 L17.5,5.42 C17.46,5.18 17.25,5 17,5 L13,5 C12.75,5 12.54,5.18 12.5,5.42 L12.13,8.07 C11.5,8.32 10.96,8.66 10.44,9.05 L7.95,8.05 C7.73,7.96 7.46,8.05 7.34,8.27 L5.34,11.73 C5.21,11.95 5.27,12.22 5.46,12.37 L7.57,14 C7.53,14.34 7.5,14.67 7.5,15 C7.5,15.33 7.53,15.65 7.57,15.97 L5.46,17.63 C5.27,17.78 5.21,18.05 5.34,18.27 L7.34,21.73 C7.46,21.95 7.73,22.03 7.95,21.95 L10.44,20.94 C10.96,21.34 11.5,21.68 12.13,21.93 L12.5,24.58 C12.54,24.82 12.75,25 13,25 L17,25 C17.25,25 17.46,24.82 17.5,24.58 L17.87,21.93 C18.5,21.67 19.04,21.34 19.56,20.94 L22.05,21.95 C22.27,22.03 22.54,21.95 22.66,21.73 L24.66,18.27 C24.78,18.05 24.73,17.78 24.54,17.63 L22.43,15.97 Z', id: 'path-1' })
+      React__default.createElement('path', { d: 'M18,23.25 C15.1005051,23.25 12.75,20.8994949 12.75,18 C12.75,15.1005051 15.1005051,12.75 18,12.75 C20.8994949,12.75 23.25,15.1005051 23.25,18 C23.25,20.8994949 20.8994949,23.25 18,23.25 L18,23.25 Z M29.145,19.455 C29.205,18.975 29.25,18.495 29.25,18 C29.25,17.505 29.205,17.01 29.145,16.5 L32.31,14.055 C32.595,13.83 32.67,13.425 32.49,13.095 L29.49,7.905 C29.31,7.575 28.905,7.44 28.575,7.575 L24.84,9.075 C24.06,8.49 23.25,7.98 22.305,7.605 L21.75,3.63 C21.69,3.27 21.375,3 21,3 L15,3 C14.625,3 14.31,3.27 14.25,3.63 L13.695,7.605 C12.75,7.98 11.94,8.49 11.16,9.075 L7.425,7.575 C7.095,7.44 6.69,7.575 6.51,7.905 L3.51,13.095 C3.315,13.425 3.405,13.83 3.69,14.055 L6.855,16.5 C6.795,17.01 6.75,17.505 6.75,18 C6.75,18.495 6.795,18.975 6.855,19.455 L3.69,21.945 C3.405,22.17 3.315,22.575 3.51,22.905 L6.51,28.095 C6.69,28.425 7.095,28.545 7.425,28.425 L11.16,26.91 C11.94,27.51 12.75,28.02 13.695,28.395 L14.25,32.37 C14.31,32.73 14.625,33 15,33 L21,33 C21.375,33 21.69,32.73 21.75,32.37 L22.305,28.395 C23.25,28.005 24.06,27.51 24.84,26.91 L28.575,28.425 C28.905,28.545 29.31,28.425 29.49,28.095 L32.49,22.905 C32.67,22.575 32.595,22.17 32.31,21.945 L29.145,19.455 Z', id: 'path-1' })
     ),
     React__default.createElement(
       'g',
       { id: 'Page-1', stroke: 'none', strokeWidth: '1', fill: 'none', fillRule: 'evenodd' },
       React__default.createElement(
         'g',
-        { id: 'Customizations', transform: 'translate(-1104.000000, -23.000000)' },
+        { id: 'Group' },
         React__default.createElement(
           'g',
-          { id: 'Top-Bar' },
+          { id: 'icons/general/settings-newcolor' },
           React__default.createElement(
             'g',
-            { id: 'icons/general/settings', transform: 'translate(1102.000000, 21.000000)' },
+            { id: 'Icon' },
+            React__default.createElement('rect', { id: 'Margin', fillOpacity: '0', fill: '#FFFFFF', x: '0', y: '0', width: '36', height: '36' }),
             React__default.createElement(
-              'g',
-              { id: 'Icon', transform: 'translate(-3.000000, -3.000000)' },
-              React__default.createElement('rect', { id: 'Margin', fillOpacity: '0', fill: '#FFFFFF', x: '3', y: '3', width: '24', height: '24' }),
-              React__default.createElement(
-                'mask',
-                { id: 'mask-2', fill: 'white' },
-                React__default.createElement('use', { xlinkHref: '#path-1' })
-              ),
-              React__default.createElement('use', { id: 'Shape', fill: '#575451', fillRule: 'nonzero', xlinkHref: '#path-1' }),
-              React__default.createElement(
-                'g',
-                { id: 'color/gray-80', mask: 'url(#mask-2)', fill: '#575451' },
-                React__default.createElement('rect', { id: 'Rectangle-6', x: '0', y: '0', width: '30', height: '30' })
-              )
-            )
+              'mask',
+              { id: 'mask-2', fill: 'white' },
+              React__default.createElement('use', { xlinkHref: '#path-1' })
+            ),
+            React__default.createElement('use', { id: 'Shape', fill: '#575451', fillRule: 'nonzero', xlinkHref: '#path-1' })
           )
         )
       )
