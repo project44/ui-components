@@ -2,10 +2,94 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import ShipmentModeIcon from '../ShipmentModeIcon/ShipmentModeIcon';
 import { Radio as AntRadio, Col } from 'antd';
-import './Radio.scss';
+import styled from 'styled-components';
+import { rgba } from 'polished';
+import defaultTheme, { defaultThemeShape } from '../../styles/defaultTheme';
 
+import ShipmentModeIcon from '../ShipmentModeIcon/ShipmentModeIcon';
+
+const StyledRadioGroup = styled(AntRadio.Group)`
+  &.block {
+    display: flex;
+    background-color: #f3f3f3;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.10);
+
+    > label {
+      flex: 1;
+      text-align: center;
+      color: #aba9a8;
+      background-color: transparent !important; // TODO: Update the Ant Less Variables instead of this
+
+      &.ant-radio-button-wrapper-checked {
+        background-color: ${props => rgba(props.theme.primaryColor, .13)} !important;
+        border-color: #d5d4d4 !important;
+        color: #575451 !important;
+      }
+    }
+  }
+  &.styled {
+    color: #575451;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    .ant-radio-button-wrapper {
+      height: auto !important;
+
+      &.ant-radio-button-wrapper-checked {
+        background-color: ${props => rgba(props.theme.primaryColor, .13)} !important;
+        border-color: inherit;
+        color: #575451;
+        box-shadow: none;
+
+        span:nth-child(2) {
+          opacity: 1;
+        }
+      }
+
+      &:hover {
+        color: #575451;
+
+        span:nth-child(2) {
+          opacity: 1;
+        }
+      }
+
+      span:nth-child(2) {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding: 6px 0;
+        opacity: .5;
+        transition: all 150ms linear;
+      }
+
+      .item-icon {
+        height: 15px;
+        position: relative;
+        margin-top: 8px;
+        z-index: 1;
+      }
+
+      .item-title {
+        display: block;
+        align-self: center;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1.25;
+        text-transform: uppercase;
+        color: #575451;
+        z-index: 1;
+        position: relative;
+        margin-top: 4px;
+      }
+    }
+  }
+`;
 export default class Radio extends Component {
   static propTypes = {
     radioData: PropTypes.array,
@@ -15,7 +99,8 @@ export default class Radio extends Component {
     modeIcons: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
-    value: PropTypes.string
+    value: PropTypes.string,
+    theme: PropTypes.shape(defaultThemeShape)
   }
 
   render() {
@@ -27,11 +112,12 @@ export default class Radio extends Component {
       onChange = null,
       value,
       className,
-      modeIcons = false
+      modeIcons = false,
+      theme = defaultTheme
     } = this.props;
 
     return (
-      <AntRadio.Group
+      <StyledRadioGroup
         className={classNames('radio-group', className, {
           'styled': styled,
           'block': block
@@ -39,6 +125,7 @@ export default class Radio extends Component {
         value={value}
         buttonStyle='solid'
         onChange={onChange}
+        theme={theme}
       >
         {radioData.map((item, index) => {
           if (layout === 'row') {
@@ -78,7 +165,7 @@ export default class Radio extends Component {
             }
           }
         })}
-      </AntRadio.Group>
+      </StyledRadioGroup>
     );
   }
 }

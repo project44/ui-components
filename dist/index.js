@@ -19602,6 +19602,14 @@ SubHeader.propTypes = {
   screenWidth: PropTypes.bool
 };
 
+var _templateObject$4 = taggedTemplateLiteral(['\n  &.block {\n    display: flex;\n    background-color: #f3f3f3;\n    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.10);\n\n    > label {\n      flex: 1;\n      text-align: center;\n      color: #aba9a8;\n      background-color: transparent !important; // TODO: Update the Ant Less Variables instead of this\n\n      &.ant-radio-button-wrapper-checked {\n        background-color: ', ' !important;\n        border-color: #d5d4d4 !important;\n        color: #575451 !important;\n      }\n    }\n  }\n  &.styled {\n    color: #575451;\n    font-size: 12px;\n    font-weight: bold;\n    text-transform: uppercase;\n\n    .ant-radio-button-wrapper {\n      height: auto !important;\n\n      &.ant-radio-button-wrapper-checked {\n        background-color: ', ' !important;\n        border-color: inherit;\n        color: #575451;\n        box-shadow: none;\n\n        span:nth-child(2) {\n          opacity: 1;\n        }\n      }\n\n      &:hover {\n        color: #575451;\n\n        span:nth-child(2) {\n          opacity: 1;\n        }\n      }\n\n      span:nth-child(2) {\n        flex: 1;\n        display: flex;\n        flex-direction: column;\n        justify-content: center;\n        align-items: center;\n        position: relative;\n        padding: 6px 0;\n        opacity: .5;\n        transition: all 150ms linear;\n      }\n\n      .item-icon {\n        height: 15px;\n        position: relative;\n        margin-top: 8px;\n        z-index: 1;\n      }\n\n      .item-title {\n        display: block;\n        align-self: center;\n        font-size: 12px;\n        font-weight: bold;\n        line-height: 1.25;\n        text-transform: uppercase;\n        color: #575451;\n        z-index: 1;\n        position: relative;\n        margin-top: 4px;\n      }\n    }\n  }\n'], ['\n  &.block {\n    display: flex;\n    background-color: #f3f3f3;\n    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.10);\n\n    > label {\n      flex: 1;\n      text-align: center;\n      color: #aba9a8;\n      background-color: transparent !important; // TODO: Update the Ant Less Variables instead of this\n\n      &.ant-radio-button-wrapper-checked {\n        background-color: ', ' !important;\n        border-color: #d5d4d4 !important;\n        color: #575451 !important;\n      }\n    }\n  }\n  &.styled {\n    color: #575451;\n    font-size: 12px;\n    font-weight: bold;\n    text-transform: uppercase;\n\n    .ant-radio-button-wrapper {\n      height: auto !important;\n\n      &.ant-radio-button-wrapper-checked {\n        background-color: ', ' !important;\n        border-color: inherit;\n        color: #575451;\n        box-shadow: none;\n\n        span:nth-child(2) {\n          opacity: 1;\n        }\n      }\n\n      &:hover {\n        color: #575451;\n\n        span:nth-child(2) {\n          opacity: 1;\n        }\n      }\n\n      span:nth-child(2) {\n        flex: 1;\n        display: flex;\n        flex-direction: column;\n        justify-content: center;\n        align-items: center;\n        position: relative;\n        padding: 6px 0;\n        opacity: .5;\n        transition: all 150ms linear;\n      }\n\n      .item-icon {\n        height: 15px;\n        position: relative;\n        margin-top: 8px;\n        z-index: 1;\n      }\n\n      .item-title {\n        display: block;\n        align-self: center;\n        font-size: 12px;\n        font-weight: bold;\n        line-height: 1.25;\n        text-transform: uppercase;\n        color: #575451;\n        z-index: 1;\n        position: relative;\n        margin-top: 4px;\n      }\n    }\n  }\n']);
+
+var StyledRadioGroup = styled(antd.Radio.Group)(_templateObject$4, function (props) {
+  return rgba(props.theme.primaryColor, .13);
+}, function (props) {
+  return rgba(props.theme.primaryColor, .13);
+});
+
 var Radio = function (_Component) {
   inherits(Radio, _Component);
 
@@ -19626,11 +19634,13 @@ var Radio = function (_Component) {
           value = _props.value,
           className = _props.className,
           _props$modeIcons = _props.modeIcons,
-          modeIcons = _props$modeIcons === undefined ? false : _props$modeIcons;
+          modeIcons = _props$modeIcons === undefined ? false : _props$modeIcons,
+          _props$theme = _props.theme,
+          theme = _props$theme === undefined ? defaultTheme : _props$theme;
 
 
       return React__default.createElement(
-        antd.Radio.Group,
+        StyledRadioGroup,
         {
           className: classnames('radio-group', className, {
             'styled': styled$$1,
@@ -19638,7 +19648,8 @@ var Radio = function (_Component) {
           }),
           value: value,
           buttonStyle: 'solid',
-          onChange: onChange
+          onChange: onChange,
+          theme: theme
         },
         radioData.map(function (item, index) {
           if (layout === 'row') {
@@ -19710,7 +19721,8 @@ Radio.propTypes = {
   modeIcons: PropTypes.bool,
   onChange: PropTypes.func,
   className: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.string,
+  theme: PropTypes.shape(defaultThemeShape)
 };
 
 var moment = createCommonjsModule(function (module, exports) {
@@ -27507,8 +27519,8 @@ var lib_1 = lib.genericHashLink;
 var lib_2 = lib.HashLink;
 var lib_3 = lib.NavHashLink;
 
-var _templateObject$4 = taggedTemplateLiteral(['\n  &.selected {\n    color: ', ';\n    background-color: var(--white);\n    border-right: 8px solid ', ';\n    svg g {\n      fill: ', ';\n    }\n    i {\n      color: ', ';\n    }\n    span {\n      color: ', ';\n      font-weight: bold;\n    }\n  }\n'], ['\n  &.selected {\n    color: ', ';\n    background-color: var(--white);\n    border-right: 8px solid ', ';\n    svg g {\n      fill: ', ';\n    }\n    i {\n      color: ', ';\n    }\n    span {\n      color: ', ';\n      font-weight: bold;\n    }\n  }\n']);
-var StyledNavItem = styled.div(_templateObject$4, function (props) {
+var _templateObject$5 = taggedTemplateLiteral(['\n  &.selected {\n    color: ', ';\n    background-color: var(--white);\n    border-right: 8px solid ', ';\n    svg g {\n      fill: ', ';\n    }\n    i {\n      color: ', ';\n    }\n    span {\n      color: ', ';\n      font-weight: bold;\n    }\n  }\n'], ['\n  &.selected {\n    color: ', ';\n    background-color: var(--white);\n    border-right: 8px solid ', ';\n    svg g {\n      fill: ', ';\n    }\n    i {\n      color: ', ';\n    }\n    span {\n      color: ', ';\n      font-weight: bold;\n    }\n  }\n']);
+var StyledNavItem = styled.div(_templateObject$5, function (props) {
   return props.theme.primaryColor;
 }, function (props) {
   return props.theme.primaryColor;
@@ -29865,8 +29877,6 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
-var returnThis = function () { return this; };
-
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -29891,8 +29901,6 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -29901,7 +29909,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {
