@@ -2,6 +2,7 @@ declare module 'ui-components' {
   import React from 'react';
   import { ButtonProps as AntButtonProps } from 'antd/lib/button';
   import { TextAreaProps as AntTextAreaProps } from 'antd/lib/input';
+  import { MessageApi } from 'antd/lib/message';
   interface ButtonProps extends Partial<AntButtonProps> {
     upload?: boolean;
     download?: boolean;
@@ -46,4 +47,5 @@ declare module 'ui-components' {
   export const Info: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const ChevronDown: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export class TextArea extends React.Component<AntTextAreaProps, any> {};
+  export const message: MessageApi;
 }

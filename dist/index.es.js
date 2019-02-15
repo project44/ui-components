@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AutoComplete, Button, Checkbox, Col, Row, DatePicker, Menu, Dropdown, Input, Select, Radio, Popover } from 'antd';
-export { Row, Col } from 'antd';
+import { AutoComplete, Button, Checkbox, Col, Row, DatePicker, Menu, Dropdown, Input, Select, Radio, Popover, message } from 'antd';
+export { Row, Col, message } from 'antd';
 import styled from 'styled-components';
 import ReactDOM, { findDOMNode } from 'react-dom';
 
@@ -24499,18 +24499,18 @@ if (__DEV__) {
       args[key - 2] = arguments[key];
     }
     var argIndex = 0;
-    var message = 'Warning: ' +
+    var message$$1 = 'Warning: ' +
       format.replace(/%s/g, function() {
         return args[argIndex++];
       });
     if (typeof console !== 'undefined') {
-      console.error(message);
+      console.error(message$$1);
     }
     try {
       // --- Welcome to debugging React ---
       // This error was thrown as a convenience so that you can use this stack
       // to find the callsite that caused this warning to fire.
-      throw new Error(message);
+      throw new Error(message$$1);
     } catch (x) {}
   };
 
@@ -24577,17 +24577,17 @@ if (__DEV__$1) {
 
     if (!condition) {
       var argIndex = 0;
-      var message = 'Warning: ' +
+      var message$$1 = 'Warning: ' +
         format.replace(/%s/g, function() {
           return args[argIndex++];
         });
       if (typeof console !== 'undefined') {
-        console.error(message);
+        console.error(message$$1);
       }
       try {
         // This error was thrown as a convenience so that you can use this stack
         // to find the callsite that caused this warning to fire.
-        throw new Error(message);
+        throw new Error(message$$1);
       } catch(x) {}
     }
   };
@@ -24956,8 +24956,8 @@ var removeEventListener = function removeEventListener(node, event, listener) {
   return node.removeEventListener ? node.removeEventListener(event, listener, false) : node.detachEvent('on' + event, listener);
 };
 
-var getConfirmation = function getConfirmation(message, callback) {
-  return callback(window.confirm(message));
+var getConfirmation = function getConfirmation(message$$1, callback) {
+  return callback(window.confirm(message$$1));
 }; // eslint-disable-line no-alert
 
 /**
@@ -25757,18 +25757,18 @@ if (__DEV__$2) {
       args[key - 2] = arguments[key];
     }
     var argIndex = 0;
-    var message = 'Warning: ' +
+    var message$$1 = 'Warning: ' +
       format.replace(/%s/g, function() {
         return args[argIndex++];
       });
     if (typeof console !== 'undefined') {
-      console.error(message);
+      console.error(message$$1);
     }
     try {
       // --- Welcome to debugging React ---
       // This error was thrown as a convenience so that you can use this stack
       // to find the callsite that caused this warning to fire.
-      throw new Error(message);
+      throw new Error(message$$1);
     } catch (x) {}
   };
 
@@ -26845,10 +26845,10 @@ var Prompt = function (_React$Component) {
     return _possibleConstructorReturn$6(this, _React$Component.apply(this, arguments));
   }
 
-  Prompt.prototype.enable = function enable(message) {
+  Prompt.prototype.enable = function enable(message$$1) {
     if (this.unblock) this.unblock();
 
-    this.unblock = this.context.router.history.block(message);
+    this.unblock = this.context.router.history.block(message$$1);
   };
 
   Prompt.prototype.disable = function disable() {
@@ -28279,17 +28279,17 @@ if (process.env.NODE_ENV !== 'production') {
     }
 
     var argIndex = 0;
-    var message = 'Warning: ' + format.replace(/%s/g, function () {
+    var message$$1 = 'Warning: ' + format.replace(/%s/g, function () {
       return args[argIndex++];
     });
     if (typeof console !== 'undefined') {
-      console.error(message);
+      console.error(message$$1);
     }
     try {
       // --- Welcome to debugging React ---
       // This error was thrown as a convenience so that you can use this stack
       // to find the callsite that caused this warning to fire.
-      throw new Error(message);
+      throw new Error(message$$1);
     } catch (x) {}
   };
 
@@ -29858,6 +29858,8 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
+var returnThis = function () { return this; };
+
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -29882,6 +29884,8 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -29890,7 +29894,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {
