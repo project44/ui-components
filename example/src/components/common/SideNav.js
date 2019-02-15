@@ -102,6 +102,11 @@ class SideNav extends Component {
               Sticky Nav
             </Link>
           </Menu.Item>
+          <Menu.Item key={`${routes.components}${routes.colorPicker}`}>
+            <Link to={`${routes.components}${routes.colorPicker}`}>
+              Color Picker
+            </Link>
+          </Menu.Item>
         </SubMenu>
       </Menu>
     );

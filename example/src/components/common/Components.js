@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
 import routes from '../../routes';
@@ -12,8 +13,9 @@ import RadioDemo from "../components/Radio";
 import ShipmentModeIconDemo from "../components/ShipmentModeIcon";
 import SubHeaderDemo from "../components/SubHeader";
 import StickyNavDemo from "../components/StickyNav";
+import ColorPicker from '../components/ColorPicker';
 
-export default (props) => {
+const Components =  (props) => {
   let { match } = props;
   return (
     <div className="p44-ui__component">
@@ -27,6 +29,13 @@ export default (props) => {
       <Route exact path={`${match.url}${routes.subHeader}`} component={SubHeaderDemo} />
       <Route exact path={`${match.url}${routes.stickyNav}`} component={StickyNavDemo} />
       <Route exact path={`${match.url}${routes.shipmentModeIcon}`} component={ShipmentModeIconDemo} />
+      <Route exact path={`${match.url}${routes.colorPicker}`} component={ColorPicker} />
     </div>
-  )
+  );
 };
+
+Components.propTypes = {
+  match: PropTypes.string
+};
+
+export default Components;

@@ -12,5 +12,6 @@ export default {
   radio: '/radio',
   subHeader: '/sub-header',
   stickyNav: '/sticky-nav',
-  shipmentModeIcon: '/shipment-mode-icon'
-}
+  shipmentModeIcon: '/shipment-mode-icon',
+  colorPicker: '/colorPicker'
+};
