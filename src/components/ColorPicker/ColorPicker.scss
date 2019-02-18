@@ -16,7 +16,7 @@ $right-padding: 28px;
   box-sizing: content-box;
 
   .p44-color-picker {
-    height: $height - $top-bottom-padding - $top-bottom-padding;
+    height: $height - $top-bottom-padding - $top-bottom-padding - 1px; //Weird bar displays sometimes if you don't subract an extra pixel
     width: $width;
     display: block;
     position: relative;
