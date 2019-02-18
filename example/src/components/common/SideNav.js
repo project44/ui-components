@@ -107,6 +107,11 @@ class SideNav extends Component {
               Color Picker
             </Link>
           </Menu.Item>
+          <Menu.Item key={`${routes.components}${routes.message}`}>
+            <Link to={`${routes.components}${routes.message}`}>
+              Message
+            </Link>
+          </Menu.Item>
         </SubMenu>
       </Menu>
     );

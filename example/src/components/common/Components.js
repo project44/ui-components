@@ -14,6 +14,7 @@ import ShipmentModeIconDemo from "../components/ShipmentModeIcon";
 import SubHeaderDemo from "../components/SubHeader";
 import StickyNavDemo from "../components/StickyNav";
 import ColorPicker from '../components/ColorPicker';
+import Message from '../components/Message';
 
 const Components =  (props) => {
   let { match } = props;
@@ -30,6 +31,7 @@ const Components =  (props) => {
       <Route exact path={`${match.url}${routes.stickyNav}`} component={StickyNavDemo} />
       <Route exact path={`${match.url}${routes.shipmentModeIcon}`} component={ShipmentModeIconDemo} />
       <Route exact path={`${match.url}${routes.colorPicker}`} component={ColorPicker} />
+      <Route exact path={`${match.url}${routes.message}`} component={Message} />
     </div>
   );
 };
