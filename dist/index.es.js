@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AutoComplete, Button, Checkbox, Col, Row, DatePicker, Menu, Dropdown, Input, Select, Radio, Popover, message } from 'antd';
-export { Row, Col, message } from 'antd';
+import { AutoComplete, Button, Checkbox, Col, Row, DatePicker, Menu, Dropdown, Input, Select, Radio, Popover, message, Alert } from 'antd';
+export { Row, Col, message, Alert } from 'antd';
 import styled from 'styled-components';
 import ReactDOM, { findDOMNode } from 'react-dom';
 
@@ -27945,7 +27945,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: _library ? 'pure' : 'global',
+  mode: 'pure',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -30057,7 +30057,7 @@ var _meta_5 = _meta.onFreeze;
 
 var defineProperty$5 = _objectDp.f;
 var _wksDefine = function (name) {
-  var $Symbol = _core.Symbol || (_core.Symbol = _library ? {} : _global.Symbol || {});
+  var $Symbol = _core.Symbol || (_core.Symbol = {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty$5($Symbol, name, { value: _wksExt.f(name) });
 };
 
