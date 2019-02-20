@@ -13,6 +13,7 @@ export default {
   subHeader: '/sub-header',
   stickyNav: '/sticky-nav',
   shipmentModeIcon: '/shipment-mode-icon',
-  colorPicker: '/colorPicker',
-  message: '/message'
+  colorPicker: '/color-picker',
+  message: '/message',
+  alert: '/alert'
 };
