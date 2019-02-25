@@ -3,12 +3,98 @@ import { Input, TextArea } from 'ui-components';
 import SyntaxHighlighter from "react-syntax-highlighter/prism";
 import { xonokai } from "react-syntax-highlighter/styles/prism/index";
 
+const textAreaExampleOne = `
+import { TextArea } from 'ui-components';
+
+onTextAreaChange = (event) => {
+  this.setState({
+    textAreaValue: event.target.value
+  });
+}
+
+<TextArea value={this.state.textAreaValue} onChange={this.onTextAreaChange} />`;
+
+const textAreaExampleTwo = `
+import { TextArea } from 'ui-components';
+
+onTextAreaChange = (event) => {
+  this.setState({
+    textAreaValue: event.target.value
+  });
+}
+
+<TextArea
+  charLimit={250}
+  value={this.state.textAreaValue}
+  onChange={this.onTextAreaChange}
+/>`;
+
+const textAreaExampleThree = `
+import { TextArea } from 'ui-components';
+
+onTextAreaChange = (event) => {
+  this.setState({
+    textAreaValue: event.target.value
+  });
+}
+
+<TextArea
+  charLimit={250}
+  label="Example Label"
+  placeholder="Example Placeholder"
+  autosize={{ minRows: 4, maxRows: 4 }}
+  value={this.state.textAreaValue} onChange={this.onTextAreaChange}
+/>`;
+
+const textAreaExampleFour = `
+import { TextArea } from 'ui-components';
+
+onTextAreaChange = (event) => {
+  this.setState({
+    textAreaValue: event.target.value
+  });
+}
+
+<TextArea
+  autosize={{ minRows: 6, maxRows: 8 }}
+  value={this.state.textAreaValue}
+  onChange={this.onTextAreaChange}
+/>`;
+
 export default class InputDemo extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      textAreaValueOne: '',
+      textAreaValueTwo: '',
+      textAreaValueThree: '',
+      textAreaValueFour: ''
     };
+  }
+
+  onTextAreaChangeOne = (event) => {
+    this.setState({
+      textAreaValueOne: event.target.value
+    });
+  }
+
+  onTextAreaChangeTwo = (event) => {
+    this.setState({
+      textAreaValueTwo: event.target.value
+    });
+  }
+
+  onTextAreaChangeThree = (event) => {
+    this.setState({
+      textAreaValueThree: event.target.value
+    });
+  }
+
+  onTextAreaChangeFour = (event) => {
+    this.setState({
+      textAreaValueFour: event.target.value
+    });
   }
 
   render(){
@@ -105,17 +191,62 @@ export default class InputDemo extends Component {
           </section>
 
           <section className="page-section">
-            <h4 className="example-title">Text Area</h4>
+            <h3 className="section-title">Text Area</h3>
             <p>
               TextArea is used for multi line text input.
             </p>
+            <h4 className="example-title">Basic Text Area</h4>
             <div className="example__render">
-              <TextArea />
+              <TextArea value={this.state.textAreaValueOne} onChange={this.onTextAreaChangeOne} />
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language='jsx' style={xonokai}>
-                {`import { TextArea } from 'ui-components';\n
-<TextArea />`}
+                {textAreaExampleOne}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h3 className="example-title">Text Area with Character Limit</h3>
+            <p>
+              Character limit is used to limit the number of characters a user can enter.
+            </p>
+            <div className="example__render">
+              <TextArea charLimit={250} value={this.state.textAreaValueTwo} onChange={this.onTextAreaChangeTwo} />
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {textAreaExampleTwo}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h3 className="example-title">Text Area with Label</h3>
+            <p>
+             A label is used to describe a Text Area. If label and character limit are used together, the character limit will show in the same line as the label.
+            </p>
+            <div className="example__render">
+              <TextArea placeholder="Example Placeholder" charLimit={250} label="Example Label" autosize={{ minRows: 4, maxRows: 4 }} value={this.state.textAreaValueThree} onChange={this.onTextAreaChangeThree} />
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {textAreaExampleThree}
+              </SyntaxHighlighter>
+            </div>
+          </section>
+
+          <section className="page-section">
+            <h3 className="example-title">Text Area using autosize</h3>
+            <p>
+             Autosize can restrict the size of the Text Area.
+            </p>
+            <div className="example__render">
+              <TextArea autosize={{ minRows: 6, maxRows: 8 }} value={this.state.textAreaValueFour} onChange={this.onTextAreaChangeFour} />
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language='jsx' style={xonokai}>
+                {textAreaExampleFour}
               </SyntaxHighlighter>
             </div>
           </section>

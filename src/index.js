@@ -16,6 +16,7 @@ import StickyNav from './components/StickyNav/StickyNav';
 import Popover from './components/Popover/Popover';
 import ColorPicker from './components/ColorPicker/ColorPicker';
 import { Layers, Settings, Checkmark, Close, Info, ChevronDown } from './components/Icons';
+import colors from './styles/colors';
 import { Row, Col, message, Alert } from 'antd';
 
 // Ant Design Styles
@@ -51,5 +52,6 @@ export {
   Row,
   Col,
   message,
-  Alert
+  Alert,
+  colors
 };

@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 
+import { primaryBlue } from './colors';
+
 export default {
-  primaryColor: '#236192',
-  secondaryColor: '#236192'
+  primaryColor: primaryBlue,
+  secondaryColor: primaryBlue
 };
 
 export const defaultThemeShape = {

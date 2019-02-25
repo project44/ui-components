@@ -39,7 +39,7 @@ const Components =  (props) => {
 };
 
 Components.propTypes = {
-  match: PropTypes.string
+  match: PropTypes.object
 };
 
 export default Components;
