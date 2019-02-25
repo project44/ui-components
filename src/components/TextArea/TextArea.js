@@ -18,12 +18,14 @@ const Label = styled.div`
 `;
 
 const LabelCharLimit = styled.div`
-  color: ${colors.primaryTextColor};
+  color: ${colors.secondaryTextColor};
+  font-weight: 300;
 `;
 
 const NoLabelCharLimit = styled.div`
   text-align: right;
-  color: ${colors.primaryTextColor};
+  color: ${colors.secondaryTextColor};
+  font-weight: 300;
 `;
 
 export default class TextArea extends Component {
