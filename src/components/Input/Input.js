@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Input as AntInput } from 'antd';
-import { shade }from 'polished';
+import { shade, rgba }from 'polished';
 import styled from 'styled-components';
 
 import defaultTheme, { defaultThemeShape } from '../../styles/defaultTheme';
@@ -14,8 +14,11 @@ const StyledInput = styled.div`
     font-size: 11px;
     margin-top: 0;
   }
+  input:hover, input:focus {
+    border: 1px solid ${props => props.theme.primaryColor};
+  }
   input:focus {
-    border: 1px solid #3f789e;
+    box-shadow: 0 0 0 2px ${props => rgba(props.theme.primaryColor, 0.2)};
   }
   .has-error input:focus {
     border: 1px solid #ff4d4f;

@@ -50,4 +50,5 @@ declare module 'ui-components' {
   export class TextArea extends React.Component<AntTextAreaProps, any> {};
   export const message: MessageApi;
   export class Alert extends React.Component<AlertProps, {}> {};
+  export class Input extends React.Component<any, any>{};
 }
