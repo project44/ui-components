@@ -1,3 +1,4 @@
+import { Row, Col, message, Alert } from 'antd';
 import AutoComplete from './components/AutoComplete/AutoComplete';
 import Button from './components/Button/Button';
 import Checkbox from './components/Checkbox/Checkbox';
@@ -17,7 +18,7 @@ import Popover from './components/Popover/Popover';
 import ColorPicker from './components/ColorPicker/ColorPicker';
 import { Layers, Settings, Checkmark, Close, Info, ChevronDown } from './components/Icons';
 import colors from './styles/colors';
-import { Row, Col, message, Alert } from 'antd';
+import MultiInput from './components/MultiInput/MultiInput';
 
 // Ant Design Styles
 import './styles/ant/ant.less';
@@ -53,5 +54,6 @@ export {
   Col,
   message,
   Alert,
-  colors
+  colors,
+  MultiInput,
 };

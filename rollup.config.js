@@ -23,7 +23,7 @@ export default {
       exports: 'named',
       globals: {
         react: 'React',
-        'react-dom': 'ReactDOM'
+        'react-dom': 'ReactDOM',
       },
     },
     {
@@ -33,33 +33,33 @@ export default {
       exports: 'named',
       globals: {
         react: 'React',
-        'react-dom': 'ReactDOM'
+        'react-dom': 'ReactDOM',
       },
-    }
+    },
   ],
-  external: [ 'antd', 'react', 'react-dom', 'styled-components' ],
+  external: ['antd', 'react', 'react-dom', 'styled-components'],
   plugins: [
     external(),
     less({
       output: 'dist/ant.css',
-      option: { compress: true }
+      option: { compress: true },
     }),
     postcss({
       minimize: {
-        safe: true
+        safe: true,
       },
       sourceMap: true,
-      plugins: [ autoprefixer, stylelint ],
+      plugins: [autoprefixer, stylelint],
       extensions: ['.scss', '.css'],
       extract: 'dist/build.css',
-      exclude: '**/*.less'
+      exclude: '**/*.less',
     }),
     url(),
     babel({
       exclude: 'node_modules/**',
-      plugins: [ 'external-helpers' ]
+      plugins: ['external-helpers', 'babel-plugin-styled-components'],
     }),
     resolve(),
-    commonjs()
-  ]
+    commonjs(),
+  ],
 };
