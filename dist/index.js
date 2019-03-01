@@ -37945,26 +37945,21 @@ ColorPicker$1.propTypes = {
 var StyledMultiInput = styled.div.withConfig({
   displayName: 'MultiInput__StyledMultiInput',
   componentId: 'sc-1hveop0-0'
-})(['position:relative;display:flex;align-items:center;flex-wrap:wrap;cursor:text;font-size:14px;height:auto !important;min-height:36px;max-height:58px;overflow-y:auto;padding-left:11px;padding-right:11px;padding-top:0;padding-bottom:4px;&.focused{border-color:#3f789e;outline:0;box-shadow:0 0 0 2px rgba(35,97,146,0.2);border-right-width:1px !important;}']);
+})(['position:relative;display:flex;align-items:center;flex-wrap:wrap;cursor:text;font-size:14px;height:36px;overflow-y:auto;padding-left:11px;padding-right:11px;padding-top:0;padding-bottom:4px;&.focused{border-color:#3f789e;outline:0;box-shadow:0 0 0 2px rgba(35,97,146,0.2);border-right-width:1px !important;}']);
 
 var Placeholder = styled.div.withConfig({
   displayName: 'MultiInput__Placeholder',
   componentId: 'sc-1hveop0-1'
-})(['color:', ';opacity:0.5;pointer-events:none;margin-top:4px;&.focused{display:none;}'], colors.secondaryTextColor);
+})(['color:', ';opacity:0.5;pointer-events:none;margin-top:4px;height:22px;&.focused{display:none;}'], colors.secondaryTextColor);
 
 var StyledTag = styled(antd.Tag).withConfig({
   displayName: 'MultiInput__StyledTag',
   componentId: 'sc-1hveop0-2'
 })(['cursor:default;margin-top:4px;height:22px;&:hover{opacity:1 !important;}']);
 
-var CloseIcon = styled.span.withConfig({
-  displayName: 'MultiInput__CloseIcon',
-  componentId: 'sc-1hveop0-3'
-})(['margin-left:6px;cursor:pointer;']);
-
 var Input$1 = styled.input.withConfig({
   displayName: 'MultiInput__Input',
-  componentId: 'sc-1hveop0-4'
+  componentId: 'sc-1hveop0-3'
 })(['outline:none;border:0 none;flex:1;width:auto;margin-top:4px;height:22px;']);
 
 var MultiInput = function (_React$Component) {
@@ -38046,6 +38041,10 @@ var MultiInput = function (_React$Component) {
       }
     };
 
+    _this.stopPropogation = function (event) {
+      event.stopPropagation();
+    };
+
     _this.state = {
       isFocused: false,
       inputValue: '',
@@ -38064,27 +38063,31 @@ var MultiInput = function (_React$Component) {
         StyledMultiInput,
         {
           className: classnames('ant-input', defineProperty({}, 'focused', this.state.isFocused)),
-          onClick: this.onWrapperClick
+          onClick: this.onWrapperClick,
+          minRows: this.props.minRows,
+          maxRows: this.props.maxRows
         },
         this.props.placeholder && this.state.inputValue === '' && this.state.values.length === 0 && React__default.createElement(
           Placeholder,
           {
-            className: classnames(defineProperty({}, 'focused', this.state.isFocused))
+            className: classnames(defineProperty({}, 'focused', this.state.isFocused)),
+            minRows: this.props.minRows
           },
           this.props.placeholder
         ),
         this.state.values.map(function (value, index) {
           return React__default.createElement(
             StyledTag,
-            { key: value },
-            value,
-            React__default.createElement(
-              CloseIcon,
-              { onClick: function onClick() {
-                  return _this2.onRemoveValue(index);
-                } },
-              'x'
-            )
+            {
+              key: value,
+              closable: true,
+              onClose: _this2.stopPropogation
+              //eslint-disable-next-line react/jsx-no-bind
+              , afterClose: function afterClose() {
+                return _this2.onRemoveValue(index);
+              }
+            },
+            value
           );
         }),
         React__default.createElement(Input$1, {

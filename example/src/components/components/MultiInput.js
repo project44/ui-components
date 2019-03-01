@@ -8,7 +8,11 @@ const exampleOne = `import { MultiInput } from 'ui-components';
 
 <MultiInput placeholder="example placeholder" />`;
 
-const exampleTwo = `import { MultiInput } from 'ui-components';
+/*const exampleTwo = `import { MultiInput } from 'ui-components';
+
+<MultiInput placeholder="example placeholder" minRows={2} maxRows={4} />`;*/
+
+const exampleThree = `import { MultiInput } from 'ui-components';
 import EmailValidator from 'email-validator';
 
 onChange = (values) => {
@@ -34,13 +38,13 @@ export default class MultiInputDemo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      exampleTwoValues: [],
+      exampleThreeValues: [],
     };
   }
 
-  onExampleTwoChange = values => {
+  onExampleThreeChange = values => {
     this.setState({
-      exampleTwoValues: values,
+      exampleThreeValues: values,
     });
   };
 
@@ -69,6 +73,19 @@ export default class MultiInputDemo extends Component {
             </div>
           </section>
 
+          {/*<section className="page-section">
+            <h3 className="section-title">With max rows set</h3>
+            <p>MultiInput allows for a custom number of rows it can grow too. It defaults to 1.</p>
+            <div className="example__render">
+              <MultiInput placeholder="example placeholder" minRows={2} maxRows={4} />
+            </div>
+            <div className="component__usage mt-8">
+              <SyntaxHighlighter language="jsx" style={xonokai}>
+                {exampleTwo}
+              </SyntaxHighlighter>
+            </div>
+    </section>*/}
+
           <section className="page-section">
             <h3 className="section-title">With custom validator</h3>
             <p>MultiInput allows for a custom validator to be passed in.</p>
@@ -76,17 +93,17 @@ export default class MultiInputDemo extends Component {
               <MultiInput
                 placeholder="example placeholder"
                 validator={EmailValidator.validate}
-                onChange={this.onExampleTwoChange}
+                onChange={this.onExampleThreeChange}
               />
             </div>
             <div className="example__render vertical-spacing">
-              {this.state.exampleTwoValues.map(value => (
+              {this.state.exampleThreeValues.map(value => (
                 <div key={value}>{value}</div>
               ))}
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language="jsx" style={xonokai}>
-                {exampleTwo}
+                {exampleThree}
               </SyntaxHighlighter>
             </div>
           </section>

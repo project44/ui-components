@@ -13,9 +13,7 @@ const StyledMultiInput = styled.div`
   flex-wrap: wrap;
   cursor: text;
   font-size: 14px;
-  height: auto !important;
-  min-height: 36px;
-  max-height: 58px;
+  height: 36px;
   overflow-y: auto;
   padding-left: 11px;
   padding-right: 11px;
@@ -34,6 +32,7 @@ const Placeholder = styled.div`
   opacity: 0.5;
   pointer-events: none;
   margin-top: 4px;
+  height: 22px;
   &.focused {
     display: none;
   }
@@ -46,11 +45,6 @@ const StyledTag = styled(Tag)`
   &:hover {
     opacity: 1 !important;
   }
-`;
-
-const CloseIcon = styled.span`
-  margin-left: 6px;
-  cursor: pointer;
 `;
 
 const Input = styled.input`
@@ -150,6 +144,10 @@ class MultiInput extends React.Component {
     }
   };
 
+  stopPropogation = event => {
+    event.stopPropagation();
+  };
+
   render() {
     return (
       <StyledMultiInput
@@ -157,21 +155,29 @@ class MultiInput extends React.Component {
           ['focused']: this.state.isFocused,
         })}
         onClick={this.onWrapperClick}
+        minRows={this.props.minRows}
+        maxRows={this.props.maxRows}
       >
         {this.props.placeholder && this.state.inputValue === '' && this.state.values.length === 0 && (
           <Placeholder
             className={classNames({
               ['focused']: this.state.isFocused,
             })}
+            minRows={this.props.minRows}
           >
             {this.props.placeholder}
           </Placeholder>
         )}
         {this.state.values.map((value, index) => {
           return (
-            <StyledTag key={value}>
+            <StyledTag
+              key={value}
+              closable
+              onClose={this.stopPropogation}
+              //eslint-disable-next-line react/jsx-no-bind
+              afterClose={() => this.onRemoveValue(index)}
+            >
               {value}
-              <CloseIcon onClick={() => this.onRemoveValue(index)}>x</CloseIcon>
             </StyledTag>
           );
         })}
