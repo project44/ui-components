@@ -5,24 +5,24 @@ import PropTypes from 'prop-types';
 import { Radio as AntRadio, Col } from 'antd';
 import styled from 'styled-components';
 import { rgba } from 'polished';
-import defaultTheme, { defaultThemeShape } from '../../styles/defaultTheme';
 
 import ShipmentModeIcon from '../ShipmentModeIcon/ShipmentModeIcon';
+import { ThemeContext } from '../../styles/theme';
 
 const StyledRadioGroup = styled(AntRadio.Group)`
   &.block {
     display: flex;
     background-color: #f3f3f3;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.10);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 
     > label {
       flex: 1;
       text-align: center;
       color: #aba9a8;
-      background-color: transparent !important; // TODO: Update the Ant Less Variables instead of this
+      background-color: transparent !important;
 
       &.ant-radio-button-wrapper-checked {
-        background-color: ${props => rgba(props.theme.primaryColor, .13)} !important;
+        background-color: ${props => rgba(props.theme.primaryColor, 0.13)} !important;
         border-color: #d5d4d4 !important;
         color: #575451 !important;
       }
@@ -38,7 +38,7 @@ const StyledRadioGroup = styled(AntRadio.Group)`
       height: auto !important;
 
       &.ant-radio-button-wrapper-checked {
-        background-color: ${props => rgba(props.theme.primaryColor, .13)} !important;
+        background-color: ${props => rgba(props.theme.primaryColor, 0.13)} !important;
         border-color: inherit;
         color: #575451;
         box-shadow: none;
@@ -64,7 +64,7 @@ const StyledRadioGroup = styled(AntRadio.Group)`
         align-items: center;
         position: relative;
         padding: 6px 0;
-        opacity: .5;
+        opacity: 0.5;
         transition: all 150ms linear;
       }
 
@@ -100,8 +100,9 @@ export default class Radio extends Component {
     onChange: PropTypes.func,
     className: PropTypes.string,
     value: PropTypes.string,
-    theme: PropTypes.shape(defaultThemeShape)
-  }
+  };
+
+  static contextType = ThemeContext;
 
   render() {
     const {
@@ -113,35 +114,32 @@ export default class Radio extends Component {
       value,
       className,
       modeIcons = false,
-      theme = defaultTheme
     } = this.props;
 
     return (
       <StyledRadioGroup
         className={classNames('radio-group', className, {
-          'styled': styled,
-          'block': block
+          styled: styled,
+          block: block,
         })}
         value={value}
-        buttonStyle='solid'
+        buttonStyle="solid"
         onChange={onChange}
-        theme={theme}
+        theme={this.context}
       >
         {radioData.map((item, index) => {
           if (layout === 'row') {
             if (styled) {
               return (
                 <AntRadio.Button key={item.value} value={_.get(item, 'value', item)}>
-                  {modeIcons && (
-                    <ShipmentModeIcon className='item-icon' mode={item.value} small={true} />
-                  )}
-                  <span className='item-title'>{_.get(item, 'label', item)}</span>
+                  {modeIcons && <ShipmentModeIcon className="item-icon" mode={item.value} small />}
+                  <span className="item-title">{_.get(item, 'label', item)}</span>
                 </AntRadio.Button>
               );
             } else {
               return (
                 <AntRadio key={index} value={_.get(item, 'value', item)}>
-                  <span className='item-title'>{_.get(item, 'label', item)}</span>
+                  <span className="item-title">{_.get(item, 'label', item)}</span>
                 </AntRadio>
               );
             }
@@ -150,7 +148,7 @@ export default class Radio extends Component {
               return (
                 <Col key={index}>
                   <AntRadio.Button key={item.value} value={_.get(item, 'value', item)}>
-                    <span className='item-title'>{_.get(item, 'label', item)}</span>
+                    <span className="item-title">{_.get(item, 'label', item)}</span>
                   </AntRadio.Button>
                 </Col>
               );
@@ -158,7 +156,7 @@ export default class Radio extends Component {
               return (
                 <Col key={index}>
                   <AntRadio key={item.value} value={_.get(item, 'value', item)}>
-                    <span className='item-title'>{_.get(item, 'label', item)}</span>
+                    <span className="item-title">{_.get(item, 'label', item)}</span>
                   </AntRadio>
                 </Col>
               );

@@ -19,6 +19,7 @@ import ColorPicker from './components/ColorPicker/ColorPicker';
 import { Layers, Settings, Checkmark, Close, Info, ChevronDown } from './components/Icons';
 import colors from './styles/colors';
 import MultiInput from './components/MultiInput/MultiInput';
+import { ThemeProvider } from './styles/theme';
 
 // Ant Design Styles
 import './styles/ant/ant.less';
@@ -56,4 +57,5 @@ export {
   Alert,
   colors,
   MultiInput,
+  ThemeProvider,
 };

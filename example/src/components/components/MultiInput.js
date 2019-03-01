@@ -6,7 +6,7 @@ import { xonokai } from 'react-syntax-highlighter/styles/prism/index';
 
 const exampleOne = `import { MultiInput } from 'ui-components';
 
-<MultiInput placeholder="example placeholder" />`;
+<MultiInput placeholder="example placeholder" label="Example Label" />`;
 
 /*const exampleTwo = `import { MultiInput } from 'ui-components';
 
@@ -64,7 +64,7 @@ export default class MultiInputDemo extends Component {
               MultiInput takes in freeform text that transforms into chips. It returns an array of strings on change.
             </p>
             <div className="example__render">
-              <MultiInput placeholder="example placeholder" />
+              <MultiInput placeholder="example placeholder" label="Example Label" />
             </div>
             <div className="component__usage mt-8">
               <SyntaxHighlighter language="jsx" style={xonokai}>

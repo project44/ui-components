@@ -2,19 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Input as AntInput } from 'antd';
-import { shade, rgba }from 'polished';
+import { shade, rgba } from 'polished';
 import styled from 'styled-components';
 
-import defaultTheme, { defaultThemeShape } from '../../styles/defaultTheme';
+import { ThemeContext } from '../../styles/theme';
 
 const StyledInput = styled.div`
   width: 100%;
 
-  .has-error .ant-form-explain, .has-error .ant-form-split {
+  .has-error .ant-form-explain,
+  .has-error .ant-form-split {
     font-size: 11px;
     margin-top: 0;
   }
-  input:hover, input:focus {
+  input:hover,
+  input:focus {
     border: 1px solid ${props => props.theme.primaryColor};
   }
   input:focus {
@@ -23,13 +25,15 @@ const StyledInput = styled.div`
   .has-error input:focus {
     border: 1px solid #ff4d4f;
   }
-  .super button, .primary button {
+  .super button,
+  .primary button {
     background-color: ${props => props.theme.primaryColor};
     border-color: ${props => props.theme.primaryColor};
   }
-  .super button:hover, .primary button:hover {
-    background-color: ${props => shade(.2)(props.theme.primaryColor)};
-    border-color: ${props => shade(.2)(props.theme.primaryColor)};
+  .super button:hover,
+  .primary button:hover {
+    background-color: ${props => shade(0.2)(props.theme.primaryColor)};
+    border-color: ${props => shade(0.2)(props.theme.primaryColor)};
   }
   .super {
     input {
@@ -70,16 +74,10 @@ export default class Input extends Component {
     errorMessage: PropTypes.string,
     type: PropTypes.string,
     custom: PropTypes.object,
-    theme: PropTypes.shape(defaultThemeShape),
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ])
-  }
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  };
 
-  static defaultProps = {
-    theme: defaultTheme
-  }
+  static contextType = ThemeContext;
 
   render() {
     const {
@@ -95,27 +93,28 @@ export default class Input extends Component {
       hasError,
       errorMessage,
       type,
-      theme,
-      custom
+      custom,
     } = this.props;
 
     return (
-      <StyledInput theme={theme}>
-        <div className={classNames('ant-form-vertical ant-form-item-control-wrapper', {
-          'w-full': search === 'primary'
-        })}>
+      <StyledInput theme={this.context}>
+        <div
+          className={classNames('ant-form-vertical ant-form-item-control-wrapper', {
+            'w-full': search === 'primary',
+          })}
+        >
           <div
             className={classNames('ant-form-item-control', {
               'has-error': hasError,
-              'has-feedback': hasError
+              'has-feedback': hasError,
             })}
           >
-            {label &&
-              <div className='ant-form-item-label'>
+            {label && (
+              <div className="ant-form-item-label">
                 <label title={label}>{label}</label>
               </div>
-            }
-            {search &&
+            )}
+            {search && (
               <AntInput.Search
                 className={search}
                 placeholder={placeholder}
@@ -131,8 +130,8 @@ export default class Input extends Component {
               >
                 {this.props.children}
               </AntInput.Search>
-            }
-            {!search &&
+            )}
+            {!search && (
               <AntInput
                 placeholder={placeholder}
                 defaultValue={defaultValue}
@@ -144,10 +143,8 @@ export default class Input extends Component {
               >
                 {this.props.children}
               </AntInput>
-            }
-            {hasError &&
-              <div className='ant-form-explain'>{errorMessage}</div>
-            }
+            )}
+            {hasError && <div className="ant-form-explain">{errorMessage}</div>}
           </div>
         </div>
       </StyledInput>

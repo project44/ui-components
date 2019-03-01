@@ -18626,13 +18626,30 @@ var defaultThemeShape = {
   secondaryColor: PropTypes.string
 };
 
+var ThemeContext = React__default.createContext(defaultTheme);
+
+var ThemeProvider = function ThemeProvider(_ref) {
+  var theme = _ref.theme,
+      children = _ref.children;
+
+  return React__default.createElement(
+    ThemeContext.Provider,
+    { value: theme },
+    children
+  );
+};
+
+ThemeProvider.defaultProps = {
+  theme: defaultTheme
+};
+
 var StyledButton = styled(antd.Button).withConfig({
   displayName: 'Button__StyledButton',
   componentId: 'sc-1f3ih9g-0'
-})(['&.p44-btn{&--primary{background-color:', ';&:hover,&:focus{background-color:', ';}}}'], function (props) {
+})(['&&.p44-btn--primary{background-color:', ';}&&.p44-btn--primary:hover,&&.p44-btn--primary:focus{background-color:', ';}'], function (props) {
   return props.theme && props.theme.primaryColor;
 }, function (props) {
-  return curriedShade(.2)(props.theme.primaryColor);
+  return curriedShade(0.2)(props.theme.primaryColor);
 });
 
 var Button = function (_Component) {
@@ -18657,8 +18674,7 @@ var Button = function (_Component) {
           type = _props$type === undefined ? 'default' : _props$type,
           _props$size = _props.size,
           size$$1 = _props$size === undefined ? 'med' : _props$size,
-          theme = _props.theme,
-          props = objectWithoutProperties(_props, ['className', 'clickFn', 'blurFn', 'upload', 'download', 'type', 'size', 'theme']);
+          props = objectWithoutProperties(_props, ['className', 'clickFn', 'blurFn', 'upload', 'download', 'type', 'size']);
 
 
       if (upload) {
@@ -18668,17 +18684,17 @@ var Button = function (_Component) {
           React__default.createElement(
             StyledButton,
             _extends({
-              theme: theme,
+              theme: this.context,
               className: classnames(className, {
                 'p44-btn': type === 'default',
                 'p44-btn--primary': type === 'primary',
                 'p44-btn--secondary': type === 'secondary',
                 'p44-btn--destructive': type === 'destructive',
                 'p44-btn--destructive-text': type === 'destructive-text',
-                'lg': size$$1 === 'lg',
-                'med': size$$1 === 'med',
-                'sm': size$$1 === 'sm',
-                'xsm': size$$1 === 'xsm'
+                lg: size$$1 === 'lg',
+                med: size$$1 === 'med',
+                sm: size$$1 === 'sm',
+                xsm: size$$1 === 'xsm'
               }),
               onClick: clickFn,
               onBlur: blurFn
@@ -18690,17 +18706,17 @@ var Button = function (_Component) {
         return React__default.createElement(
           StyledButton,
           _extends({
-            theme: theme,
+            theme: this.context,
             className: classnames(className, {
               'p44-btn': type === 'default',
               'p44-btn--primary': type === 'primary',
               'p44-btn--secondary': type === 'secondary',
               'p44-btn--destructive': type === 'destructive',
               'p44-btn--destructive-text': type === 'destructive-text',
-              'lg': size$$1 === 'lg',
-              'med': size$$1 === 'med',
-              'sm': size$$1 === 'sm',
-              'xsm': size$$1 === 'xsm'
+              lg: size$$1 === 'lg',
+              med: size$$1 === 'med',
+              sm: size$$1 === 'sm',
+              xsm: size$$1 === 'xsm'
             }),
             onClick: clickFn,
             onBlur: blurFn,
@@ -18722,12 +18738,9 @@ Button.propTypes = {
   type: PropTypes.string,
   size: PropTypes.string,
   className: PropTypes.string,
-  theme: PropTypes.shape(defaultThemeShape),
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
 };
-Button.defaultProps = {
-  theme: defaultTheme
-};
+Button.contextType = ThemeContext;
 
 var ltlIcon = "data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20width%3D%22188px%22%20height%3D%2264px%22%20viewBox%3D%220%200%20188%2064%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%20%20%20%20%20%20%20%20%3Ctitle%3Eltl%3C%2Ftitle%3E%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%20%20%20%20%3Cg%20id%3D%22ltl%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%20%20%20%20%20%20%20%20%3Cg%20id%3D%22ic%2Fmulti-modal%2FLTL%22%20fill%3D%22%23575451%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M30.5001%2C47%20C32.9836%2C47%2035%2C49.0165%2035%2C51.5%20C35%2C53.9836%2032.9836%2C56%2030.5001%2C56%20C28.0164%2C56%2026%2C53.9836%2026%2C51.5%20C26%2C49.0165%2028.0164%2C47%2030.5001%2C47%20Z%20M41.5001%2C47%20C43.9836%2C47%2046%2C49.0165%2046%2C51.5%20C46%2C53.9836%2043.9836%2C56%2041.5001%2C56%20C39.0164%2C56%2037%2C53.9836%2037%2C51.5%20C37%2C49.0165%2039.0164%2C47%2041.5001%2C47%20Z%20M163.499%2C47%20C165.984%2C47%20168%2C49.0165%20168%2C51.5%20C168%2C53.9836%20165.984%2C56%20163.499%2C56%20C161.015%2C56%20159%2C53.9836%20159%2C51.5%20C159%2C49.0165%20161.015%2C47%20163.499%2C47%20Z%20M104.5%2C47%20C106.9836%2C47%20109%2C49.0165%20109%2C51.5%20C109%2C53.9836%20106.9836%2C56%20104.5%2C56%20C102.0164%2C56%20100%2C53.9836%20100%2C51.5%20C100%2C49.0165%20102.0164%2C47%20104.5%2C47%20Z%20M115.499%2C47%20C117.984%2C47%20120%2C49.0165%20120%2C51.5%20C120%2C53.9836%20117.984%2C56%20115.499%2C56%20C113.0164%2C56%20111%2C53.9836%20111%2C51.5%20C111%2C49.0165%20113.0164%2C47%20115.499%2C47%20Z%20M14%2C45%20L14%2C41.9224%20L130%2C41.9224%20L130%2C13%20C130%2C13%20135.215%2C13%20139.907%2C13%20C142.163%2C13%20144.327%2C13.9061%20145.923%2C15.5191%20C147.519%2C17.1321%20148.415%2C19.3197%20148.415%2C21.6007%20L148.415%2C20.8341%20L157.15%2C20.8341%20L158.148%2C29.2184%20L158.148%2C29%20L174%2C31.0172%20L174%2C52%20L169.513%2C52%20C169.513%2C48.4976%20166.737%2C45.6542%20163.318%2C45.6542%20C159.899%2C45.6542%20157.123%2C48.4975%20157.123%2C52%20L126%2C52%20L126%2C45%20L14%2C45%20Z%20M14%2C40%20L127%2C40%20L127%2C8%20L14%2C8%20L14%2C40%20Z%20M88%2C11%20L17.0268981%2C11%20L17%2C37%20L88%2C37%20L88%2C11%20Z%22%20id%3D%22VLTL%22%3E%3C%2Fpath%3E%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%3C%2Fg%3E%3C%2Fsvg%3E";
 
@@ -18834,7 +18847,7 @@ ShipmentModeIcon.propTypes = {
 var StyledCheckbox = styled.div.withConfig({
   displayName: 'Checkbox__StyledCheckbox',
   componentId: 'z4tqsx-0'
-})(['.ant-checkbox-wrapper{margin:2px 0;.ant-checkbox{.ant-checkbox-inner{background-color:transparent;}&.ant-checkbox-checked .ant-checkbox-inner{background-color:', ';border-color:', ';&::after{border-color:', ';}}}.item-title{color:', ';}}.ant-checkbox-wrapper:hover .ant-checkbox-inner,.ant-checkbox:hover .ant-checkbox-inner,.ant-checkbox-input:focus+.ant-checkbox-inner{border-color:', ';}'], function (props) {
+})(['&& .ant-checkbox-wrapper{margin:2px 0;}&& .ant-checkbox-wrapper .ant-checkbox .ant-checkbox-inner{background-color:transparent;}&& .ant-checkbox-wrapper .ant-checkbox.ant-checkbox-checked .ant-checkbox-inner{background-color:', ';border-color:', ';}&& .ant-checkbox-wrapper .ant-checkbox.ant-checkbox-checked .ant-checkbox-inner::after{border-color:', ';}&& .ant-checkbox-wrapper .item-title{color:', ';}&& .ant-checkbox-wrapper:hover .ant-checkbox-inner,&& .ant-checkbox:hover .ant-checkbox-inner,&& .ant-checkbox-input:focus + .ant-checkbox-inner{border-color:', ';}'], function (props) {
   return props.mode === 'dark' ? props.theme.primaryColor : 'var(--white)';
 }, function (props) {
   return props.mode === 'dark' ? props.theme.primaryColor : 'var(--white)';
@@ -18866,7 +18879,6 @@ var Checkbox = function (_Component) {
           _props$mode = _props.mode,
           mode = _props$mode === undefined ? 'dark' : _props$mode,
           onChange = _props.onChange,
-          theme = _props.theme,
           _props$className = _props.className,
           className = _props$className === undefined ? null : _props$className;
 
@@ -18875,9 +18887,9 @@ var Checkbox = function (_Component) {
         StyledCheckbox,
         {
           mode: mode,
-          theme: theme,
+          theme: this.context,
           className: classnames('checkbox-group', className, {
-            'styled': styled$$1
+            styled: styled$$1
           })
         },
         React__default.createElement(
@@ -18887,7 +18899,12 @@ var Checkbox = function (_Component) {
             if (layout === 'row') {
               return React__default.createElement(
                 antd.Checkbox,
-                { key: item.key || index, value: lodash.get(item, 'value', item), checked: lodash.get(item, 'checked', false), onChange: onChange },
+                {
+                  key: item.key || index,
+                  value: lodash.get(item, 'value', item),
+                  checked: lodash.get(item, 'checked', false),
+                  onChange: onChange
+                },
                 styled$$1 && item.value && React__default.createElement(ShipmentModeIcon, { className: 'item-icon', mode: item.value, small: true }),
                 React__default.createElement(
                   'span',
@@ -18901,7 +18918,12 @@ var Checkbox = function (_Component) {
                 { key: index },
                 React__default.createElement(
                   antd.Checkbox,
-                  { key: item.key || index, value: lodash.get(item, 'value', item), checked: lodash.get(item, 'checked', false), onChange: onChange },
+                  {
+                    key: item.key || index,
+                    value: lodash.get(item, 'value', item),
+                    checked: lodash.get(item, 'checked', false),
+                    onChange: onChange
+                  },
                   styled$$1 && item.value && React__default.createElement(ShipmentModeIcon, { className: 'item-icon', mode: item.value, small: true }),
                   React__default.createElement(
                     'span',
@@ -18919,18 +18941,15 @@ var Checkbox = function (_Component) {
   return Checkbox;
 }(React.Component);
 
-Checkbox.defaultProps = {
-  theme: defaultTheme
-};
 Checkbox.propTypes = {
   checkboxData: PropTypes.array,
   layout: PropTypes.string,
   styled: PropTypes.bool,
   onChange: PropTypes.func,
   className: PropTypes.string,
-  mode: PropTypes.string,
-  theme: PropTypes.shape(defaultThemeShape)
+  mode: PropTypes.string
 };
+Checkbox.contextType = ThemeContext;
 
 var Chips = function (_Component) {
   inherits(Chips, _Component);
@@ -19176,7 +19195,7 @@ Dropdown.propTypes = {
 var StyledInput = styled.div.withConfig({
   displayName: 'Input__StyledInput',
   componentId: 'sc-1soi1ol-0'
-})(['width:100%;.has-error .ant-form-explain,.has-error .ant-form-split{font-size:11px;margin-top:0;}input:hover,input:focus{border:1px solid ', ';}input:focus{box-shadow:0 0 0 2px ', ';}.has-error input:focus{border:1px solid #ff4d4f;}.super button,.primary button{background-color:', ';border-color:', ';}.super button:hover,.primary button:hover{background-color:', ';border-color:', ';}.super{input{background-color:var(--primary-grey-05);color:var(--primary-grey-80);border:none;}}.primary{input{background-color:#ffffff;box-shadow:0 1px 2px 0 rgba(0,0,0,0.5);border:none;}}input{&.ant-input-lg{font-size:14px;}}.ant-btn-lg{height:48px;}'], function (props) {
+})(['&&{width:100%;}&& .has-error .ant-form-explain,&& .has-error .ant-form-split{font-size:11px;margin-top:0;}&& input:hover,&& input:focus{border:1px solid ', ';}&& input:focus{box-shadow:0 0 0 2px ', ';}&& .has-error input:focus{border:1px solid #ff4d4f;}&& .super button,&& .primary button{background-color:', ';border-color:', ';}&& .super button:hover,&& .primary button:hover{background-color:', ';border-color:', ';}&& .super input{background-color:var(--primary-grey-05);color:var(--primary-grey-80);border:none;}&& .primary input{background-color:#ffffff;box-shadow:0 1px 2px 0 rgba(0,0,0,0.5);border:none;}&& input.ant-input-lg{font-size:14px;}&& .ant-btn-lg{height:48px;}'], function (props) {
   return props.theme.primaryColor;
 }, function (props) {
   return rgba(props.theme.primaryColor, 0.2);
@@ -19185,9 +19204,9 @@ var StyledInput = styled.div.withConfig({
 }, function (props) {
   return props.theme.primaryColor;
 }, function (props) {
-  return curriedShade(.2)(props.theme.primaryColor);
+  return curriedShade(0.2)(props.theme.primaryColor);
 }, function (props) {
-  return curriedShade(.2)(props.theme.primaryColor);
+  return curriedShade(0.2)(props.theme.primaryColor);
 });
 
 var Input = function (_Component) {
@@ -19214,18 +19233,19 @@ var Input = function (_Component) {
           hasError = _props.hasError,
           errorMessage = _props.errorMessage,
           type = _props.type,
-          theme = _props.theme,
           custom = _props.custom;
 
 
       return React__default.createElement(
         StyledInput,
-        { theme: theme },
+        { theme: this.context },
         React__default.createElement(
           'div',
-          { className: classnames('ant-form-vertical ant-form-item-control-wrapper', {
+          {
+            className: classnames('ant-form-vertical ant-form-item-control-wrapper', {
               'w-full': search === 'primary'
-            }) },
+            })
+          },
           React__default.createElement(
             'div',
             {
@@ -19298,32 +19318,35 @@ Input.propTypes = {
   errorMessage: PropTypes.string,
   type: PropTypes.string,
   custom: PropTypes.object,
-  theme: PropTypes.shape(defaultThemeShape),
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
 };
-Input.defaultProps = {
-  theme: defaultTheme
-};
+Input.contextType = ThemeContext;
 
 var StyledTextArea = styled(antd.Input.TextArea).withConfig({
   displayName: 'TextArea__StyledTextArea',
   componentId: 'sc-1is30uo-0'
-})(['&.text-area-hide-resize{resize:none;}']);
+})(['&&:hover{border:1px solid ', ';}&&:focus{border:1px solid ', ';box-shadow:0 0 0 2px ', ';}&&.text-area-hide-resize{resize:none;}&&::placeholder{opacity:0.5;}'], function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return rgba(props.theme.primaryColor, 0.2);
+});
 
 var Label = styled.div.withConfig({
   displayName: 'TextArea__Label',
   componentId: 'sc-1is30uo-1'
-})(['display:flex !important;align-items:center;justify-content:space-between;']);
+})(['&&{display:flex !important;align-items:center;justify-content:space-between;}']);
 
 var LabelCharLimit = styled.div.withConfig({
   displayName: 'TextArea__LabelCharLimit',
   componentId: 'sc-1is30uo-2'
-})(['color:', ';font-weight:300;'], colors.secondaryTextColor);
+})(['&&{color:', ';font-weight:300;font-size:1.2rem;margin-bottom:0.5rem;}'], colors.secondaryTextColor);
 
 var NoLabelCharLimit = styled.div.withConfig({
   displayName: 'TextArea__NoLabelCharLimit',
   componentId: 'sc-1is30uo-3'
-})(['text-align:right;color:', ';font-weight:300;'], colors.secondaryTextColor);
+})(['&&{text-align:right;color:', ';font-weight:300;}'], colors.secondaryTextColor);
 
 var TextArea = function (_Component) {
   inherits(TextArea, _Component);
@@ -19361,7 +19384,7 @@ var TextArea = function (_Component) {
     value: function render() {
       return React__default.createElement(
         'div',
-        { className: 'ant-form-vertical' },
+        { className: classnames('ant-form-vertical', this.props.className) },
         this.props.label && React__default.createElement(
           Label,
           { className: 'ant-form-item-label' },
@@ -19379,11 +19402,12 @@ var TextArea = function (_Component) {
           )
         ),
         React__default.createElement(StyledTextArea, _extends({
-          className: classnames(defineProperty({}, 'text-area-hide-resize', !this.props.autosize || this.props.autosize.minRows && this.props.autosize.maxRows && this.props.autosize.minRows === this.props.autosize.maxRows), this.props.className),
+          className: classnames(defineProperty({}, 'text-area-hide-resize', !this.props.autosize || this.props.autosize.minRows && this.props.autosize.maxRows && this.props.autosize.minRows === this.props.autosize.maxRows)),
           onChange: this.onChange,
           placeholder: this.props.placeholder,
           autosize: this.props.autosize,
-          value: this.props.value
+          value: this.props.value,
+          theme: this.context
         }, this.props.custom)),
         this.props.label === undefined && this.props.charLimit && React__default.createElement(
           NoLabelCharLimit,
@@ -19415,6 +19439,7 @@ TextArea.defaultProps = {
   classname: '',
   autosize: true
 };
+TextArea.contextType = ThemeContext;
 
 var MultiSelect = function (_Component) {
   inherits(MultiSelect, _Component);
@@ -19711,10 +19736,10 @@ SubHeader.propTypes = {
 var StyledRadioGroup = styled(antd.Radio.Group).withConfig({
   displayName: 'Radio__StyledRadioGroup',
   componentId: 'fk1cur-0'
-})(['&.block{display:flex;background-color:#f3f3f3;box-shadow:0 1px 2px 0 rgba(0,0,0,0.10);> label{flex:1;text-align:center;color:#aba9a8;background-color:transparent !important;&.ant-radio-button-wrapper-checked{background-color:', ' !important;border-color:#d5d4d4 !important;color:#575451 !important;}}}&.styled{color:#575451;font-size:12px;font-weight:bold;text-transform:uppercase;.ant-radio-button-wrapper{height:auto !important;&.ant-radio-button-wrapper-checked{background-color:', ' !important;border-color:inherit;color:#575451;box-shadow:none;span:nth-child(2){opacity:1;}}&:hover{color:#575451;span:nth-child(2){opacity:1;}}span:nth-child(2){flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;padding:6px 0;opacity:.5;transition:all 150ms linear;}.item-icon{height:15px;position:relative;margin-top:8px;z-index:1;}.item-title{display:block;align-self:center;font-size:12px;font-weight:bold;line-height:1.25;text-transform:uppercase;color:#575451;z-index:1;position:relative;margin-top:4px;}}}'], function (props) {
-  return rgba(props.theme.primaryColor, .13);
+})(['&&.block{display:flex;background-color:#f3f3f3;box-shadow:0 1px 2px 0 rgba(0,0,0,0.1);}&&.block > label{flex:1;text-align:center;color:#aba9a8;background-color:transparent !important;}&&.block > label.ant-radio-button-wrapper-checked{background-color:', ' !important;border-color:#d5d4d4 !important;color:#575451 !important;}&&.styled{color:#575451;font-size:12px;font-weight:bold;text-transform:uppercase;}&&.styled .ant-radio-button-wrapper{height:auto !important;}&&.styled .ant-radio-button-wrapper.ant-radio-button-wrapper-checked{background-color:', ' !important;border-color:inherit;color:#575451;box-shadow:none;}&&.styled .ant-radio-button-wrapper.ant-radio-button-wrapper-checked span:nth-child(2){opacity:1;}&&.styled .ant-radio-button-wrapper:hover{color:#575451;}&&.styled .ant-radio-button-wrapper:hover span:nth-child(2){opacity:1;}&&.styled .ant-radio-button-wrapper span:nth-child(2){flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;padding:6px 0;opacity:0.5;transition:all 150ms linear;}&&.styled .ant-radio-button-wrapper .item-icon{height:15px;position:relative;margin-top:8px;z-index:1;}&&.styled .ant-radio-button-wrapper .item-title{display:block;align-self:center;font-size:12px;font-weight:bold;line-height:1.25;text-transform:uppercase;color:#575451;z-index:1;position:relative;margin-top:4px;}'], function (props) {
+  return rgba(props.theme.primaryColor, 0.13);
 }, function (props) {
-  return rgba(props.theme.primaryColor, .13);
+  return rgba(props.theme.primaryColor, 0.13);
 });
 
 var Radio = function (_Component) {
@@ -19741,22 +19766,20 @@ var Radio = function (_Component) {
           value = _props.value,
           className = _props.className,
           _props$modeIcons = _props.modeIcons,
-          modeIcons = _props$modeIcons === undefined ? false : _props$modeIcons,
-          _props$theme = _props.theme,
-          theme = _props$theme === undefined ? defaultTheme : _props$theme;
+          modeIcons = _props$modeIcons === undefined ? false : _props$modeIcons;
 
 
       return React__default.createElement(
         StyledRadioGroup,
         {
           className: classnames('radio-group', className, {
-            'styled': styled$$1,
-            'block': block
+            styled: styled$$1,
+            block: block
           }),
           value: value,
           buttonStyle: 'solid',
           onChange: onChange,
-          theme: theme
+          theme: this.context
         },
         radioData.map(function (item, index) {
           if (layout === 'row') {
@@ -19828,9 +19851,9 @@ Radio.propTypes = {
   modeIcons: PropTypes.bool,
   onChange: PropTypes.func,
   className: PropTypes.string,
-  value: PropTypes.string,
-  theme: PropTypes.shape(defaultThemeShape)
+  value: PropTypes.string
 };
+Radio.contextType = ThemeContext;
 
 var moment = createCommonjsModule(function (module, exports) {
 (function (global, factory) {
@@ -24661,10 +24684,12 @@ if (__DEV__) {
 var warning_1 = warning;
 
 /**
- * Copyright (c) 2014-present, Facebook, Inc.
+ * Copyright 2014-2015, Facebook, Inc.
+ * All rights reserved.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  */
 
 /**
@@ -24679,28 +24704,6 @@ var __DEV__$1 = process.env.NODE_ENV !== 'production';
 var warning$1 = function() {};
 
 if (__DEV__$1) {
-  var printWarning$1 = function printWarning(format, args) {
-    var len = arguments.length;
-    args = new Array(len > 2 ? len - 2 : 0);
-    for (var key = 2; key < len; key++) {
-      args[key - 2] = arguments[key];
-    }
-    var argIndex = 0;
-    var message = 'Warning: ' +
-      format.replace(/%s/g, function() {
-        return args[argIndex++];
-      });
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-
   warning$1 = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
@@ -24709,12 +24712,32 @@ if (__DEV__$1) {
     }
     if (format === undefined) {
       throw new Error(
-          '`warning(condition, format, ...args)` requires a warning ' +
-          'message argument'
+        '`warning(condition, format, ...args)` requires a warning ' +
+        'message argument'
       );
     }
+
+    if (format.length < 10 || (/^[s\W]*$/).test(format)) {
+      throw new Error(
+        'The warning format should be able to uniquely identify this ' +
+        'warning. Please, use a more descriptive format than: ' + format
+      );
+    }
+
     if (!condition) {
-      printWarning$1.apply(null, [format].concat(args));
+      var argIndex = 0;
+      var message = 'Warning: ' +
+        format.replace(/%s/g, function() {
+          return args[argIndex++];
+        });
+      if (typeof console !== 'undefined') {
+        console.error(message);
+      }
+      try {
+        // This error was thrown as a convenience so that you can use this stack
+        // to find the callsite that caused this warning to fire.
+        throw new Error(message);
+      } catch(x) {}
     }
   };
 }
@@ -25876,7 +25899,7 @@ var __DEV__$2 = process.env.NODE_ENV !== 'production';
 var warning$2 = function() {};
 
 if (__DEV__$2) {
-  var printWarning$2 = function printWarning(format, args) {
+  var printWarning$1 = function printWarning(format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
     for (var key = 2; key < len; key++) {
@@ -25911,7 +25934,7 @@ if (__DEV__$2) {
       );
     }
     if (!condition) {
-      printWarning$2.apply(null, [format].concat(args));
+      printWarning$1.apply(null, [format].concat(args));
     }
   };
 }
@@ -27629,7 +27652,7 @@ var lib_3 = lib.NavHashLink;
 var StyledNavItem = styled.div.withConfig({
   displayName: 'StickyNav__StyledNavItem',
   componentId: 'wbp22c-0'
-})(['&.selected{color:', ';background-color:var(--white);border-right:8px solid ', ';svg g{fill:', ';}i{color:', ';}span{color:', ';font-weight:bold;}}'], function (props) {
+})(['&&.selected{color:', ';background-color:var(--white);border-right:8px solid ', ';}&&.selected svg g{fill:', ';}&&.selected i{color:', ';}&&.selected span{color:', ';font-weight:bold;}'], function (props) {
   return props.theme.primaryColor;
 }, function (props) {
   return props.theme.primaryColor;
@@ -27707,8 +27730,7 @@ var StickyNav = function (_Component) {
 
       var _props = this.props,
           menuItems = _props.menuItems,
-          mode = _props.mode,
-          theme = _props.theme;
+          mode = _props.mode;
 
       return React__default.createElement(
         'div',
@@ -27718,14 +27740,12 @@ var StickyNav = function (_Component) {
             StyledNavItem,
             {
               key: index$$1,
-              theme: theme,
-              className: _this2.state.currentView === item.link ? 'sticky-nav__item selected' : 'sticky-nav__item' },
+              theme: _this2.context,
+              className: _this2.state.currentView === item.link ? 'sticky-nav__item selected' : 'sticky-nav__item'
+            },
             React__default.createElement(
               lib_2,
-              {
-                to: mode === 'follow' ? '#' + item.link : item.link,
-                smooth: true
-              },
+              { to: mode === 'follow' ? '#' + item.link : item.link, smooth: true },
               item.icon && React__default.createElement(
                 'i',
                 { className: 'material-icons sticky-nav__icon' },
@@ -27747,13 +27767,12 @@ var StickyNav = function (_Component) {
 
 StickyNav.propTypes = {
   mode: PropTypes.string,
-  menuItems: PropTypes.array,
-  theme: PropTypes.shape(defaultThemeShape)
+  menuItems: PropTypes.array
 };
 StickyNav.defaultProps = {
-  theme: defaultTheme,
   mode: 'follow'
 };
+StickyNav.contextType = ThemeContext;
 
 var Popover = function (_Component) {
   inherits(Popover, _Component);
@@ -28401,7 +28420,7 @@ var emptyFunction_1 = emptyFunction;
 var warning$3 = emptyFunction_1;
 
 if (process.env.NODE_ENV !== 'production') {
-  var printWarning$3 = function printWarning(format) {
+  var printWarning$2 = function printWarning(format) {
     for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       args[_key - 1] = arguments[_key];
     }
@@ -28435,7 +28454,7 @@ if (process.env.NODE_ENV !== 'production') {
         args[_key2 - 2] = arguments[_key2];
       }
 
-      printWarning$3.apply(undefined, [format].concat(args));
+      printWarning$2.apply(undefined, [format].concat(args));
     }
   };
 }
@@ -32773,638 +32792,6 @@ AnimateChild.propTypes = {
   children: PropTypes.any
 };
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-function componentWillMount() {
-  // Call this.constructor.gDSFP to support sub-classes.
-  var state = this.constructor.getDerivedStateFromProps(this.props, this.state);
-  if (state !== null && state !== undefined) {
-    this.setState(state);
-  }
-}
-
-function componentWillReceiveProps(nextProps) {
-  // Call this.constructor.gDSFP to support sub-classes.
-  // Use the setState() updater to ensure state isn't stale in certain edge cases.
-  function updater(prevState) {
-    var state = this.constructor.getDerivedStateFromProps(nextProps, prevState);
-    return state !== null && state !== undefined ? state : null;
-  }
-  // Binding "this" is important for shallow renderer support.
-  this.setState(updater.bind(this));
-}
-
-function componentWillUpdate(nextProps, nextState) {
-  try {
-    var prevProps = this.props;
-    var prevState = this.state;
-    this.props = nextProps;
-    this.state = nextState;
-    this.__reactInternalSnapshotFlag = true;
-    this.__reactInternalSnapshot = this.getSnapshotBeforeUpdate(
-      prevProps,
-      prevState
-    );
-  } finally {
-    this.props = prevProps;
-    this.state = prevState;
-  }
-}
-
-// React may warn about cWM/cWRP/cWU methods being deprecated.
-// Add a flag to suppress these warnings for this special case.
-componentWillMount.__suppressDeprecationWarning = true;
-componentWillReceiveProps.__suppressDeprecationWarning = true;
-componentWillUpdate.__suppressDeprecationWarning = true;
-
-function polyfill(Component) {
-  var prototype = Component.prototype;
-
-  if (!prototype || !prototype.isReactComponent) {
-    throw new Error('Can only polyfill class components');
-  }
-
-  if (
-    typeof Component.getDerivedStateFromProps !== 'function' &&
-    typeof prototype.getSnapshotBeforeUpdate !== 'function'
-  ) {
-    return Component;
-  }
-
-  // If new component APIs are defined, "unsafe" lifecycles won't be called.
-  // Error if any of these lifecycles are present,
-  // Because they would work differently between older and newer (16.3+) versions of React.
-  var foundWillMountName = null;
-  var foundWillReceivePropsName = null;
-  var foundWillUpdateName = null;
-  if (typeof prototype.componentWillMount === 'function') {
-    foundWillMountName = 'componentWillMount';
-  } else if (typeof prototype.UNSAFE_componentWillMount === 'function') {
-    foundWillMountName = 'UNSAFE_componentWillMount';
-  }
-  if (typeof prototype.componentWillReceiveProps === 'function') {
-    foundWillReceivePropsName = 'componentWillReceiveProps';
-  } else if (typeof prototype.UNSAFE_componentWillReceiveProps === 'function') {
-    foundWillReceivePropsName = 'UNSAFE_componentWillReceiveProps';
-  }
-  if (typeof prototype.componentWillUpdate === 'function') {
-    foundWillUpdateName = 'componentWillUpdate';
-  } else if (typeof prototype.UNSAFE_componentWillUpdate === 'function') {
-    foundWillUpdateName = 'UNSAFE_componentWillUpdate';
-  }
-  if (
-    foundWillMountName !== null ||
-    foundWillReceivePropsName !== null ||
-    foundWillUpdateName !== null
-  ) {
-    var componentName = Component.displayName || Component.name;
-    var newApiName =
-      typeof Component.getDerivedStateFromProps === 'function'
-        ? 'getDerivedStateFromProps()'
-        : 'getSnapshotBeforeUpdate()';
-
-    throw Error(
-      'Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n' +
-        componentName +
-        ' uses ' +
-        newApiName +
-        ' but also contains the following legacy lifecycles:' +
-        (foundWillMountName !== null ? '\n  ' + foundWillMountName : '') +
-        (foundWillReceivePropsName !== null
-          ? '\n  ' + foundWillReceivePropsName
-          : '') +
-        (foundWillUpdateName !== null ? '\n  ' + foundWillUpdateName : '') +
-        '\n\nThe above lifecycles should be removed. Learn more about this warning here:\n' +
-        'https://fb.me/react-async-component-lifecycle-hooks'
-    );
-  }
-
-  // React <= 16.2 does not support static getDerivedStateFromProps.
-  // As a workaround, use cWM and cWRP to invoke the new static lifecycle.
-  // Newer versions of React will ignore these lifecycles if gDSFP exists.
-  if (typeof Component.getDerivedStateFromProps === 'function') {
-    prototype.componentWillMount = componentWillMount;
-    prototype.componentWillReceiveProps = componentWillReceiveProps;
-  }
-
-  // React <= 16.2 does not support getSnapshotBeforeUpdate.
-  // As a workaround, use cWU to invoke the new lifecycle.
-  // Newer versions of React will ignore that lifecycle if gSBU exists.
-  if (typeof prototype.getSnapshotBeforeUpdate === 'function') {
-    if (typeof prototype.componentDidUpdate !== 'function') {
-      throw new Error(
-        'Cannot polyfill getSnapshotBeforeUpdate() for components that do not define componentDidUpdate() on the prototype'
-      );
-    }
-
-    prototype.componentWillUpdate = componentWillUpdate;
-
-    var componentDidUpdate = prototype.componentDidUpdate;
-
-    prototype.componentDidUpdate = function componentDidUpdatePolyfill(
-      prevProps,
-      prevState,
-      maybeSnapshot
-    ) {
-      // 16.3+ will not execute our will-update method;
-      // It will pass a snapshot value to did-update though.
-      // Older versions will require our polyfilled will-update value.
-      // We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
-      // Because for <= 15.x versions this might be a "prevContext" object.
-      // We also can't just check "__reactInternalSnapshot",
-      // Because get-snapshot might return a falsy value.
-      // So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
-      var snapshot = this.__reactInternalSnapshotFlag
-        ? this.__reactInternalSnapshot
-        : maybeSnapshot;
-
-      componentDidUpdate.call(this, prevProps, prevState, snapshot);
-    };
-  }
-
-  return Component;
-}
-
-var performanceNow = createCommonjsModule(function (module) {
-// Generated by CoffeeScript 1.12.2
-(function() {
-  var getNanoSeconds, hrtime, loadTime, moduleLoadTime, nodeLoadTime, upTime;
-
-  if ((typeof performance !== "undefined" && performance !== null) && performance.now) {
-    module.exports = function() {
-      return performance.now();
-    };
-  } else if ((typeof process !== "undefined" && process !== null) && process.hrtime) {
-    module.exports = function() {
-      return (getNanoSeconds() - nodeLoadTime) / 1e6;
-    };
-    hrtime = process.hrtime;
-    getNanoSeconds = function() {
-      var hr;
-      hr = hrtime();
-      return hr[0] * 1e9 + hr[1];
-    };
-    moduleLoadTime = getNanoSeconds();
-    upTime = process.uptime() * 1e9;
-    nodeLoadTime = moduleLoadTime - upTime;
-  } else if (Date.now) {
-    module.exports = function() {
-      return Date.now() - loadTime;
-    };
-    loadTime = Date.now();
-  } else {
-    module.exports = function() {
-      return new Date().getTime() - loadTime;
-    };
-    loadTime = new Date().getTime();
-  }
-
-}).call(commonjsGlobal);
-
-//# sourceMappingURL=performance-now.js.map
-});
-
-var root = typeof window === 'undefined' ? commonjsGlobal : window
-  , vendors = ['moz', 'webkit']
-  , suffix = 'AnimationFrame'
-  , raf = root['request' + suffix]
-  , caf = root['cancel' + suffix] || root['cancelRequest' + suffix];
-
-for(var i$1 = 0; !raf && i$1 < vendors.length; i$1++) {
-  raf = root[vendors[i$1] + 'Request' + suffix];
-  caf = root[vendors[i$1] + 'Cancel' + suffix]
-      || root[vendors[i$1] + 'CancelRequest' + suffix];
-}
-
-// Some versions of FF have rAF but not cAF
-if(!raf || !caf) {
-  var last = 0
-    , id$1 = 0
-    , queue = []
-    , frameDuration = 1000 / 60;
-
-  raf = function(callback) {
-    if(queue.length === 0) {
-      var _now = performanceNow()
-        , next = Math.max(0, frameDuration - (_now - last));
-      last = next + _now;
-      setTimeout(function() {
-        var cp = queue.slice(0);
-        // Clear queue here to prevent
-        // callbacks from appending listeners
-        // to the current frame's queue
-        queue.length = 0;
-        for(var i = 0; i < cp.length; i++) {
-          if(!cp[i].cancelled) {
-            try{
-              cp[i].callback(last);
-            } catch(e) {
-              setTimeout(function() { throw e }, 0);
-            }
-          }
-        }
-      }, Math.round(next));
-    }
-    queue.push({
-      handle: ++id$1,
-      callback: callback,
-      cancelled: false
-    });
-    return id$1
-  };
-
-  caf = function(handle) {
-    for(var i = 0; i < queue.length; i++) {
-      if(queue[i].handle === handle) {
-        queue[i].cancelled = true;
-      }
-    }
-  };
-}
-
-var raf_1 = function(fn) {
-  // Wrap in a new function to prevent
-  // `cancel` potentially being assigned
-  // to the native rAF function
-  return raf.call(root, fn)
-};
-var cancel = function() {
-  caf.apply(root, arguments);
-};
-var polyfill$1 = function(object) {
-  if (!object) {
-    object = root;
-  }
-  object.requestAnimationFrame = raf;
-  object.cancelAnimationFrame = caf;
-};
-raf_1.cancel = cancel;
-raf_1.polyfill = polyfill$1;
-
-var canUseDOM$1 = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-
-// ================= Transition =================
-// Event wrapper. Copy from react source code
-function makePrefixMap(styleProp, eventName) {
-  var prefixes = {};
-
-  prefixes[styleProp.toLowerCase()] = eventName.toLowerCase();
-  prefixes['Webkit' + styleProp] = 'webkit' + eventName;
-  prefixes['Moz' + styleProp] = 'moz' + eventName;
-  prefixes['ms' + styleProp] = 'MS' + eventName;
-  prefixes['O' + styleProp] = 'o' + eventName.toLowerCase();
-
-  return prefixes;
-}
-
-function getVendorPrefixes(domSupport, win) {
-  var prefixes = {
-    animationend: makePrefixMap('Animation', 'AnimationEnd'),
-    transitionend: makePrefixMap('Transition', 'TransitionEnd')
-  };
-
-  if (domSupport) {
-    if (!('AnimationEvent' in win)) {
-      delete prefixes.animationend.animation;
-    }
-
-    if (!('TransitionEvent' in win)) {
-      delete prefixes.transitionend.transition;
-    }
-  }
-
-  return prefixes;
-}
-
-var vendorPrefixes = getVendorPrefixes(canUseDOM$1, typeof window !== 'undefined' ? window : {});
-
-var style = {};
-
-if (canUseDOM$1) {
-  style = document.createElement('div').style;
-}
-
-var prefixedEventNames = {};
-
-function getVendorPrefixedEventName(eventName) {
-  if (prefixedEventNames[eventName]) {
-    return prefixedEventNames[eventName];
-  }
-
-  var prefixMap = vendorPrefixes[eventName];
-
-  if (prefixMap) {
-    var stylePropList = Object.keys(prefixMap);
-    var len = stylePropList.length;
-    for (var i = 0; i < len; i += 1) {
-      var styleProp = stylePropList[i];
-      if (Object.prototype.hasOwnProperty.call(prefixMap, styleProp) && styleProp in style) {
-        prefixedEventNames[eventName] = prefixMap[styleProp];
-        return prefixedEventNames[eventName];
-      }
-    }
-  }
-
-  return '';
-}
-
-var animationEndName = getVendorPrefixedEventName('animationend');
-var transitionEndName = getVendorPrefixedEventName('transitionend');
-var supportTransition = !!(animationEndName && transitionEndName);
-
-function getTransitionName$1(transitionName, transitionType) {
-  if (!transitionName) return null;
-
-  if (typeof transitionName === 'object') {
-    var type = transitionType.replace(/-\w/g, function (match) {
-      return match[1].toUpperCase();
-    });
-    return transitionName[type];
-  }
-
-  return transitionName + '-' + transitionType;
-}
-
-var STATUS_NONE = 'none';
-var STATUS_APPEAR = 'appear';
-var STATUS_ENTER = 'enter';
-var STATUS_LEAVE = 'leave';
-
-/**
- * `transitionSupport` is used for none transition test case.
- * Default we use browser transition event support check.
- */
-function genCSSMotion(transitionSupport) {
-  function isSupportTransition(props) {
-    return !!(props.motionName && transitionSupport);
-  }
-
-  var CSSMotion = function (_React$Component) {
-    _inherits$a(CSSMotion, _React$Component);
-
-    function CSSMotion() {
-      _classCallCheck$a(this, CSSMotion);
-
-      var _this = _possibleConstructorReturn$a(this, (CSSMotion.__proto__ || Object.getPrototypeOf(CSSMotion)).call(this));
-
-      _this.onDomUpdate = function () {
-        var _this$state = _this.state,
-            status = _this$state.status,
-            newStatus = _this$state.newStatus;
-        var _this$props = _this.props,
-            onAppearStart = _this$props.onAppearStart,
-            onEnterStart = _this$props.onEnterStart,
-            onLeaveStart = _this$props.onLeaveStart,
-            onAppearActive = _this$props.onAppearActive,
-            onEnterActive = _this$props.onEnterActive,
-            onLeaveActive = _this$props.onLeaveActive,
-            motionAppear = _this$props.motionAppear,
-            motionEnter = _this$props.motionEnter,
-            motionLeave = _this$props.motionLeave;
-
-
-        if (!isSupportTransition(_this.props)) {
-          return;
-        }
-
-        // Event injection
-        var $ele = ReactDOM__default.findDOMNode(_this);
-        if (_this.$ele !== $ele) {
-          _this.removeEventListener(_this.$ele);
-          _this.addEventListener($ele);
-          _this.$ele = $ele;
-        }
-
-        // Init status
-        if (newStatus && status === STATUS_APPEAR && motionAppear) {
-          _this.updateStatus(onAppearStart, null, null, function () {
-            _this.updateActiveStatus(onAppearActive, STATUS_APPEAR);
-          });
-        } else if (newStatus && status === STATUS_ENTER && motionEnter) {
-          _this.updateStatus(onEnterStart, null, null, function () {
-            _this.updateActiveStatus(onEnterActive, STATUS_ENTER);
-          });
-        } else if (newStatus && status === STATUS_LEAVE && motionLeave) {
-          _this.updateStatus(onLeaveStart, null, null, function () {
-            _this.updateActiveStatus(onLeaveActive, STATUS_LEAVE);
-          });
-        }
-      };
-
-      _this.onMotionEnd = function (event) {
-        var _this$state2 = _this.state,
-            status = _this$state2.status,
-            statusActive = _this$state2.statusActive;
-        var _this$props2 = _this.props,
-            onAppearEnd = _this$props2.onAppearEnd,
-            onEnterEnd = _this$props2.onEnterEnd,
-            onLeaveEnd = _this$props2.onLeaveEnd;
-
-        if (status === STATUS_APPEAR && statusActive) {
-          _this.updateStatus(onAppearEnd, { status: STATUS_NONE }, event);
-        } else if (status === STATUS_ENTER && statusActive) {
-          _this.updateStatus(onEnterEnd, { status: STATUS_NONE }, event);
-        } else if (status === STATUS_LEAVE && statusActive) {
-          _this.updateStatus(onLeaveEnd, { status: STATUS_NONE }, event);
-        }
-      };
-
-      _this.addEventListener = function ($ele) {
-        if (!$ele) return;
-
-        $ele.addEventListener(transitionEndName, _this.onMotionEnd);
-        $ele.addEventListener(animationEndName, _this.onMotionEnd);
-      };
-
-      _this.removeEventListener = function ($ele) {
-        if (!$ele) return;
-
-        $ele.removeEventListener(transitionEndName, _this.onMotionEnd);
-        $ele.removeEventListener(animationEndName, _this.onMotionEnd);
-      };
-
-      _this.updateStatus = function (styleFunc, additionalState, event, callback) {
-        var statusStyle = styleFunc ? styleFunc(ReactDOM__default.findDOMNode(_this), event) : null;
-
-        if (statusStyle === false || _this._destroyed) return;
-
-        var nextStep = void 0;
-        if (callback) {
-          nextStep = function nextStep() {
-            _this.nextFrame(callback);
-          };
-        }
-
-        _this.setState(_extends$e({
-          statusStyle: typeof statusStyle === 'object' ? statusStyle : null,
-          newStatus: false
-        }, additionalState), nextStep); // Trigger before next frame & after `componentDidMount`
-      };
-
-      _this.updateActiveStatus = function (styleFunc, currentStatus) {
-        // `setState` use `postMessage` to trigger at the end of frame.
-        // Let's use requestAnimationFrame to update new state in next frame.
-        _this.nextFrame(function () {
-          var status = _this.state.status;
-
-          if (status !== currentStatus) return;
-
-          _this.updateStatus(styleFunc, { statusActive: true });
-        });
-      };
-
-      _this.nextFrame = function (func) {
-        _this.cancelNextFrame();
-        _this.raf = raf_1(func);
-      };
-
-      _this.cancelNextFrame = function () {
-        if (_this.raf) {
-          raf_1.cancel(_this.raf);
-          _this.raf = null;
-        }
-      };
-
-      _this.state = {
-        status: STATUS_NONE,
-        statusActive: false,
-        newStatus: false,
-        statusStyle: null
-      };
-      _this.$ele = null;
-      _this.raf = null;
-      return _this;
-    }
-
-    _createClass(CSSMotion, [{
-      key: 'componentDidMount',
-      value: function componentDidMount() {
-        this.onDomUpdate();
-      }
-    }, {
-      key: 'componentDidUpdate',
-      value: function componentDidUpdate() {
-        this.onDomUpdate();
-      }
-    }, {
-      key: 'componentWillUnmount',
-      value: function componentWillUnmount() {
-        this._destroyed = true;
-        this.removeEventListener(this.$ele);
-        this.cancelNextFrame();
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        var _classNames;
-
-        var _state = this.state,
-            status = _state.status,
-            statusActive = _state.statusActive,
-            statusStyle = _state.statusStyle;
-        var _props = this.props,
-            children = _props.children,
-            motionName = _props.motionName,
-            visible = _props.visible,
-            removeOnLeave = _props.removeOnLeave;
-
-
-        if (!children) return null;
-
-        if (status === STATUS_NONE || !isSupportTransition(this.props)) {
-          return visible || !removeOnLeave ? children({}) : null;
-        }
-
-        return children({
-          className: classnames((_classNames = {}, _defineProperty(_classNames, getTransitionName$1(motionName, status), status !== STATUS_NONE), _defineProperty(_classNames, getTransitionName$1(motionName, status + '-active'), status !== STATUS_NONE && statusActive), _defineProperty(_classNames, motionName, typeof motionName === 'string'), _classNames)),
-          style: statusStyle
-        });
-      }
-    }], [{
-      key: 'getDerivedStateFromProps',
-      value: function getDerivedStateFromProps(props, _ref) {
-        var prevProps = _ref.prevProps;
-
-        if (!isSupportTransition(props)) return {};
-
-        var visible = props.visible,
-            motionAppear = props.motionAppear,
-            motionEnter = props.motionEnter,
-            motionLeave = props.motionLeave,
-            motionLeaveImmediately = props.motionLeaveImmediately;
-
-        var newState = {
-          prevProps: props
-        };
-
-        // Appear
-        if (!prevProps && visible && motionAppear) {
-          newState.status = STATUS_APPEAR;
-          newState.statusActive = false;
-          newState.newStatus = true;
-        }
-
-        // Enter
-        if (prevProps && !prevProps.visible && visible && motionEnter) {
-          newState.status = STATUS_ENTER;
-          newState.statusActive = false;
-          newState.newStatus = true;
-        }
-
-        // Leave
-        if (prevProps && prevProps.visible && !visible && motionLeave || !prevProps && motionLeaveImmediately && !visible && motionLeave) {
-          newState.status = STATUS_LEAVE;
-          newState.statusActive = false;
-          newState.newStatus = true;
-        }
-
-        return newState;
-      }
-    }]);
-
-    return CSSMotion;
-  }(React__default.Component);
-
-  CSSMotion.propTypes = {
-    visible: PropTypes.bool,
-    children: PropTypes.func,
-    motionName: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    motionAppear: PropTypes.bool,
-    motionEnter: PropTypes.bool,
-    motionLeave: PropTypes.bool,
-    motionLeaveImmediately: PropTypes.bool, // Trigger leave motion immediately
-    removeOnLeave: PropTypes.bool,
-    onAppearStart: PropTypes.func,
-    onAppearActive: PropTypes.func,
-    onAppearEnd: PropTypes.func,
-    onEnterStart: PropTypes.func,
-    onEnterActive: PropTypes.func,
-    onEnterEnd: PropTypes.func,
-    onLeaveStart: PropTypes.func,
-    onLeaveActive: PropTypes.func,
-    onLeaveEnd: PropTypes.func
-  };
-  CSSMotion.defaultProps = {
-    visible: true,
-    motionEnter: true,
-    motionAppear: true,
-    motionLeave: true,
-    removeOnLeave: true
-  };
-
-
-  polyfill(CSSMotion);
-
-  return CSSMotion;
-}
-
-var CSSMotion = genCSSMotion(supportTransition);
-
 var defaultKey = 'rc_animate_' + Date.now();
 
 function getChildrenFromProps(props) {
@@ -33424,6 +32811,8 @@ function noop$1() {}
 var Animate = function (_React$Component) {
   _inherits$a(Animate, _React$Component);
 
+  // eslint-disable-line
+
   function Animate(props) {
     _classCallCheck$a(this, Animate);
 
@@ -33441,7 +32830,7 @@ var Animate = function (_React$Component) {
 
     _this.childrenRefs = {};
     return _this;
-  } // eslint-disable-line
+  }
 
   _createClass(Animate, [{
     key: 'componentDidMount',
@@ -33635,7 +33024,6 @@ var Animate = function (_React$Component) {
 }(React__default.Component);
 
 Animate.isAnimate = true;
-Animate.CSSMotion = CSSMotion;
 Animate.propTypes = {
   component: PropTypes.any,
   componentProps: PropTypes.object,
@@ -37945,22 +37333,28 @@ ColorPicker$1.propTypes = {
 var StyledMultiInput = styled.div.withConfig({
   displayName: 'MultiInput__StyledMultiInput',
   componentId: 'sc-1hveop0-0'
-})(['position:relative;display:flex;align-items:center;flex-wrap:wrap;cursor:text;font-size:14px;height:36px;overflow-y:auto;padding-left:11px;padding-right:11px;padding-top:0;padding-bottom:4px;&.focused{border-color:#3f789e;outline:0;box-shadow:0 0 0 2px rgba(35,97,146,0.2);border-right-width:1px !important;}']);
+})(['&&{position:relative;display:flex;align-items:center;flex-wrap:wrap;cursor:text;font-size:14px;height:36px;overflow-y:auto;padding-left:11px;padding-right:11px;padding-top:0;padding-bottom:4px;}&&:hover{border-color:', ';}&&.focused{border-color:', ';outline:0;box-shadow:0 0 0 2px ', ';border-right-width:1px !important;}'], function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return rgba(props.theme.primaryColor, 0.2);
+});
 
 var Placeholder = styled.div.withConfig({
   displayName: 'MultiInput__Placeholder',
   componentId: 'sc-1hveop0-1'
-})(['color:', ';opacity:0.5;pointer-events:none;margin-top:4px;height:22px;&.focused{display:none;}'], colors.secondaryTextColor);
+})(['&&{color:', ';opacity:0.5;pointer-events:none;margin-top:4px;height:22px;}&&.focused{display:none;}'], colors.secondaryTextColor);
 
 var StyledTag = styled(antd.Tag).withConfig({
   displayName: 'MultiInput__StyledTag',
   componentId: 'sc-1hveop0-2'
-})(['cursor:default;margin-top:4px;height:22px;&:hover{opacity:1 !important;}']);
+})(['&&{cursor:default;margin-top:4px;height:22px;}&&:hover{opacity:1 !important;}']);
 
 var Input$1 = styled.input.withConfig({
   displayName: 'MultiInput__Input',
   componentId: 'sc-1hveop0-3'
-})(['outline:none;border:0 none;flex:1;width:auto;margin-top:4px;height:22px;']);
+})(['&&{outline:none;border:0 none;flex:1;width:auto;margin-top:4px;height:22px;}']);
 
 var MultiInput = function (_React$Component) {
   inherits(MultiInput, _React$Component);
@@ -38060,45 +37454,63 @@ var MultiInput = function (_React$Component) {
       var _this2 = this;
 
       return React__default.createElement(
-        StyledMultiInput,
-        {
-          className: classnames('ant-input', defineProperty({}, 'focused', this.state.isFocused)),
-          onClick: this.onWrapperClick,
-          minRows: this.props.minRows,
-          maxRows: this.props.maxRows
-        },
-        this.props.placeholder && this.state.inputValue === '' && this.state.values.length === 0 && React__default.createElement(
-          Placeholder,
-          {
-            className: classnames(defineProperty({}, 'focused', this.state.isFocused)),
-            minRows: this.props.minRows
-          },
-          this.props.placeholder
-        ),
-        this.state.values.map(function (value, index) {
-          return React__default.createElement(
-            StyledTag,
+        'div',
+        { className: classnames('ant-form-vertical ant-form-item-control-wrapper', this.props.className) },
+        React__default.createElement(
+          'div',
+          { className: 'ant-form-item-control' },
+          this.props.label && React__default.createElement(
+            'div',
+            { className: 'ant-form-item-label' },
+            React__default.createElement(
+              'label',
+              { title: this.props.label },
+              this.props.label
+            )
+          ),
+          React__default.createElement(
+            StyledMultiInput,
             {
-              key: value,
-              closable: true,
-              onClose: _this2.stopPropogation
-              //eslint-disable-next-line react/jsx-no-bind
-              , afterClose: function afterClose() {
-                return _this2.onRemoveValue(index);
-              }
+              className: classnames('ant-input', defineProperty({}, 'focused', this.state.isFocused)),
+              onClick: this.onWrapperClick,
+              minRows: this.props.minRows,
+              maxRows: this.props.maxRows,
+              theme: this.context
             },
-            value
-          );
-        }),
-        React__default.createElement(Input$1, {
-          ref: this.inputRef,
-          type: 'text',
-          onFocus: this.onFocus,
-          onBlur: this.onBlur,
-          onChange: this.onChange,
-          value: this.state.inputValue,
-          onKeyDown: this.onKeyDown
-        })
+            this.props.placeholder && this.state.inputValue === '' && this.state.values.length === 0 && React__default.createElement(
+              Placeholder,
+              {
+                className: classnames(defineProperty({}, 'focused', this.state.isFocused)),
+                minRows: this.props.minRows
+              },
+              this.props.placeholder
+            ),
+            this.state.values.map(function (value, index) {
+              return React__default.createElement(
+                StyledTag,
+                {
+                  key: value,
+                  closable: true,
+                  onClose: _this2.stopPropogation
+                  //eslint-disable-next-line react/jsx-no-bind
+                  , afterClose: function afterClose() {
+                    return _this2.onRemoveValue(index);
+                  }
+                },
+                value
+              );
+            }),
+            React__default.createElement(Input$1, {
+              ref: this.inputRef,
+              type: 'text',
+              onFocus: this.onFocus,
+              onBlur: this.onBlur,
+              onChange: this.onChange,
+              value: this.state.inputValue,
+              onKeyDown: this.onKeyDown
+            })
+          )
+        )
       );
     }
   }]);
@@ -38108,8 +37520,14 @@ var MultiInput = function (_React$Component) {
 MultiInput.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
-  validator: PropTypes.func
+  validator: PropTypes.func,
+  label: PropTypes.string,
+  className: PropTypes.string
 };
+MultiInput.defaultProps = {
+  className: ''
+};
+MultiInput.contextType = ThemeContext;
 
 exports.Row = antd.Row;
 exports.Col = antd.Col;
@@ -38140,4 +37558,5 @@ exports.ChevronDown = ChevronDown;
 exports.Info = Info;
 exports.colors = colors;
 exports.MultiInput = MultiInput;
+exports.ThemeProvider = ThemeProvider;
 //# sourceMappingURL=index.js.map

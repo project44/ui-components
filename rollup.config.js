@@ -57,7 +57,11 @@ export default {
     url(),
     babel({
       exclude: 'node_modules/**',
-      plugins: ['external-helpers', 'babel-plugin-styled-components'],
+      plugins: [
+        'external-helpers',
+        '@quickbaseoss/babel-plugin-styled-components-css-namespace',
+        'babel-plugin-styled-components',
+      ],
     }),
     resolve(),
     commonjs(),

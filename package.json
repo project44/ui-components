@@ -36,6 +36,7 @@
     "react-scripts/**/merge": ">=1.2.1"
   },
   "devDependencies": {
+    "@quickbaseoss/babel-plugin-styled-components-css-namespace": "^1.0.0-rc",
     "@types/react": "^16.7.20",
     "@types/react-dom": "^16.0.11",
     "babel-core": "^6.26.3",

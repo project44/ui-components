@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled from 'styled-components';
+import { rgba } from 'polished';
 import { Tag } from 'antd';
 
 import colors from '../../styles/colors';
+import { ThemeContext } from '../../styles/theme';
 
 const StyledMultiInput = styled.div`
   position: relative;
@@ -19,10 +21,13 @@ const StyledMultiInput = styled.div`
   padding-right: 11px;
   padding-top: 0;
   padding-bottom: 4px;
+  &:hover {
+    border-color: ${props => props.theme.primaryColor};
+  }
   &.focused {
-    border-color: #3f789e;
+    border-color: ${props => props.theme.primaryColor};
     outline: 0;
-    box-shadow: 0 0 0 2px rgba(35, 97, 146, 0.2);
+    box-shadow: 0 0 0 2px ${props => rgba(props.theme.primaryColor, 0.2)};
     border-right-width: 1px !important;
   }
 `;
@@ -61,7 +66,15 @@ class MultiInput extends React.Component {
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
     validator: PropTypes.func,
+    label: PropTypes.string,
+    className: PropTypes.string,
   };
+
+  static defaultProps = {
+    className: '',
+  };
+
+  static contextType = ThemeContext;
 
   constructor(props) {
     super(props);
@@ -150,47 +163,57 @@ class MultiInput extends React.Component {
 
   render() {
     return (
-      <StyledMultiInput
-        className={classNames('ant-input', {
-          ['focused']: this.state.isFocused,
-        })}
-        onClick={this.onWrapperClick}
-        minRows={this.props.minRows}
-        maxRows={this.props.maxRows}
-      >
-        {this.props.placeholder && this.state.inputValue === '' && this.state.values.length === 0 && (
-          <Placeholder
-            className={classNames({
+      <div className={classNames('ant-form-vertical ant-form-item-control-wrapper', this.props.className)}>
+        <div className={'ant-form-item-control'}>
+          {this.props.label && (
+            <div className="ant-form-item-label">
+              <label title={this.props.label}>{this.props.label}</label>
+            </div>
+          )}
+          <StyledMultiInput
+            className={classNames('ant-input', {
               ['focused']: this.state.isFocused,
             })}
+            onClick={this.onWrapperClick}
             minRows={this.props.minRows}
+            maxRows={this.props.maxRows}
+            theme={this.context}
           >
-            {this.props.placeholder}
-          </Placeholder>
-        )}
-        {this.state.values.map((value, index) => {
-          return (
-            <StyledTag
-              key={value}
-              closable
-              onClose={this.stopPropogation}
-              //eslint-disable-next-line react/jsx-no-bind
-              afterClose={() => this.onRemoveValue(index)}
-            >
-              {value}
-            </StyledTag>
-          );
-        })}
-        <Input
-          ref={this.inputRef}
-          type="text"
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
-          onChange={this.onChange}
-          value={this.state.inputValue}
-          onKeyDown={this.onKeyDown}
-        />
-      </StyledMultiInput>
+            {this.props.placeholder && this.state.inputValue === '' && this.state.values.length === 0 && (
+              <Placeholder
+                className={classNames({
+                  ['focused']: this.state.isFocused,
+                })}
+                minRows={this.props.minRows}
+              >
+                {this.props.placeholder}
+              </Placeholder>
+            )}
+            {this.state.values.map((value, index) => {
+              return (
+                <StyledTag
+                  key={value}
+                  closable
+                  onClose={this.stopPropogation}
+                  //eslint-disable-next-line react/jsx-no-bind
+                  afterClose={() => this.onRemoveValue(index)}
+                >
+                  {value}
+                </StyledTag>
+              );
+            })}
+            <Input
+              ref={this.inputRef}
+              type="text"
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              onChange={this.onChange}
+              value={this.state.inputValue}
+              onKeyDown={this.onKeyDown}
+            />
+          </StyledMultiInput>
+        </div>
+      </div>
     );
   }
 }
