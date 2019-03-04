@@ -5,7 +5,7 @@ import { Input as AntInput } from 'antd';
 import { shade, rgba } from 'polished';
 import styled from 'styled-components';
 
-import { ThemeContext } from '../../styles/theme';
+import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 
 const StyledInput = styled.div`
   width: 100%;
@@ -75,6 +75,7 @@ export default class Input extends Component {
     type: PropTypes.string,
     custom: PropTypes.object,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+    theme: PropTypes.shape(defaultThemeShape),
   };
 
   static contextType = ThemeContext;
@@ -97,7 +98,7 @@ export default class Input extends Component {
     } = this.props;
 
     return (
-      <StyledInput theme={this.context}>
+      <StyledInput theme={this.props.theme || this.context}>
         <div
           className={classNames('ant-form-vertical ant-form-item-control-wrapper', {
             'w-full': search === 'primary',

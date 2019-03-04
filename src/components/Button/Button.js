@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Button as AntButton } from 'antd';
 import styled from 'styled-components';
 import { shade } from 'polished';
-import { ThemeContext } from '../../styles/theme';
+import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 
 import './Button.scss';
 
@@ -30,6 +30,7 @@ class Button extends Component {
     size: PropTypes.string,
     className: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+    theme: PropTypes.shape(defaultThemeShape),
   };
 
   static contextType = ThemeContext;
@@ -73,7 +74,7 @@ class Button extends Component {
     } else {
       return (
         <StyledButton
-          theme={this.context}
+          theme={this.props.theme || this.context}
           className={classNames(className, {
             'p44-btn': type === 'default',
             'p44-btn--primary': type === 'primary',

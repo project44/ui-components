@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { Checkbox as AntCheckbox, Col, Row } from 'antd';
 import styled from 'styled-components';
 import ShipmentModeIcon from '../ShipmentModeIcon/ShipmentModeIcon';
-import { ThemeContext } from '../../styles/theme';
+import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 
 import './Checkbox.scss';
 
@@ -44,6 +44,7 @@ export default class Checkbox extends Component {
     onChange: PropTypes.func,
     className: PropTypes.string,
     mode: PropTypes.string,
+    theme: PropTypes.shape(defaultThemeShape),
   };
 
   static contextType = ThemeContext;
@@ -54,7 +55,7 @@ export default class Checkbox extends Component {
     return (
       <StyledCheckbox
         mode={mode}
-        theme={this.context}
+        theme={this.props.theme || this.context}
         className={classNames('checkbox-group', className, {
           styled: styled,
         })}

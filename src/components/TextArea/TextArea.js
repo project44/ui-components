@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { rgba } from 'polished';
 import colors from '../../styles/colors';
-import { ThemeContext } from '../../styles/theme';
+import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 
 const StyledTextArea = styled(AntInput.TextArea)`
   &:hover {
@@ -58,6 +58,7 @@ export default class TextArea extends Component {
     charLimit: PropTypes.number,
     label: PropTypes.string,
     custom: PropTypes.object,
+    theme: PropTypes.shape(defaultThemeShape),
   };
 
   static defaultProps = {
@@ -113,7 +114,7 @@ export default class TextArea extends Component {
           placeholder={this.props.placeholder}
           autosize={this.props.autosize}
           value={this.props.value}
-          theme={this.context}
+          theme={this.props.theme || this.context}
           {...this.props.custom}
         />
         {this.props.label === undefined && this.props.charLimit && (

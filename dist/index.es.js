@@ -18699,7 +18699,7 @@ var Button$1 = function (_Component) {
         return React.createElement(
           StyledButton,
           _extends({
-            theme: this.context,
+            theme: this.props.theme || this.context,
             className: classnames(className, {
               'p44-btn': type === 'default',
               'p44-btn--primary': type === 'primary',
@@ -18731,7 +18731,8 @@ Button$1.propTypes = {
   type: PropTypes.string,
   size: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  theme: PropTypes.shape(defaultThemeShape)
 };
 Button$1.contextType = ThemeContext;
 
@@ -18880,7 +18881,7 @@ var Checkbox$1 = function (_Component) {
         StyledCheckbox,
         {
           mode: mode,
-          theme: this.context,
+          theme: this.props.theme || this.context,
           className: classnames('checkbox-group', className, {
             styled: styled$$1
           })
@@ -18940,7 +18941,8 @@ Checkbox$1.propTypes = {
   styled: PropTypes.bool,
   onChange: PropTypes.func,
   className: PropTypes.string,
-  mode: PropTypes.string
+  mode: PropTypes.string,
+  theme: PropTypes.shape(defaultThemeShape)
 };
 Checkbox$1.contextType = ThemeContext;
 
@@ -19231,7 +19233,7 @@ var Input$1 = function (_Component) {
 
       return React.createElement(
         StyledInput,
-        { theme: this.context },
+        { theme: this.props.theme || this.context },
         React.createElement(
           'div',
           {
@@ -19311,7 +19313,8 @@ Input$1.propTypes = {
   errorMessage: PropTypes.string,
   type: PropTypes.string,
   custom: PropTypes.object,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  theme: PropTypes.shape(defaultThemeShape)
 };
 Input$1.contextType = ThemeContext;
 
@@ -19400,7 +19403,7 @@ var TextArea = function (_Component) {
           placeholder: this.props.placeholder,
           autosize: this.props.autosize,
           value: this.props.value,
-          theme: this.context
+          theme: this.props.theme || this.context
         }, this.props.custom)),
         this.props.label === undefined && this.props.charLimit && React.createElement(
           NoLabelCharLimit,
@@ -19426,7 +19429,8 @@ TextArea.propTypes = {
   placeholder: PropTypes.string,
   charLimit: PropTypes.number,
   label: PropTypes.string,
-  custom: PropTypes.object
+  custom: PropTypes.object,
+  theme: PropTypes.shape(defaultThemeShape)
 };
 TextArea.defaultProps = {
   classname: '',
@@ -19772,7 +19776,7 @@ var Radio$1 = function (_Component) {
           value: value,
           buttonStyle: 'solid',
           onChange: onChange,
-          theme: this.context
+          theme: this.props.theme || this.context
         },
         radioData.map(function (item, index) {
           if (layout === 'row') {
@@ -19844,7 +19848,8 @@ Radio$1.propTypes = {
   modeIcons: PropTypes.bool,
   onChange: PropTypes.func,
   className: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.string,
+  theme: PropTypes.shape(defaultThemeShape)
 };
 Radio$1.contextType = ThemeContext;
 
@@ -27733,7 +27738,7 @@ var StickyNav = function (_Component) {
             StyledNavItem,
             {
               key: index$$1,
-              theme: _this2.context,
+              theme: _this2.props.theme || _this2.context,
               className: _this2.state.currentView === item.link ? 'sticky-nav__item selected' : 'sticky-nav__item'
             },
             React.createElement(
@@ -27760,7 +27765,8 @@ var StickyNav = function (_Component) {
 
 StickyNav.propTypes = {
   mode: PropTypes.string,
-  menuItems: PropTypes.array
+  menuItems: PropTypes.array,
+  theme: PropTypes.shape(defaultThemeShape)
 };
 StickyNav.defaultProps = {
   mode: 'follow'
@@ -37468,7 +37474,7 @@ var MultiInput = function (_React$Component) {
               onClick: this.onWrapperClick,
               minRows: this.props.minRows,
               maxRows: this.props.maxRows,
-              theme: this.context
+              theme: this.props.theme || this.context
             },
             this.props.placeholder && this.state.inputValue === '' && this.state.values.length === 0 && React.createElement(
               Placeholder,
@@ -37515,7 +37521,8 @@ MultiInput.propTypes = {
   onChange: PropTypes.func,
   validator: PropTypes.func,
   label: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  theme: PropTypes.shape(defaultThemeShape)
 };
 MultiInput.defaultProps = {
   className: ''

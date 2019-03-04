@@ -6,7 +6,7 @@ import { rgba } from 'polished';
 import { Tag } from 'antd';
 
 import colors from '../../styles/colors';
-import { ThemeContext } from '../../styles/theme';
+import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 
 const StyledMultiInput = styled.div`
   position: relative;
@@ -68,6 +68,7 @@ class MultiInput extends React.Component {
     validator: PropTypes.func,
     label: PropTypes.string,
     className: PropTypes.string,
+    theme: PropTypes.shape(defaultThemeShape),
   };
 
   static defaultProps = {
@@ -177,7 +178,7 @@ class MultiInput extends React.Component {
             onClick={this.onWrapperClick}
             minRows={this.props.minRows}
             maxRows={this.props.maxRows}
-            theme={this.context}
+            theme={this.props.theme || this.context}
           >
             {this.props.placeholder && this.state.inputValue === '' && this.state.values.length === 0 && (
               <Placeholder

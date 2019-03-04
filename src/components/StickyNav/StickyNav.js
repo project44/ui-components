@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { HashLink as Link } from 'react-router-hash-link';
 import styled from 'styled-components';
-import { ThemeContext } from '../../styles/theme';
+import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 
 import './StickyNav.scss';
 
@@ -27,6 +27,7 @@ export default class StickyNav extends Component {
   static propTypes = {
     mode: PropTypes.string,
     menuItems: PropTypes.array,
+    theme: PropTypes.shape(defaultThemeShape),
   };
 
   static defaultProps = {
@@ -93,7 +94,7 @@ export default class StickyNav extends Component {
           return (
             <StyledNavItem
               key={index}
-              theme={this.context}
+              theme={this.props.theme || this.context}
               className={this.state.currentView === item.link ? 'sticky-nav__item selected' : 'sticky-nav__item'}
             >
               <Link to={mode === 'follow' ? `#${item.link}` : item.link} smooth>

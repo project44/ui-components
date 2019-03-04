@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { rgba } from 'polished';
 
 import ShipmentModeIcon from '../ShipmentModeIcon/ShipmentModeIcon';
-import { ThemeContext } from '../../styles/theme';
+import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 
 const StyledRadioGroup = styled(AntRadio.Group)`
   &.block {
@@ -100,6 +100,7 @@ export default class Radio extends Component {
     onChange: PropTypes.func,
     className: PropTypes.string,
     value: PropTypes.string,
+    theme: PropTypes.shape(defaultThemeShape),
   };
 
   static contextType = ThemeContext;
@@ -125,7 +126,7 @@ export default class Radio extends Component {
         value={value}
         buttonStyle="solid"
         onChange={onChange}
-        theme={this.context}
+        theme={this.props.theme || this.context}
       >
         {radioData.map((item, index) => {
           if (layout === 'row') {
