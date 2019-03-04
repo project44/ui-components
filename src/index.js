@@ -16,7 +16,7 @@ import DateRange from './components/DateRange/DateRange';
 import StickyNav from './components/StickyNav/StickyNav';
 import Popover from './components/Popover/Popover';
 import ColorPicker from './components/ColorPicker/ColorPicker';
-import { Layers, Settings, Checkmark, Close, Info, ChevronDown } from './components/Icons';
+import { Layers, Settings, Checkmark, Close, Info, ChevronDown, Copy } from './components/Icons';
 import colors from './styles/colors';
 import MultiInput from './components/MultiInput/MultiInput';
 import { ThemeProvider } from './styles/theme';
@@ -51,6 +51,7 @@ export {
   Close,
   ChevronDown,
   Info,
+  Copy,
   Row,
   Col,
   message,

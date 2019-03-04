@@ -4,12 +4,6 @@ import Checkmark from './Checkmark';
 import Close from './Close';
 import Info from './Info';
 import ChevronDown from './ChevronDown';
+import Copy from './Copy';
 
-export {
-  Layers,
-  Settings,
-  Checkmark,
-  Close,
-  Info,
-  ChevronDown,
-};
+export { Layers, Settings, Checkmark, Close, Info, ChevronDown, Copy };
