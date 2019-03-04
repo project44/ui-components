@@ -2,4 +2,4 @@ package.json
 yarn.lock
 Dockerfile
 Jenkinsfile
-./dist
+/dist
