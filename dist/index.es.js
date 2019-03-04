@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AutoComplete, Button, Checkbox, Col, Row, DatePicker, Menu, Dropdown, Input, Select, Radio, Popover, message, Alert } from 'antd';
+import { AutoComplete, Button, Checkbox, Col, Row, DatePicker, Menu, Dropdown, Input, Select, Radio, Popover, Tag, message, Alert } from 'antd';
 export { Row, Col, message, Alert } from 'antd';
 import styled from 'styled-components';
 import ReactDOM, { findDOMNode } from 'react-dom';
@@ -17195,12 +17195,14 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
-var taggedTemplateLiteral = function (strings, raw) {
-  return Object.freeze(Object.defineProperties(strings, {
-    raw: {
-      value: Object.freeze(raw)
-    }
-  }));
+var toConsumableArray = function (arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  } else {
+    return Array.from(arr);
+  }
 };
 
 var AutoComplete$1 = function (_Component) {
@@ -18596,6 +18598,7 @@ curry
 var primaryBlue = '#236192';
 var primaryGreyEighty = '#575451';
 var primaryGreyForty = '#aba9a8';
+var primaryGreyTwenty = '#D5D4D4';
 var primaryGreyFive = '#f3f3f3';
 var white = '#ffffff';
 
@@ -18604,7 +18607,9 @@ var colors = {
   darkBackgroundColor: primaryGreyEighty,
   secondaryBackgroundColor: white,
   primaryTextColor: primaryGreyEighty,
-  secondaryTextColor: primaryGreyForty
+  secondaryTextColor: primaryGreyForty,
+  darkBorderColor: primaryGreyForty,
+  lightBorderColor: primaryGreyTwenty
 };
 
 var defaultTheme = {
@@ -18617,12 +18622,30 @@ var defaultThemeShape = {
   secondaryColor: PropTypes.string
 };
 
-var _templateObject$1 = taggedTemplateLiteral(['\n  &.p44-btn {\n    &--primary {\n      background-color: ', ';\n      &:hover, &:focus {\n        background-color: ', ';\n      }\n    }\n  }\n'], ['\n  &.p44-btn {\n    &--primary {\n      background-color: ', ';\n      &:hover, &:focus {\n        background-color: ', ';\n      }\n    }\n  }\n']);
+var ThemeContext = React.createContext(defaultTheme);
 
-var StyledButton = styled(Button)(_templateObject$1, function (props) {
+var ThemeProvider = function ThemeProvider(_ref) {
+  var theme = _ref.theme,
+      children = _ref.children;
+
+  return React.createElement(
+    ThemeContext.Provider,
+    { value: theme },
+    children
+  );
+};
+
+ThemeProvider.defaultProps = {
+  theme: defaultTheme
+};
+
+var StyledButton = styled(Button).withConfig({
+  displayName: 'Button__StyledButton',
+  componentId: 'sc-1f3ih9g-0'
+})(['&&.p44-btn--primary{background-color:', ';}&&.p44-btn--primary:hover,&&.p44-btn--primary:focus{background-color:', ';}'], function (props) {
   return props.theme && props.theme.primaryColor;
 }, function (props) {
-  return curriedShade(.2)(props.theme.primaryColor);
+  return curriedShade(0.2)(props.theme.primaryColor);
 });
 
 var Button$1 = function (_Component) {
@@ -18647,8 +18670,7 @@ var Button$1 = function (_Component) {
           type = _props$type === undefined ? 'default' : _props$type,
           _props$size = _props.size,
           size$$1 = _props$size === undefined ? 'med' : _props$size,
-          theme = _props.theme,
-          props = objectWithoutProperties(_props, ['className', 'clickFn', 'blurFn', 'upload', 'download', 'type', 'size', 'theme']);
+          props = objectWithoutProperties(_props, ['className', 'clickFn', 'blurFn', 'upload', 'download', 'type', 'size']);
 
 
       if (upload) {
@@ -18658,17 +18680,17 @@ var Button$1 = function (_Component) {
           React.createElement(
             StyledButton,
             _extends({
-              theme: theme,
+              theme: this.context,
               className: classnames(className, {
                 'p44-btn': type === 'default',
                 'p44-btn--primary': type === 'primary',
                 'p44-btn--secondary': type === 'secondary',
                 'p44-btn--destructive': type === 'destructive',
                 'p44-btn--destructive-text': type === 'destructive-text',
-                'lg': size$$1 === 'lg',
-                'med': size$$1 === 'med',
-                'sm': size$$1 === 'sm',
-                'xsm': size$$1 === 'xsm'
+                lg: size$$1 === 'lg',
+                med: size$$1 === 'med',
+                sm: size$$1 === 'sm',
+                xsm: size$$1 === 'xsm'
               }),
               onClick: clickFn,
               onBlur: blurFn
@@ -18680,17 +18702,17 @@ var Button$1 = function (_Component) {
         return React.createElement(
           StyledButton,
           _extends({
-            theme: theme,
+            theme: this.props.theme || this.context,
             className: classnames(className, {
               'p44-btn': type === 'default',
               'p44-btn--primary': type === 'primary',
               'p44-btn--secondary': type === 'secondary',
               'p44-btn--destructive': type === 'destructive',
               'p44-btn--destructive-text': type === 'destructive-text',
-              'lg': size$$1 === 'lg',
-              'med': size$$1 === 'med',
-              'sm': size$$1 === 'sm',
-              'xsm': size$$1 === 'xsm'
+              lg: size$$1 === 'lg',
+              med: size$$1 === 'med',
+              sm: size$$1 === 'sm',
+              xsm: size$$1 === 'xsm'
             }),
             onClick: clickFn,
             onBlur: blurFn,
@@ -18712,12 +18734,10 @@ Button$1.propTypes = {
   type: PropTypes.string,
   size: PropTypes.string,
   className: PropTypes.string,
-  theme: PropTypes.shape(defaultThemeShape),
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  theme: PropTypes.shape(defaultThemeShape)
 };
-Button$1.defaultProps = {
-  theme: defaultTheme
-};
+Button$1.contextType = ThemeContext;
 
 var ltlIcon = "data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20width%3D%22188px%22%20height%3D%2264px%22%20viewBox%3D%220%200%20188%2064%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%20%20%20%20%20%20%20%20%3Ctitle%3Eltl%3C%2Ftitle%3E%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%20%20%20%20%3Cg%20id%3D%22ltl%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%20%20%20%20%20%20%20%20%3Cg%20id%3D%22ic%2Fmulti-modal%2FLTL%22%20fill%3D%22%23575451%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M30.5001%2C47%20C32.9836%2C47%2035%2C49.0165%2035%2C51.5%20C35%2C53.9836%2032.9836%2C56%2030.5001%2C56%20C28.0164%2C56%2026%2C53.9836%2026%2C51.5%20C26%2C49.0165%2028.0164%2C47%2030.5001%2C47%20Z%20M41.5001%2C47%20C43.9836%2C47%2046%2C49.0165%2046%2C51.5%20C46%2C53.9836%2043.9836%2C56%2041.5001%2C56%20C39.0164%2C56%2037%2C53.9836%2037%2C51.5%20C37%2C49.0165%2039.0164%2C47%2041.5001%2C47%20Z%20M163.499%2C47%20C165.984%2C47%20168%2C49.0165%20168%2C51.5%20C168%2C53.9836%20165.984%2C56%20163.499%2C56%20C161.015%2C56%20159%2C53.9836%20159%2C51.5%20C159%2C49.0165%20161.015%2C47%20163.499%2C47%20Z%20M104.5%2C47%20C106.9836%2C47%20109%2C49.0165%20109%2C51.5%20C109%2C53.9836%20106.9836%2C56%20104.5%2C56%20C102.0164%2C56%20100%2C53.9836%20100%2C51.5%20C100%2C49.0165%20102.0164%2C47%20104.5%2C47%20Z%20M115.499%2C47%20C117.984%2C47%20120%2C49.0165%20120%2C51.5%20C120%2C53.9836%20117.984%2C56%20115.499%2C56%20C113.0164%2C56%20111%2C53.9836%20111%2C51.5%20C111%2C49.0165%20113.0164%2C47%20115.499%2C47%20Z%20M14%2C45%20L14%2C41.9224%20L130%2C41.9224%20L130%2C13%20C130%2C13%20135.215%2C13%20139.907%2C13%20C142.163%2C13%20144.327%2C13.9061%20145.923%2C15.5191%20C147.519%2C17.1321%20148.415%2C19.3197%20148.415%2C21.6007%20L148.415%2C20.8341%20L157.15%2C20.8341%20L158.148%2C29.2184%20L158.148%2C29%20L174%2C31.0172%20L174%2C52%20L169.513%2C52%20C169.513%2C48.4976%20166.737%2C45.6542%20163.318%2C45.6542%20C159.899%2C45.6542%20157.123%2C48.4975%20157.123%2C52%20L126%2C52%20L126%2C45%20L14%2C45%20Z%20M14%2C40%20L127%2C40%20L127%2C8%20L14%2C8%20L14%2C40%20Z%20M88%2C11%20L17.0268981%2C11%20L17%2C37%20L88%2C37%20L88%2C11%20Z%22%20id%3D%22VLTL%22%3E%3C%2Fpath%3E%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%3C%2Fg%3E%3C%2Fsvg%3E";
 
@@ -18821,9 +18841,10 @@ ShipmentModeIcon.propTypes = {
   small: PropTypes.bool
 };
 
-var _templateObject$2 = taggedTemplateLiteral(['\n  .ant-checkbox-wrapper {\n    margin: 2px 0;\n    .ant-checkbox {\n      .ant-checkbox-inner {\n        background-color: transparent;\n      }\n\n      &.ant-checkbox-checked .ant-checkbox-inner {\n        background-color: ', ';\n        border-color: ', ';\n        &::after {\n          border-color: ', ';\n        }\n      }\n    }\n    .item-title {\n      color: ', ';\n    }\n  }\n  .ant-checkbox-wrapper:hover .ant-checkbox-inner,\n  .ant-checkbox:hover .ant-checkbox-inner,\n  .ant-checkbox-input:focus+.ant-checkbox-inner {\n    border-color: ', ';\n  }\n'], ['\n  .ant-checkbox-wrapper {\n    margin: 2px 0;\n    .ant-checkbox {\n      .ant-checkbox-inner {\n        background-color: transparent;\n      }\n\n      &.ant-checkbox-checked .ant-checkbox-inner {\n        background-color: ', ';\n        border-color: ', ';\n        &::after {\n          border-color: ', ';\n        }\n      }\n    }\n    .item-title {\n      color: ', ';\n    }\n  }\n  .ant-checkbox-wrapper:hover .ant-checkbox-inner,\n  .ant-checkbox:hover .ant-checkbox-inner,\n  .ant-checkbox-input:focus+.ant-checkbox-inner {\n    border-color: ', ';\n  }\n']);
-
-var StyledCheckbox = styled.div(_templateObject$2, function (props) {
+var StyledCheckbox = styled.div.withConfig({
+  displayName: 'Checkbox__StyledCheckbox',
+  componentId: 'z4tqsx-0'
+})(['&& .ant-checkbox-wrapper{margin:2px 0;}&& .ant-checkbox-wrapper .ant-checkbox .ant-checkbox-inner{background-color:transparent;}&& .ant-checkbox-wrapper .ant-checkbox.ant-checkbox-checked .ant-checkbox-inner{background-color:', ';border-color:', ';}&& .ant-checkbox-wrapper .ant-checkbox.ant-checkbox-checked .ant-checkbox-inner::after{border-color:', ';}&& .ant-checkbox-wrapper .item-title{color:', ';}&& .ant-checkbox-wrapper:hover .ant-checkbox-inner,&& .ant-checkbox:hover .ant-checkbox-inner,&& .ant-checkbox-input:focus + .ant-checkbox-inner{border-color:', ';}'], function (props) {
   return props.mode === 'dark' ? props.theme.primaryColor : 'var(--white)';
 }, function (props) {
   return props.mode === 'dark' ? props.theme.primaryColor : 'var(--white)';
@@ -18855,7 +18876,6 @@ var Checkbox$1 = function (_Component) {
           _props$mode = _props.mode,
           mode = _props$mode === undefined ? 'dark' : _props$mode,
           onChange = _props.onChange,
-          theme = _props.theme,
           _props$className = _props.className,
           className = _props$className === undefined ? null : _props$className;
 
@@ -18864,9 +18884,9 @@ var Checkbox$1 = function (_Component) {
         StyledCheckbox,
         {
           mode: mode,
-          theme: theme,
+          theme: this.props.theme || this.context,
           className: classnames('checkbox-group', className, {
-            'styled': styled$$1
+            styled: styled$$1
           })
         },
         React.createElement(
@@ -18876,7 +18896,12 @@ var Checkbox$1 = function (_Component) {
             if (layout === 'row') {
               return React.createElement(
                 Checkbox,
-                { key: item.key || index, value: lodash.get(item, 'value', item), checked: lodash.get(item, 'checked', false), onChange: onChange },
+                {
+                  key: item.key || index,
+                  value: lodash.get(item, 'value', item),
+                  checked: lodash.get(item, 'checked', false),
+                  onChange: onChange
+                },
                 styled$$1 && item.value && React.createElement(ShipmentModeIcon, { className: 'item-icon', mode: item.value, small: true }),
                 React.createElement(
                   'span',
@@ -18890,7 +18915,12 @@ var Checkbox$1 = function (_Component) {
                 { key: index },
                 React.createElement(
                   Checkbox,
-                  { key: item.key || index, value: lodash.get(item, 'value', item), checked: lodash.get(item, 'checked', false), onChange: onChange },
+                  {
+                    key: item.key || index,
+                    value: lodash.get(item, 'value', item),
+                    checked: lodash.get(item, 'checked', false),
+                    onChange: onChange
+                  },
                   styled$$1 && item.value && React.createElement(ShipmentModeIcon, { className: 'item-icon', mode: item.value, small: true }),
                   React.createElement(
                     'span',
@@ -18908,9 +18938,6 @@ var Checkbox$1 = function (_Component) {
   return Checkbox$$1;
 }(Component);
 
-Checkbox$1.defaultProps = {
-  theme: defaultTheme
-};
 Checkbox$1.propTypes = {
   checkboxData: PropTypes.array,
   layout: PropTypes.string,
@@ -18920,6 +18947,7 @@ Checkbox$1.propTypes = {
   mode: PropTypes.string,
   theme: PropTypes.shape(defaultThemeShape)
 };
+Checkbox$1.contextType = ThemeContext;
 
 var Chips = function (_Component) {
   inherits(Chips, _Component);
@@ -19162,9 +19190,10 @@ Dropdown$1.propTypes = {
   origin: PropTypes.string
 };
 
-var _templateObject$3 = taggedTemplateLiteral(['\n  width: 100%;\n\n  .has-error .ant-form-explain, .has-error .ant-form-split {\n    font-size: 11px;\n    margin-top: 0;\n  }\n  input:hover, input:focus {\n    border: 1px solid ', ';\n  }\n  input:focus {\n    box-shadow: 0 0 0 2px ', ';\n  }\n  .has-error input:focus {\n    border: 1px solid #ff4d4f;\n  }\n  .super button, .primary button {\n    background-color: ', ';\n    border-color: ', ';\n  }\n  .super button:hover, .primary button:hover {\n    background-color: ', ';\n    border-color: ', ';\n  }\n  .super {\n    input {\n      background-color: var(--primary-grey-05);\n      color: var(--primary-grey-80);\n      border: none;\n    }\n  }\n  .primary {\n    input {\n      background-color: #ffffff;\n      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);\n      border: none;\n    }\n  }\n  input {\n    &.ant-input-lg {\n      font-size: 14px;\n    }\n  }\n  .ant-btn-lg {\n    height: 48px;\n  }\n'], ['\n  width: 100%;\n\n  .has-error .ant-form-explain, .has-error .ant-form-split {\n    font-size: 11px;\n    margin-top: 0;\n  }\n  input:hover, input:focus {\n    border: 1px solid ', ';\n  }\n  input:focus {\n    box-shadow: 0 0 0 2px ', ';\n  }\n  .has-error input:focus {\n    border: 1px solid #ff4d4f;\n  }\n  .super button, .primary button {\n    background-color: ', ';\n    border-color: ', ';\n  }\n  .super button:hover, .primary button:hover {\n    background-color: ', ';\n    border-color: ', ';\n  }\n  .super {\n    input {\n      background-color: var(--primary-grey-05);\n      color: var(--primary-grey-80);\n      border: none;\n    }\n  }\n  .primary {\n    input {\n      background-color: #ffffff;\n      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);\n      border: none;\n    }\n  }\n  input {\n    &.ant-input-lg {\n      font-size: 14px;\n    }\n  }\n  .ant-btn-lg {\n    height: 48px;\n  }\n']);
-
-var StyledInput = styled.div(_templateObject$3, function (props) {
+var StyledInput = styled.div.withConfig({
+  displayName: 'Input__StyledInput',
+  componentId: 'sc-1soi1ol-0'
+})(['&&{width:100%;}&& .has-error .ant-form-explain,&& .has-error .ant-form-split{font-size:11px;margin-top:0;}&& input:hover,&& input:focus{border:1px solid ', ';}&& input:focus{box-shadow:0 0 0 2px ', ';}&& .has-error input:focus{border:1px solid #ff4d4f;}&& .super button,&& .primary button{background-color:', ';border-color:', ';}&& .super button:hover,&& .primary button:hover{background-color:', ';border-color:', ';}&& .super input{background-color:var(--primary-grey-05);color:var(--primary-grey-80);border:none;}&& .primary input{background-color:#ffffff;box-shadow:0 1px 2px 0 rgba(0,0,0,0.5);border:none;}&& input.ant-input-lg{font-size:14px;}&& .ant-btn-lg{height:48px;}'], function (props) {
   return props.theme.primaryColor;
 }, function (props) {
   return rgba(props.theme.primaryColor, 0.2);
@@ -19173,9 +19202,9 @@ var StyledInput = styled.div(_templateObject$3, function (props) {
 }, function (props) {
   return props.theme.primaryColor;
 }, function (props) {
-  return curriedShade(.2)(props.theme.primaryColor);
+  return curriedShade(0.2)(props.theme.primaryColor);
 }, function (props) {
-  return curriedShade(.2)(props.theme.primaryColor);
+  return curriedShade(0.2)(props.theme.primaryColor);
 });
 
 var Input$1 = function (_Component) {
@@ -19202,18 +19231,19 @@ var Input$1 = function (_Component) {
           hasError = _props.hasError,
           errorMessage = _props.errorMessage,
           type = _props.type,
-          theme = _props.theme,
           custom = _props.custom;
 
 
       return React.createElement(
         StyledInput,
-        { theme: theme },
+        { theme: this.props.theme || this.context },
         React.createElement(
           'div',
-          { className: classnames('ant-form-vertical ant-form-item-control-wrapper', {
+          {
+            className: classnames('ant-form-vertical ant-form-item-control-wrapper', {
               'w-full': search === 'primary'
-            }) },
+            })
+          },
           React.createElement(
             'div',
             {
@@ -19286,25 +19316,36 @@ Input$1.propTypes = {
   errorMessage: PropTypes.string,
   type: PropTypes.string,
   custom: PropTypes.object,
-  theme: PropTypes.shape(defaultThemeShape),
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  theme: PropTypes.shape(defaultThemeShape)
 };
-Input$1.defaultProps = {
-  theme: defaultTheme
-};
+Input$1.contextType = ThemeContext;
 
-var _templateObject$4 = taggedTemplateLiteral(['\n  &.text-area-hide-resize {\n    resize: none;\n  }\n'], ['\n  &.text-area-hide-resize {\n    resize: none;\n  }\n']),
-    _templateObject2 = taggedTemplateLiteral(['\n  display: flex !important;\n  align-items: center;\n  justify-content: space-between;\n'], ['\n  display: flex !important;\n  align-items: center;\n  justify-content: space-between;\n']),
-    _templateObject3 = taggedTemplateLiteral(['\n  color: ', ';\n  font-weight: 300;\n'], ['\n  color: ', ';\n  font-weight: 300;\n']),
-    _templateObject4 = taggedTemplateLiteral(['\n  text-align: right;\n  color: ', ';\n  font-weight: 300;\n'], ['\n  text-align: right;\n  color: ', ';\n  font-weight: 300;\n']);
+var StyledTextArea = styled(Input.TextArea).withConfig({
+  displayName: 'TextArea__StyledTextArea',
+  componentId: 'sc-1is30uo-0'
+})(['&&:hover{border:1px solid ', ';}&&:focus{border:1px solid ', ';box-shadow:0 0 0 2px ', ';}&&.text-area-hide-resize{resize:none;}&&::placeholder{opacity:0.5;}'], function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return rgba(props.theme.primaryColor, 0.2);
+});
 
-var StyledTextArea = styled(Input.TextArea)(_templateObject$4);
+var Label = styled.div.withConfig({
+  displayName: 'TextArea__Label',
+  componentId: 'sc-1is30uo-1'
+})(['&&{display:flex !important;align-items:center;justify-content:space-between;}']);
 
-var Label = styled.div(_templateObject2);
+var LabelCharLimit = styled.div.withConfig({
+  displayName: 'TextArea__LabelCharLimit',
+  componentId: 'sc-1is30uo-2'
+})(['&&{color:', ';font-weight:300;font-size:1.2rem;margin-bottom:0.5rem;}'], colors.secondaryTextColor);
 
-var LabelCharLimit = styled.div(_templateObject3, colors.secondaryTextColor);
-
-var NoLabelCharLimit = styled.div(_templateObject4, colors.secondaryTextColor);
+var NoLabelCharLimit = styled.div.withConfig({
+  displayName: 'TextArea__NoLabelCharLimit',
+  componentId: 'sc-1is30uo-3'
+})(['&&{text-align:right;color:', ';font-weight:300;}'], colors.secondaryTextColor);
 
 var TextArea = function (_Component) {
   inherits(TextArea, _Component);
@@ -19342,7 +19383,7 @@ var TextArea = function (_Component) {
     value: function render() {
       return React.createElement(
         'div',
-        { className: 'ant-form-vertical' },
+        { className: classnames('ant-form-vertical', this.props.className) },
         this.props.label && React.createElement(
           Label,
           { className: 'ant-form-item-label' },
@@ -19360,11 +19401,12 @@ var TextArea = function (_Component) {
           )
         ),
         React.createElement(StyledTextArea, _extends({
-          className: classnames(defineProperty({}, 'text-area-hide-resize', !this.props.autosize || this.props.autosize.minRows && this.props.autosize.maxRows && this.props.autosize.minRows === this.props.autosize.maxRows), this.props.className),
+          className: classnames(defineProperty({}, 'text-area-hide-resize', !this.props.autosize || this.props.autosize.minRows && this.props.autosize.maxRows && this.props.autosize.minRows === this.props.autosize.maxRows)),
           onChange: this.onChange,
           placeholder: this.props.placeholder,
           autosize: this.props.autosize,
-          value: this.props.value
+          value: this.props.value,
+          theme: this.props.theme || this.context
         }, this.props.custom)),
         this.props.label === undefined && this.props.charLimit && React.createElement(
           NoLabelCharLimit,
@@ -19390,12 +19432,14 @@ TextArea.propTypes = {
   placeholder: PropTypes.string,
   charLimit: PropTypes.number,
   label: PropTypes.string,
-  custom: PropTypes.object
+  custom: PropTypes.object,
+  theme: PropTypes.shape(defaultThemeShape)
 };
 TextArea.defaultProps = {
   classname: '',
   autosize: true
 };
+TextArea.contextType = ThemeContext;
 
 var MultiSelect = function (_Component) {
   inherits(MultiSelect, _Component);
@@ -19689,12 +19733,13 @@ SubHeader.propTypes = {
   screenWidth: PropTypes.bool
 };
 
-var _templateObject$5 = taggedTemplateLiteral(['\n  &.block {\n    display: flex;\n    background-color: #f3f3f3;\n    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.10);\n\n    > label {\n      flex: 1;\n      text-align: center;\n      color: #aba9a8;\n      background-color: transparent !important; // TODO: Update the Ant Less Variables instead of this\n\n      &.ant-radio-button-wrapper-checked {\n        background-color: ', ' !important;\n        border-color: #d5d4d4 !important;\n        color: #575451 !important;\n      }\n    }\n  }\n  &.styled {\n    color: #575451;\n    font-size: 12px;\n    font-weight: bold;\n    text-transform: uppercase;\n\n    .ant-radio-button-wrapper {\n      height: auto !important;\n\n      &.ant-radio-button-wrapper-checked {\n        background-color: ', ' !important;\n        border-color: inherit;\n        color: #575451;\n        box-shadow: none;\n\n        span:nth-child(2) {\n          opacity: 1;\n        }\n      }\n\n      &:hover {\n        color: #575451;\n\n        span:nth-child(2) {\n          opacity: 1;\n        }\n      }\n\n      span:nth-child(2) {\n        flex: 1;\n        display: flex;\n        flex-direction: column;\n        justify-content: center;\n        align-items: center;\n        position: relative;\n        padding: 6px 0;\n        opacity: .5;\n        transition: all 150ms linear;\n      }\n\n      .item-icon {\n        height: 15px;\n        position: relative;\n        margin-top: 8px;\n        z-index: 1;\n      }\n\n      .item-title {\n        display: block;\n        align-self: center;\n        font-size: 12px;\n        font-weight: bold;\n        line-height: 1.25;\n        text-transform: uppercase;\n        color: #575451;\n        z-index: 1;\n        position: relative;\n        margin-top: 4px;\n      }\n    }\n  }\n'], ['\n  &.block {\n    display: flex;\n    background-color: #f3f3f3;\n    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.10);\n\n    > label {\n      flex: 1;\n      text-align: center;\n      color: #aba9a8;\n      background-color: transparent !important; // TODO: Update the Ant Less Variables instead of this\n\n      &.ant-radio-button-wrapper-checked {\n        background-color: ', ' !important;\n        border-color: #d5d4d4 !important;\n        color: #575451 !important;\n      }\n    }\n  }\n  &.styled {\n    color: #575451;\n    font-size: 12px;\n    font-weight: bold;\n    text-transform: uppercase;\n\n    .ant-radio-button-wrapper {\n      height: auto !important;\n\n      &.ant-radio-button-wrapper-checked {\n        background-color: ', ' !important;\n        border-color: inherit;\n        color: #575451;\n        box-shadow: none;\n\n        span:nth-child(2) {\n          opacity: 1;\n        }\n      }\n\n      &:hover {\n        color: #575451;\n\n        span:nth-child(2) {\n          opacity: 1;\n        }\n      }\n\n      span:nth-child(2) {\n        flex: 1;\n        display: flex;\n        flex-direction: column;\n        justify-content: center;\n        align-items: center;\n        position: relative;\n        padding: 6px 0;\n        opacity: .5;\n        transition: all 150ms linear;\n      }\n\n      .item-icon {\n        height: 15px;\n        position: relative;\n        margin-top: 8px;\n        z-index: 1;\n      }\n\n      .item-title {\n        display: block;\n        align-self: center;\n        font-size: 12px;\n        font-weight: bold;\n        line-height: 1.25;\n        text-transform: uppercase;\n        color: #575451;\n        z-index: 1;\n        position: relative;\n        margin-top: 4px;\n      }\n    }\n  }\n']);
-
-var StyledRadioGroup = styled(Radio.Group)(_templateObject$5, function (props) {
-  return rgba(props.theme.primaryColor, .13);
+var StyledRadioGroup = styled(Radio.Group).withConfig({
+  displayName: 'Radio__StyledRadioGroup',
+  componentId: 'fk1cur-0'
+})(['&&.block{display:flex;background-color:#f3f3f3;box-shadow:0 1px 2px 0 rgba(0,0,0,0.1);}&&.block > label{flex:1;text-align:center;color:#aba9a8;background-color:transparent !important;}&&.block > label.ant-radio-button-wrapper-checked{background-color:', ' !important;border-color:#d5d4d4 !important;color:#575451 !important;}&&.styled{color:#575451;font-size:12px;font-weight:bold;text-transform:uppercase;}&&.styled .ant-radio-button-wrapper{height:auto !important;}&&.styled .ant-radio-button-wrapper.ant-radio-button-wrapper-checked{background-color:', ' !important;border-color:inherit;color:#575451;box-shadow:none;}&&.styled .ant-radio-button-wrapper.ant-radio-button-wrapper-checked span:nth-child(2){opacity:1;}&&.styled .ant-radio-button-wrapper:hover{color:#575451;}&&.styled .ant-radio-button-wrapper:hover span:nth-child(2){opacity:1;}&&.styled .ant-radio-button-wrapper span:nth-child(2){flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;padding:6px 0;opacity:0.5;transition:all 150ms linear;}&&.styled .ant-radio-button-wrapper .item-icon{height:15px;position:relative;margin-top:8px;z-index:1;}&&.styled .ant-radio-button-wrapper .item-title{display:block;align-self:center;font-size:12px;font-weight:bold;line-height:1.25;text-transform:uppercase;color:#575451;z-index:1;position:relative;margin-top:4px;}'], function (props) {
+  return rgba(props.theme.primaryColor, 0.13);
 }, function (props) {
-  return rgba(props.theme.primaryColor, .13);
+  return rgba(props.theme.primaryColor, 0.13);
 });
 
 var Radio$1 = function (_Component) {
@@ -19721,22 +19766,20 @@ var Radio$1 = function (_Component) {
           value = _props.value,
           className = _props.className,
           _props$modeIcons = _props.modeIcons,
-          modeIcons = _props$modeIcons === undefined ? false : _props$modeIcons,
-          _props$theme = _props.theme,
-          theme = _props$theme === undefined ? defaultTheme : _props$theme;
+          modeIcons = _props$modeIcons === undefined ? false : _props$modeIcons;
 
 
       return React.createElement(
         StyledRadioGroup,
         {
           className: classnames('radio-group', className, {
-            'styled': styled$$1,
-            'block': block
+            styled: styled$$1,
+            block: block
           }),
           value: value,
           buttonStyle: 'solid',
           onChange: onChange,
-          theme: theme
+          theme: this.props.theme || this.context
         },
         radioData.map(function (item, index) {
           if (layout === 'row') {
@@ -19811,6 +19854,7 @@ Radio$1.propTypes = {
   value: PropTypes.string,
   theme: PropTypes.shape(defaultThemeShape)
 };
+Radio$1.contextType = ThemeContext;
 
 var moment = createCommonjsModule(function (module, exports) {
 (function (global, factory) {
@@ -27606,8 +27650,10 @@ var lib_1 = lib.genericHashLink;
 var lib_2 = lib.HashLink;
 var lib_3 = lib.NavHashLink;
 
-var _templateObject$6 = taggedTemplateLiteral(['\n  &.selected {\n    color: ', ';\n    background-color: var(--white);\n    border-right: 8px solid ', ';\n    svg g {\n      fill: ', ';\n    }\n    i {\n      color: ', ';\n    }\n    span {\n      color: ', ';\n      font-weight: bold;\n    }\n  }\n'], ['\n  &.selected {\n    color: ', ';\n    background-color: var(--white);\n    border-right: 8px solid ', ';\n    svg g {\n      fill: ', ';\n    }\n    i {\n      color: ', ';\n    }\n    span {\n      color: ', ';\n      font-weight: bold;\n    }\n  }\n']);
-var StyledNavItem = styled.div(_templateObject$6, function (props) {
+var StyledNavItem = styled.div.withConfig({
+  displayName: 'StickyNav__StyledNavItem',
+  componentId: 'wbp22c-0'
+})(['&&.selected{color:', ';background-color:var(--white);border-right:8px solid ', ';}&&.selected svg g{fill:', ';}&&.selected i{color:', ';}&&.selected span{color:', ';font-weight:bold;}'], function (props) {
   return props.theme.primaryColor;
 }, function (props) {
   return props.theme.primaryColor;
@@ -27685,8 +27731,7 @@ var StickyNav = function (_Component) {
 
       var _props = this.props,
           menuItems = _props.menuItems,
-          mode = _props.mode,
-          theme = _props.theme;
+          mode = _props.mode;
 
       return React.createElement(
         'div',
@@ -27696,14 +27741,12 @@ var StickyNav = function (_Component) {
             StyledNavItem,
             {
               key: index$$1,
-              theme: theme,
-              className: _this2.state.currentView === item.link ? 'sticky-nav__item selected' : 'sticky-nav__item' },
+              theme: _this2.props.theme || _this2.context,
+              className: _this2.state.currentView === item.link ? 'sticky-nav__item selected' : 'sticky-nav__item'
+            },
             React.createElement(
               lib_2,
-              {
-                to: mode === 'follow' ? '#' + item.link : item.link,
-                smooth: true
-              },
+              { to: mode === 'follow' ? '#' + item.link : item.link, smooth: true },
               item.icon && React.createElement(
                 'i',
                 { className: 'material-icons sticky-nav__icon' },
@@ -27729,9 +27772,9 @@ StickyNav.propTypes = {
   theme: PropTypes.shape(defaultThemeShape)
 };
 StickyNav.defaultProps = {
-  theme: defaultTheme,
   mode: 'follow'
 };
+StickyNav.contextType = ThemeContext;
 
 var Popover$1 = function (_Component) {
   inherits(Popover$$1, _Component);
@@ -29964,6 +30007,8 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
+var returnThis = function () { return this; };
+
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -29988,6 +30033,8 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -29996,7 +30043,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {
@@ -37215,6 +37262,25 @@ ChevronDown.propTypes = {
   className: PropTypes.string
 };
 
+var StyledCopy = styled.div.withConfig({
+  displayName: 'Copy__StyledCopy',
+  componentId: 'oyat7m-0'
+})(['&&{height:18px;width:14px;border:2px solid ', ';border-right:transparent;border-bottom:transparent;border-radius:15%;margin-right:4px;margin-bottom:4px;}&& > div{height:18px;width:14px;border:2px solid ', ';margin-top:2px;margin-left:2px;border-radius:15%;}'], colors.darkBackgroundColor, colors.darkBackgroundColor);
+
+var Copy = function Copy(_ref) {
+  var className = _ref.className;
+
+  return React.createElement(
+    StyledCopy,
+    { className: className },
+    React.createElement('div', null)
+  );
+};
+
+Copy.propTypes = {
+  className: PropTypes.string
+};
+
 var ColorPicker$1 = function (_Component) {
   inherits(ColorPicker, _Component);
   createClass(ColorPicker, null, [{
@@ -37289,5 +37355,205 @@ ColorPicker$1.propTypes = {
   placement: PropTypes.string
 };
 
-export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Info, colors };
+var StyledMultiInput = styled.div.withConfig({
+  displayName: 'MultiInput__StyledMultiInput',
+  componentId: 'sc-1hveop0-0'
+})(['&&{position:relative;display:flex;align-items:center;flex-wrap:wrap;cursor:text;font-size:14px;height:36px;overflow-y:auto;padding-left:11px;padding-right:11px;padding-top:0;padding-bottom:4px;}&&:hover{border-color:', ';}&&.focused{border-color:', ';outline:0;box-shadow:0 0 0 2px ', ';border-right-width:1px !important;}'], function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return rgba(props.theme.primaryColor, 0.2);
+});
+
+var Placeholder = styled.div.withConfig({
+  displayName: 'MultiInput__Placeholder',
+  componentId: 'sc-1hveop0-1'
+})(['&&{color:', ';opacity:0.5;pointer-events:none;margin-top:4px;height:22px;}&&.focused{display:none;}'], colors.secondaryTextColor);
+
+var StyledTag = styled(Tag).withConfig({
+  displayName: 'MultiInput__StyledTag',
+  componentId: 'sc-1hveop0-2'
+})(['&&{cursor:default;margin-top:4px;height:22px;}&&:hover{opacity:1 !important;}']);
+
+var Input$2 = styled.input.withConfig({
+  displayName: 'MultiInput__Input',
+  componentId: 'sc-1hveop0-3'
+})(['&&{outline:none;border:0 none;flex:1;width:auto;margin-top:4px;height:22px;}']);
+
+var MultiInput = function (_React$Component) {
+  inherits(MultiInput, _React$Component);
+
+  function MultiInput(props) {
+    classCallCheck(this, MultiInput);
+
+    var _this = possibleConstructorReturn(this, (MultiInput.__proto__ || Object.getPrototypeOf(MultiInput)).call(this, props));
+
+    _this.onSubmitValue = function () {
+      if (_this.props.validator && !_this.props.validator(_this.state.inputValue) || _this.state.values.indexOf(_this.state.inputValue) > -1) {
+        return;
+      }
+      var newValues = [].concat(toConsumableArray(_this.state.values), [_this.state.inputValue.trim()]);
+      _this.setState({
+        inputValue: '',
+        values: newValues
+      });
+      if (_this.props.onChange) {
+        _this.props.onChange(newValues);
+      }
+    };
+
+    _this.onRemoveValue = function (index) {
+      var newValues = [].concat(toConsumableArray(_this.state.values));
+      newValues.splice(index, 1);
+      _this.setState({
+        values: newValues
+      });
+      if (_this.props.onChange) {
+        _this.props.onChange(newValues);
+      }
+    };
+
+    _this.onFocus = function () {
+      _this.setState({
+        isFocused: true
+      });
+    };
+
+    _this.onBlur = function () {
+      _this.setState({
+        isFocused: false
+      });
+    };
+
+    _this.onWrapperClick = function () {
+      if (_this.inputRef.current) {
+        _this.inputRef.current.focus();
+      }
+    };
+
+    _this.onChange = function (event) {
+      _this.setState({
+        inputValue: event.target.value.trim()
+      });
+    };
+
+    _this.onKeyDown = function (event) {
+      switch (event.key) {
+        case 'Enter':
+          {
+            _this.onSubmitValue();
+            break;
+          }
+        case ' ':
+          {
+            _this.onSubmitValue();
+            break;
+          }
+        case 'Backspace':
+          {
+            if (_this.state.inputValue === '') {
+              _this.onRemoveValue(_this.state.values.length - 1);
+            }
+            break;
+          }
+      }
+    };
+
+    _this.stopPropogation = function (event) {
+      event.stopPropagation();
+    };
+
+    _this.state = {
+      isFocused: false,
+      inputValue: '',
+      values: []
+    };
+    _this.inputRef = React.createRef();
+    return _this;
+  }
+
+  createClass(MultiInput, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return React.createElement(
+        'div',
+        { className: classnames('ant-form-vertical ant-form-item-control-wrapper', this.props.className) },
+        React.createElement(
+          'div',
+          { className: 'ant-form-item-control' },
+          this.props.label && React.createElement(
+            'div',
+            { className: 'ant-form-item-label' },
+            React.createElement(
+              'label',
+              { title: this.props.label },
+              this.props.label
+            )
+          ),
+          React.createElement(
+            StyledMultiInput,
+            {
+              className: classnames('ant-input', defineProperty({}, 'focused', this.state.isFocused)),
+              onClick: this.onWrapperClick,
+              minRows: this.props.minRows,
+              maxRows: this.props.maxRows,
+              theme: this.props.theme || this.context
+            },
+            this.props.placeholder && this.state.inputValue === '' && this.state.values.length === 0 && React.createElement(
+              Placeholder,
+              {
+                className: classnames(defineProperty({}, 'focused', this.state.isFocused)),
+                minRows: this.props.minRows
+              },
+              this.props.placeholder
+            ),
+            this.state.values.map(function (value, index) {
+              return React.createElement(
+                StyledTag,
+                {
+                  key: value,
+                  closable: true,
+                  onClose: _this2.stopPropogation
+                  //eslint-disable-next-line react/jsx-no-bind
+                  , afterClose: function afterClose() {
+                    return _this2.onRemoveValue(index);
+                  }
+                },
+                value
+              );
+            }),
+            React.createElement(Input$2, {
+              ref: this.inputRef,
+              type: 'text',
+              onFocus: this.onFocus,
+              onBlur: this.onBlur,
+              onChange: this.onChange,
+              value: this.state.inputValue,
+              onKeyDown: this.onKeyDown
+            })
+          )
+        )
+      );
+    }
+  }]);
+  return MultiInput;
+}(React.Component);
+
+MultiInput.propTypes = {
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  validator: PropTypes.func,
+  label: PropTypes.string,
+  className: PropTypes.string,
+  theme: PropTypes.shape(defaultThemeShape)
+};
+MultiInput.defaultProps = {
+  className: ''
+};
+MultiInput.contextType = ThemeContext;
+
+export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Info, Copy, colors, MultiInput, ThemeProvider };
 //# sourceMappingURL=index.es.js.map

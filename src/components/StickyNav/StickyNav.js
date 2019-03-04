@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { HashLink as Link } from 'react-router-hash-link';
 import styled from 'styled-components';
-
-import defaultTheme, { defaultThemeShape } from '../../styles/defaultTheme';
+import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 
 import './StickyNav.scss';
+
 const StyledNavItem = styled.div`
   &.selected {
     color: ${props => props.theme.primaryColor};
@@ -28,39 +28,22 @@ export default class StickyNav extends Component {
     mode: PropTypes.string,
     menuItems: PropTypes.array,
     theme: PropTypes.shape(defaultThemeShape),
-  }
+  };
 
   static defaultProps = {
-    theme: defaultTheme,
-    mode: 'follow'
-  }
+    mode: 'follow',
+  };
+
+  static contextType = ThemeContext;
 
   constructor(props) {
     super(props);
     this.state = {
       currentView: props.menuItems[0].link,
-      refs: []
+      refs: [],
     };
     this.props = props;
   }
-
-  handleScroll = (ev) => {
-    let activeTab = this.state.currentView;
-
-    this.state.refs.forEach((item, index) => {
-      if (ev.target.scrollTop < this.state.refs[0].offsetTop) {
-        activeTab = this.props.menuItems[0].link;
-      } else if (ev.target.scrollTop + 200 > item.offsetTop) {
-        activeTab = this.props.menuItems[index].link;
-      }
-    });
-
-    this.setState(() => {
-      return {
-        currentView: activeTab
-      };
-    });
-  };
 
   componentDidMount() {
     if (this.props.mode === 'follow') {
@@ -72,7 +55,7 @@ export default class StickyNav extends Component {
 
       this.setState(() => {
         return {
-          refs: refs
+          refs: refs,
         };
       });
       return window.addEventListener('scroll', this.handleScroll, true);
@@ -85,32 +68,38 @@ export default class StickyNav extends Component {
     }
   }
 
+  handleScroll = ev => {
+    let activeTab = this.state.currentView;
+
+    this.state.refs.forEach((item, index) => {
+      if (ev.target.scrollTop < this.state.refs[0].offsetTop) {
+        activeTab = this.props.menuItems[0].link;
+      } else if (ev.target.scrollTop + 200 > item.offsetTop) {
+        activeTab = this.props.menuItems[index].link;
+      }
+    });
+
+    this.setState(() => {
+      return {
+        currentView: activeTab,
+      };
+    });
+  };
+
   render() {
-    const { menuItems, mode, theme } = this.props;
+    const { menuItems, mode } = this.props;
     return (
-      <div className='sticky-nav'>
-        { menuItems.map((item, index) => {
+      <div className="sticky-nav">
+        {menuItems.map((item, index) => {
           return (
             <StyledNavItem
               key={index}
-              theme={theme}
-              className={
-                this.state.currentView === item.link
-                  ? 'sticky-nav__item selected'
-                  : 'sticky-nav__item'
-              }>
-              <Link
-                to={mode === 'follow' ? `#${item.link}` : item.link}
-                smooth
-              >
-                { item.icon &&
-                <i className='material-icons sticky-nav__icon'>{item.icon}</i>
-                }
-                { item.label &&
-                <span className='stick-nav__label'>
-                  {item.label}
-                </span>
-                }
+              theme={this.props.theme || this.context}
+              className={this.state.currentView === item.link ? 'sticky-nav__item selected' : 'sticky-nav__item'}
+            >
+              <Link to={mode === 'follow' ? `#${item.link}` : item.link} smooth>
+                {item.icon && <i className="material-icons sticky-nav__icon">{item.icon}</i>}
+                {item.label && <span className="stick-nav__label">{item.label}</span>}
               </Link>
             </StyledNavItem>
           );

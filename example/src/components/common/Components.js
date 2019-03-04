@@ -8,16 +8,17 @@ import DatePicker from '../components/DatePicker';
 import ChipsDemo from '../components/Chips';
 import InputDemo from '../components/Input';
 import CheckboxDemo from '../components/Checkbox';
-import SelectDemo from "../components/Select";
-import RadioDemo from "../components/Radio";
-import ShipmentModeIconDemo from "../components/ShipmentModeIcon";
-import SubHeaderDemo from "../components/SubHeader";
-import StickyNavDemo from "../components/StickyNav";
+import SelectDemo from '../components/Select';
+import RadioDemo from '../components/Radio';
+import ShipmentModeIconDemo from '../components/ShipmentModeIcon';
+import SubHeaderDemo from '../components/SubHeader';
+import StickyNavDemo from '../components/StickyNav';
 import ColorPicker from '../components/ColorPicker';
 import Message from '../components/Message';
 import Alert from '../components/Alert';
+import MultiInput from '../components/MultiInput';
 
-const Components =  (props) => {
+const Components = props => {
   let { match } = props;
   return (
     <div className="p44-ui__component">
@@ -34,12 +35,13 @@ const Components =  (props) => {
       <Route exact path={`${match.url}${routes.colorPicker}`} component={ColorPicker} />
       <Route exact path={`${match.url}${routes.message}`} component={Message} />
       <Route exact path={`${match.url}${routes.alert}`} component={Alert} />
+      <Route exact path={`${match.url}${routes.multiInput}`} component={MultiInput} />
     </div>
   );
 };
 
 Components.propTypes = {
-  match: PropTypes.object
+  match: PropTypes.object,
 };
 
 export default Components;

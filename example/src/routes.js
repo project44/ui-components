@@ -15,5 +15,6 @@ export default {
   shipmentModeIcon: '/shipment-mode-icon',
   colorPicker: '/color-picker',
   message: '/message',
-  alert: '/alert'
+  alert: '/alert',
+  multiInput: '/multi-input'
 };
