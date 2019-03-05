@@ -47,6 +47,7 @@ declare module 'ui-components' {
   export const Info: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const Copy: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const ChevronDown: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
+  export const Link: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export class TextArea extends React.Component<any, any> {}
   export const message: MessageApi;
   export class Alert extends React.Component<AlertProps, {}> {}

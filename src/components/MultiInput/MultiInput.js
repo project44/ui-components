@@ -122,6 +122,7 @@ class MultiInput extends React.Component {
   };
 
   onBlur = () => {
+    this.onSubmitValue();
     this.setState({
       isFocused: false,
     });

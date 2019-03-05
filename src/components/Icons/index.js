@@ -5,5 +5,6 @@ import Close from './Close';
 import Info from './Info';
 import ChevronDown from './ChevronDown';
 import Copy from './Copy';
+import Link from './Link';
 
-export { Layers, Settings, Checkmark, Close, Info, ChevronDown, Copy };
+export { Layers, Settings, Checkmark, Close, Info, ChevronDown, Copy, Link };
