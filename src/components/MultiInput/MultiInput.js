@@ -88,7 +88,7 @@ class MultiInput extends React.Component {
   }
 
   onSubmitValue = () => {
-    if (this.state.inputValue === '') {
+    if (this.state.inputValue.trim() === '') {
       return;
     }
     if (

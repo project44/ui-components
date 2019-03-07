@@ -28089,7 +28089,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: 'pure',
+  mode: _library ? 'pure' : 'global',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -30201,7 +30201,7 @@ var _meta_5 = _meta.onFreeze;
 
 var defineProperty$5 = _objectDp.f;
 var _wksDefine = function (name) {
-  var $Symbol = _core.Symbol || (_core.Symbol = {});
+  var $Symbol = _core.Symbol || (_core.Symbol = _library ? {} : _global.Symbol || {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty$5($Symbol, name, { value: _wksExt.f(name) });
 };
 
@@ -37996,7 +37996,7 @@ var MultiInput = function (_React$Component) {
     var _this = possibleConstructorReturn(this, (MultiInput.__proto__ || Object.getPrototypeOf(MultiInput)).call(this, props));
 
     _this.onSubmitValue = function () {
-      if (_this.state.inputValue === '') {
+      if (_this.state.inputValue.trim() === '') {
         return;
       }
       if (_this.props.validator && !_this.props.validator(_this.state.inputValue) || _this.state.values.indexOf(_this.state.inputValue) > -1) {
