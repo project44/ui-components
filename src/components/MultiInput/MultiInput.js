@@ -88,6 +88,9 @@ class MultiInput extends React.Component {
   }
 
   onSubmitValue = () => {
+    if (this.state.inputValue === '') {
+      return;
+    }
     if (
       (this.props.validator && !this.props.validator(this.state.inputValue)) ||
       this.state.values.indexOf(this.state.inputValue) > -1
