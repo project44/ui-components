@@ -1,4 +1,5 @@
 import { Row, Col, message, Alert } from 'antd';
+
 import AutoComplete from './components/Autocomplete/Autocomplete';
 import Button from './components/Button/Button';
 import Checkbox from './components/Checkbox/Checkbox';
@@ -16,7 +17,18 @@ import DateRange from './components/DateRange/DateRange';
 import StickyNav from './components/StickyNav/StickyNav';
 import Popover from './components/Popover/Popover';
 import ColorPicker from './components/ColorPicker/ColorPicker';
-import { Layers, Settings, Checkmark, Close, Info, ChevronDown, ChevronRight, DocumentIcon } from './components/Icons';
+import {
+  Layers,
+  Settings,
+  Checkmark,
+  Close,
+  Info,
+  ChevronDown,
+  Copy,
+  Link,
+  ChevronRight,
+  DocumentIcon,
+} from './components/Icons';
 import colors from './styles/colors';
 import MultiInput from './components/MultiInput/MultiInput';
 import { ThemeProvider } from './styles/theme';
@@ -61,5 +73,5 @@ export {
   MultiInput,
   ThemeProvider,
   ChevronRight,
-  DocumentIcon
+  DocumentIcon,
 };

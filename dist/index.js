@@ -24692,10 +24692,12 @@ if (__DEV__) {
 var warning_1 = warning;
 
 /**
- * Copyright (c) 2014-present, Facebook, Inc.
+ * Copyright 2014-2015, Facebook, Inc.
+ * All rights reserved.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  */
 
 /**
@@ -24710,28 +24712,6 @@ var __DEV__$1 = process.env.NODE_ENV !== 'production';
 var warning$1 = function() {};
 
 if (__DEV__$1) {
-  var printWarning$1 = function printWarning(format, args) {
-    var len = arguments.length;
-    args = new Array(len > 2 ? len - 2 : 0);
-    for (var key = 2; key < len; key++) {
-      args[key - 2] = arguments[key];
-    }
-    var argIndex = 0;
-    var message = 'Warning: ' +
-      format.replace(/%s/g, function() {
-        return args[argIndex++];
-      });
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-
   warning$1 = function(condition, format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
@@ -24740,12 +24720,32 @@ if (__DEV__$1) {
     }
     if (format === undefined) {
       throw new Error(
-          '`warning(condition, format, ...args)` requires a warning ' +
-          'message argument'
+        '`warning(condition, format, ...args)` requires a warning ' +
+        'message argument'
       );
     }
+
+    if (format.length < 10 || (/^[s\W]*$/).test(format)) {
+      throw new Error(
+        'The warning format should be able to uniquely identify this ' +
+        'warning. Please, use a more descriptive format than: ' + format
+      );
+    }
+
     if (!condition) {
-      printWarning$1.apply(null, [format].concat(args));
+      var argIndex = 0;
+      var message = 'Warning: ' +
+        format.replace(/%s/g, function() {
+          return args[argIndex++];
+        });
+      if (typeof console !== 'undefined') {
+        console.error(message);
+      }
+      try {
+        // This error was thrown as a convenience so that you can use this stack
+        // to find the callsite that caused this warning to fire.
+        throw new Error(message);
+      } catch(x) {}
     }
   };
 }
@@ -25907,7 +25907,7 @@ var __DEV__$2 = process.env.NODE_ENV !== 'production';
 var warning$2 = function() {};
 
 if (__DEV__$2) {
-  var printWarning$2 = function printWarning(format, args) {
+  var printWarning$1 = function printWarning(format, args) {
     var len = arguments.length;
     args = new Array(len > 2 ? len - 2 : 0);
     for (var key = 2; key < len; key++) {
@@ -25942,7 +25942,7 @@ if (__DEV__$2) {
       );
     }
     if (!condition) {
-      printWarning$2.apply(null, [format].concat(args));
+      printWarning$1.apply(null, [format].concat(args));
     }
   };
 }
@@ -26154,7 +26154,7 @@ var isModifiedEvent = function isModifiedEvent(event) {
  * The public API for rendering a history-aware <a>.
  */
 
-var Link = function (_React$Component) {
+var Link$1 = function (_React$Component) {
   _inherits$3(Link, _React$Component);
 
   function Link() {
@@ -26213,17 +26213,17 @@ var Link = function (_React$Component) {
   return Link;
 }(React__default.Component);
 
-Link.propTypes = {
+Link$1.propTypes = {
   onClick: PropTypes.func,
   target: PropTypes.string,
   replace: PropTypes.bool,
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   innerRef: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
-Link.defaultProps = {
+Link$1.defaultProps = {
   replace: false
 };
-Link.contextTypes = {
+Link$1.contextTypes = {
   router: PropTypes.shape({
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -26952,7 +26952,7 @@ var NavLink = function NavLink(_ref) {
 
       var isActive = !!(getIsActive ? getIsActive(match, location) : match);
 
-      return React__default.createElement(Link, _extends$9({
+      return React__default.createElement(Link$1, _extends$9({
         to: to,
         className: isActive ? [className, activeClassName].filter(function (i) {
           return i;
@@ -26965,7 +26965,7 @@ var NavLink = function NavLink(_ref) {
 };
 
 NavLink.propTypes = {
-  to: Link.propTypes.to,
+  to: Link$1.propTypes.to,
   exact: PropTypes.bool,
   strict: PropTypes.bool,
   location: PropTypes.object,
@@ -27519,7 +27519,7 @@ var withRouter = function withRouter(Component) {
 var es = /*#__PURE__*/Object.freeze({
   BrowserRouter: BrowserRouter,
   HashRouter: HashRouter,
-  Link: Link,
+  Link: Link$1,
   MemoryRouter: MemoryRouter,
   NavLink: NavLink,
   Prompt: Prompt,
@@ -28429,7 +28429,7 @@ var emptyFunction_1 = emptyFunction;
 var warning$3 = emptyFunction_1;
 
 if (process.env.NODE_ENV !== 'production') {
-  var printWarning$3 = function printWarning(format) {
+  var printWarning$2 = function printWarning(format) {
     for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       args[_key - 1] = arguments[_key];
     }
@@ -28463,7 +28463,7 @@ if (process.env.NODE_ENV !== 'production') {
         args[_key2 - 2] = arguments[_key2];
       }
 
-      printWarning$3.apply(undefined, [format].concat(args));
+      printWarning$2.apply(undefined, [format].concat(args));
     }
   };
 }
@@ -32177,7 +32177,25 @@ function mergeChildren(prev, next) {
   return ret;
 }
 
-var EVENT_NAME_MAP = {
+var START_EVENT_NAME_MAP = {
+  transitionstart: {
+    transition: 'transitionstart',
+    WebkitTransition: 'webkitTransitionStart',
+    MozTransition: 'mozTransitionStart',
+    OTransition: 'oTransitionStart',
+    msTransition: 'MSTransitionStart'
+  },
+
+  animationstart: {
+    animation: 'animationstart',
+    WebkitAnimation: 'webkitAnimationStart',
+    MozAnimation: 'mozAnimationStart',
+    OAnimation: 'oAnimationStart',
+    msAnimation: 'MSAnimationStart'
+  }
+};
+
+var END_EVENT_NAME_MAP = {
   transitionend: {
     transition: 'transitionend',
     WebkitTransition: 'webkitTransitionEnd',
@@ -32195,6 +32213,7 @@ var EVENT_NAME_MAP = {
   }
 };
 
+var startEvents = [];
 var endEvents = [];
 
 function detectEvents() {
@@ -32202,24 +32221,31 @@ function detectEvents() {
   var style = testEl.style;
 
   if (!('AnimationEvent' in window)) {
-    delete EVENT_NAME_MAP.animationend.animation;
+    delete START_EVENT_NAME_MAP.animationstart.animation;
+    delete END_EVENT_NAME_MAP.animationend.animation;
   }
 
   if (!('TransitionEvent' in window)) {
-    delete EVENT_NAME_MAP.transitionend.transition;
+    delete START_EVENT_NAME_MAP.transitionstart.transition;
+    delete END_EVENT_NAME_MAP.transitionend.transition;
   }
 
-  for (var baseEventName in EVENT_NAME_MAP) {
-    if (EVENT_NAME_MAP.hasOwnProperty(baseEventName)) {
-      var baseEvents = EVENT_NAME_MAP[baseEventName];
-      for (var styleName in baseEvents) {
-        if (styleName in style) {
-          endEvents.push(baseEvents[styleName]);
-          break;
+  function process(EVENT_NAME_MAP, events) {
+    for (var baseEventName in EVENT_NAME_MAP) {
+      if (EVENT_NAME_MAP.hasOwnProperty(baseEventName)) {
+        var baseEvents = EVENT_NAME_MAP[baseEventName];
+        for (var styleName in baseEvents) {
+          if (styleName in style) {
+            events.push(baseEvents[styleName]);
+            break;
+          }
         }
       }
     }
   }
+
+  process(START_EVENT_NAME_MAP, startEvents);
+  process(END_EVENT_NAME_MAP, endEvents);
 }
 
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
@@ -32235,6 +32261,31 @@ function removeEventListener$1(node, eventName, eventListener) {
 }
 
 var TransitionEvents = {
+  // Start events
+  startEvents: startEvents,
+
+  addStartEventListener: function addStartEventListener(node, eventListener) {
+    if (startEvents.length === 0) {
+      window.setTimeout(eventListener, 0);
+      return;
+    }
+    startEvents.forEach(function (startEvent) {
+      addEventListener$3(node, startEvent, eventListener);
+    });
+  },
+  removeStartEventListener: function removeStartEventListener(node, eventListener) {
+    if (startEvents.length === 0) {
+      return;
+    }
+    startEvents.forEach(function (startEvent) {
+      removeEventListener$1(node, startEvent, eventListener);
+    });
+  },
+
+
+  // End events
+  endEvents: endEvents,
+
   addEndEventListener: function addEndEventListener(node, eventListener) {
     if (endEvents.length === 0) {
       window.setTimeout(eventListener, 0);
@@ -32244,10 +32295,6 @@ var TransitionEvents = {
       addEventListener$3(node, endEvent, eventListener);
     });
   },
-
-
-  endEvents: endEvents,
-
   removeEndEventListener: function removeEndEventListener(node, eventListener) {
     if (endEvents.length === 0) {
       return;
@@ -32758,638 +32805,6 @@ AnimateChild.propTypes = {
   children: PropTypes.any
 };
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-function componentWillMount() {
-  // Call this.constructor.gDSFP to support sub-classes.
-  var state = this.constructor.getDerivedStateFromProps(this.props, this.state);
-  if (state !== null && state !== undefined) {
-    this.setState(state);
-  }
-}
-
-function componentWillReceiveProps(nextProps) {
-  // Call this.constructor.gDSFP to support sub-classes.
-  // Use the setState() updater to ensure state isn't stale in certain edge cases.
-  function updater(prevState) {
-    var state = this.constructor.getDerivedStateFromProps(nextProps, prevState);
-    return state !== null && state !== undefined ? state : null;
-  }
-  // Binding "this" is important for shallow renderer support.
-  this.setState(updater.bind(this));
-}
-
-function componentWillUpdate(nextProps, nextState) {
-  try {
-    var prevProps = this.props;
-    var prevState = this.state;
-    this.props = nextProps;
-    this.state = nextState;
-    this.__reactInternalSnapshotFlag = true;
-    this.__reactInternalSnapshot = this.getSnapshotBeforeUpdate(
-      prevProps,
-      prevState
-    );
-  } finally {
-    this.props = prevProps;
-    this.state = prevState;
-  }
-}
-
-// React may warn about cWM/cWRP/cWU methods being deprecated.
-// Add a flag to suppress these warnings for this special case.
-componentWillMount.__suppressDeprecationWarning = true;
-componentWillReceiveProps.__suppressDeprecationWarning = true;
-componentWillUpdate.__suppressDeprecationWarning = true;
-
-function polyfill(Component) {
-  var prototype = Component.prototype;
-
-  if (!prototype || !prototype.isReactComponent) {
-    throw new Error('Can only polyfill class components');
-  }
-
-  if (
-    typeof Component.getDerivedStateFromProps !== 'function' &&
-    typeof prototype.getSnapshotBeforeUpdate !== 'function'
-  ) {
-    return Component;
-  }
-
-  // If new component APIs are defined, "unsafe" lifecycles won't be called.
-  // Error if any of these lifecycles are present,
-  // Because they would work differently between older and newer (16.3+) versions of React.
-  var foundWillMountName = null;
-  var foundWillReceivePropsName = null;
-  var foundWillUpdateName = null;
-  if (typeof prototype.componentWillMount === 'function') {
-    foundWillMountName = 'componentWillMount';
-  } else if (typeof prototype.UNSAFE_componentWillMount === 'function') {
-    foundWillMountName = 'UNSAFE_componentWillMount';
-  }
-  if (typeof prototype.componentWillReceiveProps === 'function') {
-    foundWillReceivePropsName = 'componentWillReceiveProps';
-  } else if (typeof prototype.UNSAFE_componentWillReceiveProps === 'function') {
-    foundWillReceivePropsName = 'UNSAFE_componentWillReceiveProps';
-  }
-  if (typeof prototype.componentWillUpdate === 'function') {
-    foundWillUpdateName = 'componentWillUpdate';
-  } else if (typeof prototype.UNSAFE_componentWillUpdate === 'function') {
-    foundWillUpdateName = 'UNSAFE_componentWillUpdate';
-  }
-  if (
-    foundWillMountName !== null ||
-    foundWillReceivePropsName !== null ||
-    foundWillUpdateName !== null
-  ) {
-    var componentName = Component.displayName || Component.name;
-    var newApiName =
-      typeof Component.getDerivedStateFromProps === 'function'
-        ? 'getDerivedStateFromProps()'
-        : 'getSnapshotBeforeUpdate()';
-
-    throw Error(
-      'Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n' +
-        componentName +
-        ' uses ' +
-        newApiName +
-        ' but also contains the following legacy lifecycles:' +
-        (foundWillMountName !== null ? '\n  ' + foundWillMountName : '') +
-        (foundWillReceivePropsName !== null
-          ? '\n  ' + foundWillReceivePropsName
-          : '') +
-        (foundWillUpdateName !== null ? '\n  ' + foundWillUpdateName : '') +
-        '\n\nThe above lifecycles should be removed. Learn more about this warning here:\n' +
-        'https://fb.me/react-async-component-lifecycle-hooks'
-    );
-  }
-
-  // React <= 16.2 does not support static getDerivedStateFromProps.
-  // As a workaround, use cWM and cWRP to invoke the new static lifecycle.
-  // Newer versions of React will ignore these lifecycles if gDSFP exists.
-  if (typeof Component.getDerivedStateFromProps === 'function') {
-    prototype.componentWillMount = componentWillMount;
-    prototype.componentWillReceiveProps = componentWillReceiveProps;
-  }
-
-  // React <= 16.2 does not support getSnapshotBeforeUpdate.
-  // As a workaround, use cWU to invoke the new lifecycle.
-  // Newer versions of React will ignore that lifecycle if gSBU exists.
-  if (typeof prototype.getSnapshotBeforeUpdate === 'function') {
-    if (typeof prototype.componentDidUpdate !== 'function') {
-      throw new Error(
-        'Cannot polyfill getSnapshotBeforeUpdate() for components that do not define componentDidUpdate() on the prototype'
-      );
-    }
-
-    prototype.componentWillUpdate = componentWillUpdate;
-
-    var componentDidUpdate = prototype.componentDidUpdate;
-
-    prototype.componentDidUpdate = function componentDidUpdatePolyfill(
-      prevProps,
-      prevState,
-      maybeSnapshot
-    ) {
-      // 16.3+ will not execute our will-update method;
-      // It will pass a snapshot value to did-update though.
-      // Older versions will require our polyfilled will-update value.
-      // We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
-      // Because for <= 15.x versions this might be a "prevContext" object.
-      // We also can't just check "__reactInternalSnapshot",
-      // Because get-snapshot might return a falsy value.
-      // So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
-      var snapshot = this.__reactInternalSnapshotFlag
-        ? this.__reactInternalSnapshot
-        : maybeSnapshot;
-
-      componentDidUpdate.call(this, prevProps, prevState, snapshot);
-    };
-  }
-
-  return Component;
-}
-
-var performanceNow = createCommonjsModule(function (module) {
-// Generated by CoffeeScript 1.12.2
-(function() {
-  var getNanoSeconds, hrtime, loadTime, moduleLoadTime, nodeLoadTime, upTime;
-
-  if ((typeof performance !== "undefined" && performance !== null) && performance.now) {
-    module.exports = function() {
-      return performance.now();
-    };
-  } else if ((typeof process !== "undefined" && process !== null) && process.hrtime) {
-    module.exports = function() {
-      return (getNanoSeconds() - nodeLoadTime) / 1e6;
-    };
-    hrtime = process.hrtime;
-    getNanoSeconds = function() {
-      var hr;
-      hr = hrtime();
-      return hr[0] * 1e9 + hr[1];
-    };
-    moduleLoadTime = getNanoSeconds();
-    upTime = process.uptime() * 1e9;
-    nodeLoadTime = moduleLoadTime - upTime;
-  } else if (Date.now) {
-    module.exports = function() {
-      return Date.now() - loadTime;
-    };
-    loadTime = Date.now();
-  } else {
-    module.exports = function() {
-      return new Date().getTime() - loadTime;
-    };
-    loadTime = new Date().getTime();
-  }
-
-}).call(commonjsGlobal);
-
-
-});
-
-var root = typeof window === 'undefined' ? commonjsGlobal : window
-  , vendors = ['moz', 'webkit']
-  , suffix = 'AnimationFrame'
-  , raf = root['request' + suffix]
-  , caf = root['cancel' + suffix] || root['cancelRequest' + suffix];
-
-for(var i$1 = 0; !raf && i$1 < vendors.length; i$1++) {
-  raf = root[vendors[i$1] + 'Request' + suffix];
-  caf = root[vendors[i$1] + 'Cancel' + suffix]
-      || root[vendors[i$1] + 'CancelRequest' + suffix];
-}
-
-// Some versions of FF have rAF but not cAF
-if(!raf || !caf) {
-  var last = 0
-    , id$1 = 0
-    , queue = []
-    , frameDuration = 1000 / 60;
-
-  raf = function(callback) {
-    if(queue.length === 0) {
-      var _now = performanceNow()
-        , next = Math.max(0, frameDuration - (_now - last));
-      last = next + _now;
-      setTimeout(function() {
-        var cp = queue.slice(0);
-        // Clear queue here to prevent
-        // callbacks from appending listeners
-        // to the current frame's queue
-        queue.length = 0;
-        for(var i = 0; i < cp.length; i++) {
-          if(!cp[i].cancelled) {
-            try{
-              cp[i].callback(last);
-            } catch(e) {
-              setTimeout(function() { throw e }, 0);
-            }
-          }
-        }
-      }, Math.round(next));
-    }
-    queue.push({
-      handle: ++id$1,
-      callback: callback,
-      cancelled: false
-    });
-    return id$1
-  };
-
-  caf = function(handle) {
-    for(var i = 0; i < queue.length; i++) {
-      if(queue[i].handle === handle) {
-        queue[i].cancelled = true;
-      }
-    }
-  };
-}
-
-var raf_1 = function(fn) {
-  // Wrap in a new function to prevent
-  // `cancel` potentially being assigned
-  // to the native rAF function
-  return raf.call(root, fn)
-};
-var cancel = function() {
-  caf.apply(root, arguments);
-};
-var polyfill$1 = function(object) {
-  if (!object) {
-    object = root;
-  }
-  object.requestAnimationFrame = raf;
-  object.cancelAnimationFrame = caf;
-};
-raf_1.cancel = cancel;
-raf_1.polyfill = polyfill$1;
-
-var canUseDOM$1 = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-
-// ================= Transition =================
-// Event wrapper. Copy from react source code
-function makePrefixMap(styleProp, eventName) {
-  var prefixes = {};
-
-  prefixes[styleProp.toLowerCase()] = eventName.toLowerCase();
-  prefixes['Webkit' + styleProp] = 'webkit' + eventName;
-  prefixes['Moz' + styleProp] = 'moz' + eventName;
-  prefixes['ms' + styleProp] = 'MS' + eventName;
-  prefixes['O' + styleProp] = 'o' + eventName.toLowerCase();
-
-  return prefixes;
-}
-
-function getVendorPrefixes(domSupport, win) {
-  var prefixes = {
-    animationend: makePrefixMap('Animation', 'AnimationEnd'),
-    transitionend: makePrefixMap('Transition', 'TransitionEnd')
-  };
-
-  if (domSupport) {
-    if (!('AnimationEvent' in win)) {
-      delete prefixes.animationend.animation;
-    }
-
-    if (!('TransitionEvent' in win)) {
-      delete prefixes.transitionend.transition;
-    }
-  }
-
-  return prefixes;
-}
-
-var vendorPrefixes = getVendorPrefixes(canUseDOM$1, typeof window !== 'undefined' ? window : {});
-
-var style = {};
-
-if (canUseDOM$1) {
-  style = document.createElement('div').style;
-}
-
-var prefixedEventNames = {};
-
-function getVendorPrefixedEventName(eventName) {
-  if (prefixedEventNames[eventName]) {
-    return prefixedEventNames[eventName];
-  }
-
-  var prefixMap = vendorPrefixes[eventName];
-
-  if (prefixMap) {
-    var stylePropList = Object.keys(prefixMap);
-    var len = stylePropList.length;
-    for (var i = 0; i < len; i += 1) {
-      var styleProp = stylePropList[i];
-      if (Object.prototype.hasOwnProperty.call(prefixMap, styleProp) && styleProp in style) {
-        prefixedEventNames[eventName] = prefixMap[styleProp];
-        return prefixedEventNames[eventName];
-      }
-    }
-  }
-
-  return '';
-}
-
-var animationEndName = getVendorPrefixedEventName('animationend');
-var transitionEndName = getVendorPrefixedEventName('transitionend');
-var supportTransition = !!(animationEndName && transitionEndName);
-
-function getTransitionName$1(transitionName, transitionType) {
-  if (!transitionName) return null;
-
-  if (typeof transitionName === 'object') {
-    var type = transitionType.replace(/-\w/g, function (match) {
-      return match[1].toUpperCase();
-    });
-    return transitionName[type];
-  }
-
-  return transitionName + '-' + transitionType;
-}
-
-var STATUS_NONE = 'none';
-var STATUS_APPEAR = 'appear';
-var STATUS_ENTER = 'enter';
-var STATUS_LEAVE = 'leave';
-
-/**
- * `transitionSupport` is used for none transition test case.
- * Default we use browser transition event support check.
- */
-function genCSSMotion(transitionSupport) {
-  function isSupportTransition(props) {
-    return !!(props.motionName && transitionSupport);
-  }
-
-  var CSSMotion = function (_React$Component) {
-    _inherits$a(CSSMotion, _React$Component);
-
-    function CSSMotion() {
-      _classCallCheck$a(this, CSSMotion);
-
-      var _this = _possibleConstructorReturn$a(this, (CSSMotion.__proto__ || Object.getPrototypeOf(CSSMotion)).call(this));
-
-      _this.onDomUpdate = function () {
-        var _this$state = _this.state,
-            status = _this$state.status,
-            newStatus = _this$state.newStatus;
-        var _this$props = _this.props,
-            onAppearStart = _this$props.onAppearStart,
-            onEnterStart = _this$props.onEnterStart,
-            onLeaveStart = _this$props.onLeaveStart,
-            onAppearActive = _this$props.onAppearActive,
-            onEnterActive = _this$props.onEnterActive,
-            onLeaveActive = _this$props.onLeaveActive,
-            motionAppear = _this$props.motionAppear,
-            motionEnter = _this$props.motionEnter,
-            motionLeave = _this$props.motionLeave;
-
-
-        if (!isSupportTransition(_this.props)) {
-          return;
-        }
-
-        // Event injection
-        var $ele = ReactDOM__default.findDOMNode(_this);
-        if (_this.$ele !== $ele) {
-          _this.removeEventListener(_this.$ele);
-          _this.addEventListener($ele);
-          _this.$ele = $ele;
-        }
-
-        // Init status
-        if (newStatus && status === STATUS_APPEAR && motionAppear) {
-          _this.updateStatus(onAppearStart, null, null, function () {
-            _this.updateActiveStatus(onAppearActive, STATUS_APPEAR);
-          });
-        } else if (newStatus && status === STATUS_ENTER && motionEnter) {
-          _this.updateStatus(onEnterStart, null, null, function () {
-            _this.updateActiveStatus(onEnterActive, STATUS_ENTER);
-          });
-        } else if (newStatus && status === STATUS_LEAVE && motionLeave) {
-          _this.updateStatus(onLeaveStart, null, null, function () {
-            _this.updateActiveStatus(onLeaveActive, STATUS_LEAVE);
-          });
-        }
-      };
-
-      _this.onMotionEnd = function (event) {
-        var _this$state2 = _this.state,
-            status = _this$state2.status,
-            statusActive = _this$state2.statusActive;
-        var _this$props2 = _this.props,
-            onAppearEnd = _this$props2.onAppearEnd,
-            onEnterEnd = _this$props2.onEnterEnd,
-            onLeaveEnd = _this$props2.onLeaveEnd;
-
-        if (status === STATUS_APPEAR && statusActive) {
-          _this.updateStatus(onAppearEnd, { status: STATUS_NONE }, event);
-        } else if (status === STATUS_ENTER && statusActive) {
-          _this.updateStatus(onEnterEnd, { status: STATUS_NONE }, event);
-        } else if (status === STATUS_LEAVE && statusActive) {
-          _this.updateStatus(onLeaveEnd, { status: STATUS_NONE }, event);
-        }
-      };
-
-      _this.addEventListener = function ($ele) {
-        if (!$ele) return;
-
-        $ele.addEventListener(transitionEndName, _this.onMotionEnd);
-        $ele.addEventListener(animationEndName, _this.onMotionEnd);
-      };
-
-      _this.removeEventListener = function ($ele) {
-        if (!$ele) return;
-
-        $ele.removeEventListener(transitionEndName, _this.onMotionEnd);
-        $ele.removeEventListener(animationEndName, _this.onMotionEnd);
-      };
-
-      _this.updateStatus = function (styleFunc, additionalState, event, callback) {
-        var statusStyle = styleFunc ? styleFunc(ReactDOM__default.findDOMNode(_this), event) : null;
-
-        if (statusStyle === false || _this._destroyed) return;
-
-        var nextStep = void 0;
-        if (callback) {
-          nextStep = function nextStep() {
-            _this.nextFrame(callback);
-          };
-        }
-
-        _this.setState(_extends$e({
-          statusStyle: typeof statusStyle === 'object' ? statusStyle : null,
-          newStatus: false
-        }, additionalState), nextStep); // Trigger before next frame & after `componentDidMount`
-      };
-
-      _this.updateActiveStatus = function (styleFunc, currentStatus) {
-        // `setState` use `postMessage` to trigger at the end of frame.
-        // Let's use requestAnimationFrame to update new state in next frame.
-        _this.nextFrame(function () {
-          var status = _this.state.status;
-
-          if (status !== currentStatus) return;
-
-          _this.updateStatus(styleFunc, { statusActive: true });
-        });
-      };
-
-      _this.nextFrame = function (func) {
-        _this.cancelNextFrame();
-        _this.raf = raf_1(func);
-      };
-
-      _this.cancelNextFrame = function () {
-        if (_this.raf) {
-          raf_1.cancel(_this.raf);
-          _this.raf = null;
-        }
-      };
-
-      _this.state = {
-        status: STATUS_NONE,
-        statusActive: false,
-        newStatus: false,
-        statusStyle: null
-      };
-      _this.$ele = null;
-      _this.raf = null;
-      return _this;
-    }
-
-    _createClass(CSSMotion, [{
-      key: 'componentDidMount',
-      value: function componentDidMount() {
-        this.onDomUpdate();
-      }
-    }, {
-      key: 'componentDidUpdate',
-      value: function componentDidUpdate() {
-        this.onDomUpdate();
-      }
-    }, {
-      key: 'componentWillUnmount',
-      value: function componentWillUnmount() {
-        this._destroyed = true;
-        this.removeEventListener(this.$ele);
-        this.cancelNextFrame();
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        var _classNames;
-
-        var _state = this.state,
-            status = _state.status,
-            statusActive = _state.statusActive,
-            statusStyle = _state.statusStyle;
-        var _props = this.props,
-            children = _props.children,
-            motionName = _props.motionName,
-            visible = _props.visible,
-            removeOnLeave = _props.removeOnLeave;
-
-
-        if (!children) return null;
-
-        if (status === STATUS_NONE || !isSupportTransition(this.props)) {
-          return visible || !removeOnLeave ? children({}) : null;
-        }
-
-        return children({
-          className: classnames((_classNames = {}, _defineProperty(_classNames, getTransitionName$1(motionName, status), status !== STATUS_NONE), _defineProperty(_classNames, getTransitionName$1(motionName, status + '-active'), status !== STATUS_NONE && statusActive), _defineProperty(_classNames, motionName, typeof motionName === 'string'), _classNames)),
-          style: statusStyle
-        });
-      }
-    }], [{
-      key: 'getDerivedStateFromProps',
-      value: function getDerivedStateFromProps(props, _ref) {
-        var prevProps = _ref.prevProps;
-
-        if (!isSupportTransition(props)) return {};
-
-        var visible = props.visible,
-            motionAppear = props.motionAppear,
-            motionEnter = props.motionEnter,
-            motionLeave = props.motionLeave,
-            motionLeaveImmediately = props.motionLeaveImmediately;
-
-        var newState = {
-          prevProps: props
-        };
-
-        // Appear
-        if (!prevProps && visible && motionAppear) {
-          newState.status = STATUS_APPEAR;
-          newState.statusActive = false;
-          newState.newStatus = true;
-        }
-
-        // Enter
-        if (prevProps && !prevProps.visible && visible && motionEnter) {
-          newState.status = STATUS_ENTER;
-          newState.statusActive = false;
-          newState.newStatus = true;
-        }
-
-        // Leave
-        if (prevProps && prevProps.visible && !visible && motionLeave || !prevProps && motionLeaveImmediately && !visible && motionLeave) {
-          newState.status = STATUS_LEAVE;
-          newState.statusActive = false;
-          newState.newStatus = true;
-        }
-
-        return newState;
-      }
-    }]);
-
-    return CSSMotion;
-  }(React__default.Component);
-
-  CSSMotion.propTypes = {
-    visible: PropTypes.bool,
-    children: PropTypes.func,
-    motionName: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    motionAppear: PropTypes.bool,
-    motionEnter: PropTypes.bool,
-    motionLeave: PropTypes.bool,
-    motionLeaveImmediately: PropTypes.bool, // Trigger leave motion immediately
-    removeOnLeave: PropTypes.bool,
-    onAppearStart: PropTypes.func,
-    onAppearActive: PropTypes.func,
-    onAppearEnd: PropTypes.func,
-    onEnterStart: PropTypes.func,
-    onEnterActive: PropTypes.func,
-    onEnterEnd: PropTypes.func,
-    onLeaveStart: PropTypes.func,
-    onLeaveActive: PropTypes.func,
-    onLeaveEnd: PropTypes.func
-  };
-  CSSMotion.defaultProps = {
-    visible: true,
-    motionEnter: true,
-    motionAppear: true,
-    motionLeave: true,
-    removeOnLeave: true
-  };
-
-
-  polyfill(CSSMotion);
-
-  return CSSMotion;
-}
-
-var CSSMotion = genCSSMotion(supportTransition);
-
 var defaultKey = 'rc_animate_' + Date.now();
 
 function getChildrenFromProps(props) {
@@ -33409,6 +32824,8 @@ function noop$1() {}
 var Animate = function (_React$Component) {
   _inherits$a(Animate, _React$Component);
 
+  // eslint-disable-line
+
   function Animate(props) {
     _classCallCheck$a(this, Animate);
 
@@ -33426,7 +32843,7 @@ var Animate = function (_React$Component) {
 
     _this.childrenRefs = {};
     return _this;
-  } // eslint-disable-line
+  }
 
   _createClass(Animate, [{
     key: 'componentDidMount',
@@ -33620,7 +33037,6 @@ var Animate = function (_React$Component) {
 }(React__default.Component);
 
 Animate.isAnimate = true;
-Animate.CSSMotion = CSSMotion;
 Animate.propTypes = {
   component: PropTypes.any,
   componentProps: PropTypes.object,
@@ -37853,39 +37269,6 @@ ChevronDown.propTypes = {
   className: PropTypes.string
 };
 
-<<<<<<< HEAD
-var StyledCopy = styled.div.withConfig({
-  displayName: 'Copy__StyledCopy',
-  componentId: 'oyat7m-0'
-})(['&&{height:18px;width:14px;border:2px solid ', ';border-right:transparent;border-bottom:transparent;border-radius:15%;margin-right:4px;margin-bottom:4px;}&& > div{height:18px;width:14px;border:2px solid ', ';margin-top:2px;margin-left:2px;border-radius:15%;}'], colors.darkBackgroundColor, colors.darkBackgroundColor);
-
-var Copy = function Copy(_ref) {
-  var className = _ref.className;
-
-  return React__default.createElement(
-    StyledCopy,
-    { className: className },
-    React__default.createElement('div', null)
-  );
-};
-
-Copy.propTypes = {
-  className: PropTypes.string
-};
-
-var Link$1 = function Link(_ref) {
-  var className = _ref.className;
-
-  return React__default.createElement(
-    'svg',
-    { xmlns: 'http://www.w3.org/2000/svg', width: '24', height: '24', viewBox: '0 0 24 24', className: className },
-    React__default.createElement('path', { d: 'M0 0h24v24H0z', fill: 'none' }),
-    React__default.createElement('path', { d: 'M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z' })
-  );
-};
-
-Link$1.propTypes = {
-=======
 var DocumentIcon = function DocumentIcon(_ref) {
   var className = _ref.className;
 
@@ -37975,7 +37358,6 @@ var ChevronRight = function ChevronRight(_ref) {
 };
 
 ChevronRight.propTypes = {
->>>>>>> feat: POR-1844   Retrieve Document Images: Added icons document and ChevR
   className: PropTypes.string
 };
 
@@ -38283,7 +37665,7 @@ exports.Settings = Settings;
 exports.Checkmark = Checkmark;
 exports.Close = Close;
 exports.ChevronDown = ChevronDown;
-exports.Link = Link$1;
+exports.Link = Link;
 exports.Info = Info;
 exports.Copy = Copy;
 exports.colors = colors;
