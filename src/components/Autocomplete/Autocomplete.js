@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AutoComplete as AntAutoComplete } from 'antd';
-import './AutoComplete.scss';
+import './Autocomplete.scss';
 import _ from 'lodash';
 
 export default class AutoComplete extends Component {
