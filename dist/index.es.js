@@ -26147,7 +26147,7 @@ var isModifiedEvent = function isModifiedEvent(event) {
  * The public API for rendering a history-aware <a>.
  */
 
-var Link$1 = function (_React$Component) {
+var Link = function (_React$Component) {
   _inherits$3(Link, _React$Component);
 
   function Link() {
@@ -26206,17 +26206,17 @@ var Link$1 = function (_React$Component) {
   return Link;
 }(React.Component);
 
-Link$1.propTypes = {
+Link.propTypes = {
   onClick: PropTypes.func,
   target: PropTypes.string,
   replace: PropTypes.bool,
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   innerRef: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
-Link$1.defaultProps = {
+Link.defaultProps = {
   replace: false
 };
-Link$1.contextTypes = {
+Link.contextTypes = {
   router: PropTypes.shape({
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -26945,7 +26945,7 @@ var NavLink = function NavLink(_ref) {
 
       var isActive = !!(getIsActive ? getIsActive(match, location) : match);
 
-      return React.createElement(Link$1, _extends$9({
+      return React.createElement(Link, _extends$9({
         to: to,
         className: isActive ? [className, activeClassName].filter(function (i) {
           return i;
@@ -26958,7 +26958,7 @@ var NavLink = function NavLink(_ref) {
 };
 
 NavLink.propTypes = {
-  to: Link$1.propTypes.to,
+  to: Link.propTypes.to,
   exact: PropTypes.bool,
   strict: PropTypes.bool,
   location: PropTypes.object,
@@ -27512,7 +27512,7 @@ var withRouter = function withRouter(Component$$1) {
 var es = /*#__PURE__*/Object.freeze({
   BrowserRouter: BrowserRouter,
   HashRouter: HashRouter,
-  Link: Link$1,
+  Link: Link,
   MemoryRouter: MemoryRouter,
   NavLink: NavLink,
   Prompt: Prompt,
@@ -30194,7 +30194,7 @@ var _meta_5 = _meta.onFreeze;
 
 var defineProperty$5 = _objectDp.f;
 var _wksDefine = function (name) {
-  var $Symbol = _core.Symbol || (_core.Symbol = _library ? {} : _global.Symbol || {});
+  var $Symbol = _core.Symbol || (_core.Symbol = {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty$5($Symbol, name, { value: _wksExt.f(name) });
 };
 
@@ -37262,6 +37262,40 @@ ChevronDown.propTypes = {
   className: PropTypes.string
 };
 
+var StyledCopy = styled.div.withConfig({
+  displayName: 'Copy__StyledCopy',
+  componentId: 'oyat7m-0'
+})(['&&{height:18px;width:14px;border:2px solid ', ';border-right:transparent;border-bottom:transparent;border-radius:15%;margin-right:4px;margin-bottom:4px;}&& > div{height:18px;width:14px;border:2px solid ', ';margin-top:2px;margin-left:2px;border-radius:15%;}'], colors.darkBackgroundColor, colors.darkBackgroundColor);
+
+var Copy = function Copy(_ref) {
+  var className = _ref.className;
+
+  return React.createElement(
+    StyledCopy,
+    { className: className },
+    React.createElement('div', null)
+  );
+};
+
+Copy.propTypes = {
+  className: PropTypes.string
+};
+
+var Link$1 = function Link(_ref) {
+  var className = _ref.className;
+
+  return React.createElement(
+    'svg',
+    { xmlns: 'http://www.w3.org/2000/svg', width: '24', height: '24', viewBox: '0 0 24 24', className: className },
+    React.createElement('path', { d: 'M0 0h24v24H0z', fill: 'none' }),
+    React.createElement('path', { d: 'M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z' })
+  );
+};
+
+Link$1.propTypes = {
+  className: PropTypes.string
+};
+
 var DocumentIcon = function DocumentIcon(_ref) {
   var className = _ref.className;
 
@@ -37632,5 +37666,5 @@ MultiInput.defaultProps = {
 };
 MultiInput.contextType = ThemeContext;
 
-export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Link, Info, Copy, colors, MultiInput, ThemeProvider, ChevronRight, DocumentIcon };
+export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Link$1 as Link, Info, Copy, colors, MultiInput, ThemeProvider, ChevronRight, DocumentIcon };
 //# sourceMappingURL=index.es.js.map
