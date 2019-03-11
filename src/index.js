@@ -1,6 +1,5 @@
 import { Row, Col, message, Alert } from 'antd';
-import AutoComplete from './components/AutoComplete/AutoComplete';
-
+import AutoComplete from './components/Autocomplete/Autocomplete';
 import Button from './components/Button/Button';
 import Checkbox from './components/Checkbox/Checkbox';
 import Chips from './components/Chips/Chips';
@@ -59,7 +58,6 @@ export {
   message,
   Alert,
   colors,
-
   MultiInput,
   ThemeProvider,
   ChevronRight,
