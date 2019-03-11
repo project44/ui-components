@@ -45,6 +45,11 @@ const menuItems = [
     label: 'Map',
     icon: 'map',
     link: 'mapRef'
+  },
+  {
+    label: 'Documents',
+    icon: (<DocumentIcon/>),
+    link: 'documents',
   }
 ];
 
@@ -88,6 +93,9 @@ export default class StickyNavDemo extends Component {
             </div>
             <div id='mapRef' style={{height: 600, backgroundColor: 'blue'}}>
               <h3>Map Section</h3>
+            </div>
+            <div id='document' style={{height: 600, backgroundColor: 'green'}}>
+              <h3>Document Section</h3>
             </div>
             <div className='component__usage mt-8'>
               <SyntaxHighlighter language='jsx' style={xonokai}>
