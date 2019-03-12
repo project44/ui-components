@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AutoComplete, Button, Checkbox, Col, Row, DatePicker, Menu, Dropdown, Input, Select, Radio, Popover, Tag, message, Alert } from 'antd';
+import { AutoComplete, Button, Checkbox, Col, Row, DatePicker, Menu, Dropdown, Input, Select, Radio, Popover, Tag, Drawer, message, Alert } from 'antd';
 export { Row, Col, message, Alert } from 'antd';
 import styled from 'styled-components';
 import ReactDOM, { findDOMNode } from 'react-dom';
@@ -18664,13 +18664,11 @@ var Button$1 = function (_Component) {
           clickFn = _props.clickFn,
           blurFn = _props.blurFn,
           upload = _props.upload,
-          _props$download = _props.download,
-          download = _props$download === undefined ? false : _props$download,
-          _props$type = _props.type,
-          type = _props$type === undefined ? 'default' : _props$type,
-          _props$size = _props.size,
-          size$$1 = _props$size === undefined ? 'med' : _props$size,
-          props = objectWithoutProperties(_props, ['className', 'clickFn', 'blurFn', 'upload', 'download', 'type', 'size']);
+          download = _props.download,
+          icon = _props.icon,
+          type = _props.type,
+          size$$1 = _props.size,
+          props = objectWithoutProperties(_props, ['className', 'clickFn', 'blurFn', 'upload', 'download', 'icon', 'type', 'size']);
 
 
       if (upload) {
@@ -18690,7 +18688,8 @@ var Button$1 = function (_Component) {
                 lg: size$$1 === 'lg',
                 med: size$$1 === 'med',
                 sm: size$$1 === 'sm',
-                xsm: size$$1 === 'xsm'
+                xsm: size$$1 === 'xsm',
+                'icon-button-v2': icon
               }),
               onClick: clickFn,
               onBlur: blurFn
@@ -18712,7 +18711,8 @@ var Button$1 = function (_Component) {
               lg: size$$1 === 'lg',
               med: size$$1 === 'med',
               sm: size$$1 === 'sm',
-              xsm: size$$1 === 'xsm'
+              xsm: size$$1 === 'xsm',
+              'icon-button-v2': icon
             }),
             onClick: clickFn,
             onBlur: blurFn,
@@ -18734,8 +18734,15 @@ Button$1.propTypes = {
   type: PropTypes.string,
   size: PropTypes.string,
   className: PropTypes.string,
+  icon: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   theme: PropTypes.shape(defaultThemeShape)
+};
+Button$1.defaultProps = {
+  download: false,
+  icon: false,
+  type: 'default',
+  size: 'med'
 };
 Button$1.contextType = ThemeContext;
 
@@ -28082,7 +28089,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: _library ? 'pure' : 'global',
+  mode: 'pure',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -30007,8 +30014,6 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
-var returnThis = function () { return this; };
-
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -30033,8 +30038,6 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -30043,7 +30046,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {
@@ -37648,5 +37651,72 @@ MultiInput.defaultProps = {
 };
 MultiInput.contextType = ThemeContext;
 
-export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Link$1 as Link, Info, Copy, colors, MultiInput, ThemeProvider, ChevronRight, DocumentIcon };
+var Header = styled.div.withConfig({
+  displayName: 'Drawer__Header',
+  componentId: 'sc-1wsb8yi-0'
+})(['&&{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}']);
+
+var Title = styled.div.withConfig({
+  displayName: 'Drawer__Title',
+  componentId: 'sc-1wsb8yi-1'
+})(['&&{font-size:21px;}']);
+
+var StyledButton$1 = styled(Button$1).withConfig({
+  displayName: 'Drawer__StyledButton',
+  componentId: 'sc-1wsb8yi-2'
+})(['&&{margin-left:18px;margin-right:0;}']);
+
+var Drawer$1 = function (_React$Component) {
+  inherits(Drawer$$1, _React$Component);
+
+  function Drawer$$1() {
+    classCallCheck(this, Drawer$$1);
+    return possibleConstructorReturn(this, (Drawer$$1.__proto__ || Object.getPrototypeOf(Drawer$$1)).apply(this, arguments));
+  }
+
+  createClass(Drawer$$1, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        Drawer,
+        {
+          visible: this.props.visible,
+          onClose: this.props.onClose,
+          placement: this.props.placement,
+          closable: false,
+          width: this.props.width
+        },
+        React.createElement(
+          Header,
+          null,
+          React.createElement(
+            Title,
+            null,
+            this.props.title
+          ),
+          React.createElement(
+            StyledButton$1,
+            { clickFn: this.props.onClose, size: 'sm', icon: true },
+            React.createElement(Close, null)
+          )
+        ),
+        this.props.children
+      );
+    }
+  }]);
+  return Drawer$$1;
+}(React.Component);
+
+Drawer$1.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  placement: PropTypes.string.isRequired,
+  width: PropTypes.number
+};
+Drawer$1.defaultProps = {
+  width: undefined
+};
+
+export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Link$1 as Link, Info, Copy, colors, MultiInput, ThemeProvider, ChevronRight, DocumentIcon, Drawer$1 as Drawer };
 //# sourceMappingURL=index.es.js.map

@@ -17,6 +17,7 @@ import ColorPicker from '../components/ColorPicker';
 import Message from '../components/Message';
 import Alert from '../components/Alert';
 import MultiInput from '../components/MultiInput';
+import Drawer from '../components/Drawer';
 
 const Components = props => {
   let { match } = props;
@@ -36,6 +37,7 @@ const Components = props => {
       <Route exact path={`${match.url}${routes.message}`} component={Message} />
       <Route exact path={`${match.url}${routes.alert}`} component={Alert} />
       <Route exact path={`${match.url}${routes.multiInput}`} component={MultiInput} />
+      <Route exact path={`${match.url}${routes.drawer}`} component={Drawer} />
     </div>
   );
 };

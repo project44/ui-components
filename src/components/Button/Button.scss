@@ -16,7 +16,8 @@ button {
     text-transform: uppercase;
     line-height: 1em;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: var(--primary-grey-80);
       background-color: var(--primary-grey-20);
     }
@@ -37,7 +38,7 @@ button {
         -webkit-transform: scaleX(-1);
         transform: scaleX(-1);
         filter: FlipH;
-        -ms-filter: "FlipH";
+        -ms-filter: 'FlipH';
       }
     }
 
@@ -50,7 +51,8 @@ button {
       i {
         font-size: 18px;
       }
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: var(--white);
         background-color: var(--chathams-blue);
       }
@@ -62,7 +64,8 @@ button {
       i {
         font-size: 14px;
       }
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: var(--primary-grey-80);
         background-color: var(--primary-grey-20);
       }
@@ -75,49 +78,57 @@ button {
       justify-content: center;
       background-color: transparent;
       width: 100%;
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: var(--new-fruit);
         border: solid 1px var(--new-fruit);
         background-color: tint($new-fruit, 80%);
       }
     }
-    &--secondary { // no border
+    &--secondary {
+      // no border
       @extend .p44-btn;
       background-color: transparent;
       box-shadow: none;
       color: var(--primary-grey-40);
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: var(--primary-grey-80);
         background-color: var(--primary-grey-05);
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
       }
     }
-    &--destructive-text { // basically a link an optional icon
+    &--destructive-text {
+      // basically a link an optional icon
       @extend .p44-btn;
       box-shadow: none;
       background-color: transparent;
       color: var(--new-fruit);
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: var(--new-fruit);
         background-color: transparent;
       }
     }
     // NOTE: NOT CURRENTLY USED OPTIONS
-    &--basic { // basically a link an optional icon
+    &--basic {
+      // basically a link an optional icon
       @extend .p44-btn;
       box-shadow: none;
       background-color: transparent;
       @each $color in $colorsList {
         &.#{nth($color, 1)} {
           color: nth($color, 2);
-          &:hover, &:focus {
+          &:hover,
+          &:focus {
             color: nth($color, 2);
             background-color: transparent;
           }
         }
       }
     }
-    &--bordered { //has border
+    &--bordered {
+      //has border
       @extend .p44-btn;
       color: var(--primary-grey-80);
       border: solid 1px var(--primary-grey-80);
@@ -126,7 +137,8 @@ button {
         &.#{nth($color, 1)} {
           color: nth($color, 2);
           border: solid 1px nth($color, 2);
-          &:hover, &:focus  {
+          &:hover,
+          &:focus {
             background-color: tint(nth($color, 2), 80%);
             color: nth($color, 2);
           }
@@ -182,11 +194,22 @@ button {
     &-full-width {
       width: 100%;
     }
+    // Deprecated
     &.icon-button {
       width: auto;
       min-width: auto;
       color: var(--primary-grey-80);
       padding: 8px;
+      i {
+        font-size: 24px;
+      }
+    }
+    &.icon-button-v2 {
+      width: auto;
+      min-width: auto;
+      color: var(--primary-grey-80);
+      padding-right: 8px;
+      padding-left: 8px;
       i {
         font-size: 24px;
       }

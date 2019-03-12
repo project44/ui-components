@@ -18671,13 +18671,11 @@ var Button = function (_Component) {
           clickFn = _props.clickFn,
           blurFn = _props.blurFn,
           upload = _props.upload,
-          _props$download = _props.download,
-          download = _props$download === undefined ? false : _props$download,
-          _props$type = _props.type,
-          type = _props$type === undefined ? 'default' : _props$type,
-          _props$size = _props.size,
-          size$$1 = _props$size === undefined ? 'med' : _props$size,
-          props = objectWithoutProperties(_props, ['className', 'clickFn', 'blurFn', 'upload', 'download', 'type', 'size']);
+          download = _props.download,
+          icon = _props.icon,
+          type = _props.type,
+          size$$1 = _props.size,
+          props = objectWithoutProperties(_props, ['className', 'clickFn', 'blurFn', 'upload', 'download', 'icon', 'type', 'size']);
 
 
       if (upload) {
@@ -18697,7 +18695,8 @@ var Button = function (_Component) {
                 lg: size$$1 === 'lg',
                 med: size$$1 === 'med',
                 sm: size$$1 === 'sm',
-                xsm: size$$1 === 'xsm'
+                xsm: size$$1 === 'xsm',
+                'icon-button-v2': icon
               }),
               onClick: clickFn,
               onBlur: blurFn
@@ -18719,7 +18718,8 @@ var Button = function (_Component) {
               lg: size$$1 === 'lg',
               med: size$$1 === 'med',
               sm: size$$1 === 'sm',
-              xsm: size$$1 === 'xsm'
+              xsm: size$$1 === 'xsm',
+              'icon-button-v2': icon
             }),
             onClick: clickFn,
             onBlur: blurFn,
@@ -18741,8 +18741,15 @@ Button.propTypes = {
   type: PropTypes.string,
   size: PropTypes.string,
   className: PropTypes.string,
+  icon: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   theme: PropTypes.shape(defaultThemeShape)
+};
+Button.defaultProps = {
+  download: false,
+  icon: false,
+  type: 'default',
+  size: 'med'
 };
 Button.contextType = ThemeContext;
 
@@ -28089,7 +28096,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: _library ? 'pure' : 'global',
+  mode: 'pure',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -30014,8 +30021,6 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
-var returnThis = function () { return this; };
-
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -30040,8 +30045,6 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -30050,7 +30053,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {
@@ -37655,6 +37658,73 @@ MultiInput.defaultProps = {
 };
 MultiInput.contextType = ThemeContext;
 
+var Header = styled.div.withConfig({
+  displayName: 'Drawer__Header',
+  componentId: 'sc-1wsb8yi-0'
+})(['&&{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}']);
+
+var Title = styled.div.withConfig({
+  displayName: 'Drawer__Title',
+  componentId: 'sc-1wsb8yi-1'
+})(['&&{font-size:21px;}']);
+
+var StyledButton$1 = styled(Button).withConfig({
+  displayName: 'Drawer__StyledButton',
+  componentId: 'sc-1wsb8yi-2'
+})(['&&{margin-left:18px;margin-right:0;}']);
+
+var Drawer = function (_React$Component) {
+  inherits(Drawer, _React$Component);
+
+  function Drawer() {
+    classCallCheck(this, Drawer);
+    return possibleConstructorReturn(this, (Drawer.__proto__ || Object.getPrototypeOf(Drawer)).apply(this, arguments));
+  }
+
+  createClass(Drawer, [{
+    key: 'render',
+    value: function render() {
+      return React__default.createElement(
+        antd.Drawer,
+        {
+          visible: this.props.visible,
+          onClose: this.props.onClose,
+          placement: this.props.placement,
+          closable: false,
+          width: this.props.width
+        },
+        React__default.createElement(
+          Header,
+          null,
+          React__default.createElement(
+            Title,
+            null,
+            this.props.title
+          ),
+          React__default.createElement(
+            StyledButton$1,
+            { clickFn: this.props.onClose, size: 'sm', icon: true },
+            React__default.createElement(Close, null)
+          )
+        ),
+        this.props.children
+      );
+    }
+  }]);
+  return Drawer;
+}(React__default.Component);
+
+Drawer.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  placement: PropTypes.string.isRequired,
+  width: PropTypes.number
+};
+Drawer.defaultProps = {
+  width: undefined
+};
+
 exports.Row = antd.Row;
 exports.Col = antd.Col;
 exports.message = antd.message;
@@ -37689,4 +37759,5 @@ exports.MultiInput = MultiInput;
 exports.ThemeProvider = ThemeProvider;
 exports.ChevronRight = ChevronRight;
 exports.DocumentIcon = DocumentIcon;
+exports.Drawer = Drawer;
 //# sourceMappingURL=index.js.map

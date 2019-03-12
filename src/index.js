@@ -31,6 +31,7 @@ import {
 } from './components/Icons';
 import colors from './styles/colors';
 import MultiInput from './components/MultiInput/MultiInput';
+import Drawer from './components/Drawer/Drawer';
 import { ThemeProvider } from './styles/theme';
 
 // Ant Design Styles
@@ -74,4 +75,5 @@ export {
   ThemeProvider,
   ChevronRight,
   DocumentIcon,
+  Drawer,
 };
