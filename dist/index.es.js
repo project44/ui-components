@@ -37711,11 +37711,12 @@ Drawer$1.propTypes = {
   visible: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  placement: PropTypes.string.isRequired,
+  placement: PropTypes.oneOf('right', 'left', 'top', 'bottom'),
   width: PropTypes.number
 };
 Drawer$1.defaultProps = {
-  width: undefined
+  width: undefined,
+  placement: 'right'
 };
 
 export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Link$1 as Link, Info, Copy, colors, MultiInput, ThemeProvider, ChevronRight, DocumentIcon, Drawer$1 as Drawer };
