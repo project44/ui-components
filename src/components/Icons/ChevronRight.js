@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const ChevronRight = ({ className }) => {
   return (
     <svg
-      classname={className}
+      className={className}
       width="20px"
       height="20px"
       viewBox="0 0 20 20"
@@ -13,30 +13,20 @@ const ChevronRight = ({ className }) => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       <defs>
-        <polygon
-          id="chevr"
-          points="6 14.58 10.58 10 6 5.41 7.41 4 13.41 10 7.41 16"
-        />
+        <polygon id="chevr" points="6 14.58 10.58 10 6 5.41 7.41 4 13.41 10 7.41 16" />
       </defs>
-      <g
-        fill="none"
-        fill-rule="evenodd"
-      >
+      <g fill="none" fillRule="evenodd">
         <mask id="chevr" fill="white">
-          <use xlinkHref="#chevr" />
+          <use xlinkhref="#chevr" />
         </mask>
-        <use
-          fill="#000000"
-          fill-rule="nonzero"
-          xlinkHref="#chevr"
-        />
+        <use fill="#000000" fillRule="nonzero" xlinkhref="#chevr" />
       </g>
     </svg>
   );
 };
 
 ChevronRight.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default ChevronRight;
