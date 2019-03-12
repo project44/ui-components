@@ -30201,7 +30201,7 @@ var _meta_5 = _meta.onFreeze;
 
 var defineProperty$5 = _objectDp.f;
 var _wksDefine = function (name) {
-  var $Symbol = _core.Symbol || (_core.Symbol = {});
+  var $Symbol = _core.Symbol || (_core.Symbol = _library ? {} : _global.Symbol || {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty$5($Symbol, name, { value: _wksExt.f(name) });
 };
 
@@ -37307,40 +37307,32 @@ var DocumentIcon = function DocumentIcon(_ref) {
   var className = _ref.className;
 
   return React__default.createElement(
-    "svg",
+    'svg',
     {
       className: className,
-      width: "20px",
-      height: "20px",
-      viewBox: "0 0 20 20",
-      version: "1.1",
-      xmlns: "http://www.w3.org/2000/svg"
+      width: '20px',
+      height: '20px',
+      viewBox: '0 0 20 20',
+      version: '1.1',
+      xmlns: 'http://www.w3.org/2000/svg'
     },
     React__default.createElement(
-      "defs",
+      'defs',
       null,
-      React__default.createElement("path", {
-        d: "M12.5,5.83333333 L17.0833333,5.83333333 L12.5,1.25 L12.5,5.83333333 L12.5,5.83333333 Z M6.66666667,0 L13.3333333,0 L18.3333333,5 L18.3333333,15 C18.3333333,15.9204746 17.5871412,16.6666667 16.6666667,16.6666667 L6.66666667,16.6666667 C5.74166667,16.6666667 5,15.9166667 5,15 L5,1.66666667 C5,0.746192084 5.74619208,1.69088438e-16 6.66666667,0 L6.66666667,0 Z M3.33333333,3.33333333 L3.33333333,18.3333333 L16.6666667,18.3333333 L16.6666667,20 L3.33333333,20 C2.41285875,20 1.66666667,19.2538079 1.66666667,18.3333333 L1.66666667,3.33333333 L3.33333333,3.33333333 Z",
-        id: "docicon"
+      React__default.createElement('path', {
+        d: 'M12.5,5.83333333 L17.0833333,5.83333333 L12.5,1.25 L12.5,5.83333333 L12.5,5.83333333 Z M6.66666667,0 L13.3333333,0 L18.3333333,5 L18.3333333,15 C18.3333333,15.9204746 17.5871412,16.6666667 16.6666667,16.6666667 L6.66666667,16.6666667 C5.74166667,16.6666667 5,15.9166667 5,15 L5,1.66666667 C5,0.746192084 5.74619208,1.69088438e-16 6.66666667,0 L6.66666667,0 Z M3.33333333,3.33333333 L3.33333333,18.3333333 L16.6666667,18.3333333 L16.6666667,20 L3.33333333,20 C2.41285875,20 1.66666667,19.2538079 1.66666667,18.3333333 L1.66666667,3.33333333 L3.33333333,3.33333333 Z',
+        id: 'docicon'
       })
     ),
     React__default.createElement(
-      "g",
-      {
-        fill: "none",
-        "fill-rule": "evenodd"
-      },
+      'g',
+      { fill: 'none', fillRule: 'evenodd' },
       React__default.createElement(
-        "mask",
-        { id: "docicon", fill: "white" },
-        React__default.createElement("use", { xlinHref: "#docicon" })
+        'mask',
+        { id: 'docicon', fill: 'white' },
+        React__default.createElement('use', { xlinkhref: '#docicon' })
       ),
-      React__default.createElement("use", {
-        id: "Shape",
-        fill: "#000000",
-        "fill-rule": "nonzero",
-        xlinkHref: "#docicon"
-      })
+      React__default.createElement('use', { id: 'Shape', fill: '#000000', fillRule: 'nonzero', xlinkhref: '#docicon' })
     )
   );
 };
@@ -37353,40 +37345,30 @@ var ChevronRight = function ChevronRight(_ref) {
   var className = _ref.className;
 
   return React__default.createElement(
-    "svg",
+    'svg',
     {
-      classname: className,
-      width: "20px",
-      height: "20px",
-      viewBox: "0 0 20 20",
-      version: "1.1",
-      xmlns: "http://www.w3.org/2000/svg",
-      xmlnsXlink: "http://www.w3.org/1999/xlink"
+      className: className,
+      width: '20px',
+      height: '20px',
+      viewBox: '0 0 20 20',
+      version: '1.1',
+      xmlns: 'http://www.w3.org/2000/svg',
+      xmlnsXlink: 'http://www.w3.org/1999/xlink'
     },
     React__default.createElement(
-      "defs",
+      'defs',
       null,
-      React__default.createElement("polygon", {
-        id: "chevr",
-        points: "6 14.58 10.58 10 6 5.41 7.41 4 13.41 10 7.41 16"
-      })
+      React__default.createElement('polygon', { id: 'chevr', points: '6 14.58 10.58 10 6 5.41 7.41 4 13.41 10 7.41 16' })
     ),
     React__default.createElement(
-      "g",
-      {
-        fill: "none",
-        "fill-rule": "evenodd"
-      },
+      'g',
+      { fill: 'none', fillRule: 'evenodd' },
       React__default.createElement(
-        "mask",
-        { id: "chevr", fill: "white" },
-        React__default.createElement("use", { xlinkHref: "#chevr" })
+        'mask',
+        { id: 'chevr', fill: 'white' },
+        React__default.createElement('use', { xlinkhref: '#chevr' })
       ),
-      React__default.createElement("use", {
-        fill: "#000000",
-        "fill-rule": "nonzero",
-        xlinkHref: "#chevr"
-      })
+      React__default.createElement('use', { fill: '#000000', fillRule: 'nonzero', xlinkhref: '#chevr' })
     )
   );
 };
