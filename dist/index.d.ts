@@ -15,6 +15,7 @@ declare module 'ui-components' {
     loading?: boolean;
     style?: Partial<CSSStyleDeclaration>;
     theme?: any;
+    icon?: boolean;
   }
 
   interface CheckboxProps {
