@@ -16,5 +16,6 @@ export default {
   colorPicker: '/color-picker',
   message: '/message',
   alert: '/alert',
-  multiInput: '/multi-input'
+  multiInput: '/multi-input',
+  drawer: '/drawer',
 };

@@ -27,6 +27,14 @@ declare module 'ui-components' {
     theme?: any;
   }
 
+  interface DrawerProps {
+    visible: boolean;
+    onClose: () => void;
+    title: string;
+    placement?: 'right' | 'left' | 'top' | 'bottom';
+    width?: number;
+  }
+
   interface ColorPickerProps {
     placement?: string;
     color?: string;
@@ -56,4 +64,5 @@ declare module 'ui-components' {
   export class Input extends React.Component<any, any> {}
   export class MultiInput extends React.Component<any, any> {}
   export const ThemeProvider: (props: any) => void;
+  export class Drawer extends React.Component<DrawerProps, any>{};
 }

@@ -29,8 +29,16 @@ class Button extends Component {
     type: PropTypes.string,
     size: PropTypes.string,
     className: PropTypes.string,
+    icon: PropTypes.bool,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
     theme: PropTypes.shape(defaultThemeShape),
+  };
+
+  static defaultProps = {
+    download: false,
+    icon: false,
+    type: 'default',
+    size: 'med',
   };
 
   static contextType = ThemeContext;
@@ -41,9 +49,10 @@ class Button extends Component {
       clickFn,
       blurFn,
       upload,
-      download = false,
-      type = 'default', // default, primary, secondary, destructive
-      size = 'med',
+      download,
+      icon,
+      type, // default, primary, secondary, destructive
+      size,
       ...props
     } = this.props;
 
@@ -62,6 +71,7 @@ class Button extends Component {
               med: size === 'med',
               sm: size === 'sm',
               xsm: size === 'xsm',
+              'icon-button-v2': icon,
             })}
             onClick={clickFn}
             onBlur={blurFn}
@@ -85,6 +95,7 @@ class Button extends Component {
             med: size === 'med',
             sm: size === 'sm',
             xsm: size === 'xsm',
+            'icon-button-v2': icon,
           })}
           onClick={clickFn}
           onBlur={blurFn}

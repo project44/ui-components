@@ -102,6 +102,9 @@ class SideNav extends Component {
           <Menu.Item key={`${routes.components}${routes.alert}`}>
             <Link to={`${routes.components}${routes.alert}`}>Alert</Link>
           </Menu.Item>
+          <Menu.Item key={`${routes.components}${routes.drawer}`}>
+            <Link to={`${routes.components}${routes.drawer}`}>Drawer</Link>
+          </Menu.Item>
         </SubMenu>
       </Menu>
     );
