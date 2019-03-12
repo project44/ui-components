@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const DocumentIcon = ({ className }) => {
   return (
@@ -17,26 +17,18 @@ const DocumentIcon = ({ className }) => {
           id="docicon"
         />
       </defs>
-      <g
-        fill="none"
-        fill-rule="evenodd"
-      >
+      <g fill="none" fillRule="evenodd">
         <mask id="docicon" fill="white">
-          <use xlinHref="#docicon" />
+          <use xlinkHref="#docicon" />
         </mask>
-        <use
-          id="Shape"
-          fill="#000000"
-          fill-rule="nonzero"
-          xlinkHref="#docicon"
-        />
+        <use id="Shape" fill="#000000" fillRule="nonzero" xlinkHref="#docicon" />
       </g>
     </svg>
   );
 };
 
 DocumentIcon.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default DocumentIcon;
