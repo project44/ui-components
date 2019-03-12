@@ -17,9 +17,9 @@ const ChevronRight = ({ className }) => {
       </defs>
       <g fill="none" fillRule="evenodd">
         <mask id="chevr" fill="white">
-          <use xlinkhref="#chevr" />
+          <use xlinkHref="#chevr" />
         </mask>
-        <use fill="#000000" fillRule="nonzero" xlinkhref="#chevr" />
+        <use fill="#000000" fillRule="nonzero" xlinkHref="#chevr" />
       </g>
     </svg>
   );

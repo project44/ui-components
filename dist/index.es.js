@@ -37323,9 +37323,9 @@ var DocumentIcon = function DocumentIcon(_ref) {
       React.createElement(
         'mask',
         { id: 'docicon', fill: 'white' },
-        React.createElement('use', { xlinkhref: '#docicon' })
+        React.createElement('use', { xlinkHref: '#docicon' })
       ),
-      React.createElement('use', { id: 'Shape', fill: '#000000', fillRule: 'nonzero', xlinkhref: '#docicon' })
+      React.createElement('use', { id: 'Shape', fill: '#000000', fillRule: 'nonzero', xlinkHref: '#docicon' })
     )
   );
 };
@@ -37359,9 +37359,9 @@ var ChevronRight = function ChevronRight(_ref) {
       React.createElement(
         'mask',
         { id: 'chevr', fill: 'white' },
-        React.createElement('use', { xlinkhref: '#chevr' })
+        React.createElement('use', { xlinkHref: '#chevr' })
       ),
-      React.createElement('use', { fill: '#000000', fillRule: 'nonzero', xlinkhref: '#chevr' })
+      React.createElement('use', { fill: '#000000', fillRule: 'nonzero', xlinkHref: '#chevr' })
     )
   );
 };

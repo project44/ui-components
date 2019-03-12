@@ -19,9 +19,9 @@ const DocumentIcon = ({ className }) => {
       </defs>
       <g fill="none" fillRule="evenodd">
         <mask id="docicon" fill="white">
-          <use xlinkhref="#docicon" />
+          <use xlinkHref="#docicon" />
         </mask>
-        <use id="Shape" fill="#000000" fillRule="nonzero" xlinkhref="#docicon" />
+        <use id="Shape" fill="#000000" fillRule="nonzero" xlinkHref="#docicon" />
       </g>
     </svg>
   );
