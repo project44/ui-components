@@ -28089,7 +28089,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: _library ? 'pure' : 'global',
+  mode: 'pure',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -37326,13 +37326,13 @@ var DocumentIcon = function DocumentIcon(_ref) {
     ),
     React.createElement(
       'g',
-      { fill: 'none', fillRule: 'evenodd' },
+      { fill: '#000000', fillRule: 'evenodd' },
       React.createElement(
         'mask',
         { id: 'docicon', fill: 'white' },
         React.createElement('use', { xlinkHref: '#docicon' })
       ),
-      React.createElement('use', { id: 'Shape', fill: '#000000', fillRule: 'nonzero', xlinkHref: '#docicon' })
+      React.createElement('use', { id: 'Shape', fillRule: 'nonzero', xlinkHref: '#docicon' })
     )
   );
 };
