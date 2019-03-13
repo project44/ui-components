@@ -28096,7 +28096,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: 'pure',
+  mode: _library ? 'pure' : 'global',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -37369,13 +37369,13 @@ var ChevronRight = function ChevronRight(_ref) {
     ),
     React__default.createElement(
       'g',
-      { fill: 'none', fillRule: 'evenodd' },
+      { fill: '#000000', fillRule: 'evenodd' },
       React__default.createElement(
         'mask',
         { id: 'chevr', fill: 'white' },
         React__default.createElement('use', { xlinkHref: '#chevr' })
       ),
-      React__default.createElement('use', { fill: '#000000', fillRule: 'nonzero', xlinkHref: '#chevr' })
+      React__default.createElement('use', { fillRule: 'nonzero', xlinkHref: '#chevr' })
     )
   );
 };
