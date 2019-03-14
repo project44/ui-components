@@ -37333,13 +37333,13 @@ var DocumentIcon = function DocumentIcon(_ref) {
     ),
     React__default.createElement(
       'g',
-      { fill: 'none', fillRule: 'evenodd' },
+      { fill: '#000000', fillRule: 'evenodd' },
       React__default.createElement(
         'mask',
         { id: 'docicon', fill: 'white' },
         React__default.createElement('use', { xlinkHref: '#docicon' })
       ),
-      React__default.createElement('use', { id: 'Shape', fill: '#000000', fillRule: 'nonzero', xlinkHref: '#docicon' })
+      React__default.createElement('use', { id: 'Shape', fillRule: 'nonzero', xlinkHref: '#docicon' })
     )
   );
 };
@@ -37369,18 +37369,55 @@ var ChevronRight = function ChevronRight(_ref) {
     ),
     React__default.createElement(
       'g',
-      { fill: 'none', fillRule: 'evenodd' },
+      { fill: '#000000', fillRule: 'evenodd' },
       React__default.createElement(
         'mask',
         { id: 'chevr', fill: 'white' },
         React__default.createElement('use', { xlinkHref: '#chevr' })
       ),
-      React__default.createElement('use', { fill: '#000000', fillRule: 'nonzero', xlinkHref: '#chevr' })
+      React__default.createElement('use', { fillRule: 'nonzero', xlinkHref: '#chevr' })
     )
   );
 };
 
 ChevronRight.propTypes = {
+  className: PropTypes.string
+};
+
+var Notes = function Notes(_ref) {
+  var className = _ref.className;
+
+  return React__default.createElement(
+    'svg',
+    { className: className, xmlns: 'http://www.w3.org/2000/svg', width: '24', height: '24', viewBox: '0 0 24 24' },
+    React__default.createElement(
+      'defs',
+      null,
+      React__default.createElement('path', {
+        id: 'noteIcon',
+        d: 'M22 5.5C22 3.568 20.482 2 18.613 2H5.387C3.517 2 2 3.568 2 5.5v7C2 14.432 3.518 16 5.387 16H11.5l7.161 6.932L18.613 16C20.483 16 22 14.432 22 12.5v-7z'
+      })
+    ),
+    React__default.createElement(
+      'g',
+      { fill: 'none', fillRule: 'evenodd' },
+      React__default.createElement('path', { fill: '#FFF', fillOpacity: '0', d: 'M0 0h24v24H0z' }),
+      React__default.createElement(
+        'mask',
+        { id: 'noteIcon', fill: '#fff' },
+        React__default.createElement('use', { xlinkHref: '#notnoteIcone' })
+      ),
+      React__default.createElement('use', { fill: '#EBEBEB', xlinkHref: '#noteIcon' }),
+      React__default.createElement(
+        'g',
+        { fill: '#575451', mask: 'url(#nonoteIconte)' },
+        React__default.createElement('path', { d: 'M0 0h24v24H0z' })
+      )
+    )
+  );
+};
+
+Notes.propTypes = {
   className: PropTypes.string
 };
 
@@ -37765,4 +37802,5 @@ exports.ThemeProvider = ThemeProvider;
 exports.ChevronRight = ChevronRight;
 exports.DocumentIcon = DocumentIcon;
 exports.Drawer = Drawer;
+exports.Notes = Notes;
 //# sourceMappingURL=index.js.map

@@ -8,5 +8,6 @@ import Copy from './Copy';
 import Link from './Link';
 import DocumentIcon from './DocumentIcon';
 import ChevronRight from './ChevronRight';
+import Notes from './Notes';
 
-export { Layers, Settings, Checkmark, Close, Info, ChevronDown, Copy, Link, DocumentIcon, ChevronRight };
+export { Layers, Settings, Checkmark, Close, Info, ChevronDown, Copy, Link, DocumentIcon, ChevronRight, Notes };

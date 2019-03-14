@@ -15,11 +15,11 @@ const ChevronRight = ({ className }) => {
       <defs>
         <polygon id="chevr" points="6 14.58 10.58 10 6 5.41 7.41 4 13.41 10 7.41 16" />
       </defs>
-      <g fill="none" fillRule="evenodd">
+      <g fill="#000000" fillRule="evenodd">
         <mask id="chevr" fill="white">
           <use xlinkHref="#chevr" />
         </mask>
-        <use fill="#000000" fillRule="nonzero" xlinkHref="#chevr" />
+        <use fillRule="nonzero" xlinkHref="#chevr" />
       </g>
     </svg>
   );

@@ -37326,13 +37326,13 @@ var DocumentIcon = function DocumentIcon(_ref) {
     ),
     React.createElement(
       'g',
-      { fill: 'none', fillRule: 'evenodd' },
+      { fill: '#000000', fillRule: 'evenodd' },
       React.createElement(
         'mask',
         { id: 'docicon', fill: 'white' },
         React.createElement('use', { xlinkHref: '#docicon' })
       ),
-      React.createElement('use', { id: 'Shape', fill: '#000000', fillRule: 'nonzero', xlinkHref: '#docicon' })
+      React.createElement('use', { id: 'Shape', fillRule: 'nonzero', xlinkHref: '#docicon' })
     )
   );
 };
@@ -37362,18 +37362,55 @@ var ChevronRight = function ChevronRight(_ref) {
     ),
     React.createElement(
       'g',
-      { fill: 'none', fillRule: 'evenodd' },
+      { fill: '#000000', fillRule: 'evenodd' },
       React.createElement(
         'mask',
         { id: 'chevr', fill: 'white' },
         React.createElement('use', { xlinkHref: '#chevr' })
       ),
-      React.createElement('use', { fill: '#000000', fillRule: 'nonzero', xlinkHref: '#chevr' })
+      React.createElement('use', { fillRule: 'nonzero', xlinkHref: '#chevr' })
     )
   );
 };
 
 ChevronRight.propTypes = {
+  className: PropTypes.string
+};
+
+var Notes = function Notes(_ref) {
+  var className = _ref.className;
+
+  return React.createElement(
+    'svg',
+    { className: className, xmlns: 'http://www.w3.org/2000/svg', width: '24', height: '24', viewBox: '0 0 24 24' },
+    React.createElement(
+      'defs',
+      null,
+      React.createElement('path', {
+        id: 'noteIcon',
+        d: 'M22 5.5C22 3.568 20.482 2 18.613 2H5.387C3.517 2 2 3.568 2 5.5v7C2 14.432 3.518 16 5.387 16H11.5l7.161 6.932L18.613 16C20.483 16 22 14.432 22 12.5v-7z'
+      })
+    ),
+    React.createElement(
+      'g',
+      { fill: 'none', fillRule: 'evenodd' },
+      React.createElement('path', { fill: '#FFF', fillOpacity: '0', d: 'M0 0h24v24H0z' }),
+      React.createElement(
+        'mask',
+        { id: 'noteIcon', fill: '#fff' },
+        React.createElement('use', { xlinkHref: '#notnoteIcone' })
+      ),
+      React.createElement('use', { fill: '#EBEBEB', xlinkHref: '#noteIcon' }),
+      React.createElement(
+        'g',
+        { fill: '#575451', mask: 'url(#nonoteIconte)' },
+        React.createElement('path', { d: 'M0 0h24v24H0z' })
+      )
+    )
+  );
+};
+
+Notes.propTypes = {
   className: PropTypes.string
 };
 
@@ -37723,5 +37760,5 @@ Drawer$1.defaultProps = {
   placement: 'right'
 };
 
-export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Link$1 as Link, Info, Copy, colors, MultiInput, ThemeProvider, ChevronRight, DocumentIcon, Drawer$1 as Drawer };
+export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Link$1 as Link, Info, Copy, colors, MultiInput, ThemeProvider, ChevronRight, DocumentIcon, Drawer$1 as Drawer, Notes };
 //# sourceMappingURL=index.es.js.map
