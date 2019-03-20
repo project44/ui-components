@@ -47,7 +47,7 @@ const menuItems = [
   {
     label: 'Documents',
     icon: <DocumentIcon />,
-    link: 'documents',
+    link: 'document',
   },
 ];
 
