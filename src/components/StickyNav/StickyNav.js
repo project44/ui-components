@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import get from 'lodash/get';
+import { lighten } from 'polished';
 import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 import colors from '../../styles/colors';
 
@@ -15,7 +16,7 @@ const StyleNav = styled.div`
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   z-index: 94449;
   cursor: pointer;
-  background-color: #fff;
+  background-color: ${colors.secondaryBackgroundColor};
   &:hover {
     width: 242px;
     a {
@@ -57,7 +58,8 @@ const StyledNavItem = styled.div`
   }
 
   &:hover {
-    background-color: ${props => (props.currentView === props.link ? `transparent` : `#ebebeb`)};
+    background-color: ${props =>
+      props.currentView === props.link ? `transparent` : lighten(0.1)(colors.lightBorderColor)};
   }
   a {
     display: flex;

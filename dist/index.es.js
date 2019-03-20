@@ -25819,7 +25819,7 @@ var get_1 = get$1;
 var StyleNav = styled.div.withConfig({
   displayName: 'StickyNav__StyleNav',
   componentId: 'wbp22c-0'
-})(['&&{width:68px;left:0;position:fixed;top:200px;border-radius:0;transition-duration:0.3s;box-shadow:0 2px 4px 0 rgba(0,0,0,0.5);z-index:94449;cursor:pointer;background-color:#fff;}&&:hover{width:242px;}&&:hover a{text-decoration:none;}']);
+})(['&&{width:68px;left:0;position:fixed;top:200px;border-radius:0;transition-duration:0.3s;box-shadow:0 2px 4px 0 rgba(0,0,0,0.5);z-index:94449;cursor:pointer;background-color:', ';}&&:hover{width:242px;}&&:hover a{text-decoration:none;}'], colors.secondaryBackgroundColor);
 
 var StyledNavItem = styled.div.withConfig({
   displayName: 'StickyNav__StyledNavItem',
@@ -25837,7 +25837,7 @@ var StyledNavItem = styled.div.withConfig({
 }, function (props) {
   return props.currentView === props.link ? 'bold' : 'normal';
 }, function (props) {
-  return props.currentView === props.link ? 'transparent' : '#ebebeb';
+  return props.currentView === props.link ? 'transparent' : curriedLighten(0.1)(colors.lightBorderColor);
 });
 
 var StickyNav = function (_Component) {
@@ -25914,11 +25914,11 @@ var StickyNav = function (_Component) {
       return React.createElement(
         StyleNav,
         null,
-        menuItems.map(function (item, index) {
+        menuItems.map(function (item) {
           return React.createElement(
             StyledNavItem,
             {
-              key: index,
+              key: item.link,
               theme: _this2.props.theme || _this2.context,
               currentView: _this2.state.currentView,
               link: item.link
@@ -26261,7 +26261,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: 'pure',
+  mode: _library ? 'pure' : 'global',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -28186,6 +28186,8 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
+var returnThis = function () { return this; };
+
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -28210,6 +28212,8 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -28218,7 +28222,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {
