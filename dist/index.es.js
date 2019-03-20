@@ -24631,3045 +24631,1213 @@ DateRange.propTypes = {
 };
 
 /**
- * Copyright (c) 2014-present, Facebook, Inc.
+ * Checks if `value` is classified as an `Array` object.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
  */
+var isArray = Array.isArray;
+
+var isArray_1 = isArray;
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof commonjsGlobal == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
+
+var _freeGlobal = freeGlobal;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = _freeGlobal || freeSelf || Function('return this')();
+
+var _root = root;
+
+/** Built-in value references. */
+var Symbol$1 = _root.Symbol;
+
+var _Symbol = Symbol$1;
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
 
 /**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
  */
+var nativeObjectToString = objectProto.toString;
 
-var __DEV__ = process.env.NODE_ENV !== 'production';
-
-var warning = function() {};
-
-if (__DEV__) {
-  var printWarning = function printWarning(format, args) {
-    var len = arguments.length;
-    args = new Array(len > 2 ? len - 2 : 0);
-    for (var key = 2; key < len; key++) {
-      args[key - 2] = arguments[key];
-    }
-    var argIndex = 0;
-    var message$$1 = 'Warning: ' +
-      format.replace(/%s/g, function() {
-        return args[argIndex++];
-      });
-    if (typeof console !== 'undefined') {
-      console.error(message$$1);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message$$1);
-    } catch (x) {}
-  };
-
-  warning = function(condition, format, args) {
-    var len = arguments.length;
-    args = new Array(len > 2 ? len - 2 : 0);
-    for (var key = 2; key < len; key++) {
-      args[key - 2] = arguments[key];
-    }
-    if (format === undefined) {
-      throw new Error(
-          '`warning(condition, format, ...args)` requires a warning ' +
-          'message argument'
-      );
-    }
-    if (!condition) {
-      printWarning.apply(null, [format].concat(args));
-    }
-  };
-}
-
-var warning_1 = warning;
+/** Built-in value references. */
+var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
 
 /**
- * Copyright 2014-2015, Facebook, Inc.
- * All rights reserved.
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
  */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
 
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
+  try {
+    value[symToStringTag] = undefined;
+  } catch (e) {}
 
-var __DEV__$1 = process.env.NODE_ENV !== 'production';
-
-var warning$1 = function() {};
-
-if (__DEV__$1) {
-  warning$1 = function(condition, format, args) {
-    var len = arguments.length;
-    args = new Array(len > 2 ? len - 2 : 0);
-    for (var key = 2; key < len; key++) {
-      args[key - 2] = arguments[key];
-    }
-    if (format === undefined) {
-      throw new Error(
-        '`warning(condition, format, ...args)` requires a warning ' +
-        'message argument'
-      );
-    }
-
-    if (format.length < 10 || (/^[s\W]*$/).test(format)) {
-      throw new Error(
-        'The warning format should be able to uniquely identify this ' +
-        'warning. Please, use a more descriptive format than: ' + format
-      );
-    }
-
-    if (!condition) {
-      var argIndex = 0;
-      var message$$1 = 'Warning: ' +
-        format.replace(/%s/g, function() {
-          return args[argIndex++];
-        });
-      if (typeof console !== 'undefined') {
-        console.error(message$$1);
-      }
-      try {
-        // This error was thrown as a convenience so that you can use this stack
-        // to find the callsite that caused this warning to fire.
-        throw new Error(message$$1);
-      } catch(x) {}
-    }
-  };
-}
-
-var warning_1$1 = warning$1;
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var NODE_ENV = process.env.NODE_ENV;
-
-var invariant = function(condition, format, a, b, c, d, e, f) {
-  if (NODE_ENV !== 'production') {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  }
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error(
-        'Minified exception occurred; use the non-minified dev environment ' +
-        'for the full error message and additional helpful warnings.'
-      );
+  var result = nativeObjectToString.call(value);
+  {
+    if (isOwn) {
+      value[symToStringTag] = tag;
     } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(
-        format.replace(/%s/g, function() { return args[argIndex++]; })
-      );
-      error.name = 'Invariant Violation';
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-};
-
-var invariant_1 = invariant;
-
-function isAbsolute(pathname) {
-  return pathname.charAt(0) === '/';
-}
-
-// About 1.5x faster than the two-arg version of Array#splice()
-function spliceOne(list, index) {
-  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1) {
-    list[i] = list[k];
-  }
-
-  list.pop();
-}
-
-// This implementation is based heavily on node's url.parse
-function resolvePathname(to) {
-  var from = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-
-  var toParts = to && to.split('/') || [];
-  var fromParts = from && from.split('/') || [];
-
-  var isToAbs = to && isAbsolute(to);
-  var isFromAbs = from && isAbsolute(from);
-  var mustEndAbs = isToAbs || isFromAbs;
-
-  if (to && isAbsolute(to)) {
-    // to is absolute
-    fromParts = toParts;
-  } else if (toParts.length) {
-    // to is relative, drop the filename
-    fromParts.pop();
-    fromParts = fromParts.concat(toParts);
-  }
-
-  if (!fromParts.length) return '/';
-
-  var hasTrailingSlash = void 0;
-  if (fromParts.length) {
-    var last = fromParts[fromParts.length - 1];
-    hasTrailingSlash = last === '.' || last === '..' || last === '';
-  } else {
-    hasTrailingSlash = false;
-  }
-
-  var up = 0;
-  for (var i = fromParts.length; i >= 0; i--) {
-    var part = fromParts[i];
-
-    if (part === '.') {
-      spliceOne(fromParts, i);
-    } else if (part === '..') {
-      spliceOne(fromParts, i);
-      up++;
-    } else if (up) {
-      spliceOne(fromParts, i);
-      up--;
+      delete value[symToStringTag];
     }
   }
-
-  if (!mustEndAbs) for (; up--; up) {
-    fromParts.unshift('..');
-  }if (mustEndAbs && fromParts[0] !== '' && (!fromParts[0] || !isAbsolute(fromParts[0]))) fromParts.unshift('');
-
-  var result = fromParts.join('/');
-
-  if (hasTrailingSlash && result.substr(-1) !== '/') result += '/';
-
   return result;
 }
 
-var _typeof$1 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _getRawTag = getRawTag;
 
-function valueEqual(a, b) {
-  if (a === b) return true;
-
-  if (a == null || b == null) return false;
-
-  if (Array.isArray(a)) {
-    return Array.isArray(b) && a.length === b.length && a.every(function (item, index) {
-      return valueEqual(item, b[index]);
-    });
-  }
-
-  var aType = typeof a === 'undefined' ? 'undefined' : _typeof$1(a);
-  var bType = typeof b === 'undefined' ? 'undefined' : _typeof$1(b);
-
-  if (aType !== bType) return false;
-
-  if (aType === 'object') {
-    var aValue = a.valueOf();
-    var bValue = b.valueOf();
-
-    if (aValue !== a || bValue !== b) return valueEqual(aValue, bValue);
-
-    var aKeys = Object.keys(a);
-    var bKeys = Object.keys(b);
-
-    if (aKeys.length !== bKeys.length) return false;
-
-    return aKeys.every(function (key) {
-      return valueEqual(a[key], b[key]);
-    });
-  }
-
-  return false;
-}
-
-var addLeadingSlash = function addLeadingSlash(path) {
-  return path.charAt(0) === '/' ? path : '/' + path;
-};
-
-var stripLeadingSlash = function stripLeadingSlash(path) {
-  return path.charAt(0) === '/' ? path.substr(1) : path;
-};
-
-var hasBasename = function hasBasename(path, prefix) {
-  return new RegExp('^' + prefix + '(\\/|\\?|#|$)', 'i').test(path);
-};
-
-var stripBasename = function stripBasename(path, prefix) {
-  return hasBasename(path, prefix) ? path.substr(prefix.length) : path;
-};
-
-var stripTrailingSlash = function stripTrailingSlash(path) {
-  return path.charAt(path.length - 1) === '/' ? path.slice(0, -1) : path;
-};
-
-var parsePath = function parsePath(path) {
-  var pathname = path || '/';
-  var search = '';
-  var hash = '';
-
-  var hashIndex = pathname.indexOf('#');
-  if (hashIndex !== -1) {
-    hash = pathname.substr(hashIndex);
-    pathname = pathname.substr(0, hashIndex);
-  }
-
-  var searchIndex = pathname.indexOf('?');
-  if (searchIndex !== -1) {
-    search = pathname.substr(searchIndex);
-    pathname = pathname.substr(0, searchIndex);
-  }
-
-  return {
-    pathname: pathname,
-    search: search === '?' ? '' : search,
-    hash: hash === '#' ? '' : hash
-  };
-};
-
-var createPath = function createPath(location) {
-  var pathname = location.pathname,
-      search = location.search,
-      hash = location.hash;
-
-
-  var path = pathname || '/';
-
-  if (search && search !== '?') path += search.charAt(0) === '?' ? search : '?' + search;
-
-  if (hash && hash !== '#') path += hash.charAt(0) === '#' ? hash : '#' + hash;
-
-  return path;
-};
-
-var _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var createLocation = function createLocation(path, state, key, currentLocation) {
-  var location = void 0;
-  if (typeof path === 'string') {
-    // Two-arg form: push(path, state)
-    location = parsePath(path);
-    location.state = state;
-  } else {
-    // One-arg form: push(location)
-    location = _extends$2({}, path);
-
-    if (location.pathname === undefined) location.pathname = '';
-
-    if (location.search) {
-      if (location.search.charAt(0) !== '?') location.search = '?' + location.search;
-    } else {
-      location.search = '';
-    }
-
-    if (location.hash) {
-      if (location.hash.charAt(0) !== '#') location.hash = '#' + location.hash;
-    } else {
-      location.hash = '';
-    }
-
-    if (state !== undefined && location.state === undefined) location.state = state;
-  }
-
-  try {
-    location.pathname = decodeURI(location.pathname);
-  } catch (e) {
-    if (e instanceof URIError) {
-      throw new URIError('Pathname "' + location.pathname + '" could not be decoded. ' + 'This is likely caused by an invalid percent-encoding.');
-    } else {
-      throw e;
-    }
-  }
-
-  if (key) location.key = key;
-
-  if (currentLocation) {
-    // Resolve incomplete/relative pathname relative to current location.
-    if (!location.pathname) {
-      location.pathname = currentLocation.pathname;
-    } else if (location.pathname.charAt(0) !== '/') {
-      location.pathname = resolvePathname(location.pathname, currentLocation.pathname);
-    }
-  } else {
-    // When there is no prior location and pathname is empty, set it to /
-    if (!location.pathname) {
-      location.pathname = '/';
-    }
-  }
-
-  return location;
-};
-
-var locationsAreEqual = function locationsAreEqual(a, b) {
-  return a.pathname === b.pathname && a.search === b.search && a.hash === b.hash && a.key === b.key && valueEqual(a.state, b.state);
-};
-
-var createTransitionManager = function createTransitionManager() {
-  var prompt = null;
-
-  var setPrompt = function setPrompt(nextPrompt) {
-    warning_1$1(prompt == null, 'A history supports only one prompt at a time');
-
-    prompt = nextPrompt;
-
-    return function () {
-      if (prompt === nextPrompt) prompt = null;
-    };
-  };
-
-  var confirmTransitionTo = function confirmTransitionTo(location, action, getUserConfirmation, callback) {
-    // TODO: If another transition starts while we're still confirming
-    // the previous one, we may end up in a weird state. Figure out the
-    // best way to handle this.
-    if (prompt != null) {
-      var result = typeof prompt === 'function' ? prompt(location, action) : prompt;
-
-      if (typeof result === 'string') {
-        if (typeof getUserConfirmation === 'function') {
-          getUserConfirmation(result, callback);
-        } else {
-          warning_1$1(false, 'A history needs a getUserConfirmation function in order to use a prompt message');
-
-          callback(true);
-        }
-      } else {
-        // Return false from a transition hook to cancel the transition.
-        callback(result !== false);
-      }
-    } else {
-      callback(true);
-    }
-  };
-
-  var listeners = [];
-
-  var appendListener = function appendListener(fn) {
-    var isActive = true;
-
-    var listener = function listener() {
-      if (isActive) fn.apply(undefined, arguments);
-    };
-
-    listeners.push(listener);
-
-    return function () {
-      isActive = false;
-      listeners = listeners.filter(function (item) {
-        return item !== listener;
-      });
-    };
-  };
-
-  var notifyListeners = function notifyListeners() {
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    listeners.forEach(function (listener) {
-      return listener.apply(undefined, args);
-    });
-  };
-
-  return {
-    setPrompt: setPrompt,
-    confirmTransitionTo: confirmTransitionTo,
-    appendListener: appendListener,
-    notifyListeners: notifyListeners
-  };
-};
-
-var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-
-var addEventListener = function addEventListener(node, event, listener) {
-  return node.addEventListener ? node.addEventListener(event, listener, false) : node.attachEvent('on' + event, listener);
-};
-
-var removeEventListener = function removeEventListener(node, event, listener) {
-  return node.removeEventListener ? node.removeEventListener(event, listener, false) : node.detachEvent('on' + event, listener);
-};
-
-var getConfirmation = function getConfirmation(message$$1, callback) {
-  return callback(window.confirm(message$$1));
-}; // eslint-disable-line no-alert
+/** Used for built-in method references. */
+var objectProto$1 = Object.prototype;
 
 /**
- * Returns true if the HTML5 history API is supported. Taken from Modernizr.
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString$1 = objectProto$1.toString;
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
  *
- * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
- * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
- * changed to avoid false negatives for Windows Phones: https://github.com/reactjs/react-router/issues/586
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
  */
-var supportsHistory = function supportsHistory() {
-  var ua = window.navigator.userAgent;
+function objectToString(value) {
+  return nativeObjectToString$1.call(value);
+}
 
-  if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) return false;
+var _objectToString = objectToString;
 
-  return window.history && 'pushState' in window.history;
-};
+/** `Object#toString` result references. */
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+
+/** Built-in value references. */
+var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
 
 /**
- * Returns true if browser fires popstate on hash change.
- * IE10 and IE11 do not.
- */
-var supportsPopStateOnHashChange = function supportsPopStateOnHashChange() {
-  return window.navigator.userAgent.indexOf('Trident') === -1;
-};
-
-/**
- * Returns false if using go(n) with hash history causes a full page reload.
- */
-var supportsGoWithoutReloadUsingHash = function supportsGoWithoutReloadUsingHash() {
-  return window.navigator.userAgent.indexOf('Firefox') === -1;
-};
-
-/**
- * Returns true if a given popstate event is an extraneous WebKit event.
- * Accounts for the fact that Chrome on iOS fires real popstate events
- * containing undefined state when pressing the back button.
- */
-var isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
-  return event.state === undefined && navigator.userAgent.indexOf('CriOS') === -1;
-};
-
-var _typeof$2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var PopStateEvent = 'popstate';
-var HashChangeEvent = 'hashchange';
-
-var getHistoryState = function getHistoryState() {
-  try {
-    return window.history.state || {};
-  } catch (e) {
-    // IE 11 sometimes throws when accessing window.history.state
-    // See https://github.com/ReactTraining/history/pull/289
-    return {};
-  }
-};
-
-/**
- * Creates a history object that uses the HTML5 history API including
- * pushState, replaceState, and the popstate event.
- */
-var createBrowserHistory = function createBrowserHistory() {
-  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-  invariant_1(canUseDOM, 'Browser history needs a DOM');
-
-  var globalHistory = window.history;
-  var canUseHistory = supportsHistory();
-  var needsHashChangeListener = !supportsPopStateOnHashChange();
-
-  var _props$forceRefresh = props.forceRefresh,
-      forceRefresh = _props$forceRefresh === undefined ? false : _props$forceRefresh,
-      _props$getUserConfirm = props.getUserConfirmation,
-      getUserConfirmation = _props$getUserConfirm === undefined ? getConfirmation : _props$getUserConfirm,
-      _props$keyLength = props.keyLength,
-      keyLength = _props$keyLength === undefined ? 6 : _props$keyLength;
-
-  var basename = props.basename ? stripTrailingSlash(addLeadingSlash(props.basename)) : '';
-
-  var getDOMLocation = function getDOMLocation(historyState) {
-    var _ref = historyState || {},
-        key = _ref.key,
-        state = _ref.state;
-
-    var _window$location = window.location,
-        pathname = _window$location.pathname,
-        search = _window$location.search,
-        hash = _window$location.hash;
-
-
-    var path = pathname + search + hash;
-
-    warning_1$1(!basename || hasBasename(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path "' + path + '" to begin with "' + basename + '".');
-
-    if (basename) path = stripBasename(path, basename);
-
-    return createLocation(path, state, key);
-  };
-
-  var createKey = function createKey() {
-    return Math.random().toString(36).substr(2, keyLength);
-  };
-
-  var transitionManager = createTransitionManager();
-
-  var setState = function setState(nextState) {
-    _extends$3(history, nextState);
-
-    history.length = globalHistory.length;
-
-    transitionManager.notifyListeners(history.location, history.action);
-  };
-
-  var handlePopState = function handlePopState(event) {
-    // Ignore extraneous popstate events in WebKit.
-    if (isExtraneousPopstateEvent(event)) return;
-
-    handlePop(getDOMLocation(event.state));
-  };
-
-  var handleHashChange = function handleHashChange() {
-    handlePop(getDOMLocation(getHistoryState()));
-  };
-
-  var forceNextPop = false;
-
-  var handlePop = function handlePop(location) {
-    if (forceNextPop) {
-      forceNextPop = false;
-      setState();
-    } else {
-      var action = 'POP';
-
-      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-        if (ok) {
-          setState({ action: action, location: location });
-        } else {
-          revertPop(location);
-        }
-      });
-    }
-  };
-
-  var revertPop = function revertPop(fromLocation) {
-    var toLocation = history.location;
-
-    // TODO: We could probably make this more reliable by
-    // keeping a list of keys we've seen in sessionStorage.
-    // Instead, we just default to 0 for keys we don't know.
-
-    var toIndex = allKeys.indexOf(toLocation.key);
-
-    if (toIndex === -1) toIndex = 0;
-
-    var fromIndex = allKeys.indexOf(fromLocation.key);
-
-    if (fromIndex === -1) fromIndex = 0;
-
-    var delta = toIndex - fromIndex;
-
-    if (delta) {
-      forceNextPop = true;
-      go(delta);
-    }
-  };
-
-  var initialLocation = getDOMLocation(getHistoryState());
-  var allKeys = [initialLocation.key];
-
-  // Public interface
-
-  var createHref = function createHref(location) {
-    return basename + createPath(location);
-  };
-
-  var push = function push(path, state) {
-    warning_1$1(!((typeof path === 'undefined' ? 'undefined' : _typeof$2(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
-
-    var action = 'PUSH';
-    var location = createLocation(path, state, createKey(), history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var href = createHref(location);
-      var key = location.key,
-          state = location.state;
-
-
-      if (canUseHistory) {
-        globalHistory.pushState({ key: key, state: state }, null, href);
-
-        if (forceRefresh) {
-          window.location.href = href;
-        } else {
-          var prevIndex = allKeys.indexOf(history.location.key);
-          var nextKeys = allKeys.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);
-
-          nextKeys.push(location.key);
-          allKeys = nextKeys;
-
-          setState({ action: action, location: location });
-        }
-      } else {
-        warning_1$1(state === undefined, 'Browser history cannot push state in browsers that do not support HTML5 history');
-
-        window.location.href = href;
-      }
-    });
-  };
-
-  var replace = function replace(path, state) {
-    warning_1$1(!((typeof path === 'undefined' ? 'undefined' : _typeof$2(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
-
-    var action = 'REPLACE';
-    var location = createLocation(path, state, createKey(), history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var href = createHref(location);
-      var key = location.key,
-          state = location.state;
-
-
-      if (canUseHistory) {
-        globalHistory.replaceState({ key: key, state: state }, null, href);
-
-        if (forceRefresh) {
-          window.location.replace(href);
-        } else {
-          var prevIndex = allKeys.indexOf(history.location.key);
-
-          if (prevIndex !== -1) allKeys[prevIndex] = location.key;
-
-          setState({ action: action, location: location });
-        }
-      } else {
-        warning_1$1(state === undefined, 'Browser history cannot replace state in browsers that do not support HTML5 history');
-
-        window.location.replace(href);
-      }
-    });
-  };
-
-  var go = function go(n) {
-    globalHistory.go(n);
-  };
-
-  var goBack = function goBack() {
-    return go(-1);
-  };
-
-  var goForward = function goForward() {
-    return go(1);
-  };
-
-  var listenerCount = 0;
-
-  var checkDOMListeners = function checkDOMListeners(delta) {
-    listenerCount += delta;
-
-    if (listenerCount === 1) {
-      addEventListener(window, PopStateEvent, handlePopState);
-
-      if (needsHashChangeListener) addEventListener(window, HashChangeEvent, handleHashChange);
-    } else if (listenerCount === 0) {
-      removeEventListener(window, PopStateEvent, handlePopState);
-
-      if (needsHashChangeListener) removeEventListener(window, HashChangeEvent, handleHashChange);
-    }
-  };
-
-  var isBlocked = false;
-
-  var block = function block() {
-    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
-    var unblock = transitionManager.setPrompt(prompt);
-
-    if (!isBlocked) {
-      checkDOMListeners(1);
-      isBlocked = true;
-    }
-
-    return function () {
-      if (isBlocked) {
-        isBlocked = false;
-        checkDOMListeners(-1);
-      }
-
-      return unblock();
-    };
-  };
-
-  var listen = function listen(listener) {
-    var unlisten = transitionManager.appendListener(listener);
-    checkDOMListeners(1);
-
-    return function () {
-      checkDOMListeners(-1);
-      unlisten();
-    };
-  };
-
-  var history = {
-    length: globalHistory.length,
-    action: 'POP',
-    location: initialLocation,
-    createHref: createHref,
-    push: push,
-    replace: replace,
-    go: go,
-    goBack: goBack,
-    goForward: goForward,
-    block: block,
-    listen: listen
-  };
-
-  return history;
-};
-
-var _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var HashChangeEvent$1 = 'hashchange';
-
-var HashPathCoders = {
-  hashbang: {
-    encodePath: function encodePath(path) {
-      return path.charAt(0) === '!' ? path : '!/' + stripLeadingSlash(path);
-    },
-    decodePath: function decodePath(path) {
-      return path.charAt(0) === '!' ? path.substr(1) : path;
-    }
-  },
-  noslash: {
-    encodePath: stripLeadingSlash,
-    decodePath: addLeadingSlash
-  },
-  slash: {
-    encodePath: addLeadingSlash,
-    decodePath: addLeadingSlash
-  }
-};
-
-var getHashPath = function getHashPath() {
-  // We can't use window.location.hash here because it's not
-  // consistent across browsers - Firefox will pre-decode it!
-  var href = window.location.href;
-  var hashIndex = href.indexOf('#');
-  return hashIndex === -1 ? '' : href.substring(hashIndex + 1);
-};
-
-var pushHashPath = function pushHashPath(path) {
-  return window.location.hash = path;
-};
-
-var replaceHashPath = function replaceHashPath(path) {
-  var hashIndex = window.location.href.indexOf('#');
-
-  window.location.replace(window.location.href.slice(0, hashIndex >= 0 ? hashIndex : 0) + '#' + path);
-};
-
-var createHashHistory = function createHashHistory() {
-  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-  invariant_1(canUseDOM, 'Hash history needs a DOM');
-
-  var globalHistory = window.history;
-  var canGoWithoutReload = supportsGoWithoutReloadUsingHash();
-
-  var _props$getUserConfirm = props.getUserConfirmation,
-      getUserConfirmation = _props$getUserConfirm === undefined ? getConfirmation : _props$getUserConfirm,
-      _props$hashType = props.hashType,
-      hashType = _props$hashType === undefined ? 'slash' : _props$hashType;
-
-  var basename = props.basename ? stripTrailingSlash(addLeadingSlash(props.basename)) : '';
-
-  var _HashPathCoders$hashT = HashPathCoders[hashType],
-      encodePath = _HashPathCoders$hashT.encodePath,
-      decodePath = _HashPathCoders$hashT.decodePath;
-
-
-  var getDOMLocation = function getDOMLocation() {
-    var path = decodePath(getHashPath());
-
-    warning_1$1(!basename || hasBasename(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path "' + path + '" to begin with "' + basename + '".');
-
-    if (basename) path = stripBasename(path, basename);
-
-    return createLocation(path);
-  };
-
-  var transitionManager = createTransitionManager();
-
-  var setState = function setState(nextState) {
-    _extends$4(history, nextState);
-
-    history.length = globalHistory.length;
-
-    transitionManager.notifyListeners(history.location, history.action);
-  };
-
-  var forceNextPop = false;
-  var ignorePath = null;
-
-  var handleHashChange = function handleHashChange() {
-    var path = getHashPath();
-    var encodedPath = encodePath(path);
-
-    if (path !== encodedPath) {
-      // Ensure we always have a properly-encoded hash.
-      replaceHashPath(encodedPath);
-    } else {
-      var location = getDOMLocation();
-      var prevLocation = history.location;
-
-      if (!forceNextPop && locationsAreEqual(prevLocation, location)) return; // A hashchange doesn't always == location change.
-
-      if (ignorePath === createPath(location)) return; // Ignore this change; we already setState in push/replace.
-
-      ignorePath = null;
-
-      handlePop(location);
-    }
-  };
-
-  var handlePop = function handlePop(location) {
-    if (forceNextPop) {
-      forceNextPop = false;
-      setState();
-    } else {
-      var action = 'POP';
-
-      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-        if (ok) {
-          setState({ action: action, location: location });
-        } else {
-          revertPop(location);
-        }
-      });
-    }
-  };
-
-  var revertPop = function revertPop(fromLocation) {
-    var toLocation = history.location;
-
-    // TODO: We could probably make this more reliable by
-    // keeping a list of paths we've seen in sessionStorage.
-    // Instead, we just default to 0 for paths we don't know.
-
-    var toIndex = allPaths.lastIndexOf(createPath(toLocation));
-
-    if (toIndex === -1) toIndex = 0;
-
-    var fromIndex = allPaths.lastIndexOf(createPath(fromLocation));
-
-    if (fromIndex === -1) fromIndex = 0;
-
-    var delta = toIndex - fromIndex;
-
-    if (delta) {
-      forceNextPop = true;
-      go(delta);
-    }
-  };
-
-  // Ensure the hash is encoded properly before doing anything else.
-  var path = getHashPath();
-  var encodedPath = encodePath(path);
-
-  if (path !== encodedPath) replaceHashPath(encodedPath);
-
-  var initialLocation = getDOMLocation();
-  var allPaths = [createPath(initialLocation)];
-
-  // Public interface
-
-  var createHref = function createHref(location) {
-    return '#' + encodePath(basename + createPath(location));
-  };
-
-  var push = function push(path, state) {
-    warning_1$1(state === undefined, 'Hash history cannot push state; it is ignored');
-
-    var action = 'PUSH';
-    var location = createLocation(path, undefined, undefined, history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var path = createPath(location);
-      var encodedPath = encodePath(basename + path);
-      var hashChanged = getHashPath() !== encodedPath;
-
-      if (hashChanged) {
-        // We cannot tell if a hashchange was caused by a PUSH, so we'd
-        // rather setState here and ignore the hashchange. The caveat here
-        // is that other hash histories in the page will consider it a POP.
-        ignorePath = path;
-        pushHashPath(encodedPath);
-
-        var prevIndex = allPaths.lastIndexOf(createPath(history.location));
-        var nextPaths = allPaths.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);
-
-        nextPaths.push(path);
-        allPaths = nextPaths;
-
-        setState({ action: action, location: location });
-      } else {
-        warning_1$1(false, 'Hash history cannot PUSH the same path; a new entry will not be added to the history stack');
-
-        setState();
-      }
-    });
-  };
-
-  var replace = function replace(path, state) {
-    warning_1$1(state === undefined, 'Hash history cannot replace state; it is ignored');
-
-    var action = 'REPLACE';
-    var location = createLocation(path, undefined, undefined, history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var path = createPath(location);
-      var encodedPath = encodePath(basename + path);
-      var hashChanged = getHashPath() !== encodedPath;
-
-      if (hashChanged) {
-        // We cannot tell if a hashchange was caused by a REPLACE, so we'd
-        // rather setState here and ignore the hashchange. The caveat here
-        // is that other hash histories in the page will consider it a POP.
-        ignorePath = path;
-        replaceHashPath(encodedPath);
-      }
-
-      var prevIndex = allPaths.indexOf(createPath(history.location));
-
-      if (prevIndex !== -1) allPaths[prevIndex] = path;
-
-      setState({ action: action, location: location });
-    });
-  };
-
-  var go = function go(n) {
-    warning_1$1(canGoWithoutReload, 'Hash history go(n) causes a full page reload in this browser');
-
-    globalHistory.go(n);
-  };
-
-  var goBack = function goBack() {
-    return go(-1);
-  };
-
-  var goForward = function goForward() {
-    return go(1);
-  };
-
-  var listenerCount = 0;
-
-  var checkDOMListeners = function checkDOMListeners(delta) {
-    listenerCount += delta;
-
-    if (listenerCount === 1) {
-      addEventListener(window, HashChangeEvent$1, handleHashChange);
-    } else if (listenerCount === 0) {
-      removeEventListener(window, HashChangeEvent$1, handleHashChange);
-    }
-  };
-
-  var isBlocked = false;
-
-  var block = function block() {
-    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
-    var unblock = transitionManager.setPrompt(prompt);
-
-    if (!isBlocked) {
-      checkDOMListeners(1);
-      isBlocked = true;
-    }
-
-    return function () {
-      if (isBlocked) {
-        isBlocked = false;
-        checkDOMListeners(-1);
-      }
-
-      return unblock();
-    };
-  };
-
-  var listen = function listen(listener) {
-    var unlisten = transitionManager.appendListener(listener);
-    checkDOMListeners(1);
-
-    return function () {
-      checkDOMListeners(-1);
-      unlisten();
-    };
-  };
-
-  var history = {
-    length: globalHistory.length,
-    action: 'POP',
-    location: initialLocation,
-    createHref: createHref,
-    push: push,
-    replace: replace,
-    go: go,
-    goBack: goBack,
-    goForward: goForward,
-    block: block,
-    listen: listen
-  };
-
-  return history;
-};
-
-var _typeof$3 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _extends$5 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var clamp = function clamp(n, lowerBound, upperBound) {
-  return Math.min(Math.max(n, lowerBound), upperBound);
-};
-
-/**
- * Creates a history object that stores locations in memory.
- */
-var createMemoryHistory = function createMemoryHistory() {
-  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var getUserConfirmation = props.getUserConfirmation,
-      _props$initialEntries = props.initialEntries,
-      initialEntries = _props$initialEntries === undefined ? ['/'] : _props$initialEntries,
-      _props$initialIndex = props.initialIndex,
-      initialIndex = _props$initialIndex === undefined ? 0 : _props$initialIndex,
-      _props$keyLength = props.keyLength,
-      keyLength = _props$keyLength === undefined ? 6 : _props$keyLength;
-
-
-  var transitionManager = createTransitionManager();
-
-  var setState = function setState(nextState) {
-    _extends$5(history, nextState);
-
-    history.length = history.entries.length;
-
-    transitionManager.notifyListeners(history.location, history.action);
-  };
-
-  var createKey = function createKey() {
-    return Math.random().toString(36).substr(2, keyLength);
-  };
-
-  var index = clamp(initialIndex, 0, initialEntries.length - 1);
-  var entries = initialEntries.map(function (entry) {
-    return typeof entry === 'string' ? createLocation(entry, undefined, createKey()) : createLocation(entry, undefined, entry.key || createKey());
-  });
-
-  // Public interface
-
-  var createHref = createPath;
-
-  var push = function push(path, state) {
-    warning_1$1(!((typeof path === 'undefined' ? 'undefined' : _typeof$3(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
-
-    var action = 'PUSH';
-    var location = createLocation(path, state, createKey(), history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var prevIndex = history.index;
-      var nextIndex = prevIndex + 1;
-
-      var nextEntries = history.entries.slice(0);
-      if (nextEntries.length > nextIndex) {
-        nextEntries.splice(nextIndex, nextEntries.length - nextIndex, location);
-      } else {
-        nextEntries.push(location);
-      }
-
-      setState({
-        action: action,
-        location: location,
-        index: nextIndex,
-        entries: nextEntries
-      });
-    });
-  };
-
-  var replace = function replace(path, state) {
-    warning_1$1(!((typeof path === 'undefined' ? 'undefined' : _typeof$3(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
-
-    var action = 'REPLACE';
-    var location = createLocation(path, state, createKey(), history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      history.entries[history.index] = location;
-
-      setState({ action: action, location: location });
-    });
-  };
-
-  var go = function go(n) {
-    var nextIndex = clamp(history.index + n, 0, history.entries.length - 1);
-
-    var action = 'POP';
-    var location = history.entries[nextIndex];
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (ok) {
-        setState({
-          action: action,
-          location: location,
-          index: nextIndex
-        });
-      } else {
-        // Mimic the behavior of DOM histories by
-        // causing a render after a cancelled POP.
-        setState();
-      }
-    });
-  };
-
-  var goBack = function goBack() {
-    return go(-1);
-  };
-
-  var goForward = function goForward() {
-    return go(1);
-  };
-
-  var canGo = function canGo(n) {
-    var nextIndex = history.index + n;
-    return nextIndex >= 0 && nextIndex < history.entries.length;
-  };
-
-  var block = function block() {
-    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-    return transitionManager.setPrompt(prompt);
-  };
-
-  var listen = function listen(listener) {
-    return transitionManager.appendListener(listener);
-  };
-
-  var history = {
-    length: entries.length,
-    action: 'POP',
-    location: entries[index],
-    index: index,
-    entries: entries,
-    createHref: createHref,
-    push: push,
-    replace: replace,
-    go: go,
-    goBack: goBack,
-    goForward: goForward,
-    canGo: canGo,
-    block: block,
-    listen: listen
-  };
-
-  return history;
-};
-
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
+ * The base implementation of `getTag` without fallbacks for buggy environments.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
  */
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var __DEV__$2 = process.env.NODE_ENV !== 'production';
-
-var warning$2 = function() {};
-
-if (__DEV__$2) {
-  var printWarning$1 = function printWarning(format, args) {
-    var len = arguments.length;
-    args = new Array(len > 2 ? len - 2 : 0);
-    for (var key = 2; key < len; key++) {
-      args[key - 2] = arguments[key];
-    }
-    var argIndex = 0;
-    var message$$1 = 'Warning: ' +
-      format.replace(/%s/g, function() {
-        return args[argIndex++];
-      });
-    if (typeof console !== 'undefined') {
-      console.error(message$$1);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message$$1);
-    } catch (x) {}
-  };
-
-  warning$2 = function(condition, format, args) {
-    var len = arguments.length;
-    args = new Array(len > 2 ? len - 2 : 0);
-    for (var key = 2; key < len; key++) {
-      args[key - 2] = arguments[key];
-    }
-    if (format === undefined) {
-      throw new Error(
-          '`warning(condition, format, ...args)` requires a warning ' +
-          'message argument'
-      );
-    }
-    if (!condition) {
-      printWarning$1.apply(null, [format].concat(args));
-    }
-  };
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag$1 && symToStringTag$1 in Object(value))
+    ? _getRawTag(value)
+    : _objectToString(value);
 }
 
-var warning_1$2 = warning$2;
-
-var _extends$6 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+var _baseGetTag = baseGetTag;
 
 /**
- * The public API for putting history on context.
- */
-
-var Router = function (_React$Component) {
-  _inherits(Router, _React$Component);
-
-  function Router() {
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Router);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
-      match: _this.computeMatch(_this.props.history.location.pathname)
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  Router.prototype.getChildContext = function getChildContext() {
-    return {
-      router: _extends$6({}, this.context.router, {
-        history: this.props.history,
-        route: {
-          location: this.props.history.location,
-          match: this.state.match
-        }
-      })
-    };
-  };
-
-  Router.prototype.computeMatch = function computeMatch(pathname) {
-    return {
-      path: "/",
-      url: "/",
-      params: {},
-      isExact: pathname === "/"
-    };
-  };
-
-  Router.prototype.componentWillMount = function componentWillMount() {
-    var _this2 = this;
-
-    var _props = this.props,
-        children = _props.children,
-        history = _props.history;
-
-
-    invariant_1(children == null || React.Children.count(children) === 1, "A <Router> may have only one child element");
-
-    // Do this here so we can setState when a <Redirect> changes the
-    // location in componentWillMount. This happens e.g. when doing
-    // server rendering using a <StaticRouter>.
-    this.unlisten = history.listen(function () {
-      _this2.setState({
-        match: _this2.computeMatch(history.location.pathname)
-      });
-    });
-  };
-
-  Router.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-    warning_1$2(this.props.history === nextProps.history, "You cannot change <Router history>");
-  };
-
-  Router.prototype.componentWillUnmount = function componentWillUnmount() {
-    this.unlisten();
-  };
-
-  Router.prototype.render = function render() {
-    var children = this.props.children;
-
-    return children ? React.Children.only(children) : null;
-  };
-
-  return Router;
-}(React.Component);
-
-Router.propTypes = {
-  history: PropTypes.object.isRequired,
-  children: PropTypes.node
-};
-Router.contextTypes = {
-  router: PropTypes.object
-};
-Router.childContextTypes = {
-  router: PropTypes.object.isRequired
-};
-
-// Written in this round about way for babel-transform-imports
-
-function _classCallCheck$1(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn$1(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits$1(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * The public API for a <Router> that uses HTML5 history.
- */
-
-var BrowserRouter = function (_React$Component) {
-  _inherits$1(BrowserRouter, _React$Component);
-
-  function BrowserRouter() {
-    var _temp, _this, _ret;
-
-    _classCallCheck$1(this, BrowserRouter);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn$1(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.history = createBrowserHistory(_this.props), _temp), _possibleConstructorReturn$1(_this, _ret);
-  }
-
-  BrowserRouter.prototype.componentWillMount = function componentWillMount() {
-    warning_1(!this.props.history, "<BrowserRouter> ignores the history prop. To use a custom history, " + "use `import { Router }` instead of `import { BrowserRouter as Router }`.");
-  };
-
-  BrowserRouter.prototype.render = function render() {
-    return React.createElement(Router, { history: this.history, children: this.props.children });
-  };
-
-  return BrowserRouter;
-}(React.Component);
-
-BrowserRouter.propTypes = {
-  basename: PropTypes.string,
-  forceRefresh: PropTypes.bool,
-  getUserConfirmation: PropTypes.func,
-  keyLength: PropTypes.number,
-  children: PropTypes.node
-};
-
-function _classCallCheck$2(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn$2(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits$2(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * The public API for a <Router> that uses window.location.hash.
- */
-
-var HashRouter = function (_React$Component) {
-  _inherits$2(HashRouter, _React$Component);
-
-  function HashRouter() {
-    var _temp, _this, _ret;
-
-    _classCallCheck$2(this, HashRouter);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn$2(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.history = createHashHistory(_this.props), _temp), _possibleConstructorReturn$2(_this, _ret);
-  }
-
-  HashRouter.prototype.componentWillMount = function componentWillMount() {
-    warning_1(!this.props.history, "<HashRouter> ignores the history prop. To use a custom history, " + "use `import { Router }` instead of `import { HashRouter as Router }`.");
-  };
-
-  HashRouter.prototype.render = function render() {
-    return React.createElement(Router, { history: this.history, children: this.props.children });
-  };
-
-  return HashRouter;
-}(React.Component);
-
-HashRouter.propTypes = {
-  basename: PropTypes.string,
-  getUserConfirmation: PropTypes.func,
-  hashType: PropTypes.oneOf(["hashbang", "noslash", "slash"]),
-  children: PropTypes.node
-};
-
-var _extends$7 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck$3(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn$3(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits$3(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var isModifiedEvent = function isModifiedEvent(event) {
-  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-};
-
-/**
- * The public API for rendering a history-aware <a>.
- */
-
-var Link = function (_React$Component) {
-  _inherits$3(Link, _React$Component);
-
-  function Link() {
-    var _temp, _this, _ret;
-
-    _classCallCheck$3(this, Link);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn$3(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleClick = function (event) {
-      if (_this.props.onClick) _this.props.onClick(event);
-
-      if (!event.defaultPrevented && // onClick prevented default
-      event.button === 0 && // ignore everything but left clicks
-      !_this.props.target && // let browser handle "target=_blank" etc.
-      !isModifiedEvent(event) // ignore clicks with modifier keys
-      ) {
-          event.preventDefault();
-
-          var history = _this.context.router.history;
-          var _this$props = _this.props,
-              replace = _this$props.replace,
-              to = _this$props.to;
-
-
-          if (replace) {
-            history.replace(to);
-          } else {
-            history.push(to);
-          }
-        }
-    }, _temp), _possibleConstructorReturn$3(_this, _ret);
-  }
-
-  Link.prototype.render = function render() {
-    var _props = this.props,
-        replace = _props.replace,
-        to = _props.to,
-        innerRef = _props.innerRef,
-        props = _objectWithoutProperties(_props, ["replace", "to", "innerRef"]); // eslint-disable-line no-unused-vars
-
-    invariant_1(this.context.router, "You should not use <Link> outside a <Router>");
-
-    invariant_1(to !== undefined, 'You must specify the "to" property');
-
-    var history = this.context.router.history;
-
-    var location = typeof to === "string" ? createLocation(to, null, null, history.location) : to;
-
-    var href = history.createHref(location);
-    return React.createElement("a", _extends$7({}, props, { onClick: this.handleClick, href: href, ref: innerRef }));
-  };
-
-  return Link;
-}(React.Component);
-
-Link.propTypes = {
-  onClick: PropTypes.func,
-  target: PropTypes.string,
-  replace: PropTypes.bool,
-  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-  innerRef: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-};
-Link.defaultProps = {
-  replace: false
-};
-Link.contextTypes = {
-  router: PropTypes.shape({
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired,
-      replace: PropTypes.func.isRequired,
-      createHref: PropTypes.func.isRequired
-    }).isRequired
-  }).isRequired
-};
-
-function _classCallCheck$4(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn$4(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits$4(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * The public API for a <Router> that stores location in memory.
- */
-
-var MemoryRouter = function (_React$Component) {
-  _inherits$4(MemoryRouter, _React$Component);
-
-  function MemoryRouter() {
-    var _temp, _this, _ret;
-
-    _classCallCheck$4(this, MemoryRouter);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn$4(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.history = createMemoryHistory(_this.props), _temp), _possibleConstructorReturn$4(_this, _ret);
-  }
-
-  MemoryRouter.prototype.componentWillMount = function componentWillMount() {
-    warning_1$2(!this.props.history, "<MemoryRouter> ignores the history prop. To use a custom history, " + "use `import { Router }` instead of `import { MemoryRouter as Router }`.");
-  };
-
-  MemoryRouter.prototype.render = function render() {
-    return React.createElement(Router, { history: this.history, children: this.props.children });
-  };
-
-  return MemoryRouter;
-}(React.Component);
-
-MemoryRouter.propTypes = {
-  initialEntries: PropTypes.array,
-  initialIndex: PropTypes.number,
-  getUserConfirmation: PropTypes.func,
-  keyLength: PropTypes.number,
-  children: PropTypes.node
-};
-
-// Written in this round about way for babel-transform-imports
-
-var isarray = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
-};
-
-/**
- * Expose `pathToRegexp`.
- */
-var pathToRegexp_1 = pathToRegexp;
-var parse_1 = parse;
-var compile_1 = compile;
-var tokensToFunction_1 = tokensToFunction;
-var tokensToRegExp_1 = tokensToRegExp;
-
-/**
- * The main path matching regexp utility.
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
  *
- * @type {RegExp}
- */
-var PATH_REGEXP = new RegExp([
-  // Match escaped characters that would otherwise appear in future matches.
-  // This allows the user to escape special characters that won't transform.
-  '(\\\\.)',
-  // Match Express-style parameters and un-named parameters with a prefix
-  // and optional suffixes. Matches appear as:
-  //
-  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
-  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
-  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
-  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
-].join('|'), 'g');
-
-/**
- * Parse a string for the raw tokens.
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
  *
- * @param  {string}  str
- * @param  {Object=} options
- * @return {!Array}
- */
-function parse (str, options) {
-  var tokens = [];
-  var key = 0;
-  var index = 0;
-  var path = '';
-  var defaultDelimiter = options && options.delimiter || '/';
-  var res;
-
-  while ((res = PATH_REGEXP.exec(str)) != null) {
-    var m = res[0];
-    var escaped = res[1];
-    var offset = res.index;
-    path += str.slice(index, offset);
-    index = offset + m.length;
-
-    // Ignore already escaped sequences.
-    if (escaped) {
-      path += escaped[1];
-      continue
-    }
-
-    var next = str[index];
-    var prefix = res[2];
-    var name = res[3];
-    var capture = res[4];
-    var group = res[5];
-    var modifier = res[6];
-    var asterisk = res[7];
-
-    // Push the current path onto the tokens.
-    if (path) {
-      tokens.push(path);
-      path = '';
-    }
-
-    var partial = prefix != null && next != null && next !== prefix;
-    var repeat = modifier === '+' || modifier === '*';
-    var optional = modifier === '?' || modifier === '*';
-    var delimiter = res[2] || defaultDelimiter;
-    var pattern = capture || group;
-
-    tokens.push({
-      name: name || key++,
-      prefix: prefix || '',
-      delimiter: delimiter,
-      optional: optional,
-      repeat: repeat,
-      partial: partial,
-      asterisk: !!asterisk,
-      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
-    });
-  }
-
-  // Match any characters still remaining.
-  if (index < str.length) {
-    path += str.substr(index);
-  }
-
-  // If the path exists, push it onto the end.
-  if (path) {
-    tokens.push(path);
-  }
-
-  return tokens
-}
-
-/**
- * Compile a string to a template function for the path.
+ * _.isObjectLike({});
+ * // => true
  *
- * @param  {string}             str
- * @param  {Object=}            options
- * @return {!function(Object=, Object=)}
- */
-function compile (str, options) {
-  return tokensToFunction(parse(str, options))
-}
-
-/**
- * Prettier encoding of URI path segments.
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
  *
- * @param  {string}
- * @return {string}
- */
-function encodeURIComponentPretty (str) {
-  return encodeURI(str).replace(/[\/?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
+ * _.isObjectLike(_.noop);
+ * // => false
  *
- * @param  {string}
- * @return {string}
+ * _.isObjectLike(null);
+ * // => false
  */
-function encodeAsterisk (str) {
-  return encodeURI(str).replace(/[?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
 }
 
-/**
- * Expose a method for transforming tokens into the path function.
- */
-function tokensToFunction (tokens) {
-  // Compile all the tokens into regexps.
-  var matches = new Array(tokens.length);
+var isObjectLike_1 = isObjectLike;
 
-  // Compile all the patterns before compilation.
-  for (var i = 0; i < tokens.length; i++) {
-    if (typeof tokens[i] === 'object') {
-      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$');
-    }
-  }
-
-  return function (obj, opts) {
-    var path = '';
-    var data = obj || {};
-    var options = opts || {};
-    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent;
-
-    for (var i = 0; i < tokens.length; i++) {
-      var token = tokens[i];
-
-      if (typeof token === 'string') {
-        path += token;
-
-        continue
-      }
-
-      var value = data[token.name];
-      var segment;
-
-      if (value == null) {
-        if (token.optional) {
-          // Prepend partial segment prefixes.
-          if (token.partial) {
-            path += token.prefix;
-          }
-
-          continue
-        } else {
-          throw new TypeError('Expected "' + token.name + '" to be defined')
-        }
-      }
-
-      if (isarray(value)) {
-        if (!token.repeat) {
-          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
-        }
-
-        if (value.length === 0) {
-          if (token.optional) {
-            continue
-          } else {
-            throw new TypeError('Expected "' + token.name + '" to not be empty')
-          }
-        }
-
-        for (var j = 0; j < value.length; j++) {
-          segment = encode(value[j]);
-
-          if (!matches[i].test(segment)) {
-            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
-          }
-
-          path += (j === 0 ? token.prefix : token.delimiter) + segment;
-        }
-
-        continue
-      }
-
-      segment = token.asterisk ? encodeAsterisk(value) : encode(value);
-
-      if (!matches[i].test(segment)) {
-        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
-      }
-
-      path += token.prefix + segment;
-    }
-
-    return path
-  }
-}
+/** `Object#toString` result references. */
+var symbolTag = '[object Symbol]';
 
 /**
- * Escape a regular expression string.
+ * Checks if `value` is classified as a `Symbol` primitive or object.
  *
- * @param  {string} str
- * @return {string}
- */
-function escapeString (str) {
-  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
-}
-
-/**
- * Escape the capturing group by escaping special characters and meaning.
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
  *
- * @param  {string} group
- * @return {string}
- */
-function escapeGroup (group) {
-  return group.replace(/([=!:$\/()])/g, '\\$1')
-}
-
-/**
- * Attach the keys as a property of the regexp.
+ * _.isSymbol(Symbol.iterator);
+ * // => true
  *
- * @param  {!RegExp} re
- * @param  {Array}   keys
- * @return {!RegExp}
+ * _.isSymbol('abc');
+ * // => false
  */
-function attachKeys (re, keys) {
-  re.keys = keys;
-  return re
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike_1(value) && _baseGetTag(value) == symbolTag);
 }
 
+var isSymbol_1 = isSymbol;
+
+/** Used to match property names within property paths. */
+var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+    reIsPlainProp = /^\w*$/;
+
 /**
- * Get the flags for a regexp from the options.
+ * Checks if `value` is a property name and not a property path.
  *
- * @param  {Object} options
- * @return {string}
+ * @private
+ * @param {*} value The value to check.
+ * @param {Object} [object] The object to query keys on.
+ * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
  */
-function flags (options) {
-  return options.sensitive ? '' : 'i'
-}
-
-/**
- * Pull out keys from a regexp.
- *
- * @param  {!RegExp} path
- * @param  {!Array}  keys
- * @return {!RegExp}
- */
-function regexpToRegexp (path, keys) {
-  // Use a negative lookahead to match only capturing groups.
-  var groups = path.source.match(/\((?!\?)/g);
-
-  if (groups) {
-    for (var i = 0; i < groups.length; i++) {
-      keys.push({
-        name: i,
-        prefix: null,
-        delimiter: null,
-        optional: false,
-        repeat: false,
-        partial: false,
-        asterisk: false,
-        pattern: null
-      });
-    }
+function isKey(value, object) {
+  if (isArray_1(value)) {
+    return false;
   }
-
-  return attachKeys(path, keys)
-}
-
-/**
- * Transform an array into a regexp.
- *
- * @param  {!Array}  path
- * @param  {Array}   keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function arrayToRegexp (path, keys, options) {
-  var parts = [];
-
-  for (var i = 0; i < path.length; i++) {
-    parts.push(pathToRegexp(path[i], keys, options).source);
-  }
-
-  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options));
-
-  return attachKeys(regexp, keys)
-}
-
-/**
- * Create a path regexp from string input.
- *
- * @param  {string}  path
- * @param  {!Array}  keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function stringToRegexp (path, keys, options) {
-  return tokensToRegExp(parse(path, options), keys, options)
-}
-
-/**
- * Expose a function for taking tokens and returning a RegExp.
- *
- * @param  {!Array}          tokens
- * @param  {(Array|Object)=} keys
- * @param  {Object=}         options
- * @return {!RegExp}
- */
-function tokensToRegExp (tokens, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options);
-    keys = [];
-  }
-
-  options = options || {};
-
-  var strict = options.strict;
-  var end = options.end !== false;
-  var route = '';
-
-  // Iterate over the tokens and create our regexp string.
-  for (var i = 0; i < tokens.length; i++) {
-    var token = tokens[i];
-
-    if (typeof token === 'string') {
-      route += escapeString(token);
-    } else {
-      var prefix = escapeString(token.prefix);
-      var capture = '(?:' + token.pattern + ')';
-
-      keys.push(token);
-
-      if (token.repeat) {
-        capture += '(?:' + prefix + capture + ')*';
-      }
-
-      if (token.optional) {
-        if (!token.partial) {
-          capture = '(?:' + prefix + '(' + capture + '))?';
-        } else {
-          capture = prefix + '(' + capture + ')?';
-        }
-      } else {
-        capture = prefix + '(' + capture + ')';
-      }
-
-      route += capture;
-    }
-  }
-
-  var delimiter = escapeString(options.delimiter || '/');
-  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter;
-
-  // In non-strict mode we allow a slash at the end of match. If the path to
-  // match already ends with a slash, we remove it for consistency. The slash
-  // is valid at the end of a path match, not in the middle. This is important
-  // in non-ending mode, where "/test/" shouldn't match "/test//route".
-  if (!strict) {
-    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?';
-  }
-
-  if (end) {
-    route += '$';
-  } else {
-    // In non-ending mode, we need the capturing groups to match as much as
-    // possible by using a positive lookahead to the end or next path segment.
-    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)';
-  }
-
-  return attachKeys(new RegExp('^' + route, flags(options)), keys)
-}
-
-/**
- * Normalize the given path string, returning a regular expression.
- *
- * An empty array can be passed in for the keys, which will hold the
- * placeholder key descriptions. For example, using `/user/:id`, `keys` will
- * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
- *
- * @param  {(string|RegExp|Array)} path
- * @param  {(Array|Object)=}       keys
- * @param  {Object=}               options
- * @return {!RegExp}
- */
-function pathToRegexp (path, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options);
-    keys = [];
-  }
-
-  options = options || {};
-
-  if (path instanceof RegExp) {
-    return regexpToRegexp(path, /** @type {!Array} */ (keys))
-  }
-
-  if (isarray(path)) {
-    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
-  }
-
-  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
-}
-pathToRegexp_1.parse = parse_1;
-pathToRegexp_1.compile = compile_1;
-pathToRegexp_1.tokensToFunction = tokensToFunction_1;
-pathToRegexp_1.tokensToRegExp = tokensToRegExp_1;
-
-var patternCache = {};
-var cacheLimit = 10000;
-var cacheCount = 0;
-
-var compilePath = function compilePath(pattern, options) {
-  var cacheKey = "" + options.end + options.strict + options.sensitive;
-  var cache = patternCache[cacheKey] || (patternCache[cacheKey] = {});
-
-  if (cache[pattern]) return cache[pattern];
-
-  var keys = [];
-  var re = pathToRegexp_1(pattern, keys, options);
-  var compiledPattern = { re: re, keys: keys };
-
-  if (cacheCount < cacheLimit) {
-    cache[pattern] = compiledPattern;
-    cacheCount++;
-  }
-
-  return compiledPattern;
-};
-
-/**
- * Public API for matching a URL pathname to a path pattern.
- */
-var matchPath = function matchPath(pathname) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var parent = arguments[2];
-
-  if (typeof options === "string") options = { path: options };
-
-  var _options = options,
-      path = _options.path,
-      _options$exact = _options.exact,
-      exact = _options$exact === undefined ? false : _options$exact,
-      _options$strict = _options.strict,
-      strict = _options$strict === undefined ? false : _options$strict,
-      _options$sensitive = _options.sensitive,
-      sensitive = _options$sensitive === undefined ? false : _options$sensitive;
-
-
-  if (path == null) return parent;
-
-  var _compilePath = compilePath(path, { end: exact, strict: strict, sensitive: sensitive }),
-      re = _compilePath.re,
-      keys = _compilePath.keys;
-
-  var match = re.exec(pathname);
-
-  if (!match) return null;
-
-  var url = match[0],
-      values = match.slice(1);
-
-  var isExact = pathname === url;
-
-  if (exact && !isExact) return null;
-
-  return {
-    path: path, // the path pattern used to match
-    url: path === "/" && url === "" ? "/" : url, // the matched portion of the URL
-    isExact: isExact, // whether or not we matched exactly
-    params: keys.reduce(function (memo, key, index) {
-      memo[key.name] = values[index];
-      return memo;
-    }, {})
-  };
-};
-
-var _extends$8 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _classCallCheck$5(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn$5(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits$5(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var isEmptyChildren = function isEmptyChildren(children) {
-  return React.Children.count(children) === 0;
-};
-
-/**
- * The public API for matching a single path and rendering.
- */
-
-var Route = function (_React$Component) {
-  _inherits$5(Route, _React$Component);
-
-  function Route() {
-    var _temp, _this, _ret;
-
-    _classCallCheck$5(this, Route);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn$5(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
-      match: _this.computeMatch(_this.props, _this.context.router)
-    }, _temp), _possibleConstructorReturn$5(_this, _ret);
-  }
-
-  Route.prototype.getChildContext = function getChildContext() {
-    return {
-      router: _extends$8({}, this.context.router, {
-        route: {
-          location: this.props.location || this.context.router.route.location,
-          match: this.state.match
-        }
-      })
-    };
-  };
-
-  Route.prototype.computeMatch = function computeMatch(_ref, router) {
-    var computedMatch = _ref.computedMatch,
-        location = _ref.location,
-        path = _ref.path,
-        strict = _ref.strict,
-        exact = _ref.exact,
-        sensitive = _ref.sensitive;
-
-    if (computedMatch) return computedMatch; // <Switch> already computed the match for us
-
-    invariant_1(router, "You should not use <Route> or withRouter() outside a <Router>");
-
-    var route = router.route;
-
-    var pathname = (location || route.location).pathname;
-
-    return matchPath(pathname, { path: path, strict: strict, exact: exact, sensitive: sensitive }, route.match);
-  };
-
-  Route.prototype.componentWillMount = function componentWillMount() {
-    warning_1$2(!(this.props.component && this.props.render), "You should not use <Route component> and <Route render> in the same route; <Route render> will be ignored");
-
-    warning_1$2(!(this.props.component && this.props.children && !isEmptyChildren(this.props.children)), "You should not use <Route component> and <Route children> in the same route; <Route children> will be ignored");
-
-    warning_1$2(!(this.props.render && this.props.children && !isEmptyChildren(this.props.children)), "You should not use <Route render> and <Route children> in the same route; <Route children> will be ignored");
-  };
-
-  Route.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps, nextContext) {
-    warning_1$2(!(nextProps.location && !this.props.location), '<Route> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.');
-
-    warning_1$2(!(!nextProps.location && this.props.location), '<Route> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
-
-    this.setState({
-      match: this.computeMatch(nextProps, nextContext.router)
-    });
-  };
-
-  Route.prototype.render = function render() {
-    var match = this.state.match;
-    var _props = this.props,
-        children = _props.children,
-        component = _props.component,
-        render = _props.render;
-    var _context$router = this.context.router,
-        history = _context$router.history,
-        route = _context$router.route,
-        staticContext = _context$router.staticContext;
-
-    var location = this.props.location || route.location;
-    var props = { match: match, location: location, history: history, staticContext: staticContext };
-
-    if (component) return match ? React.createElement(component, props) : null;
-
-    if (render) return match ? render(props) : null;
-
-    if (typeof children === "function") return children(props);
-
-    if (children && !isEmptyChildren(children)) return React.Children.only(children);
-
-    return null;
-  };
-
-  return Route;
-}(React.Component);
-
-Route.propTypes = {
-  computedMatch: PropTypes.object, // private, from <Switch>
-  path: PropTypes.string,
-  exact: PropTypes.bool,
-  strict: PropTypes.bool,
-  sensitive: PropTypes.bool,
-  component: PropTypes.func,
-  render: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-  location: PropTypes.object
-};
-Route.contextTypes = {
-  router: PropTypes.shape({
-    history: PropTypes.object.isRequired,
-    route: PropTypes.object.isRequired,
-    staticContext: PropTypes.object
-  })
-};
-Route.childContextTypes = {
-  router: PropTypes.object.isRequired
-};
-
-// Written in this round about way for babel-transform-imports
-
-var _extends$9 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _typeof$4 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-function _objectWithoutProperties$1(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-/**
- * A <Link> wrapper that knows if it's "active" or not.
- */
-var NavLink = function NavLink(_ref) {
-  var to = _ref.to,
-      exact = _ref.exact,
-      strict = _ref.strict,
-      location = _ref.location,
-      activeClassName = _ref.activeClassName,
-      className = _ref.className,
-      activeStyle = _ref.activeStyle,
-      style = _ref.style,
-      getIsActive = _ref.isActive,
-      ariaCurrent = _ref["aria-current"],
-      rest = _objectWithoutProperties$1(_ref, ["to", "exact", "strict", "location", "activeClassName", "className", "activeStyle", "style", "isActive", "aria-current"]);
-
-  var path = (typeof to === "undefined" ? "undefined" : _typeof$4(to)) === "object" ? to.pathname : to;
-
-  // Regex taken from: https://github.com/pillarjs/path-to-regexp/blob/master/index.js#L202
-  var escapedPath = path && path.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
-
-  return React.createElement(Route, {
-    path: escapedPath,
-    exact: exact,
-    strict: strict,
-    location: location,
-    children: function children(_ref2) {
-      var location = _ref2.location,
-          match = _ref2.match;
-
-      var isActive = !!(getIsActive ? getIsActive(match, location) : match);
-
-      return React.createElement(Link, _extends$9({
-        to: to,
-        className: isActive ? [className, activeClassName].filter(function (i) {
-          return i;
-        }).join(" ") : className,
-        style: isActive ? _extends$9({}, style, activeStyle) : style,
-        "aria-current": isActive && ariaCurrent || null
-      }, rest));
-    }
-  });
-};
-
-NavLink.propTypes = {
-  to: Link.propTypes.to,
-  exact: PropTypes.bool,
-  strict: PropTypes.bool,
-  location: PropTypes.object,
-  activeClassName: PropTypes.string,
-  className: PropTypes.string,
-  activeStyle: PropTypes.object,
-  style: PropTypes.object,
-  isActive: PropTypes.func,
-  "aria-current": PropTypes.oneOf(["page", "step", "location", "date", "time", "true"])
-};
-
-NavLink.defaultProps = {
-  activeClassName: "active",
-  "aria-current": "page"
-};
-
-function _classCallCheck$6(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn$6(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits$6(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * The public API for prompting the user before navigating away
- * from a screen with a component.
- */
-
-var Prompt = function (_React$Component) {
-  _inherits$6(Prompt, _React$Component);
-
-  function Prompt() {
-    _classCallCheck$6(this, Prompt);
-
-    return _possibleConstructorReturn$6(this, _React$Component.apply(this, arguments));
-  }
-
-  Prompt.prototype.enable = function enable(message$$1) {
-    if (this.unblock) this.unblock();
-
-    this.unblock = this.context.router.history.block(message$$1);
-  };
-
-  Prompt.prototype.disable = function disable() {
-    if (this.unblock) {
-      this.unblock();
-      this.unblock = null;
-    }
-  };
-
-  Prompt.prototype.componentWillMount = function componentWillMount() {
-    invariant_1(this.context.router, "You should not use <Prompt> outside a <Router>");
-
-    if (this.props.when) this.enable(this.props.message);
-  };
-
-  Prompt.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-    if (nextProps.when) {
-      if (!this.props.when || this.props.message !== nextProps.message) this.enable(nextProps.message);
-    } else {
-      this.disable();
-    }
-  };
-
-  Prompt.prototype.componentWillUnmount = function componentWillUnmount() {
-    this.disable();
-  };
-
-  Prompt.prototype.render = function render() {
-    return null;
-  };
-
-  return Prompt;
-}(React.Component);
-
-Prompt.propTypes = {
-  when: PropTypes.bool,
-  message: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired
-};
-Prompt.defaultProps = {
-  when: true
-};
-Prompt.contextTypes = {
-  router: PropTypes.shape({
-    history: PropTypes.shape({
-      block: PropTypes.func.isRequired
-    }).isRequired
-  }).isRequired
-};
-
-// Written in this round about way for babel-transform-imports
-
-var patternCache$1 = {};
-var cacheLimit$1 = 10000;
-var cacheCount$1 = 0;
-
-var compileGenerator = function compileGenerator(pattern) {
-  var cacheKey = pattern;
-  var cache = patternCache$1[cacheKey] || (patternCache$1[cacheKey] = {});
-
-  if (cache[pattern]) return cache[pattern];
-
-  var compiledGenerator = pathToRegexp_1.compile(pattern);
-
-  if (cacheCount$1 < cacheLimit$1) {
-    cache[pattern] = compiledGenerator;
-    cacheCount$1++;
-  }
-
-  return compiledGenerator;
-};
-
-/**
- * Public API for generating a URL pathname from a pattern and parameters.
- */
-var generatePath = function generatePath() {
-  var pattern = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/";
-  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-  if (pattern === "/") {
-    return pattern;
-  }
-  var generator = compileGenerator(pattern);
-  return generator(params, { pretty: true });
-};
-
-var _extends$a = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _classCallCheck$7(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn$7(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits$7(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * The public API for updating the location programmatically
- * with a component.
- */
-
-var Redirect = function (_React$Component) {
-  _inherits$7(Redirect, _React$Component);
-
-  function Redirect() {
-    _classCallCheck$7(this, Redirect);
-
-    return _possibleConstructorReturn$7(this, _React$Component.apply(this, arguments));
-  }
-
-  Redirect.prototype.isStatic = function isStatic() {
-    return this.context.router && this.context.router.staticContext;
-  };
-
-  Redirect.prototype.componentWillMount = function componentWillMount() {
-    invariant_1(this.context.router, "You should not use <Redirect> outside a <Router>");
-
-    if (this.isStatic()) this.perform();
-  };
-
-  Redirect.prototype.componentDidMount = function componentDidMount() {
-    if (!this.isStatic()) this.perform();
-  };
-
-  Redirect.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
-    var prevTo = createLocation(prevProps.to);
-    var nextTo = createLocation(this.props.to);
-
-    if (locationsAreEqual(prevTo, nextTo)) {
-      warning_1$2(false, "You tried to redirect to the same route you're currently on: " + ("\"" + nextTo.pathname + nextTo.search + "\""));
-      return;
-    }
-
-    this.perform();
-  };
-
-  Redirect.prototype.computeTo = function computeTo(_ref) {
-    var computedMatch = _ref.computedMatch,
-        to = _ref.to;
-
-    if (computedMatch) {
-      if (typeof to === "string") {
-        return generatePath(to, computedMatch.params);
-      } else {
-        return _extends$a({}, to, {
-          pathname: generatePath(to.pathname, computedMatch.params)
-        });
-      }
-    }
-
-    return to;
-  };
-
-  Redirect.prototype.perform = function perform() {
-    var history = this.context.router.history;
-    var push = this.props.push;
-
-    var to = this.computeTo(this.props);
-
-    if (push) {
-      history.push(to);
-    } else {
-      history.replace(to);
-    }
-  };
-
-  Redirect.prototype.render = function render() {
-    return null;
-  };
-
-  return Redirect;
-}(React.Component);
-
-Redirect.propTypes = {
-  computedMatch: PropTypes.object, // private, from <Switch>
-  push: PropTypes.bool,
-  from: PropTypes.string,
-  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired
-};
-Redirect.defaultProps = {
-  push: false
-};
-Redirect.contextTypes = {
-  router: PropTypes.shape({
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired,
-      replace: PropTypes.func.isRequired
-    }).isRequired,
-    staticContext: PropTypes.object
-  }).isRequired
-};
-
-// Written in this round about way for babel-transform-imports
-
-var _extends$b = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _objectWithoutProperties$2(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck$8(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn$8(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits$8(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var addLeadingSlash$1 = function addLeadingSlash(path) {
-  return path.charAt(0) === "/" ? path : "/" + path;
-};
-
-var addBasename = function addBasename(basename, location) {
-  if (!basename) return location;
-
-  return _extends$b({}, location, {
-    pathname: addLeadingSlash$1(basename) + location.pathname
-  });
-};
-
-var stripBasename$1 = function stripBasename(basename, location) {
-  if (!basename) return location;
-
-  var base = addLeadingSlash$1(basename);
-
-  if (location.pathname.indexOf(base) !== 0) return location;
-
-  return _extends$b({}, location, {
-    pathname: location.pathname.substr(base.length)
-  });
-};
-
-var createURL = function createURL(location) {
-  return typeof location === "string" ? location : createPath(location);
-};
-
-var staticHandler = function staticHandler(methodName) {
-  return function () {
-    invariant_1(false, "You cannot %s with <StaticRouter>", methodName);
-  };
-};
-
-var noop = function noop() {};
-
-/**
- * The public top-level API for a "static" <Router>, so-called because it
- * can't actually change the current location. Instead, it just records
- * location changes in a context object. Useful mainly in testing and
- * server-rendering scenarios.
- */
-
-var StaticRouter = function (_React$Component) {
-  _inherits$8(StaticRouter, _React$Component);
-
-  function StaticRouter() {
-    var _temp, _this, _ret;
-
-    _classCallCheck$8(this, StaticRouter);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn$8(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.createHref = function (path) {
-      return addLeadingSlash$1(_this.props.basename + createURL(path));
-    }, _this.handlePush = function (location) {
-      var _this$props = _this.props,
-          basename = _this$props.basename,
-          context = _this$props.context;
-
-      context.action = "PUSH";
-      context.location = addBasename(basename, createLocation(location));
-      context.url = createURL(context.location);
-    }, _this.handleReplace = function (location) {
-      var _this$props2 = _this.props,
-          basename = _this$props2.basename,
-          context = _this$props2.context;
-
-      context.action = "REPLACE";
-      context.location = addBasename(basename, createLocation(location));
-      context.url = createURL(context.location);
-    }, _this.handleListen = function () {
-      return noop;
-    }, _this.handleBlock = function () {
-      return noop;
-    }, _temp), _possibleConstructorReturn$8(_this, _ret);
-  }
-
-  StaticRouter.prototype.getChildContext = function getChildContext() {
-    return {
-      router: {
-        staticContext: this.props.context
-      }
-    };
-  };
-
-  StaticRouter.prototype.componentWillMount = function componentWillMount() {
-    warning_1$2(!this.props.history, "<StaticRouter> ignores the history prop. To use a custom history, " + "use `import { Router }` instead of `import { StaticRouter as Router }`.");
-  };
-
-  StaticRouter.prototype.render = function render() {
-    var _props = this.props,
-        basename = _props.basename,
-        context = _props.context,
-        location = _props.location,
-        props = _objectWithoutProperties$2(_props, ["basename", "context", "location"]);
-
-    var history = {
-      createHref: this.createHref,
-      action: "POP",
-      location: stripBasename$1(basename, createLocation(location)),
-      push: this.handlePush,
-      replace: this.handleReplace,
-      go: staticHandler("go"),
-      goBack: staticHandler("goBack"),
-      goForward: staticHandler("goForward"),
-      listen: this.handleListen,
-      block: this.handleBlock
-    };
-
-    return React.createElement(Router, _extends$b({}, props, { history: history }));
-  };
-
-  return StaticRouter;
-}(React.Component);
-
-StaticRouter.propTypes = {
-  basename: PropTypes.string,
-  context: PropTypes.object.isRequired,
-  location: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-};
-StaticRouter.defaultProps = {
-  basename: "",
-  location: "/"
-};
-StaticRouter.childContextTypes = {
-  router: PropTypes.object.isRequired
-};
-
-// Written in this round about way for babel-transform-imports
-
-function _classCallCheck$9(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn$9(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits$9(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * The public API for rendering the first <Route> that matches.
- */
-
-var Switch = function (_React$Component) {
-  _inherits$9(Switch, _React$Component);
-
-  function Switch() {
-    _classCallCheck$9(this, Switch);
-
-    return _possibleConstructorReturn$9(this, _React$Component.apply(this, arguments));
-  }
-
-  Switch.prototype.componentWillMount = function componentWillMount() {
-    invariant_1(this.context.router, "You should not use <Switch> outside a <Router>");
-  };
-
-  Switch.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-    warning_1$2(!(nextProps.location && !this.props.location), '<Switch> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.');
-
-    warning_1$2(!(!nextProps.location && this.props.location), '<Switch> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
-  };
-
-  Switch.prototype.render = function render() {
-    var route = this.context.router.route;
-    var children = this.props.children;
-
-    var location = this.props.location || route.location;
-
-    var match = void 0,
-        child = void 0;
-    React.Children.forEach(children, function (element) {
-      if (match == null && React.isValidElement(element)) {
-        var _element$props = element.props,
-            pathProp = _element$props.path,
-            exact = _element$props.exact,
-            strict = _element$props.strict,
-            sensitive = _element$props.sensitive,
-            from = _element$props.from;
-
-        var path = pathProp || from;
-
-        child = element;
-        match = matchPath(location.pathname, { path: path, exact: exact, strict: strict, sensitive: sensitive }, route.match);
-      }
-    });
-
-    return match ? React.cloneElement(child, { location: location, computedMatch: match }) : null;
-  };
-
-  return Switch;
-}(React.Component);
-
-Switch.contextTypes = {
-  router: PropTypes.shape({
-    route: PropTypes.object.isRequired
-  }).isRequired
-};
-Switch.propTypes = {
-  children: PropTypes.node,
-  location: PropTypes.object
-};
-
-// Written in this round about way for babel-transform-imports
-
-// Written in this round about way for babel-transform-imports
-
-// Written in this round about way for babel-transform-imports
-
-/**
- * Copyright 2015, Yahoo! Inc.
- * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
- */
-var REACT_STATICS = {
-    childContextTypes: true,
-    contextTypes: true,
-    defaultProps: true,
-    displayName: true,
-    getDefaultProps: true,
-    getDerivedStateFromProps: true,
-    mixins: true,
-    propTypes: true,
-    type: true
-};
-
-var KNOWN_STATICS = {
-    name: true,
-    length: true,
-    prototype: true,
-    caller: true,
-    callee: true,
-    arguments: true,
-    arity: true
-};
-
-var defineProperty$1 = Object.defineProperty;
-var getOwnPropertyNames = Object.getOwnPropertyNames;
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-var getPrototypeOf = Object.getPrototypeOf;
-var objectPrototype = getPrototypeOf && getPrototypeOf(Object);
-
-function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
-    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
-
-        if (objectPrototype) {
-            var inheritedComponent = getPrototypeOf(sourceComponent);
-            if (inheritedComponent && inheritedComponent !== objectPrototype) {
-                hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
-            }
-        }
-
-        var keys = getOwnPropertyNames(sourceComponent);
-
-        if (getOwnPropertySymbols) {
-            keys = keys.concat(getOwnPropertySymbols(sourceComponent));
-        }
-
-        for (var i = 0; i < keys.length; ++i) {
-            var key = keys[i];
-            if (!REACT_STATICS[key] && !KNOWN_STATICS[key] && (!blacklist || !blacklist[key])) {
-                var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
-                try { // Avoid failures from read-only properties
-                    defineProperty$1(targetComponent, key, descriptor);
-                } catch (e) {}
-            }
-        }
-
-        return targetComponent;
-    }
-
-    return targetComponent;
-}
-
-var hoistNonReactStatics_cjs = hoistNonReactStatics;
-
-var _extends$c = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _objectWithoutProperties$3(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-/**
- * A public higher-order component to access the imperative API
- */
-var withRouter = function withRouter(Component$$1) {
-  var C = function C(props) {
-    var wrappedComponentRef = props.wrappedComponentRef,
-        remainingProps = _objectWithoutProperties$3(props, ["wrappedComponentRef"]);
-
-    return React.createElement(Route, {
-      children: function children(routeComponentProps) {
-        return React.createElement(Component$$1, _extends$c({}, remainingProps, routeComponentProps, {
-          ref: wrappedComponentRef
-        }));
-      }
-    });
-  };
-
-  C.displayName = "withRouter(" + (Component$$1.displayName || Component$$1.name) + ")";
-  C.WrappedComponent = Component$$1;
-  C.propTypes = {
-    wrappedComponentRef: PropTypes.func
-  };
-
-  return hoistNonReactStatics_cjs(C, Component$$1);
-};
-
-// Written in this round about way for babel-transform-imports
-
-
-
-var es = /*#__PURE__*/Object.freeze({
-  BrowserRouter: BrowserRouter,
-  HashRouter: HashRouter,
-  Link: Link,
-  MemoryRouter: MemoryRouter,
-  NavLink: NavLink,
-  Prompt: Prompt,
-  Redirect: Redirect,
-  Route: Route,
-  Router: Router,
-  StaticRouter: StaticRouter,
-  Switch: Switch,
-  generatePath: generatePath,
-  matchPath: matchPath,
-  withRouter: withRouter
-});
-
-var lib = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-exports.genericHashLink = genericHashLink;
-exports.HashLink = HashLink;
-exports.NavHashLink = NavHashLink;
-
-
-
-var _react2 = _interopRequireDefault(React);
-
-
-
-var _propTypes2 = _interopRequireDefault(PropTypes);
-
-
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var hashFragment = '';
-var observer = null;
-var asyncTimerId = null;
-var scrollFunction = null;
-
-function reset() {
-  hashFragment = '';
-  if (observer !== null) observer.disconnect();
-  if (asyncTimerId !== null) {
-    window.clearTimeout(asyncTimerId);
-    asyncTimerId = null;
-  }
-}
-
-function getElAndScroll() {
-  var element = document.getElementById(hashFragment);
-  if (element !== null) {
-    scrollFunction(element);
-    reset();
+  var type = typeof value;
+  if (type == 'number' || type == 'symbol' || type == 'boolean' ||
+      value == null || isSymbol_1(value)) {
     return true;
   }
-  return false;
+  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
+    (object != null && value in Object(object));
 }
 
-function hashLinkScroll() {
-  // Push onto callback queue so it runs after the DOM is updated
-  window.setTimeout(function () {
-    if (getElAndScroll() === false) {
-      if (observer === null) {
-        observer = new MutationObserver(getElAndScroll);
-      }
-      observer.observe(document, {
-        attributes: true,
-        childList: true,
-        subtree: true
-      });
-      // if the element doesn't show up in 10 seconds, stop checking
-      asyncTimerId = window.setTimeout(function () {
-        reset();
-      }, 10000);
-    }
-  }, 0);
+var _isKey = isKey;
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
 }
 
-function genericHashLink(props, As) {
-  function handleClick(e) {
-    reset();
-    if (props.onClick) props.onClick(e);
-    if (typeof props.to === 'string') {
-      hashFragment = props.to.split('#').slice(1).join('#');
-    } else if (_typeof(props.to) === 'object' && typeof props.to.hash === 'string') {
-      hashFragment = props.to.hash.replace('#', '');
-    }
-    if (hashFragment !== '') {
-      scrollFunction = props.scroll || function (el) {
-        return props.smooth ? el.scrollIntoView({ behavior: "smooth" }) : el.scrollIntoView();
-      };
-      hashLinkScroll();
+var isObject_1 = isObject;
+
+/** `Object#toString` result references. */
+var asyncTag = '[object AsyncFunction]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    proxyTag = '[object Proxy]';
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  if (!isObject_1(value)) {
+    return false;
+  }
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 9 which returns 'object' for typed arrays and other constructors.
+  var tag = _baseGetTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+
+var isFunction_1 = isFunction;
+
+/** Used to detect overreaching core-js shims. */
+var coreJsData = _root['__core-js_shared__'];
+
+var _coreJsData = coreJsData;
+
+/** Used to detect methods masquerading as native. */
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(_coreJsData && _coreJsData.keys && _coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+
+var _isMasked = isMasked;
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to convert.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+var _toSource = toSource;
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used for built-in method references. */
+var funcProto$1 = Function.prototype,
+    objectProto$2 = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString$1 = funcProto$1.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty$1 = objectProto$2.hasOwnProperty;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  funcToString$1.call(hasOwnProperty$1).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+function baseIsNative(value) {
+  if (!isObject_1(value) || _isMasked(value)) {
+    return false;
+  }
+  var pattern = isFunction_1(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(_toSource(value));
+}
+
+var _baseIsNative = baseIsNative;
+
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+
+var _getValue = getValue;
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = _getValue(object, key);
+  return _baseIsNative(value) ? value : undefined;
+}
+
+var _getNative = getNative;
+
+/* Built-in method references that are verified to be native. */
+var nativeCreate = _getNative(Object, 'create');
+
+var _nativeCreate = nativeCreate;
+
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+function hashClear() {
+  this.__data__ = _nativeCreate ? _nativeCreate(null) : {};
+  this.size = 0;
+}
+
+var _hashClear = hashClear;
+
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function hashDelete(key) {
+  var result = this.has(key) && delete this.__data__[key];
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+var _hashDelete = hashDelete;
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/** Used for built-in method references. */
+var objectProto$3 = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty$2 = objectProto$3.hasOwnProperty;
+
+/**
+ * Gets the hash value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function hashGet(key) {
+  var data = this.__data__;
+  if (_nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+  return hasOwnProperty$2.call(data, key) ? data[key] : undefined;
+}
+
+var _hashGet = hashGet;
+
+/** Used for built-in method references. */
+var objectProto$4 = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty$3 = objectProto$4.hasOwnProperty;
+
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function hashHas(key) {
+  var data = this.__data__;
+  return _nativeCreate ? (data[key] !== undefined) : hasOwnProperty$3.call(data, key);
+}
+
+var _hashHas = hashHas;
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED$1 = '__lodash_hash_undefined__';
+
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+function hashSet(key, value) {
+  var data = this.__data__;
+  this.size += this.has(key) ? 0 : 1;
+  data[key] = (_nativeCreate && value === undefined) ? HASH_UNDEFINED$1 : value;
+  return this;
+}
+
+var _hashSet = hashSet;
+
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Hash(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `Hash`.
+Hash.prototype.clear = _hashClear;
+Hash.prototype['delete'] = _hashDelete;
+Hash.prototype.get = _hashGet;
+Hash.prototype.has = _hashHas;
+Hash.prototype.set = _hashSet;
+
+var _Hash = Hash;
+
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+function listCacheClear() {
+  this.__data__ = [];
+  this.size = 0;
+}
+
+var _listCacheClear = listCacheClear;
+
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+
+var eq_1 = eq;
+
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq_1(array[length][0], key)) {
+      return length;
     }
   }
-
-  var scroll = props.scroll,
-      smooth = props.smooth,
-      filteredProps = _objectWithoutProperties(props, ['scroll', 'smooth']);
-
-  return _react2.default.createElement(
-    As,
-    _extends({}, filteredProps, { onClick: handleClick }),
-    props.children
-  );
+  return -1;
 }
 
-function HashLink(props) {
-  return genericHashLink(props, es.Link);
+var _assocIndexOf = assocIndexOf;
+
+/** Used for built-in method references. */
+var arrayProto = Array.prototype;
+
+/** Built-in value references. */
+var splice = arrayProto.splice;
+
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = _assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  --this.size;
+  return true;
 }
 
-function NavHashLink(props) {
-  return genericHashLink(props, es.NavLink);
+var _listCacheDelete = listCacheDelete;
+
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = _assocIndexOf(data, key);
+
+  return index < 0 ? undefined : data[index][1];
 }
 
-var propTypes = {
-  onClick: _propTypes2.default.func,
-  children: _propTypes2.default.node,
-  scroll: _propTypes2.default.func,
-  to: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object])
-};
+var _listCacheGet = listCacheGet;
 
-HashLink.propTypes = propTypes;
-NavHashLink.propTypes = propTypes;
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function listCacheHas(key) {
+  return _assocIndexOf(this.__data__, key) > -1;
+}
+
+var _listCacheHas = listCacheHas;
+
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = _assocIndexOf(data, key);
+
+  if (index < 0) {
+    ++this.size;
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
+}
+
+var _listCacheSet = listCacheSet;
+
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function ListCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `ListCache`.
+ListCache.prototype.clear = _listCacheClear;
+ListCache.prototype['delete'] = _listCacheDelete;
+ListCache.prototype.get = _listCacheGet;
+ListCache.prototype.has = _listCacheHas;
+ListCache.prototype.set = _listCacheSet;
+
+var _ListCache = ListCache;
+
+/* Built-in method references that are verified to be native. */
+var Map = _getNative(_root, 'Map');
+
+var _Map = Map;
+
+/**
+ * Removes all key-value entries from the map.
+ *
+ * @private
+ * @name clear
+ * @memberOf MapCache
+ */
+function mapCacheClear() {
+  this.size = 0;
+  this.__data__ = {
+    'hash': new _Hash,
+    'map': new (_Map || _ListCache),
+    'string': new _Hash
+  };
+}
+
+var _mapCacheClear = mapCacheClear;
+
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+function isKeyable(value) {
+  var type = typeof value;
+  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+    ? (value !== '__proto__')
+    : (value === null);
+}
+
+var _isKeyable = isKeyable;
+
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+function getMapData(map, key) {
+  var data = map.__data__;
+  return _isKeyable(key)
+    ? data[typeof key == 'string' ? 'string' : 'hash']
+    : data.map;
+}
+
+var _getMapData = getMapData;
+
+/**
+ * Removes `key` and its value from the map.
+ *
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function mapCacheDelete(key) {
+  var result = _getMapData(this, key)['delete'](key);
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+var _mapCacheDelete = mapCacheDelete;
+
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function mapCacheGet(key) {
+  return _getMapData(this, key).get(key);
+}
+
+var _mapCacheGet = mapCacheGet;
+
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function mapCacheHas(key) {
+  return _getMapData(this, key).has(key);
+}
+
+var _mapCacheHas = mapCacheHas;
+
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+function mapCacheSet(key, value) {
+  var data = _getMapData(this, key),
+      size = data.size;
+
+  data.set(key, value);
+  this.size += data.size == size ? 0 : 1;
+  return this;
+}
+
+var _mapCacheSet = mapCacheSet;
+
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function MapCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `MapCache`.
+MapCache.prototype.clear = _mapCacheClear;
+MapCache.prototype['delete'] = _mapCacheDelete;
+MapCache.prototype.get = _mapCacheGet;
+MapCache.prototype.has = _mapCacheHas;
+MapCache.prototype.set = _mapCacheSet;
+
+var _MapCache = MapCache;
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/**
+ * Creates a function that memoizes the result of `func`. If `resolver` is
+ * provided, it determines the cache key for storing the result based on the
+ * arguments provided to the memoized function. By default, the first argument
+ * provided to the memoized function is used as the map cache key. The `func`
+ * is invoked with the `this` binding of the memoized function.
+ *
+ * **Note:** The cache is exposed as the `cache` property on the memoized
+ * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ * constructor with one whose instances implement the
+ * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)
+ * method interface of `clear`, `delete`, `get`, `has`, and `set`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to have its output memoized.
+ * @param {Function} [resolver] The function to resolve the cache key.
+ * @returns {Function} Returns the new memoized function.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': 2 };
+ * var other = { 'c': 3, 'd': 4 };
+ *
+ * var values = _.memoize(_.values);
+ * values(object);
+ * // => [1, 2]
+ *
+ * values(other);
+ * // => [3, 4]
+ *
+ * object.a = 2;
+ * values(object);
+ * // => [1, 2]
+ *
+ * // Modify the result cache.
+ * values.cache.set(object, ['a', 'b']);
+ * values(object);
+ * // => ['a', 'b']
+ *
+ * // Replace `_.memoize.Cache`.
+ * _.memoize.Cache = WeakMap;
+ */
+function memoize(func, resolver) {
+  if (typeof func != 'function' || (resolver != null && typeof resolver != 'function')) {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  var memoized = function() {
+    var args = arguments,
+        key = resolver ? resolver.apply(this, args) : args[0],
+        cache = memoized.cache;
+
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    var result = func.apply(this, args);
+    memoized.cache = cache.set(key, result) || cache;
+    return result;
+  };
+  memoized.cache = new (memoize.Cache || _MapCache);
+  return memoized;
+}
+
+// Expose `MapCache`.
+memoize.Cache = _MapCache;
+
+var memoize_1 = memoize;
+
+/** Used as the maximum memoize cache size. */
+var MAX_MEMOIZE_SIZE = 500;
+
+/**
+ * A specialized version of `_.memoize` which clears the memoized function's
+ * cache when it exceeds `MAX_MEMOIZE_SIZE`.
+ *
+ * @private
+ * @param {Function} func The function to have its output memoized.
+ * @returns {Function} Returns the new memoized function.
+ */
+function memoizeCapped(func) {
+  var result = memoize_1(func, function(key) {
+    if (cache.size === MAX_MEMOIZE_SIZE) {
+      cache.clear();
+    }
+    return key;
+  });
+
+  var cache = result.cache;
+  return result;
+}
+
+var _memoizeCapped = memoizeCapped;
+
+/** Used to match property names within property paths. */
+var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+
+/** Used to match backslashes in property paths. */
+var reEscapeChar = /\\(\\)?/g;
+
+/**
+ * Converts `string` to a property path array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the property path array.
+ */
+var stringToPath = _memoizeCapped(function(string) {
+  var result = [];
+  if (string.charCodeAt(0) === 46 /* . */) {
+    result.push('');
+  }
+  string.replace(rePropName, function(match, number, quote, subString) {
+    result.push(quote ? subString.replace(reEscapeChar, '$1') : (number || match));
+  });
+  return result;
 });
 
-unwrapExports(lib);
-var lib_1 = lib.genericHashLink;
-var lib_2 = lib.HashLink;
-var lib_3 = lib.NavHashLink;
+var _stringToPath = stringToPath;
+
+/**
+ * A specialized version of `_.map` for arrays without support for iteratee
+ * shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the new mapped array.
+ */
+function arrayMap(array, iteratee) {
+  var index = -1,
+      length = array == null ? 0 : array.length,
+      result = Array(length);
+
+  while (++index < length) {
+    result[index] = iteratee(array[index], index, array);
+  }
+  return result;
+}
+
+var _arrayMap = arrayMap;
+
+/** Used as references for various `Number` constants. */
+var INFINITY = 1 / 0;
+
+/** Used to convert symbols to primitives and strings. */
+var symbolProto = _Symbol ? _Symbol.prototype : undefined,
+    symbolToString = symbolProto ? symbolProto.toString : undefined;
+
+/**
+ * The base implementation of `_.toString` which doesn't convert nullish
+ * values to empty strings.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ */
+function baseToString(value) {
+  // Exit early for strings to avoid a performance hit in some environments.
+  if (typeof value == 'string') {
+    return value;
+  }
+  if (isArray_1(value)) {
+    // Recursively convert values (susceptible to call stack limits).
+    return _arrayMap(value, baseToString) + '';
+  }
+  if (isSymbol_1(value)) {
+    return symbolToString ? symbolToString.call(value) : '';
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+}
+
+var _baseToString = baseToString;
+
+/**
+ * Converts `value` to a string. An empty string is returned for `null`
+ * and `undefined` values. The sign of `-0` is preserved.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ * @example
+ *
+ * _.toString(null);
+ * // => ''
+ *
+ * _.toString(-0);
+ * // => '-0'
+ *
+ * _.toString([1, 2, 3]);
+ * // => '1,2,3'
+ */
+function toString(value) {
+  return value == null ? '' : _baseToString(value);
+}
+
+var toString_1 = toString;
+
+/**
+ * Casts `value` to a path array if it's not one.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @param {Object} [object] The object to query keys on.
+ * @returns {Array} Returns the cast property path array.
+ */
+function castPath(value, object) {
+  if (isArray_1(value)) {
+    return value;
+  }
+  return _isKey(value, object) ? [value] : _stringToPath(toString_1(value));
+}
+
+var _castPath = castPath;
+
+/** Used as references for various `Number` constants. */
+var INFINITY$1 = 1 / 0;
+
+/**
+ * Converts `value` to a string key if it's not a string or symbol.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @returns {string|symbol} Returns the key.
+ */
+function toKey(value) {
+  if (typeof value == 'string' || isSymbol_1(value)) {
+    return value;
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY$1) ? '-0' : result;
+}
+
+var _toKey = toKey;
+
+/**
+ * The base implementation of `_.get` without support for default values.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @returns {*} Returns the resolved value.
+ */
+function baseGet(object, path) {
+  path = _castPath(path, object);
+
+  var index = 0,
+      length = path.length;
+
+  while (object != null && index < length) {
+    object = object[_toKey(path[index++])];
+  }
+  return (index && index == length) ? object : undefined;
+}
+
+var _baseGet = baseGet;
+
+/**
+ * Gets the value at `path` of `object`. If the resolved value is
+ * `undefined`, the `defaultValue` is returned in its place.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.7.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @param {*} [defaultValue] The value returned for `undefined` resolved values.
+ * @returns {*} Returns the resolved value.
+ * @example
+ *
+ * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ *
+ * _.get(object, 'a[0].b.c');
+ * // => 3
+ *
+ * _.get(object, ['a', '0', 'b', 'c']);
+ * // => 3
+ *
+ * _.get(object, 'a.b.c', 'default');
+ * // => 'default'
+ */
+function get$1(object, path, defaultValue) {
+  var result = object == null ? undefined : _baseGet(object, path);
+  return result === undefined ? defaultValue : result;
+}
+
+var get_1 = get$1;
+
+var StyleNav = styled.div.withConfig({
+  displayName: 'StickyNav__StyleNav',
+  componentId: 'wbp22c-0'
+})(['&&{width:68px;left:0;position:fixed;top:200px;border-radius:0;transition-duration:0.3s;box-shadow:0 2px 4px 0 rgba(0,0,0,0.5);z-index:94449;cursor:pointer;background-color:', ';}&&:hover{width:242px;}&&:hover a{text-decoration:none;}'], colors.secondaryBackgroundColor);
 
 var StyledNavItem = styled.div.withConfig({
   displayName: 'StickyNav__StyledNavItem',
-  componentId: 'wbp22c-0'
-})(['&&.selected{color:', ';background-color:var(--white);border-right:8px solid ', ';}&&.selected svg g{fill:', ';}&&.selected i{color:', ';}&&.selected span{color:', ';font-weight:bold;}'], function (props) {
-  return props.theme.primaryColor;
+  componentId: 'wbp22c-1'
+})(['&&{height:60px;font-size:14px;text-transform:uppercase;font-weight:bold;padding:0px 18px !important;display:flex;overflow:hidden;align-items:center;text-decoration:none;color:', ';border-right:8px solid ', ';}@media (max-width:992px){&&{width:54px;left:-12px}}&& svg g{fill:', ';}&& i{color:', ';}&& span{color:', ';font-weight:', ';padding-left:30px;white-space:nowrap;}&&:hover{background-color:', ';}&& a{display:flex;align-items:center;text-decoration:none;}'], function (props) {
+  return props.currentView === props.link ? props.theme.primaryColor : colors.secondaryTextColor;
 }, function (props) {
-  return props.theme.primaryColor;
+  return props.currentView === props.link ? props.theme.primaryColor : 'transparent';
 }, function (props) {
-  return props.theme.primaryColor;
+  return props.currentView === props.link ? props.theme.primaryColor : colors.secondaryTextColor;
 }, function (props) {
-  return props.theme.primaryColor;
+  return props.currentView === props.link ? props.theme.primaryColor : colors.secondaryTextColor;
 }, function (props) {
-  return props.theme.primaryColor;
+  return props.currentView === props.link ? props.theme.primaryColor : colors.secondaryTextColor;
+}, function (props) {
+  return props.currentView === props.link ? 'bold' : 'normal';
+}, function (props) {
+  return props.currentView === props.link ? 'transparent' : curriedLighten(0.1)(colors.lightBorderColor);
 });
 
 var StickyNav = function (_Component) {
@@ -27682,12 +25850,13 @@ var StickyNav = function (_Component) {
 
     _this.handleScroll = function (ev) {
       var activeTab = _this.state.currentView;
+      _this.state.refs.forEach(function (item, index) {
+        var scrollPos = get_1(ev, ['target', 'scrollTop'], window.scrollY);
 
-      _this.state.refs.forEach(function (item, index$$1) {
-        if (ev.target.scrollTop < _this.state.refs[0].offsetTop) {
+        if (scrollPos < _this.state.refs[0].offsetTop) {
           activeTab = _this.props.menuItems[0].link;
-        } else if (ev.target.scrollTop + 200 > item.offsetTop) {
-          activeTab = _this.props.menuItems[index$$1].link;
+        } else if (item && scrollPos + 200 > item.offsetTop) {
+          activeTab = _this.props.menuItems[index].link;
         }
       });
 
@@ -27698,11 +25867,15 @@ var StickyNav = function (_Component) {
       });
     };
 
+    _this.scrollToElement = function (destination) {
+      var el = document.getElementById(destination);
+      el.scrollIntoView({ behavior: 'smooth' });
+    };
+
     _this.state = {
       currentView: props.menuItems[0].link,
       refs: []
     };
-    _this.props = props;
     return _this;
   }
 
@@ -27736,34 +25909,33 @@ var StickyNav = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props,
-          menuItems = _props.menuItems,
-          mode = _props.mode;
+      var menuItems = this.props.menuItems;
 
       return React.createElement(
-        'div',
-        { className: 'sticky-nav' },
-        menuItems.map(function (item, index$$1) {
+        StyleNav,
+        null,
+        menuItems.map(function (item) {
           return React.createElement(
             StyledNavItem,
             {
-              key: index$$1,
+              key: item.link,
               theme: _this2.props.theme || _this2.context,
-              className: _this2.state.currentView === item.link ? 'sticky-nav__item selected' : 'sticky-nav__item'
+              currentView: _this2.state.currentView,
+              link: item.link
+              // eslint-disable-next-line react/jsx-no-bind
+              , onClick: function onClick() {
+                return _this2.scrollToElement(item.link);
+              }
             },
-            React.createElement(
-              lib_2,
-              { to: mode === 'follow' ? '#' + item.link : item.link, smooth: true },
-              item.icon && React.createElement(
-                'i',
-                { className: 'material-icons sticky-nav__icon' },
-                item.icon
-              ),
-              item.label && React.createElement(
-                'span',
-                { className: 'stick-nav__label' },
-                item.label
-              )
+            item.icon && React.createElement(
+              'i',
+              { className: 'material-icons sticky-nav__icon' },
+              item.icon
+            ),
+            item.label && React.createElement(
+              'span',
+              { className: 'stick-nav__label' },
+              item.label
             )
           );
         })
@@ -27945,9 +26117,9 @@ var _hide = _descriptors ? function (object, key, value) {
   return object;
 };
 
-var hasOwnProperty = {}.hasOwnProperty;
+var hasOwnProperty$4 = {}.hasOwnProperty;
 var _has = function (it, key) {
-  return hasOwnProperty.call(it, key);
+  return hasOwnProperty$4.call(it, key);
 };
 
 var PROTOTYPE = 'prototype';
@@ -28008,10 +26180,10 @@ $export.U = 64;  // safe
 $export.R = 128; // real proto method for `library`
 var _export = $export;
 
-var toString = {}.toString;
+var toString$1 = {}.toString;
 
 var _cof = function (it) {
-  return toString.call(it).slice(8, -1);
+  return toString$1.call(it).slice(8, -1);
 };
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
@@ -28200,7 +26372,7 @@ module.exports = { "default": assign, __esModule: true };
 
 unwrapExports(assign$1);
 
-var _extends$d = createCommonjsModule(function (module, exports) {
+var _extends$2 = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
 
@@ -28225,7 +26397,7 @@ exports.default = _assign2.default || function (target) {
 };
 });
 
-var _extends$e = unwrapExports(_extends$d);
+var _extends$3 = unwrapExports(_extends$2);
 
 /*
 object-assign
@@ -28233,8 +26405,8 @@ object-assign
 @license MIT
 */
 /* eslint-disable no-unused-vars */
-var getOwnPropertySymbols$1 = Object.getOwnPropertySymbols;
-var hasOwnProperty$1 = Object.prototype.hasOwnProperty;
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty$5 = Object.prototype.hasOwnProperty;
 var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
 function toObject(val) {
@@ -28298,13 +26470,13 @@ var objectAssign = shouldUseNative() ? Object.assign : function (target, source)
 		from = Object(arguments[s]);
 
 		for (var key in from) {
-			if (hasOwnProperty$1.call(from, key)) {
+			if (hasOwnProperty$5.call(from, key)) {
 				to[key] = from[key];
 			}
 		}
 
-		if (getOwnPropertySymbols$1) {
-			symbols = getOwnPropertySymbols$1(from);
+		if (getOwnPropertySymbols) {
+			symbols = getOwnPropertySymbols(from);
 			for (var i = 0; i < symbols.length; i++) {
 				if (propIsEnumerable.call(from, symbols[i])) {
 					to[symbols[i]] = from[symbols[i]];
@@ -28361,7 +26533,7 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-function invariant$1(condition, format, a, b, c, d, e, f) {
+function invariant(condition, format, a, b, c, d, e, f) {
   validateFormat(format);
 
   if (!condition) {
@@ -28382,7 +26554,7 @@ function invariant$1(condition, format, a, b, c, d, e, f) {
   }
 }
 
-var invariant_1$1 = invariant$1;
+var invariant_1 = invariant;
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -28426,10 +26598,10 @@ var emptyFunction_1 = emptyFunction;
  * same logic and follow the same code paths.
  */
 
-var warning$3 = emptyFunction_1;
+var warning = emptyFunction_1;
 
 if (process.env.NODE_ENV !== 'production') {
-  var printWarning$2 = function printWarning(format) {
+  var printWarning = function printWarning(format) {
     for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       args[_key - 1] = arguments[_key];
     }
@@ -28449,7 +26621,7 @@ if (process.env.NODE_ENV !== 'production') {
     } catch (x) {}
   };
 
-  warning$3 = function warning(condition, format) {
+  warning = function warning(condition, format) {
     if (format === undefined) {
       throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
     }
@@ -28463,15 +26635,15 @@ if (process.env.NODE_ENV !== 'production') {
         args[_key2 - 2] = arguments[_key2];
       }
 
-      printWarning$2.apply(undefined, [format].concat(args));
+      printWarning.apply(undefined, [format].concat(args));
     }
   };
 }
 
-var warning_1$3 = warning$3;
+var warning_1 = warning;
 
 if (process.env.NODE_ENV !== 'production') {
-  var warning$4 = warning_1$3;
+  var warning$1 = warning_1;
 }
 
 var MIXINS_KEY = 'mixins';
@@ -28852,7 +27024,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
         // use a warning instead of an _invariant so components
         // don't show up in prod but only in __DEV__
         if (process.env.NODE_ENV !== 'production') {
-          warning$4(
+          warning$1(
             typeof typeDef[propName] === 'function',
             '%s: %s type `%s` is invalid; it must be a function, usually from ' +
               'React.PropTypes.',
@@ -28872,7 +27044,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
 
     // Disallow overriding of base class methods unless explicitly allowed.
     if (ReactClassMixin.hasOwnProperty(name)) {
-      invariant_1$1(
+      invariant_1(
         specPolicy === 'OVERRIDE_BASE',
         'ReactClassInterface: You are attempting to override ' +
           '`%s` from your class specification. Ensure that your method names ' +
@@ -28883,7 +27055,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
 
     // Disallow defining methods more than once unless explicitly allowed.
     if (isAlreadyDefined) {
-      invariant_1$1(
+      invariant_1(
         specPolicy === 'DEFINE_MANY' || specPolicy === 'DEFINE_MANY_MERGED',
         'ReactClassInterface: You are attempting to define ' +
           '`%s` on your component more than once. This conflict may be due ' +
@@ -28904,7 +27076,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
         var isMixinValid = typeofSpec === 'object' && spec !== null;
 
         if (process.env.NODE_ENV !== 'production') {
-          warning$4(
+          warning$1(
             isMixinValid,
             "%s: You're attempting to include a mixin that is either null " +
               'or not an object. Check the mixins included by the component, ' +
@@ -28919,13 +27091,13 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
       return;
     }
 
-    invariant_1$1(
+    invariant_1(
       typeof spec !== 'function',
       "ReactClass: You're attempting to " +
         'use a component class or function as a mixin. Instead, just use a ' +
         'regular object.'
     );
-    invariant_1$1(
+    invariant_1(
       !isValidElement(spec),
       "ReactClass: You're attempting to " +
         'use a component as a mixin. Instead, just use a regular object.'
@@ -28978,7 +27150,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
             var specPolicy = ReactClassInterface[name];
 
             // These cases should already be caught by validateMethodOverride.
-            invariant_1$1(
+            invariant_1(
               isReactClassMethod &&
                 (specPolicy === 'DEFINE_MANY_MERGED' ||
                   specPolicy === 'DEFINE_MANY'),
@@ -29022,7 +27194,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
       }
 
       var isReserved = name in RESERVED_SPEC_KEYS;
-      invariant_1$1(
+      invariant_1(
         !isReserved,
         'ReactClass: You are attempting to define a reserved ' +
           'property, `%s`, that shouldn\'t be on the "statics" key. Define it ' +
@@ -29037,7 +27209,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
           ? ReactClassStaticInterface[name]
           : null;
 
-        invariant_1$1(
+        invariant_1(
           specPolicy === 'DEFINE_MANY_MERGED',
           'ReactClass: You are attempting to define ' +
             '`%s` on your component more than once. This conflict may be ' +
@@ -29062,14 +27234,14 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
    * @return {object} one after it has been mutated to contain everything in two.
    */
   function mergeIntoWithNoDuplicateKeys(one, two) {
-    invariant_1$1(
+    invariant_1(
       one && two && typeof one === 'object' && typeof two === 'object',
       'mergeIntoWithNoDuplicateKeys(): Cannot merge non-objects.'
     );
 
     for (var key in two) {
       if (two.hasOwnProperty(key)) {
-        invariant_1$1(
+        invariant_1(
           one[key] === undefined,
           'mergeIntoWithNoDuplicateKeys(): ' +
             'Tried to merge two objects with the same key: `%s`. This conflict ' +
@@ -29154,7 +27326,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
         // let's warn.
         if (newThis !== component && newThis !== null) {
           if (process.env.NODE_ENV !== 'production') {
-            warning$4(
+            warning$1(
               false,
               'bind(): React component methods may only be bound to the ' +
                 'component instance. See %s',
@@ -29163,7 +27335,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
           }
         } else if (!args.length) {
           if (process.env.NODE_ENV !== 'production') {
-            warning$4(
+            warning$1(
               false,
               'bind(): You are binding a component method to the component. ' +
                 'React does this for you automatically in a high-performance ' +
@@ -29230,7 +27402,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
      */
     isMounted: function() {
       if (process.env.NODE_ENV !== 'production') {
-        warning$4(
+        warning$1(
           this.__didWarnIsMounted,
           '%s: isMounted is deprecated. Instead, make sure to clean up ' +
             'subscriptions and pending requests in componentWillUnmount to ' +
@@ -29269,7 +27441,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
       // by mocks to assert on what gets mounted.
 
       if (process.env.NODE_ENV !== 'production') {
-        warning$4(
+        warning$1(
           this instanceof Constructor,
           'Something is calling a React component directly. Use a factory or ' +
             'JSX instead. See: https://fb.me/react-legacyfactory'
@@ -29303,7 +27475,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
           initialState = null;
         }
       }
-      invariant_1$1(
+      invariant_1(
         typeof initialState === 'object' && !Array.isArray(initialState),
         '%s.getInitialState(): must return an object or null',
         Constructor.displayName || 'ReactCompositeComponent'
@@ -29339,13 +27511,13 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
       }
     }
 
-    invariant_1$1(
+    invariant_1(
       Constructor.prototype.render,
       'createClass(...): Class specification must implement a `render` method.'
     );
 
     if (process.env.NODE_ENV !== 'production') {
-      warning$4(
+      warning$1(
         !Constructor.prototype.componentShouldUpdate,
         '%s has a method called ' +
           'componentShouldUpdate(). Did you mean shouldComponentUpdate()? ' +
@@ -29353,13 +27525,13 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
           'expected to return a value.',
         spec.displayName || 'A component'
       );
-      warning$4(
+      warning$1(
         !Constructor.prototype.componentWillRecieveProps,
         '%s has a method called ' +
           'componentWillRecieveProps(). Did you mean componentWillReceiveProps()?',
         spec.displayName || 'A component'
       );
-      warning$4(
+      warning$1(
         !Constructor.prototype.UNSAFE_componentWillRecieveProps,
         '%s has a method called UNSAFE_componentWillRecieveProps(). ' +
           'Did you mean UNSAFE_componentWillReceiveProps()?',
@@ -29747,7 +27919,7 @@ module.exports = exports['default'];
 
 unwrapExports(EventObject);
 
-var lib$1 = createCommonjsModule(function (module, exports) {
+var lib = createCommonjsModule(function (module, exports) {
 
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -29800,9 +27972,9 @@ function addEventListener(target, eventType, callback, option) {
 module.exports = exports['default'];
 });
 
-var addDOMEventListener = unwrapExports(lib$1);
+var addDOMEventListener = unwrapExports(lib);
 
-var addEventListener$1 = createCommonjsModule(function (module, exports) {
+var addEventListener = createCommonjsModule(function (module, exports) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -29811,7 +27983,7 @@ exports['default'] = addEventListenerWrap;
 
 
 
-var _addDomEventListener2 = _interopRequireDefault(lib$1);
+var _addDomEventListener2 = _interopRequireDefault(lib);
 
 
 
@@ -29829,7 +28001,7 @@ function addEventListenerWrap(target, eventType, cb, option) {
 module.exports = exports['default'];
 });
 
-var addEventListener$2 = unwrapExports(addEventListener$1);
+var addEventListener$1 = unwrapExports(addEventListener);
 
 var classCallCheck$1 = createCommonjsModule(function (module, exports) {
 
@@ -29842,21 +28014,21 @@ exports.default = function (instance, Constructor) {
 };
 });
 
-var _classCallCheck$a = unwrapExports(classCallCheck$1);
+var _classCallCheck = unwrapExports(classCallCheck$1);
 
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
 _export(_export.S + _export.F * !_descriptors, 'Object', { defineProperty: _objectDp.f });
 
 var $Object = _core.Object;
-var defineProperty$2 = function defineProperty(it, key, desc) {
+var defineProperty$1 = function defineProperty(it, key, desc) {
   return $Object.defineProperty(it, key, desc);
 };
 
-var defineProperty$3 = createCommonjsModule(function (module) {
-module.exports = { "default": defineProperty$2, __esModule: true };
+var defineProperty$2 = createCommonjsModule(function (module) {
+module.exports = { "default": defineProperty$1, __esModule: true };
 });
 
-unwrapExports(defineProperty$3);
+unwrapExports(defineProperty$2);
 
 var createClass$1 = createCommonjsModule(function (module, exports) {
 
@@ -29864,7 +28036,7 @@ exports.__esModule = true;
 
 
 
-var _defineProperty2 = _interopRequireDefault(defineProperty$3);
+var _defineProperty2 = _interopRequireDefault(defineProperty$2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30199,10 +28371,10 @@ var _meta_3 = _meta.fastKey;
 var _meta_4 = _meta.getWeak;
 var _meta_5 = _meta.onFreeze;
 
-var defineProperty$5 = _objectDp.f;
+var defineProperty$4 = _objectDp.f;
 var _wksDefine = function (name) {
-  var $Symbol = _core.Symbol || (_core.Symbol = _library ? {} : _global.Symbol || {});
-  if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty$5($Symbol, name, { value: _wksExt.f(name) });
+  var $Symbol = _core.Symbol || (_core.Symbol = {});
+  if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty$4($Symbol, name, { value: _wksExt.f(name) });
 };
 
 // all enumerable object keys, includes symbols
@@ -30242,7 +28414,7 @@ var _objectGopn = {
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 
 var gOPN = _objectGopn.f;
-var toString$1 = {}.toString;
+var toString$2 = {}.toString;
 
 var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
   ? Object.getOwnPropertyNames(window) : [];
@@ -30256,7 +28428,7 @@ var getWindowNames = function (it) {
 };
 
 var f$5 = function getOwnPropertyNames(it) {
-  return windowNames && toString$1.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(_toIobject(it));
+  return windowNames && toString$2.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(_toIobject(it));
 };
 
 var _objectGopnExt = {
@@ -30341,7 +28513,7 @@ var wrap = function (tag) {
   return sym;
 };
 
-var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function (it) {
+var isSymbol$1 = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function (it) {
   return typeof it == 'symbol';
 } : function (it) {
   return it instanceof $Symbol;
@@ -30457,7 +28629,7 @@ _export(_export.S + _export.F * !USE_NATIVE, 'Symbol', {
   },
   // 19.4.2.5 Symbol.keyFor(sym)
   keyFor: function keyFor(sym) {
-    if (!isSymbol(sym)) throw TypeError(sym + ' is not a symbol!');
+    if (!isSymbol$1(sym)) throw TypeError(sym + ' is not a symbol!');
     for (var key in SymbolRegistry) if (SymbolRegistry[key] === sym) return key;
   },
   useSetter: function () { setter = true; },
@@ -30493,10 +28665,10 @@ $JSON && _export(_export.S + _export.F * (!USE_NATIVE || _fails(function () {
     var replacer, $replacer;
     while (arguments.length > i) args.push(arguments[i++]);
     $replacer = replacer = args[1];
-    if (!_isObject(replacer) && it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
+    if (!_isObject(replacer) && it === undefined || isSymbol$1(it)) return; // IE8 returns string on undefined
     if (!_isArray(replacer)) replacer = function (key, value) {
       if (typeof $replacer == 'function') value = $replacer.call(this, key, value);
-      if (!isSymbol(value)) return value;
+      if (!isSymbol$1(value)) return value;
     };
     args[1] = replacer;
     return _stringify.apply($JSON, args);
@@ -30547,7 +28719,7 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 };
 });
 
-var _typeof$5 = unwrapExports(_typeof_1);
+var _typeof$1 = unwrapExports(_typeof_1);
 
 var possibleConstructorReturn$1 = createCommonjsModule(function (module, exports) {
 
@@ -30568,7 +28740,7 @@ exports.default = function (self, call) {
 };
 });
 
-var _possibleConstructorReturn$a = unwrapExports(possibleConstructorReturn$1);
+var _possibleConstructorReturn = unwrapExports(possibleConstructorReturn$1);
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
@@ -30657,7 +28829,7 @@ exports.default = function (subClass, superClass) {
 };
 });
 
-var _inherits$a = unwrapExports(inherits$1);
+var _inherits = unwrapExports(inherits$1);
 
 var vendorPrefix = void 0;
 
@@ -30760,7 +28932,7 @@ function setTransformXY(node, xy) {
   }
 }
 
-var _typeof$6 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof$2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var RE_NUM = /[\-+]?(?:\d*\.|)\d+(?:[eE][\-+]?\d+|)/.source;
 
@@ -30776,7 +28948,7 @@ function forceRelayout(elem) {
 
 function css(el, name, v) {
   var value = v;
-  if ((typeof name === 'undefined' ? 'undefined' : _typeof$6(name)) === 'object') {
+  if ((typeof name === 'undefined' ? 'undefined' : _typeof$2(name)) === 'object') {
     for (var i in name) {
       if (name.hasOwnProperty(i)) {
         css(el, i, name[i]);
@@ -31796,7 +29968,7 @@ alignElement.__getOffsetParent = getOffsetParent;
 
 alignElement.__getVisibleRectForElement = getVisibleRectForElement;
 
-var _extends$f = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 /**
  * `tgtPoint`: { pageX, pageY } or { clientX, clientY }.
@@ -31839,7 +30011,7 @@ function alignPoint(el, tgtPoint, align) {
   // Provide default target point
   var points = [align.points[0], 'cc'];
 
-  return doAlign(el, tgtRegion, _extends$f({}, align, { points: points }), pointInView);
+  return doAlign(el, tgtRegion, _extends$4({}, align, { points: points }), pointInView);
 }
 
 function addEventListenerWrap(target, eventType, cb, option) {
@@ -31900,18 +30072,18 @@ function getPoint(point) {
 }
 
 var Align = function (_Component) {
-  _inherits$a(Align, _Component);
+  _inherits(Align, _Component);
 
   function Align() {
     var _temp, _this, _ret;
 
-    _classCallCheck$a(this, Align);
+    _classCallCheck(this, Align);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn$a(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.forceAlign = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.forceAlign = function () {
       var _this$props = _this.props,
           disabled = _this$props.disabled,
           target = _this$props.target,
@@ -31935,7 +30107,7 @@ var Align = function (_Component) {
           onAlign(source, result);
         }
       }
-    }, _temp), _possibleConstructorReturn$a(_this, _ret);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   Align.prototype.componentDidMount = function componentDidMount() {
@@ -32062,13 +30234,13 @@ Align.defaultProps = {
 
 // export this package's api
 
-var defineProperty$6 = createCommonjsModule(function (module, exports) {
+var defineProperty$5 = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
 
 
 
-var _defineProperty2 = _interopRequireDefault(defineProperty$3);
+var _defineProperty2 = _interopRequireDefault(defineProperty$2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32088,7 +30260,7 @@ exports.default = function (obj, key, value) {
 };
 });
 
-var _defineProperty = unwrapExports(defineProperty$6);
+var _defineProperty = unwrapExports(defineProperty$5);
 
 function toArrayChildren(children) {
   var ret = [];
@@ -32252,11 +30424,11 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   detectEvents();
 }
 
-function addEventListener$3(node, eventName, eventListener) {
+function addEventListener$2(node, eventName, eventListener) {
   node.addEventListener(eventName, eventListener, false);
 }
 
-function removeEventListener$1(node, eventName, eventListener) {
+function removeEventListener(node, eventName, eventListener) {
   node.removeEventListener(eventName, eventListener, false);
 }
 
@@ -32270,7 +30442,7 @@ var TransitionEvents = {
       return;
     }
     startEvents.forEach(function (startEvent) {
-      addEventListener$3(node, startEvent, eventListener);
+      addEventListener$2(node, startEvent, eventListener);
     });
   },
   removeStartEventListener: function removeStartEventListener(node, eventListener) {
@@ -32278,7 +30450,7 @@ var TransitionEvents = {
       return;
     }
     startEvents.forEach(function (startEvent) {
-      removeEventListener$1(node, startEvent, eventListener);
+      removeEventListener(node, startEvent, eventListener);
     });
   },
 
@@ -32292,7 +30464,7 @@ var TransitionEvents = {
       return;
     }
     endEvents.forEach(function (endEvent) {
-      addEventListener$3(node, endEvent, eventListener);
+      addEventListener$2(node, endEvent, eventListener);
     });
   },
   removeEndEventListener: function removeEndEventListener(node, eventListener) {
@@ -32300,7 +30472,7 @@ var TransitionEvents = {
       return;
     }
     endEvents.forEach(function (endEvent) {
-      removeEventListener$1(node, endEvent, eventListener);
+      removeEventListener(node, endEvent, eventListener);
     });
   }
 };
@@ -32328,9 +30500,9 @@ var componentIndexof = function(arr, obj){
  */
 
 try {
-  var index$1 = indexof;
+  var index = indexof;
 } catch (err) {
-  var index$1 = componentIndexof;
+  var index = componentIndexof;
 }
 
 /**
@@ -32343,7 +30515,7 @@ var re = /\s+/;
  * toString reference.
  */
 
-var toString$2 = Object.prototype.toString;
+var toString$3 = Object.prototype.toString;
 
 /**
  * Wrap `el` in a `ClassList`.
@@ -32389,7 +30561,7 @@ ClassList.prototype.add = function(name){
 
   // fallback
   var arr = this.array();
-  var i = index$1(arr, name);
+  var i = index(arr, name);
   if (!~i) arr.push(name);
   this.el.className = arr.join(' ');
   return this;
@@ -32406,7 +30578,7 @@ ClassList.prototype.add = function(name){
  */
 
 ClassList.prototype.remove = function(name){
-  if ('[object RegExp]' == toString$2.call(name)) {
+  if ('[object RegExp]' == toString$3.call(name)) {
     return this.removeMatching(name);
   }
 
@@ -32418,7 +30590,7 @@ ClassList.prototype.remove = function(name){
 
   // fallback
   var arr = this.array();
-  var i = index$1(arr, name);
+  var i = index(arr, name);
   if (~i) arr.splice(i, 1);
   this.el.className = arr.join(' ');
   return this;
@@ -32512,7 +30684,7 @@ ClassList.prototype.has =
 ClassList.prototype.contains = function(name){
   return this.list
     ? this.list.contains(name)
-    : !! ~index$1(this.array(), name);
+    : !! ~index(this.array(), name);
 };
 
 var isCssAnimationSupported = TransitionEvents.endEvents.length !== 0;
@@ -32559,7 +30731,7 @@ function clearBrowserBugTimeout(node) {
 }
 
 var cssAnimation = function cssAnimation(node, transitionName, endCallback) {
-  var nameIsObj = (typeof transitionName === 'undefined' ? 'undefined' : _typeof$5(transitionName)) === 'object';
+  var nameIsObj = (typeof transitionName === 'undefined' ? 'undefined' : _typeof$1(transitionName)) === 'object';
   var className = nameIsObj ? transitionName.name : transitionName;
   var activeClassName = nameIsObj ? transitionName.active : transitionName + '-active';
   var end = endCallback;
@@ -32711,12 +30883,12 @@ var transitionMap = {
 };
 
 var AnimateChild = function (_React$Component) {
-  _inherits$a(AnimateChild, _React$Component);
+  _inherits(AnimateChild, _React$Component);
 
   function AnimateChild() {
-    _classCallCheck$a(this, AnimateChild);
+    _classCallCheck(this, AnimateChild);
 
-    return _possibleConstructorReturn$a(this, (AnimateChild.__proto__ || Object.getPrototypeOf(AnimateChild)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (AnimateChild.__proto__ || Object.getPrototypeOf(AnimateChild)).apply(this, arguments));
   }
 
   _createClass(AnimateChild, [{
@@ -32819,17 +30991,17 @@ function getChildrenFromProps(props) {
   return children;
 }
 
-function noop$1() {}
+function noop() {}
 
 var Animate = function (_React$Component) {
-  _inherits$a(Animate, _React$Component);
+  _inherits(Animate, _React$Component);
 
   // eslint-disable-line
 
   function Animate(props) {
-    _classCallCheck$a(this, Animate);
+    _classCallCheck(this, Animate);
 
-    var _this = _possibleConstructorReturn$a(this, (Animate.__proto__ || Object.getPrototypeOf(Animate)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Animate.__proto__ || Object.getPrototypeOf(Animate)).call(this, props));
 
     _initialiseProps.call(_this);
 
@@ -33018,7 +31190,7 @@ var Animate = function (_React$Component) {
       if (Component$$1) {
         var passedProps = props;
         if (typeof Component$$1 === 'string') {
-          passedProps = _extends$e({
+          passedProps = _extends$3({
             className: props.className,
             style: props.style
           }, props.componentProps);
@@ -33060,10 +31232,10 @@ Animate.defaultProps = {
   transitionEnter: true,
   transitionLeave: true,
   transitionAppear: false,
-  onEnd: noop$1,
-  onEnter: noop$1,
-  onLeave: noop$1,
-  onAppear: noop$1
+  onEnd: noop,
+  onEnter: noop,
+  onLeave: noop,
+  onAppear: noop
 };
 
 var _initialiseProps = function _initialiseProps() {
@@ -33160,15 +31332,15 @@ exports.default = function (obj, keys) {
 };
 });
 
-var _objectWithoutProperties$4 = unwrapExports(objectWithoutProperties$1);
+var _objectWithoutProperties = unwrapExports(objectWithoutProperties$1);
 
 var LazyRenderBox = function (_Component) {
-  _inherits$a(LazyRenderBox, _Component);
+  _inherits(LazyRenderBox, _Component);
 
   function LazyRenderBox() {
-    _classCallCheck$a(this, LazyRenderBox);
+    _classCallCheck(this, LazyRenderBox);
 
-    return _possibleConstructorReturn$a(this, (LazyRenderBox.__proto__ || Object.getPrototypeOf(LazyRenderBox)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (LazyRenderBox.__proto__ || Object.getPrototypeOf(LazyRenderBox)).apply(this, arguments));
   }
 
   _createClass(LazyRenderBox, [{
@@ -33182,7 +31354,7 @@ var LazyRenderBox = function (_Component) {
       var _props = this.props,
           hiddenClassName = _props.hiddenClassName,
           visible = _props.visible,
-          props = _objectWithoutProperties$4(_props, ['hiddenClassName', 'visible']);
+          props = _objectWithoutProperties(_props, ['hiddenClassName', 'visible']);
 
       if (hiddenClassName || React.Children.count(props.children) > 1) {
         if (!visible && hiddenClassName) {
@@ -33206,12 +31378,12 @@ LazyRenderBox.propTypes = {
 };
 
 var PopupInner = function (_Component) {
-  _inherits$a(PopupInner, _Component);
+  _inherits(PopupInner, _Component);
 
   function PopupInner() {
-    _classCallCheck$a(this, PopupInner);
+    _classCallCheck(this, PopupInner);
 
-    return _possibleConstructorReturn$a(this, (PopupInner.__proto__ || Object.getPrototypeOf(PopupInner)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (PopupInner.__proto__ || Object.getPrototypeOf(PopupInner)).apply(this, arguments));
   }
 
   _createClass(PopupInner, [{
@@ -33257,7 +31429,7 @@ function isPointsEq(a1, a2) {
 
 function getAlignFromPlacement(builtinPlacements, placementStr, align) {
   var baseAlign = builtinPlacements[placementStr] || {};
-  return _extends$e({}, baseAlign, align);
+  return _extends$3({}, baseAlign, align);
 }
 
 function getPopupClassNameFromAlign(builtinPlacements, prefixCls, align) {
@@ -33277,12 +31449,12 @@ function saveRef(name, component) {
 }
 
 var Popup = function (_Component) {
-  _inherits$a(Popup, _Component);
+  _inherits(Popup, _Component);
 
   function Popup(props) {
-    _classCallCheck$a(this, Popup);
+    _classCallCheck(this, Popup);
 
-    var _this = _possibleConstructorReturn$a(this, (Popup.__proto__ || Object.getPrototypeOf(Popup)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Popup.__proto__ || Object.getPrototypeOf(Popup)).call(this, props));
 
     _initialiseProps$1.call(_this);
 
@@ -33343,7 +31515,7 @@ var Popup = function (_Component) {
       if (!visible) {
         this.currentAlignClassName = null;
       }
-      var newStyle = _extends$e({}, style, this.getZIndexStyle());
+      var newStyle = _extends$3({}, style, this.getZIndexStyle());
       var popupInnerProps = {
         className: className,
         prefixCls: prefixCls,
@@ -33373,7 +31545,7 @@ var Popup = function (_Component) {
             },
             React.createElement(
               PopupInner,
-              _extends$e({
+              _extends$3({
                 visible: true
               }, popupInnerProps),
               props.children
@@ -33405,7 +31577,7 @@ var Popup = function (_Component) {
           },
           React.createElement(
             PopupInner,
-            _extends$e({
+            _extends$3({
               hiddenClassName: hiddenClassName
             }, popupInnerProps),
             props.children
@@ -33510,7 +31682,7 @@ Object.defineProperty(exports, "__esModule", {
 
 
 
-var _extends3 = _interopRequireDefault(_extends$d);
+var _extends3 = _interopRequireDefault(_extends$2);
 
 exports['default'] = getContainerRenderMixin;
 
@@ -33609,7 +31781,7 @@ module.exports = exports['default'];
 
 var getContainerRenderMixin = unwrapExports(getContainerRenderMixin_1);
 
-function noop$2() {}
+function noop$1() {}
 
 function returnEmptyString() {
   return '';
@@ -33683,9 +31855,9 @@ var Trigger = createReactClass({
       prefixCls: 'rc-trigger-popup',
       getPopupClassNameFromAlign: returnEmptyString,
       getDocument: returnDocument,
-      onPopupVisibleChange: noop$2,
-      afterPopupVisibleChange: noop$2,
-      onPopupAlign: noop$2,
+      onPopupVisibleChange: noop$1,
+      afterPopupVisibleChange: noop$1,
+      onPopupAlign: noop$1,
       popupClassName: '',
       mouseEnterDelay: 0,
       mouseLeaveDelay: 0.1,
@@ -33750,11 +31922,11 @@ var Trigger = createReactClass({
       var currentDocument = void 0;
       if (!this.clickOutsideHandler && this.isClickToHide()) {
         currentDocument = props.getDocument();
-        this.clickOutsideHandler = addEventListener$2(currentDocument, 'mousedown', this.onDocumentClick);
+        this.clickOutsideHandler = addEventListener$1(currentDocument, 'mousedown', this.onDocumentClick);
       }
                               if (!this.touchOutsideHandler && isMobile) {
         currentDocument = currentDocument || props.getDocument();
-        this.touchOutsideHandler = addEventListener$2(currentDocument, 'click', this.onDocumentClick);
+        this.touchOutsideHandler = addEventListener$1(currentDocument, 'click', this.onDocumentClick);
       }
       return;
     }
@@ -33888,7 +32060,7 @@ var Trigger = createReactClass({
     }
     return React.createElement(
       Popup,
-      _extends$e({
+      _extends$3({
         prefixCls: props.prefixCls,
         destroyPopupOnHide: props.destroyPopupOnHide,
         visible: state.popupVisible,
@@ -35494,7 +33666,7 @@ var _propTypes2 = _interopRequireDefault(PropTypes);
 
 
 
-var _addEventListener2 = _interopRequireDefault(addEventListener$1);
+var _addEventListener2 = _interopRequireDefault(addEventListener);
 
 
 
@@ -35815,7 +33987,7 @@ var _propTypes2 = _interopRequireDefault(PropTypes);
 
 
 
-var _addEventListener2 = _interopRequireDefault(addEventListener$1);
+var _addEventListener2 = _interopRequireDefault(addEventListener);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -35954,7 +34126,7 @@ var _propTypes2 = _interopRequireDefault(PropTypes);
 
 
 
-var _addEventListener2 = _interopRequireDefault(addEventListener$1);
+var _addEventListener2 = _interopRequireDefault(addEventListener);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -37043,9 +35215,9 @@ module.exports = exports['default'];
 
 unwrapExports(ColorPicker_1);
 
-var lib$2 = ColorPicker_1;
+var lib$1 = ColorPicker_1;
 var Panel$1 = Panel_1;
-lib$2.Panel = Panel$1;
+lib$1.Panel = Panel$1;
 
 var Layers = function Layers(_ref) {
   var className = _ref.className;
@@ -37288,7 +35460,7 @@ Copy.propTypes = {
   className: PropTypes.string
 };
 
-var Link$1 = function Link(_ref) {
+var Link = function Link(_ref) {
   var className = _ref.className;
 
   return React.createElement(
@@ -37299,7 +35471,7 @@ var Link$1 = function Link(_ref) {
   );
 };
 
-Link$1.propTypes = {
+Link.propTypes = {
   className: PropTypes.string
 };
 
@@ -37465,7 +35637,7 @@ var ColorPicker$1 = function (_Component) {
         'div',
         { className: 'p44-color-picker-wrapper', onClick: this.openColorPicker },
         React.createElement(
-          lib$2,
+          lib$1,
           {
             ref: this.setWrapperRef,
             enableAlpha: false,
@@ -37760,5 +35932,5 @@ Drawer$1.defaultProps = {
   placement: 'right'
 };
 
-export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Link$1 as Link, Info, Copy, colors, MultiInput, ThemeProvider, ChevronRight, DocumentIcon, Drawer$1 as Drawer, Notes };
+export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Link, Info, Copy, colors, MultiInput, ThemeProvider, ChevronRight, DocumentIcon, Drawer$1 as Drawer, Notes };
 //# sourceMappingURL=index.es.js.map
