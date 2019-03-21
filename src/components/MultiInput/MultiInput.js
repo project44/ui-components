@@ -88,17 +88,31 @@ class MultiInput extends React.Component {
     this.inputRef = React.createRef();
   }
 
+  removeDelimiters = value => {
+    const newValue = value.trim();
+    if (endsWith(newValue, ',') || endsWith(newValue, ';')) {
+      return newValue.substr(0, newValue.length - 1);
+    }
+    return newValue;
+  };
+
+  isValidInput = () => {
+    let inputValue = this.removeDelimiters(this.state.inputValue);
+    if (
+      inputValue === '' ||
+      (this.props.validator && !this.props.validator(inputValue)) ||
+      this.state.values.indexOf(inputValue) > -1
+    ) {
+      return false;
+    }
+    return true;
+  };
+
   onSubmitValue = () => {
-    let inputValue = this.state.inputValue.trim();
-    if (inputValue === '') {
+    if (!this.isValidInput()) {
       return;
     }
-    if (endsWith(inputValue, ',') || endsWith(inputValue, ';')) {
-      inputValue = inputValue.substr(0, inputValue.length - 1);
-    }
-    if ((this.props.validator && !this.props.validator(inputValue)) || this.state.values.indexOf(inputValue) > -1) {
-      return;
-    }
+    const inputValue = this.removeDelimiters(this.state.inputValue);
     const newValues = [...this.state.values, inputValue];
     this.setState({
       inputValue: '',

@@ -35899,17 +35899,27 @@ var MultiInput = function (_React$Component) {
 
     var _this = possibleConstructorReturn(this, (MultiInput.__proto__ || Object.getPrototypeOf(MultiInput)).call(this, props));
 
+    _this.removeDelimiters = function (value) {
+      var newValue = value.trim();
+      if (endsWith_1(newValue, ',') || endsWith_1(newValue, ';')) {
+        return newValue.substr(0, newValue.length - 1);
+      }
+      return newValue;
+    };
+
+    _this.isValidInput = function () {
+      var inputValue = _this.removeDelimiters(_this.state.inputValue);
+      if (inputValue === '' || _this.props.validator && !_this.props.validator(inputValue) || _this.state.values.indexOf(inputValue) > -1) {
+        return false;
+      }
+      return true;
+    };
+
     _this.onSubmitValue = function () {
-      var inputValue = _this.state.inputValue.trim();
-      if (inputValue === '') {
+      if (!_this.isValidInput()) {
         return;
       }
-      if (endsWith_1(inputValue, ',') || endsWith_1(inputValue, ';')) {
-        inputValue = inputValue.substr(0, inputValue.length - 1);
-      }
-      if (_this.props.validator && !_this.props.validator(inputValue) || _this.state.values.indexOf(inputValue) > -1) {
-        return;
-      }
+      var inputValue = _this.removeDelimiters(_this.state.inputValue);
       var newValues = [].concat(toConsumableArray(_this.state.values), [inputValue]);
       _this.setState({
         inputValue: '',
