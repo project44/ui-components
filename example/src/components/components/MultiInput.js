@@ -56,7 +56,8 @@ export default class MultiInputDemo extends Component {
         </div>
         <div className="page-content">
           <p className="page-intro">
-            Multi Text Inputs are used for freeform data entry. They produce chips on enter or a space.
+            Multi Text Inputs are used for freeform data entry. They produce chips on blur, enter, tab, or a space. If
+            the entry ends with a comma or semicolon it will be removed from the chip since those are common delimiters.
           </p>
           <section className="page-section">
             <h3 className="section-title">Freeform Input</h3>

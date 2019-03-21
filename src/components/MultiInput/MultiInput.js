@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import styled from 'styled-components';
 import { rgba } from 'polished';
 import { Tag } from 'antd';
+import endsWith from 'lodash/endsWith';
 
 import colors from '../../styles/colors';
 import { ThemeContext, defaultThemeShape } from '../../styles/theme';
@@ -87,17 +88,32 @@ class MultiInput extends React.Component {
     this.inputRef = React.createRef();
   }
 
-  onSubmitValue = () => {
-    if (this.state.inputValue.trim() === '') {
-      return;
+  removeDelimiters = value => {
+    const newValue = value.trim();
+    if (endsWith(newValue, ',') || endsWith(newValue, ';')) {
+      return newValue.substr(0, newValue.length - 1);
     }
+    return newValue;
+  };
+
+  isValidInput = () => {
+    let inputValue = this.removeDelimiters(this.state.inputValue);
     if (
-      (this.props.validator && !this.props.validator(this.state.inputValue)) ||
-      this.state.values.indexOf(this.state.inputValue) > -1
+      inputValue === '' ||
+      (this.props.validator && !this.props.validator(inputValue)) ||
+      this.state.values.indexOf(inputValue) > -1
     ) {
+      return false;
+    }
+    return true;
+  };
+
+  onSubmitValue = () => {
+    if (!this.isValidInput()) {
       return;
     }
-    const newValues = [...this.state.values, this.state.inputValue.trim()];
+    const inputValue = this.removeDelimiters(this.state.inputValue);
+    const newValues = [...this.state.values, inputValue];
     this.setState({
       inputValue: '',
       values: newValues,
