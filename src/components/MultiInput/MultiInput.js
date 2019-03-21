@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import styled from 'styled-components';
 import { rgba } from 'polished';
 import { Tag } from 'antd';
+import endsWith from 'lodash/endsWith';
 
 import colors from '../../styles/colors';
 import { ThemeContext, defaultThemeShape } from '../../styles/theme';
@@ -88,16 +89,17 @@ class MultiInput extends React.Component {
   }
 
   onSubmitValue = () => {
-    if (this.state.inputValue.trim() === '') {
+    let inputValue = this.state.inputValue.trim();
+    if (inputValue === '') {
       return;
     }
-    if (
-      (this.props.validator && !this.props.validator(this.state.inputValue)) ||
-      this.state.values.indexOf(this.state.inputValue) > -1
-    ) {
+    if (endsWith(inputValue, ',') || endsWith(inputValue, ';')) {
+      inputValue = inputValue.substr(0, inputValue.length - 1);
+    }
+    if ((this.props.validator && !this.props.validator(inputValue)) || this.state.values.indexOf(inputValue) > -1) {
       return;
     }
-    const newValues = [...this.state.values, this.state.inputValue.trim()];
+    const newValues = [...this.state.values, inputValue];
     this.setState({
       inputValue: '',
       values: newValues,
