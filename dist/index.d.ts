@@ -16,6 +16,8 @@ declare module 'ui-components' {
     style?: Partial<CSSStyleDeclaration>;
     theme?: any;
     icon?: boolean;
+    classes?: string;
+    link?: string;
   }
 
   interface CheckboxProps {
@@ -64,6 +66,11 @@ declare module 'ui-components' {
   export class Alert extends React.Component<AlertProps, {}> {}
   export class Input extends React.Component<any, any> {}
   export class MultiInput extends React.Component<any, any> {}
+  export class Row extends React.Component<any, any> {}
+  export class Col extends React.Component<any, any> {}
+  export class SubHeader extends React.Component<any, any> {}
+  export class StickyNav extends React.Component<any, any> {}
+  export class Popover extends React.Component<any, any> {}
   export const ThemeProvider: (props: any) => void;
-  export class Drawer extends React.Component<DrawerProps, any>{};
+  export class Drawer extends React.Component<DrawerProps, any> {}
 }

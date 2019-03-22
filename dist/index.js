@@ -25978,12 +25978,13 @@ var Popover = function (_Component) {
           trigger = _props.trigger,
           title = _props.title,
           children = _props.children,
+          className = _props.className,
           _props$placement = _props.placement,
           placement = _props$placement === undefined ? 'bottom' : _props$placement;
 
       return React__default.createElement(
         'div',
-        { className: 'p44-popover' },
+        { className: className },
         React__default.createElement(
           antd.Popover,
           { content: content, title: title, trigger: trigger, placement: placement },
@@ -26000,7 +26001,8 @@ Popover.propTypes = {
   title: PropTypes.string,
   placement: PropTypes.string,
   content: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  className: PropTypes.string
 };
 
 var _global = createCommonjsModule(function (module) {
@@ -28193,8 +28195,6 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
-var returnThis = function () { return this; };
-
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -28219,8 +28219,6 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -28229,7 +28227,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {

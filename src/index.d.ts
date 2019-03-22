@@ -6,7 +6,7 @@ declare module 'ui-components' {
   interface ButtonProps extends Partial<AntButtonProps> {
     upload?: boolean;
     download?: boolean;
-    clickFn?: () => any;
+    clickFn?: (event: any) => any;
     blurFn?: () => any;
     type?: string;
     size?: string;
@@ -15,6 +15,9 @@ declare module 'ui-components' {
     loading?: boolean;
     style?: Partial<CSSStyleDeclaration>;
     theme?: any;
+    icon?: boolean;
+    classes?: string;
+    link?: string;
   }
 
   interface CheckboxProps {
@@ -25,6 +28,14 @@ declare module 'ui-components' {
     className?: string;
     mode?: string;
     theme?: any;
+  }
+
+  interface DrawerProps {
+    visible: boolean;
+    onClose: () => void;
+    title: string;
+    placement?: 'right' | 'left' | 'top' | 'bottom';
+    width?: number;
   }
 
   interface ColorPickerProps {
@@ -47,11 +58,19 @@ declare module 'ui-components' {
   export const Info: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const Copy: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const ChevronDown: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
-  export const Notes: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
+  export const Link: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export class TextArea extends React.Component<any, any> {}
+  export const DocumentIcon: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
+  export const ChevronRight: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const message: MessageApi;
   export class Alert extends React.Component<AlertProps, {}> {}
   export class Input extends React.Component<any, any> {}
   export class MultiInput extends React.Component<any, any> {}
+  export class Row extends React.Component<any, any> {}
+  export class Col extends React.Component<any, any> {}
+  export class SubHeader extends React.Component<any, any> {}
+  export class StickyNav extends React.Component<any, any> {}
+  export class Popover extends React.Component<any, any> {}
   export const ThemeProvider: (props: any) => void;
+  export class Drawer extends React.Component<DrawerProps, any> {}
 }
