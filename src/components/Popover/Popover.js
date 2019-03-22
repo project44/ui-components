@@ -8,20 +8,15 @@ export default class Popover extends Component {
     trigger: PropTypes.string,
     title: PropTypes.string,
     placement: PropTypes.string,
-    content: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ]),
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ])
-  }
+    content: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+    customClassName: PropTypes.string,
+  };
 
   render() {
-    const { content, trigger, title, children, placement = 'bottom' } = this.props;
+    const { content, trigger, title, children, customClassName, placement = 'bottom' } = this.props;
     return (
-      <div className='p44-popover'>
+      <div className={customClassName}>
         <AntPopover content={content} title={title} trigger={trigger} placement={placement}>
           {children}
         </AntPopover>
