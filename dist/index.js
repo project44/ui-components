@@ -25978,13 +25978,13 @@ var Popover = function (_Component) {
           trigger = _props.trigger,
           title = _props.title,
           children = _props.children,
-          customClassName = _props.customClassName,
+          className = _props.className,
           _props$placement = _props.placement,
           placement = _props$placement === undefined ? 'bottom' : _props$placement;
 
       return React__default.createElement(
         'div',
-        { className: customClassName },
+        { className: className },
         React__default.createElement(
           antd.Popover,
           { content: content, title: title, trigger: trigger, placement: placement },
@@ -26002,7 +26002,7 @@ Popover.propTypes = {
   placement: PropTypes.string,
   content: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-  customClassName: PropTypes.string
+  className: PropTypes.string
 };
 
 var _global = createCommonjsModule(function (module) {
