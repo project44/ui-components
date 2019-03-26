@@ -35554,7 +35554,7 @@ ChevronRight.propTypes = {
   className: PropTypes.string
 };
 
-var Notes = function Notes(_ref) {
+var NoteIcon = function NoteIcon(_ref) {
   var className = _ref.className;
 
   return React__default.createElement(
@@ -35587,7 +35587,7 @@ var Notes = function Notes(_ref) {
   );
 };
 
-Notes.propTypes = {
+NoteIcon.propTypes = {
   className: PropTypes.string
 };
 
@@ -36188,5 +36188,5 @@ exports.ThemeProvider = ThemeProvider;
 exports.ChevronRight = ChevronRight;
 exports.DocumentIcon = DocumentIcon;
 exports.Drawer = Drawer;
-exports.Notes = Notes;
+exports.NoteIcon = NoteIcon;
 //# sourceMappingURL=index.js.map

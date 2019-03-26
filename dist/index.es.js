@@ -35547,7 +35547,7 @@ ChevronRight.propTypes = {
   className: PropTypes.string
 };
 
-var Notes = function Notes(_ref) {
+var NoteIcon = function NoteIcon(_ref) {
   var className = _ref.className;
 
   return React.createElement(
@@ -35580,7 +35580,7 @@ var Notes = function Notes(_ref) {
   );
 };
 
-Notes.propTypes = {
+NoteIcon.propTypes = {
   className: PropTypes.string
 };
 
@@ -36146,5 +36146,5 @@ Drawer$1.defaultProps = {
   placement: 'right'
 };
 
-export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Link, Info, Copy, colors, MultiInput, ThemeProvider, ChevronRight, DocumentIcon, Drawer$1 as Drawer, Notes };
+export { AutoComplete$1 as AutoComplete, Button$1 as Button, Checkbox$1 as Checkbox, Chips, DatePicker$1 as DatePicker, Dropdown$1 as Dropdown, Input$1 as Input, TextArea, MultiSelect, Select$1 as Select, ShipmentModeIcon, SubHeader, Radio$1 as Radio, DateRange, StickyNav, Popover$1 as Popover, ColorPicker$1 as ColorPicker, Layers, Settings, Checkmark, Close, ChevronDown, Link, Info, Copy, colors, MultiInput, ThemeProvider, ChevronRight, DocumentIcon, Drawer$1 as Drawer, NoteIcon };
 //# sourceMappingURL=index.es.js.map

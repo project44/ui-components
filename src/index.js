@@ -28,7 +28,7 @@ import {
   Link,
   ChevronRight,
   DocumentIcon,
-  Notes,
+  NoteIcon,
 } from './components/Icons';
 import colors from './styles/colors';
 import MultiInput from './components/MultiInput/MultiInput';
@@ -77,5 +77,5 @@ export {
   ChevronRight,
   DocumentIcon,
   Drawer,
-  Notes,
+  NoteIcon,
 };
