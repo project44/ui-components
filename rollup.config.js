@@ -4,12 +4,11 @@ import commonjs from 'rollup-plugin-commonjs';
 // import { eslint } from 'rollup-plugin-eslint';
 import external from 'rollup-plugin-peer-deps-external';
 import less from 'rollup-plugin-less';
-import minify from 'rollup-plugin-babel-minify';
 import postcss from 'rollup-plugin-postcss';
 import resolve from 'rollup-plugin-node-resolve';
-import uglify from 'rollup-plugin-uglify-es';
 import url from 'rollup-plugin-url';
 import stylelint from 'stylelint';
+import copy from 'rollup-plugin-copy-glob';
 
 import pkg from './package.json';
 
@@ -65,5 +64,14 @@ export default {
     }),
     resolve(),
     commonjs(),
+    copy(
+      [
+        {
+          files: 'src/index.d.ts',
+          dest: 'dist',
+        },
+      ],
+      { verbose: true, watch: true }
+    ),
   ],
 };
