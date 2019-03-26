@@ -28188,6 +28188,8 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
+var returnThis = function () { return this; };
+
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -28212,6 +28214,8 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -28220,7 +28224,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {
@@ -36111,7 +36115,9 @@ var Drawer$1 = function (_React$Component) {
           onClose: this.props.onClose,
           placement: this.props.placement,
           closable: false,
-          width: this.props.width
+          width: this.props.width,
+          bodyStyle: this.props.bodyStyle,
+          style: this.props.style
         },
         React.createElement(
           Header,
@@ -36139,7 +36145,9 @@ Drawer$1.propTypes = {
   onClose: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   placement: PropTypes.oneOf('right', 'left', 'top', 'bottom'),
-  width: PropTypes.number
+  width: PropTypes.number,
+  bodyStyle: PropTypes.object,
+  style: PropTypes.object
 };
 Drawer$1.defaultProps = {
   width: undefined,

@@ -36,6 +36,8 @@ declare module 'ui-components' {
     title: string;
     placement?: 'right' | 'left' | 'top' | 'bottom';
     width?: number;
+    bodyStyle?: React.CSSProperties;
+    style?: React.CSSProperties;
   }
 
   interface ColorPickerProps {

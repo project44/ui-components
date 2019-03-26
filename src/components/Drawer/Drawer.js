@@ -29,6 +29,8 @@ export default class Drawer extends React.Component {
     title: PropTypes.string.isRequired,
     placement: PropTypes.oneOf('right', 'left', 'top', 'bottom'),
     width: PropTypes.number,
+    bodyStyle: PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -44,6 +46,8 @@ export default class Drawer extends React.Component {
         placement={this.props.placement}
         closable={false}
         width={this.props.width}
+        bodyStyle={this.props.bodyStyle}
+        style={this.props.style}
       >
         <Header>
           <Title>{this.props.title}</Title>
