@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Notes = ({ className }) => {
+const NoteIcon = ({ className }) => {
   return (
     <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
       <defs>
@@ -24,8 +24,8 @@ const Notes = ({ className }) => {
   );
 };
 
-Notes.propTypes = {
+NoteIcon.propTypes = {
   className: PropTypes.string,
 };
 
-export default Notes;
+export default NoteIcon;
