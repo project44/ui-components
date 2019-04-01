@@ -36144,7 +36144,7 @@ Drawer$1.propTypes = {
   visible: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  placement: PropTypes.oneOf('right', 'left', 'top', 'bottom'),
+  placement: PropTypes.oneOf(['right', 'left', 'top', 'bottom']),
   width: PropTypes.number,
   bodyStyle: PropTypes.object,
   style: PropTypes.object
