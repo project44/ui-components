@@ -76,5 +76,5 @@ declare module 'ui-components' {
   export class Popover extends React.Component<any, any> {}
   export const ThemeProvider: (props: any) => void;
   export class Drawer extends React.Component<DrawerProps, any> {}
-  export const ShipmentModeIcon: (props: any) => void;
+  export const ShipmentModeIcon: (props: any) => React.FunctionComponent<any, any>;
 }
