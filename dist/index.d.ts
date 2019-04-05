@@ -18,6 +18,7 @@ declare module 'ui-components' {
     icon?: boolean;
     classes?: string;
     link?: string;
+    disabled?: boolean;
   }
 
   interface CheckboxProps {
