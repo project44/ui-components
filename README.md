@@ -76,5 +76,5 @@ Currently types are exported in `dist/index.d.ts` and should be updated as neede
 1. Add an example of your component
    1. Create example component in `example/src/components/components`
    1. Add a new route for your example component in `example/routes.js`
-   1. Add your example component's route to `example/omponents/common/Components`
+   1. Add your example component's route to `example/components/common/Components`
    1. Add a link to your example component in `example/components/common/SideNav.js`
