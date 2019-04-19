@@ -19238,12 +19238,13 @@ var Input$1 = function (_Component) {
           hasError = _props.hasError,
           errorMessage = _props.errorMessage,
           type = _props.type,
+          className = _props.className,
           custom = _props.custom;
 
 
       return React.createElement(
         StyledInput,
-        { theme: this.props.theme || this.context },
+        { theme: this.props.theme || this.context, className: className },
         React.createElement(
           'div',
           {
@@ -19324,7 +19325,8 @@ Input$1.propTypes = {
   type: PropTypes.string,
   custom: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-  theme: PropTypes.shape(defaultThemeShape)
+  theme: PropTypes.shape(defaultThemeShape),
+  className: PropTypes.string
 };
 Input$1.contextType = ThemeContext;
 
@@ -26263,7 +26265,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: 'pure',
+  mode: _library ? 'pure' : 'global',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
