@@ -76,6 +76,7 @@ export default class Input extends Component {
     custom: PropTypes.object,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
     theme: PropTypes.shape(defaultThemeShape),
+    className: PropTypes.string,
   };
 
   static contextType = ThemeContext;
@@ -94,13 +95,14 @@ export default class Input extends Component {
       hasError,
       errorMessage,
       type,
+      className,
       custom,
     } = this.props;
 
     return (
       <StyledInput theme={this.props.theme || this.context}>
         <div
-          className={classNames('ant-form-vertical ant-form-item-control-wrapper', {
+          className={classNames('ant-form-vertical ant-form-item-control-wrapper', className, {
             'w-full': search === 'primary',
           })}
         >

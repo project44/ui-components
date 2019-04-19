@@ -19245,6 +19245,7 @@ var Input = function (_Component) {
           hasError = _props.hasError,
           errorMessage = _props.errorMessage,
           type = _props.type,
+          className = _props.className,
           custom = _props.custom;
 
 
@@ -19254,7 +19255,7 @@ var Input = function (_Component) {
         React__default.createElement(
           'div',
           {
-            className: classnames('ant-form-vertical ant-form-item-control-wrapper', {
+            className: classnames('ant-form-vertical ant-form-item-control-wrapper', className, {
               'w-full': search === 'primary'
             })
           },
@@ -19331,7 +19332,8 @@ Input.propTypes = {
   type: PropTypes.string,
   custom: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-  theme: PropTypes.shape(defaultThemeShape)
+  theme: PropTypes.shape(defaultThemeShape),
+  className: PropTypes.string
 };
 Input.contextType = ThemeContext;
 
