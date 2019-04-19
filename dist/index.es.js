@@ -19244,11 +19244,11 @@ var Input$1 = function (_Component) {
 
       return React.createElement(
         StyledInput,
-        { theme: this.props.theme || this.context },
+        { theme: this.props.theme || this.context, className: className },
         React.createElement(
           'div',
           {
-            className: classnames('ant-form-vertical ant-form-item-control-wrapper', className, {
+            className: classnames('ant-form-vertical ant-form-item-control-wrapper', {
               'w-full': search === 'primary'
             })
           },
@@ -26265,7 +26265,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: 'pure',
+  mode: _library ? 'pure' : 'global',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });

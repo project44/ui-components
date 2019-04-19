@@ -100,9 +100,9 @@ export default class Input extends Component {
     } = this.props;
 
     return (
-      <StyledInput theme={this.props.theme || this.context}>
+      <StyledInput theme={this.props.theme || this.context} className={className}>
         <div
-          className={classNames('ant-form-vertical ant-form-item-control-wrapper', className, {
+          className={classNames('ant-form-vertical ant-form-item-control-wrapper', {
             'w-full': search === 'primary',
           })}
         >
