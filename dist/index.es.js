@@ -18595,7 +18595,7 @@ curry
 /* ::<number | string, string, string> */
 (transparentize);
 
-var primaryBlue = '#236192';
+var primaryBlue = '#00558b';
 var primaryGreyEighty = '#575451';
 var primaryGreyForty = '#aba9a8';
 var primaryGreyTwenty = '#D5D4D4';
