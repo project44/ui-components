@@ -35328,7 +35328,7 @@ var Checkmark = function Checkmark(_ref) {
         { id: 'checkb', fill: '#fff' },
         React.createElement('use', { xlinkHref: '#checka' })
       ),
-      React.createElement('use', { fill: '#2091A9', fillRule: 'nonzero', xlinkHref: '#checka' }),
+      React.createElement('use', { fill: '#1296b0', fillRule: 'nonzero', xlinkHref: '#checka' }),
       React.createElement(
         'g',
         { fill: '#575451', mask: 'url(#checkb)' },

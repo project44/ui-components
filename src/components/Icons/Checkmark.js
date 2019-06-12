@@ -12,7 +12,7 @@ const Checkmark = ({ className }) => {
         <mask id="checkb" fill="#fff">
           <use xlinkHref="#checka"/>
         </mask>
-        <use fill="#2091A9" fillRule="nonzero" xlinkHref="#checka"/>
+        <use fill="#1296b0" fillRule="nonzero" xlinkHref="#checka"/>
         <g fill="#575451" mask="url(#checkb)">
           <path d="M0 0h24v24H0z"/>
         </g>

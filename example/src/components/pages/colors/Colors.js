@@ -193,7 +193,7 @@ export default (props) => {
                 <div className="item__example" style={{ backgroundColor: 'var(--teal)' }}></div>
                 <div className="item__var-name">
                   <p>--teal</p>
-                  <p>#2091A9</p>
+                  <p>#1296b0</p>
                 </div>
               </div>
             </Col>
@@ -202,7 +202,7 @@ export default (props) => {
                 <div className="item__example" style={{ backgroundColor: 'var(--orange)' }}></div>
                 <div className="item__var-name">
                   <p>--orange</p>
-                  <p>#ea8616</p>
+                  <p>#f7941d</p>
                 </div>
               </div>
             </Col>
