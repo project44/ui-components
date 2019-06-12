@@ -12,7 +12,7 @@ const Info = ({ className }) => {
         <mask id="infob" fill="#fff">
           <use xlinkHref="#infoa"/>
         </mask>
-        <use fill="#236192" fillRule="nonzero" xlinkHref="#infoa"/>
+        <use fill="#00558b" fillRule="nonzero" xlinkHref="#infoa"/>
         <g fill="#575451" mask="url(#infob)">
           <path d="M0 0h24v24H0z"/>
         </g>
