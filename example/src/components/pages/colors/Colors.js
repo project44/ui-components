@@ -25,7 +25,7 @@ export default (props) => {
           <p>The following colors have specific purpose within the shipment tracking application.</p>
 
           <p><strong>Chathams-Blue</strong></p>
-        	<ul>
+          <ul>
             <li>Backgrounds</li>
           </ul>
 
@@ -46,34 +46,34 @@ export default (props) => {
           <Row gutter={8} className="colors">
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--chathams-blue)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--chathams-blue)' }}></div>
                 <div className="item__var-name">
                   <p>--chathams-blue</p>
-                  <p>#11426a</p>
+                  <p>#07456b</p>
                 </div>
               </div>
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--p44-blue)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--p44-blue)' }}></div>
                 <div className="item__var-name">
                   <p>--p44-blue</p>
-                  <p>#236192</p>
+                  <p>#00558b</p>
                 </div>
               </div>
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--primary-blue)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--primary-blue)' }}></div>
                 <div className="item__var-name">
                   <p>--primary-blue</p>
-                  <p>#236192</p>
+                  <p>#00558b</p>
                 </div>
               </div>
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--primary-blue-95)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--primary-blue-95)' }}></div>
                 <div className="item__var-name">
                   <p>--primary-blue-95</p>
                   <p>#2E6998</p>
@@ -82,7 +82,7 @@ export default (props) => {
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--primary-blue-75)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--primary-blue-75)' }}></div>
                 <div className="item__var-name">
                   <p>--primary-blue-75</p>
                   <p>#5A89AE</p>
@@ -91,7 +91,7 @@ export default (props) => {
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--primary-blue-45)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--primary-blue-45)' }}></div>
                 <div className="item__var-name">
                   <p>--primary-blue-45</p>
                   <p>#9CB8CE</p>
@@ -100,7 +100,7 @@ export default (props) => {
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--primary-blue-30)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--primary-blue-30)' }}></div>
                 <div className="item__var-name">
                   <p>--primary-blue-30</p>
                   <p>#BDD0DF</p>
@@ -109,7 +109,7 @@ export default (props) => {
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--primary-blue-13)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--primary-blue-13)' }}></div>
                 <div className="item__var-name">
                   <p>--primary-blue-13</p>
                   <p>#E3EBF1</p>
@@ -132,7 +132,7 @@ export default (props) => {
           <Row gutter={8} className="colors">
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--primary-grey)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--primary-grey)' }}></div>
                 <div className="item__var-name">
                   <p>--primary-grey</p>
                   <p>#2D2926</p>
@@ -143,7 +143,7 @@ export default (props) => {
           <Row gutter={8} className="colors">
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--primary-grey-80)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--primary-grey-80)' }}></div>
                 <div className="item__var-name">
                   <p>--primary-grey-80</p>
                   <p>#575451</p>
@@ -152,7 +152,7 @@ export default (props) => {
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--primary-grey-40)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--primary-grey-40)' }}></div>
                 <div className="item__var-name">
                   <p>--primary-grey-40</p>
                   <p>#aba9a8</p>
@@ -161,7 +161,7 @@ export default (props) => {
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--primary-grey-20)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--primary-grey-20)' }}></div>
                 <div className="item__var-name">
                   <p>--primary-grey-20</p>
                   <p>#D5D4D4</p>
@@ -170,7 +170,7 @@ export default (props) => {
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--primary-grey-05)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--primary-grey-05)' }}></div>
                 <div className="item__var-name">
                   <p>--primary-grey-05</p>
                   <p>#f3f3f3</p>
@@ -190,7 +190,7 @@ export default (props) => {
           <Row gutter={8} className="colors">
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--teal)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--teal)' }}></div>
                 <div className="item__var-name">
                   <p>--teal</p>
                   <p>#2091A9</p>
@@ -199,7 +199,7 @@ export default (props) => {
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--orange)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--orange)' }}></div>
                 <div className="item__var-name">
                   <p>--orange</p>
                   <p>#ea8616</p>
@@ -208,10 +208,10 @@ export default (props) => {
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--yellow)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--yellow)' }}></div>
                 <div className="item__var-name">
                   <p>--yellow</p>
-                  <p>#f6c472</p>
+                  <p>#ffcb05</p>
                 </div>
               </div>
             </Col>
@@ -236,19 +236,19 @@ export default (props) => {
           <Row gutter={8} className="colors">
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--green)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--green)' }}></div>
                 <div className="item__var-name">
                   <p>--green</p>
-                  <p>#1e9f5b</p>
+                  <p>#00a651</p>
                 </div>
               </div>
             </Col>
             <Col span={6}>
               <div className="colors__item">
-                <div className="item__example" style={{backgroundColor: 'var(--new-fruit)'}}></div>
+                <div className="item__example" style={{ backgroundColor: 'var(--new-fruit)' }}></div>
                 <div className="item__var-name">
                   <p>--new-fruit</p>
-                  <p>#f55449</p>
+                  <p>#f04e37</p>
                 </div>
               </div>
             </Col>

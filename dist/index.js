@@ -35403,7 +35403,7 @@ var Info = function Info(_ref) {
         { id: 'infob', fill: '#fff' },
         React__default.createElement('use', { xlinkHref: '#infoa' })
       ),
-      React__default.createElement('use', { fill: '#236192', fillRule: 'nonzero', xlinkHref: '#infoa' }),
+      React__default.createElement('use', { fill: '#00558b', fillRule: 'nonzero', xlinkHref: '#infoa' }),
       React__default.createElement(
         'g',
         { fill: '#575451', mask: 'url(#infob)' },
