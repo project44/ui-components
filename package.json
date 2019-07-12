@@ -90,7 +90,7 @@
     "autoprefixer": "^9.1.5",
     "babel-plugin-import": "^1.8.0",
     "concurrently": "^4.0.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "polished": "^2.3.3",
     "rc-color-picker": "^1.2.6",
     "react-router-dom": "^4.3.1",
