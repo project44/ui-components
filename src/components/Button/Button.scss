@@ -87,16 +87,16 @@ button {
     }
     &--primaryTransparent {
       @extend .p44-btn;
-      border: solid 1px var(--primary-blue-85);
-      color: var(--primary-blue-85);
+      border: solid 1px $primary-blue-85;
+      color: $primary-blue-85;
       box-shadow: none;
       justify-content: center;
       background-color: transparent;
       width: 100%;
       &:hover,
       &:focus {
-        color: var(--primary-blue-85);
-        border: solid 1px var(--primary-blue-85);
+        color: $primary-blue-85;
+        border: solid 1px $primary-blue-85;
         background-color: tint($primary-blue-85, 80%);
       }
     }
@@ -125,15 +125,15 @@ button {
         background-color: transparent;
       }
     }
-    &--primaryBorder-text {
+    &--primaryTransparent-text {
       // basically a link an optional icon
       @extend .p44-btn;
       box-shadow: none;
       background-color: transparent;
-      color: var(--primary-blue-14);
+      color: $primary-blue-85;
       &:hover,
       &:focus {
-        color: var(--primary-blue-14);
+        color: $primary-blue-85;
         background-color: transparent;
       }
     }
