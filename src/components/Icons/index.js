@@ -9,5 +9,19 @@ import Link from './Link';
 import DocumentIcon from './DocumentIcon';
 import ChevronRight from './ChevronRight';
 import NoteIcon from './NoteIcon';
+import BookIcon from './BookIcon';
 
-export { Layers, Settings, Checkmark, Close, Info, ChevronDown, Copy, Link, DocumentIcon, ChevronRight, NoteIcon };
+export {
+  Layers,
+  Settings,
+  Checkmark,
+  Close,
+  Info,
+  ChevronDown,
+  Copy,
+  Link,
+  DocumentIcon,
+  ChevronRight,
+  NoteIcon,
+  BookIcon,
+};

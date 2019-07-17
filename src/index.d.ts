@@ -78,4 +78,5 @@ declare module 'ui-components' {
   export const ThemeProvider: (props: any) => void;
   export class Drawer extends React.Component<DrawerProps, any> {}
   export const ShipmentModeIcon: (props: any) => React.FunctionComponent<any, any>;
+  export const BookIcon: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
 }
