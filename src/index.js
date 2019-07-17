@@ -29,6 +29,7 @@ import {
   ChevronRight,
   DocumentIcon,
   NoteIcon,
+  BookIcon,
 } from './components/Icons';
 import colors from './styles/colors';
 import MultiInput from './components/MultiInput/MultiInput';
@@ -78,4 +79,5 @@ export {
   DocumentIcon,
   Drawer,
   NoteIcon,
+  BookIcon,
 };
