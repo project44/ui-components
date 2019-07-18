@@ -85,14 +85,14 @@ button {
         background-color: tint($new-fruit, 80%);
       }
     }
-    &--primaryTransparent {
+    &--primary-transparent {
       @extend .p44-btn;
       border: solid 1px $primary-blue-85;
       color: $primary-blue-85;
       box-shadow: none;
       justify-content: center;
       background-color: transparent;
-      width: 100%;
+      width: auto;
       &:hover,
       &:focus {
         color: $primary-blue-85;
@@ -125,7 +125,7 @@ button {
         background-color: transparent;
       }
     }
-    &--primaryTransparent-text {
+    &--primary-transparent-text {
       // basically a link an optional icon
       @extend .p44-btn;
       box-shadow: none;
@@ -239,6 +239,15 @@ button {
       padding-left: 8px;
       i {
         font-size: 24px;
+      }
+    }
+    &--primary-transparent {
+      &[disabled]:hover,
+      &[disabled]:focus,
+      &:disabled {
+        opacity: 0.5;
+        border: solid 1px $primary-blue-85;
+        color: $primary-blue-85;
       }
     }
   }
