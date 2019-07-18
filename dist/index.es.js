@@ -4,6 +4,7 @@ import { AutoComplete, Button, Checkbox, Col, Row, DatePicker, Menu, Dropdown, I
 export { Row, Col, message, Alert } from 'antd';
 import styled from 'styled-components';
 import ReactDOM, { findDOMNode } from 'react-dom';
+import indexof from 'indexof';
 
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -18690,6 +18691,8 @@ var Button$1 = function (_Component) {
                 'p44-btn--secondary': type === 'secondary',
                 'p44-btn--destructive': type === 'destructive',
                 'p44-btn--destructive-text': type === 'destructive-text',
+                'p44-btn--primary-transparent': type === 'primary-transparent',
+                'p44-btn--primary-transparent-text': type === 'primary-transparent-text',
                 lg: size$$1 === 'lg',
                 med: size$$1 === 'med',
                 sm: size$$1 === 'sm',
@@ -18713,6 +18716,9 @@ var Button$1 = function (_Component) {
               'p44-btn--secondary': type === 'secondary',
               'p44-btn--destructive': type === 'destructive',
               'p44-btn--destructive-text': type === 'destructive-text',
+              'p44-btn--primary-transparent': type === 'primary-transparent',
+              'p44-btn--primary-transparent-text': type === 'primary-transparent-text',
+
               lg: size$$1 === 'lg',
               med: size$$1 === 'med',
               sm: size$$1 === 'sm',
@@ -29321,7 +29327,19 @@ function getPBMWidth(elem, props, which) {
   return value;
 }
 
-var domUtils = {};
+var domUtils = {
+  getParent: function getParent(element) {
+    var parent = element;
+    do {
+      if (parent.nodeType === 11 && parent.host) {
+        parent = parent.host;
+      } else {
+        parent = parent.parentNode;
+      }
+    } while (parent && parent.nodeType !== 1 && parent.nodeType !== 9);
+    return parent;
+  }
+};
 
 each(['Width', 'Height'], function (name) {
   domUtils['doc' + name] = function (refWin) {
@@ -29524,6 +29542,8 @@ mix$1(utils, domUtils);
 /**
  * 得到会导致元素显示不全的祖先元素
  */
+var getParent = utils.getParent;
+
 
 function getOffsetParent(element) {
   if (utils.isWindow(element) || element.nodeType === 9) {
@@ -29551,10 +29571,10 @@ function getOffsetParent(element) {
   var skipStatic = positionStyle === 'fixed' || positionStyle === 'absolute';
 
   if (!skipStatic) {
-    return element.nodeName.toLowerCase() === 'html' ? null : element.parentNode;
+    return element.nodeName.toLowerCase() === 'html' ? null : getParent(element);
   }
 
-  for (parent = element.parentNode; parent && parent !== body; parent = parent.parentNode) {
+  for (parent = getParent(element); parent && parent !== body; parent = getParent(parent)) {
     positionStyle = utils.css(parent, 'position');
     if (positionStyle !== 'static') {
       return parent;
@@ -29562,6 +29582,9 @@ function getOffsetParent(element) {
   }
   return null;
 }
+
+var getParent$1 = utils.getParent;
+
 
 function isAncestorFixed(element) {
   if (utils.isWindow(element) || element.nodeType === 9) {
@@ -29571,7 +29594,7 @@ function isAncestorFixed(element) {
   var doc = utils.getDocument(element);
   var body = doc.body;
   var parent = null;
-  for (parent = element.parentNode; parent && parent !== body; parent = parent.parentNode) {
+  for (parent = getParent$1(element); parent && parent !== body; parent = getParent$1(parent)) {
     var positionStyle = utils.css(parent, 'position');
     if (positionStyle === 'fixed') {
       return true;
@@ -29639,6 +29662,16 @@ function getVisibleRectForElement(element) {
   var viewportHeight = utils.viewportHeight(win);
   var documentWidth = documentElement.scrollWidth;
   var documentHeight = documentElement.scrollHeight;
+
+  // scrollXXX on html is sync with body which means overflow: hidden on body gets wrong scrollXXX.
+  // We should cut this ourself.
+  var bodyStyle = window.getComputedStyle(body);
+  if (bodyStyle.overflowX === 'hidden') {
+    documentWidth = win.innerWidth;
+  }
+  if (bodyStyle.overflowY === 'hidden') {
+    documentHeight = win.innerHeight;
+  }
 
   // Reset element position after calculate the visible area
   if (element.style) {
@@ -29763,8 +29796,8 @@ function getElFuturePos(elRegion, refNodeRegion, points, offset, targetOffset) {
   var diff = [p2.left - p1.left, p2.top - p1.top];
 
   return {
-    left: elRegion.left - diff[0] + offset[0] - targetOffset[0],
-    top: elRegion.top - diff[1] + offset[1] - targetOffset[1]
+    left: Math.round(elRegion.left - diff[0] + offset[0] - targetOffset[0]),
+    top: Math.round(elRegion.top - diff[1] + offset[1] - targetOffset[1])
   };
 }
 
@@ -30070,6 +30103,19 @@ function isWindow$1(obj) {
   return obj && typeof obj === 'object' && obj.window === obj;
 }
 
+function isSimilarValue(val1, val2) {
+  var int1 = Math.floor(val1);
+  var int2 = Math.floor(val2);
+  return Math.abs(int1 - int2) <= 1;
+}
+
+function restoreFocus(activeElement, container) {
+  // Focus back if is in the container
+  if (activeElement !== document.activeElement && contains(container, activeElement)) {
+    activeElement.focus();
+  }
+}
+
 function getElement(func) {
   if (typeof func !== 'function' || !func) return null;
   return func();
@@ -30084,6 +30130,8 @@ var Align = function (_Component) {
   _inherits(Align, _Component);
 
   function Align() {
+    var _ref;
+
     var _temp, _this, _ret;
 
     _classCallCheck(this, Align);
@@ -30092,7 +30140,7 @@ var Align = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.forceAlign = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Align.__proto__ || Object.getPrototypeOf(Align)).call.apply(_ref, [this].concat(args))), _this), _this.forceAlign = function () {
       var _this$props = _this.props,
           disabled = _this$props.disabled,
           target = _this$props.target,
@@ -30106,11 +30154,17 @@ var Align = function (_Component) {
         var element = getElement(target);
         var point = getPoint(target);
 
+        // IE lose focus after element realign
+        // We should record activeElement and restore later
+        var activeElement = document.activeElement;
+
         if (element) {
           result = alignElement(source, element, align);
         } else if (point) {
           result = alignPoint(source, point, align);
         }
+
+        restoreFocus(activeElement, source);
 
         if (onAlign) {
           onAlign(source, result);
@@ -30119,100 +30173,108 @@ var Align = function (_Component) {
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  Align.prototype.componentDidMount = function componentDidMount() {
-    var props = this.props;
-    // if parent ref not attached .... use document.getElementById
-    this.forceAlign();
-    if (!props.disabled && props.monitorWindowResize) {
-      this.startMonitorWindowResize();
+  _createClass(Align, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var props = this.props;
+      // if parent ref not attached .... use document.getElementById
+      this.forceAlign();
+      if (!props.disabled && props.monitorWindowResize) {
+        this.startMonitorWindowResize();
+      }
     }
-  };
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps) {
+      var reAlign = false;
+      var props = this.props;
 
-  Align.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
-    var reAlign = false;
-    var props = this.props;
+      if (!props.disabled) {
+        var source = ReactDOM.findDOMNode(this);
+        var sourceRect = source ? source.getBoundingClientRect() : null;
 
-    if (!props.disabled) {
-      var source = ReactDOM.findDOMNode(this);
-      var sourceRect = source ? source.getBoundingClientRect() : null;
-
-      if (prevProps.disabled) {
-        reAlign = true;
-      } else {
-        var lastElement = getElement(prevProps.target);
-        var currentElement = getElement(props.target);
-        var lastPoint = getPoint(prevProps.target);
-        var currentPoint = getPoint(props.target);
-
-        if (isWindow$1(lastElement) && isWindow$1(currentElement)) {
-          // Skip if is window
-          reAlign = false;
-        } else if (lastElement !== currentElement || // Element change
-        lastElement && !currentElement && currentPoint || // Change from element to point
-        lastPoint && currentPoint && currentElement || // Change from point to element
-        currentPoint && !isSamePoint(lastPoint, currentPoint)) {
+        if (prevProps.disabled) {
           reAlign = true;
+        } else {
+          var lastElement = getElement(prevProps.target);
+          var currentElement = getElement(props.target);
+          var lastPoint = getPoint(prevProps.target);
+          var currentPoint = getPoint(props.target);
+
+          if (isWindow$1(lastElement) && isWindow$1(currentElement)) {
+            // Skip if is window
+            reAlign = false;
+          } else if (lastElement !== currentElement || // Element change
+          lastElement && !currentElement && currentPoint || // Change from element to point
+          lastPoint && currentPoint && currentElement || // Change from point to element
+          currentPoint && !isSamePoint(lastPoint, currentPoint)) {
+            reAlign = true;
+          }
+
+          // If source element size changed
+          var preRect = this.sourceRect || {};
+          if (!reAlign && source && (!isSimilarValue(preRect.width, sourceRect.width) || !isSimilarValue(preRect.height, sourceRect.height))) {
+            reAlign = true;
+          }
         }
 
-        // If source element size changed
-        var preRect = this.sourceRect || {};
-        if (!reAlign && source && (preRect.width !== sourceRect.width || preRect.height !== sourceRect.height)) {
-          reAlign = true;
-        }
+        this.sourceRect = sourceRect;
       }
 
-      this.sourceRect = sourceRect;
-    }
+      if (reAlign) {
+        this.forceAlign();
+      }
 
-    if (reAlign) {
-      this.forceAlign();
+      if (props.monitorWindowResize && !props.disabled) {
+        this.startMonitorWindowResize();
+      } else {
+        this.stopMonitorWindowResize();
+      }
     }
-
-    if (props.monitorWindowResize && !props.disabled) {
-      this.startMonitorWindowResize();
-    } else {
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
       this.stopMonitorWindowResize();
     }
-  };
-
-  Align.prototype.componentWillUnmount = function componentWillUnmount() {
-    this.stopMonitorWindowResize();
-  };
-
-  Align.prototype.startMonitorWindowResize = function startMonitorWindowResize() {
-    if (!this.resizeHandler) {
-      this.bufferMonitor = buffer(this.forceAlign, this.props.monitorBufferTime);
-      this.resizeHandler = addEventListenerWrap(window, 'resize', this.bufferMonitor);
+  }, {
+    key: 'startMonitorWindowResize',
+    value: function startMonitorWindowResize() {
+      if (!this.resizeHandler) {
+        this.bufferMonitor = buffer(this.forceAlign, this.props.monitorBufferTime);
+        this.resizeHandler = addEventListenerWrap(window, 'resize', this.bufferMonitor);
+      }
     }
-  };
-
-  Align.prototype.stopMonitorWindowResize = function stopMonitorWindowResize() {
-    if (this.resizeHandler) {
-      this.bufferMonitor.clear();
-      this.resizeHandler.remove();
-      this.resizeHandler = null;
+  }, {
+    key: 'stopMonitorWindowResize',
+    value: function stopMonitorWindowResize() {
+      if (this.resizeHandler) {
+        this.bufferMonitor.clear();
+        this.resizeHandler.remove();
+        this.resizeHandler = null;
+      }
     }
-  };
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-  Align.prototype.render = function render() {
-    var _this2 = this;
+      var _props = this.props,
+          childrenProps = _props.childrenProps,
+          children = _props.children;
 
-    var _props = this.props,
-        childrenProps = _props.childrenProps,
-        children = _props.children;
+      var child = React.Children.only(children);
+      if (childrenProps) {
+        var newProps = {};
+        var propList = Object.keys(childrenProps);
+        propList.forEach(function (prop) {
+          newProps[prop] = _this2.props[childrenProps[prop]];
+        });
 
-    var child = React.Children.only(children);
-    if (childrenProps) {
-      var newProps = {};
-      var propList = Object.keys(childrenProps);
-      propList.forEach(function (prop) {
-        newProps[prop] = _this2.props[childrenProps[prop]];
-      });
-
-      return React.cloneElement(child, newProps);
+        return React.cloneElement(child, newProps);
+      }
+      return child;
     }
-    return child;
-  };
+  }]);
 
   return Align;
 }(Component);
@@ -30484,16 +30546,6 @@ var TransitionEvents = {
       removeEventListener(node, endEvent, eventListener);
     });
   }
-};
-
-var indexOf = [].indexOf;
-
-var indexof = function(arr, obj){
-  if (indexOf) return arr.indexOf(obj);
-  for (var i = 0; i < arr.length; ++i) {
-    if (arr[i] === obj) return i;
-  }
-  return -1;
 };
 
 var componentIndexof = function(arr, obj){
@@ -30983,7 +31035,9 @@ var AnimateChild = function (_React$Component) {
 }(React.Component);
 
 AnimateChild.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
+  animation: PropTypes.any,
+  transitionName: PropTypes.any
 };
 
 var defaultKey = 'rc_animate_' + Date.now();
@@ -31219,6 +31273,8 @@ var Animate = function (_React$Component) {
 
 Animate.isAnimate = true;
 Animate.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.object,
   component: PropTypes.any,
   componentProps: PropTypes.object,
   animation: PropTypes.object,
