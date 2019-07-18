@@ -67,6 +67,8 @@ class Button extends Component {
               'p44-btn--secondary': type === 'secondary',
               'p44-btn--destructive': type === 'destructive',
               'p44-btn--destructive-text': type === 'destructive-text',
+              'p44-btn--primary-transparent': type === 'primary-transparent',
+              'p44-btn--primary-transparent-text': type === 'primary-transparent-text',
               lg: size === 'lg',
               med: size === 'med',
               sm: size === 'sm',
@@ -91,6 +93,9 @@ class Button extends Component {
             'p44-btn--secondary': type === 'secondary',
             'p44-btn--destructive': type === 'destructive',
             'p44-btn--destructive-text': type === 'destructive-text',
+            'p44-btn--primary-transparent': type === 'primary-transparent',
+            'p44-btn--primary-transparent-text': type === 'primary-transparent-text',
+
             lg: size === 'lg',
             med: size === 'med',
             sm: size === 'sm',
