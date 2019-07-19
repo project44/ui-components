@@ -3,35 +3,39 @@
 @function tint($color, $percentage) {
   @return mix(white, $color, $percentage);
 }
+
 button {
   &.p44-btn {
-    display: flex;
-    flex-direction: row;
     align-items: center;
     background-color: var(--primary-grey-05);
-    color: var(--primary-grey-80);
     border: none;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    color: var(--primary-grey-80);
+    display: flex;
+    flex-direction: row;
     font-weight: 400;
-    text-transform: uppercase;
     line-height: 1em;
+    text-transform: uppercase;
 
     &:hover,
     &:focus {
-      color: var(--primary-grey-80);
       background-color: var(--primary-grey-20);
+      color: var(--primary-grey-80);
     }
 
     i {
       font-size: 12px;
+
       &.left {
         margin-left: -4px;
         margin-right: 4px;
       }
+
       &.right {
         margin-right: -4px;
         margin-left: 4px;
       }
+
       &.flipped {
         -moz-transform: scaleX(-1);
         -o-transform: scaleX(-1);
@@ -46,43 +50,50 @@ button {
       @extend .p44-btn;
       background-color: var(--primary-blue);
       color: var(--white);
-      height: 48px;
       font-size: 14px;
+      height: 48px;
+
       i {
         font-size: 18px;
       }
+
       &:hover,
       &:focus {
-        color: var(--white);
         background-color: var(--chathams-blue);
+        color: var(--white);
       }
     }
+
     &--ink {
       @extend .p44-btn;
       background-color: var(--primary-grey-05);
       color: var(--primary-grey-80);
+
       i {
         font-size: 14px;
       }
+
       &:hover,
       &:focus {
-        color: var(--primary-grey-80);
         background-color: var(--primary-grey-20);
+        color: var(--primary-grey-80);
       }
     }
+
     &--destructive {
       @extend .p44-btn;
-      border: solid 1px var(--new-fruit);
-      color: var(--new-fruit);
-      box-shadow: none;
-      justify-content: center;
       background-color: transparent;
+      border: solid 1px var(--new-fruit);
+      box-shadow: none;
+      color: var(--new-fruit);
+      justify-content: center;
       width: 100%;
+
       &:hover,
       &:focus {
-        color: var(--new-fruit);
-        border: solid 1px var(--new-fruit);
         background-color: tint($new-fruit, 80%);
+        border: solid 1px var(--new-fruit);
+        color: var(--new-fruit);
       }
     }
     &--primary-transparent {
@@ -106,23 +117,26 @@ button {
       background-color: transparent;
       box-shadow: none;
       color: var(--primary-grey-40);
+
       &:hover,
       &:focus {
-        color: var(--primary-grey-80);
         background-color: var(--primary-grey-05);
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+        color: var(--primary-grey-80);
       }
     }
+
     &--destructive-text {
       // basically a link an optional icon
       @extend .p44-btn;
-      box-shadow: none;
       background-color: transparent;
+      box-shadow: none;
       color: var(--new-fruit);
+
       &:hover,
       &:focus {
-        color: var(--new-fruit);
         background-color: transparent;
+        color: var(--new-fruit);
       }
     }
     &--primary-transparent-text {
@@ -131,21 +145,24 @@ button {
       box-shadow: none;
       background-color: transparent;
       color: $primary-blue-85;
+
       &:hover,
       &:focus {
         color: $primary-blue-85;
         background-color: transparent;
       }
     }
+
     // NOTE: NOT CURRENTLY USED OPTIONS
     &--basic {
       // basically a link an optional icon
       @extend .p44-btn;
-      box-shadow: none;
       background-color: transparent;
+      box-shadow: none;
       @each $color in $colorsList {
         &.#{nth($color, 1)} {
           color: nth($color, 2);
+
           &:hover,
           &:focus {
             color: nth($color, 2);
@@ -154,16 +171,19 @@ button {
         }
       }
     }
+
     &--bordered {
       //has border
       @extend .p44-btn;
-      color: var(--primary-grey-80);
       border: solid 1px var(--primary-grey-80);
       box-shadow: none;
+      color: var(--primary-grey-80);
+
       @each $color in $colorsList {
         &.#{nth($color, 1)} {
-          color: nth($color, 2);
           border: solid 1px nth($color, 2);
+          color: nth($color, 2);
+
           &:hover,
           &:focus {
             background-color: tint(nth($color, 2), 80%);
@@ -174,30 +194,37 @@ button {
     }
 
     &.lg {
-      height: 48px;
       font-size: 14px;
+      height: 48px;
+
       i {
         font-size: 18px;
       }
     }
+
     &.med {
-      height: 40px;
       font-size: 12px;
+      height: 40px;
+
       i {
         font-size: 16px;
       }
     }
+
     &.sm {
-      height: 36px;
       font-size: 10px;
+      height: 36px;
+
       i {
         font-size: 18px;
       }
     }
+
     &.xsm {
-      height: 30px;
       font-size: 8px;
+      height: 30px;
       min-height: 30px;
+
       i {
         font-size: 16px;
       }
@@ -208,35 +235,41 @@ button {
       -moz-transition-duration: 0.3s;
       -o-transition-duration: 0.3s;
       transition-duration: 0.3s;
+
       span {
         text-decoration: none;
       }
     }
+
     &:disabled {
       background-color: transparent;
-      color: #aba9a8;
       box-shadow: none;
+      color: #aba9a8;
     }
 
     &-full-width {
       width: 100%;
     }
+
     // Deprecated
     &.icon-button {
-      width: auto;
-      min-width: auto;
       color: var(--primary-grey-80);
+      min-width: auto;
       padding: 8px;
+      width: auto;
+
       i {
         font-size: 24px;
       }
     }
+
     &.icon-button-v2 {
-      width: auto;
-      min-width: auto;
       color: var(--primary-grey-80);
-      padding-right: 8px;
+      min-width: auto;
       padding-left: 8px;
+      padding-right: 8px;
+      width: auto;
+
       i {
         font-size: 24px;
       }

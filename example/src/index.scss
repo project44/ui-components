@@ -1,9 +1,9 @@
 body,
 html {
+  height: 100%;
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
 }
 
 #root {
@@ -13,72 +13,84 @@ html {
 .p44-ui {
   display: flex;
   flex-direction: row;
-  height:100%;
+  height: 100%;
 }
+
 .logo {
-  padding: 18px 0;
   border-right: 1px solid #e8e8e8;
+  padding: 18px 0;
+
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 75px;
+  }
+
+  .sm {
+    width: 25px;
+  }
 }
-.logo img {
-  display: block;
-  width: 75px;
-  margin: 0 auto;
-}
-.logo .sm {
-  width: 25px;
-}
+
 .p44-ui__header {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
 }
-  .header__trigger {
-    margin-left: 18px;
-  }
-  .header__trigger:hover {
+
+.header__trigger {
+  margin-left: 18px;
+
+  &:hover {
     cursor: pointer;
   }
-  .header__github {
-    margin-right: 18px;
-    color: #333;
-    font-size: 18px;
-  }
+}
+
+.header__github {
+  color: #333;
+  font-size: 18px;
+  margin-right: 18px;
+}
+
 .p44-ui__wrapper {
   background-color: #fff;
+  border: 1px solid #cecece;
+  height: auto;
   margin: 24px 16px;
-  border:1px solid #cecece;
-  height:auto;
   min-height: inherit !important;
 
   .page-header {
     background-color: #f3f3f3;
-    padding:16px;
+    padding: 16px;
 
     h1 {
       margin-bottom: 0;
     }
   }
+
   .page-content {
     padding: 20px;
   }
+
   .page-intro {
-    margin-bottom: 18px;
+    color: var(--primary-grey);
     font-family: Roboto;
     font-size: 16px;
     font-weight: 300;
     line-height: 1.5;
-    color: var(--primary-grey);
+    margin-bottom: 18px;
   }
+
   .page-section {
     margin-bottom: 32px;
 
     .section-title {
-      font-size: 16px;
       color: var(--primary-grey);
+      font-size: 16px;
       text-transform: none;
+
       .aside {
-        float:right;
+        float: right;
         font-size: 12px;
         font-weight: normal;
       }
@@ -95,20 +107,22 @@ html {
     }
   }
 }
+
 .p44-ui__component {
   width: 100%;
 }
 
 .vertical-spacing {
-  margin-top: 20px;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 /* ANT OVERRIDES */
 .SideNav {
-  width: 256px;
   height: 100%;
+  width: 256px;
 }
+
 .SideNav > .ant-menu {
   height: 100%;
 }
@@ -116,7 +130,8 @@ html {
 /* PRISM OVERRIDES */
 pre {
   border-radius: 0 !important;
-  code, span {
+  code,
+  span {
     font-size: 12px !important;
   }
 }

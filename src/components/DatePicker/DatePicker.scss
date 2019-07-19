@@ -2,11 +2,13 @@
   &-input {
     font-size: 12px;
   }
+
   &-date {
     &:hover {
       border-radius: 50%;
     }
   }
+
   &-today {
     &:not(.ant-calendar-disabled-cell) {
       .ant-calendar-date {
@@ -14,20 +16,23 @@
       }
     }
   }
+
   &-selected-day {
     &:not(.ant-calendar-disabled-cell) {
       .ant-calendar-date {
         background: #00558b;
         font-weight: bold;
-        color: #FFF;
+        color: #fff;
         border-radius: 50%;
         border-color: #00558b;
+
         &:hover {
           border-radius: 50%;
         }
       }
     }
   }
+
   .ant-calendar-footer-btn {
     .ant-calendar-today-btn {
       color: #1296b0;

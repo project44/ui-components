@@ -17,7 +17,7 @@ const DocumentIcon = ({ className }) => {
           id="docicon"
         />
       </defs>
-      <g fill="#000000" fillRule="evenodd">
+      <g fill="#000" fillRule="evenodd">
         <mask id="docicon" fill="white">
           <use xlinkHref="#docicon" />
         </mask>

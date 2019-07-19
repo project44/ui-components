@@ -7,9 +7,9 @@ import Button from '../Button/Button';
 import { Close } from '../Icons';
 
 const Header = styled.div`
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 24px;
 `;
 

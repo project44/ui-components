@@ -10,35 +10,35 @@ import colors from '../../styles/colors';
 import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 
 const StyledMultiInput = styled.div`
-  position: relative;
-  display: flex;
   align-items: center;
-  flex-wrap: wrap;
   cursor: text;
+  display: flex;
+  flex-wrap: wrap;
   font-size: 14px;
   height: 36px;
   overflow-y: auto;
-  padding-left: 11px;
-  padding-right: 11px;
-  padding-top: 0;
-  padding-bottom: 4px;
+  padding: 0 11px 4px;
+  position: relative;
+
   &:hover {
     border-color: ${props => props.theme.primaryColor};
   }
+
   &.focused {
     border-color: ${props => props.theme.primaryColor};
-    outline: 0;
-    box-shadow: 0 0 0 2px ${props => rgba(props.theme.primaryColor, 0.2)};
     border-right-width: 1px !important;
+    box-shadow: 0 0 0 2px ${props => rgba(props.theme.primaryColor, 0.2)};
+    outline: 0;
   }
 `;
 
 const Placeholder = styled.div`
   color: ${colors.secondaryTextColor};
+  height: 22px;
+  margin-top: 4px;
   opacity: 0.5;
   pointer-events: none;
-  margin-top: 4px;
-  height: 22px;
+
   &.focused {
     display: none;
   }
@@ -46,20 +46,21 @@ const Placeholder = styled.div`
 
 const StyledTag = styled(Tag)`
   cursor: default;
-  margin-top: 4px;
   height: 22px;
+  margin-top: 4px;
+
   &:hover {
     opacity: 1 !important;
   }
 `;
 
 const Input = styled.input`
-  outline: none;
   border: 0 none;
   flex: 1;
-  width: auto;
-  margin-top: 4px;
   height: 22px;
+  margin-top: 4px;
+  outline: none;
+  width: auto;
 `;
 
 class MultiInput extends React.Component {

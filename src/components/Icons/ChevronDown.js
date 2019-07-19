@@ -9,7 +9,7 @@ const ChevronDown = ({ className }) => {
       </defs>
       <g fill="none" fillRule="evenodd">
         <path d="M0 0h24v24H0z"/>
-        <path fill="#FFF" fillOpacity="0" d="M0 0h24v24H0z"/>
+        <path fill="#fff" fillOpacity="0" d="M0 0h24v24H0z"/>
         <mask id="b" fill="#fff">
           <use xlinkHref="#a"/>
         </mask>

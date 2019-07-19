@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "email-validator": "^2.0.4",
     "prop-types": "^15.6.2",
     "react": "16.6.0",
@@ -12,7 +13,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "3.0.1",
     "react-syntax-highlighter": "^8.0.1",
-    "ui-components": "link:.."
+    "ui-components": "link:..",
+    "yalc": "^1.0.0-pre.32"
   },
   "scripts": {
     "start": "PORT=4000 react-scripts start",

@@ -13,7 +13,7 @@ const Settings = ({ className }) => {
         <g id="Group">
           <g id="icons/general/settings-newcolor">
             <g id="Icon">
-              <rect id="Margin" fillOpacity="0" fill="#FFFFFF" x="0" y="0" width="36" height="36"></rect>
+              <rect id="Margin" fillOpacity="0" fill="#fff" x="0" y="0" width="36" height="36"></rect>
               <mask id="mask-2" fill="white">
                 <use xlinkHref="#path-1"></use>
               </mask>

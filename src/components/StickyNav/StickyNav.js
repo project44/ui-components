@@ -7,16 +7,17 @@ import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 import colors from '../../styles/colors';
 
 const StyleNav = styled.div`
-  width: 68px;
+  background-color: ${colors.secondaryBackgroundColor};
+  border-radius: 0;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
   left: 0;
   position: fixed;
   top: 200px;
-  border-radius: 0;
   transition-duration: 0.3s;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  width: 68px;
   z-index: 94449;
-  cursor: pointer;
-  background-color: ${colors.secondaryBackgroundColor};
+
   &:hover {
     width: 242px;
     a {

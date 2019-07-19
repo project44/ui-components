@@ -1,22 +1,22 @@
 .checkbox-group {
   &.styled {
     .ant-checkbox-group {
+      border-right: none;
+      border: solid 1px #d8d8d8;
       display: flex;
       flex-direction: row;
-      border: solid 1px #d8d8d8;
-      border-right: none;
       text-align: center;
 
       .ant-checkbox-wrapper {
-        flex: 1;
+        align-items: center;
+        border-right: solid 1px #d8d8d8;
         display: flex;
         flex-direction: column;
+        flex: 1;
         justify-content: center;
-        align-items: center;
-        padding: 10px;
-        border-right: solid 1px #d8d8d8;
-        position: relative;
         margin: 0;
+        padding: 10px;
+        position: relative;
 
         .ant-checkbox-inner {
           display: none;
@@ -24,38 +24,38 @@
 
         .ant-checkbox-checked {
           background-color: #e3ebf1;
-          position: absolute;
           bottom: 0;
-          top: 0;
-          right: 0;
           left: 0;
+          position: absolute;
+          right: 0;
+          top: 0;
+
+          & + span {
+            opacity: 1;
+          }
         }
 
         .ant-checkbox + span {
-          opacity: .25;
-        }
-
-        .ant-checkbox-checked + span {
-          opacity: 1;
+          opacity: 0.25;
         }
 
         .item-icon {
           height: 15px;
-          z-index: 1;
           position: relative;
+          z-index: 1;
         }
 
         .item-title {
-          display: block;
           align-self: center;
+          color: #575451;
+          display: block;
           font-size: 12px;
           font-weight: bold;
           line-height: 1.25;
-          text-transform: uppercase;
-          color: #575451;
           margin-top: 8px;
-          z-index: 1;
           position: relative;
+          text-transform: uppercase;
+          z-index: 1;
         }
       }
     }

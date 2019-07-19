@@ -15,29 +15,36 @@ const StyledInput = styled.div`
     font-size: 11px;
     margin-top: 0;
   }
+
   .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
     border: 1px solid ${props => props.theme.primaryColor};
   }
+
   input:hover,
   input:focus {
     border: 1px solid ${props => props.theme.primaryColor};
   }
+
   input:focus {
     box-shadow: 0 0 0 2px ${props => rgba(props.theme.primaryColor, 0.2)};
   }
+
   .has-error input:focus {
     border: 1px solid #ff4d4f;
   }
+
   .super button,
   .primary button {
     background-color: ${props => props.theme.primaryColor};
     border-color: ${props => props.theme.primaryColor};
   }
+
   .super button:hover,
   .primary button:hover {
     background-color: ${props => shade(0.2)(props.theme.primaryColor)};
     border-color: ${props => shade(0.2)(props.theme.primaryColor)};
   }
+
   .super {
     input {
       background-color: var(--primary-grey-05);
@@ -45,18 +52,21 @@ const StyledInput = styled.div`
       border: none;
     }
   }
+
   .primary {
     input {
-      background-color: #ffffff;
+      background-color: #fff;
       box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
       border: none;
     }
   }
+
   input {
     &.ant-input-lg {
       font-size: 14px;
     }
   }
+
   .ant-btn-lg {
     height: 48px;
   }

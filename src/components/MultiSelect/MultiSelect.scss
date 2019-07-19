@@ -3,10 +3,10 @@
 
   .select__icon {
     position: absolute;
-    width: 24px; // NOTE: material-icon has a native width of 24px, so this is matching that
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+    width: 24px; // NOTE: material-icon has a native width of 24px, so this is matching that
     z-index: 2;
 
     &.open {
@@ -21,9 +21,11 @@
   &__input{
     min-width: 200px;
   }
+
   .ant-select-selection__choice {
     display: none;
   }
+
   .multi-select__input {
     &:not(.ant-select-focused) {
       .ant-select-selection__placeholder {
@@ -31,25 +33,29 @@
       }
     }
   }
+
   .ant-select-selection {
     &--multiple {
       border: none;
       box-shadow: none;
     }
+
     &__rendered {
       display: flex;
-      margin: 0;
       line-height: 36px;
-      width: 100%;
+      margin: 0;
       position: absolute;
+      width: 100%;
       z-index: 1;
     }
+
     &__placeholder {
+      color: #aba9a8;
+      font-size: 12px;
       margin-left: 11px;
       margin-right: 11px;
-      font-size: 12px;
-      color: #aba9a8;
     }
+
     &-selected-value {
       margin-left: 11px;
     }
@@ -59,11 +65,12 @@
       margin-left: 11px;
     }
   }
+
   &__dropdown {
-    position: relative;
-    display: flex;
-    background: #FFF;
+    background: #fff;
     cursor: pointer;
+    display: flex;
+    position: relative;
 
     &.no-search {
       .ant-select-selection__rendered {
@@ -79,22 +86,26 @@
       }
     }
   }
+
   &__input{
-    min-width: 200px;
     border: 1px solid #d9d9d9;
+    min-width: 200px;
   }
+
   &__icon {
+    align-items: center;
+    display: flex;
+    height: 36px;
     transform: translate(-30px);
     width: 0px;
-    height: 36px;
-    display: flex;
-    align-items: center;
+
     .material-icons {
       -webkit-transition: -webkit-transform 0.3s;
       transition: -webkit-transform 0.3s;
       -o-transition: transform 0.3s;
       transition: transform 0.3s;
       transition: transform 0.3s, -webkit-transform 0.3s;
+
       &.open {
         transform: rotate(-180deg);
       }

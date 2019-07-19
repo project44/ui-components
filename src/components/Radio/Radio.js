@@ -11,15 +11,15 @@ import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 
 const StyledRadioGroup = styled(AntRadio.Group)`
   &.block {
-    display: flex;
     background-color: #f3f3f3;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    display: flex;
 
     > label {
+      background-color: transparent !important;
+      color: #aba9a8;
       flex: 1;
       text-align: center;
-      color: #aba9a8;
-      background-color: transparent !important;
 
       &.ant-radio-button-wrapper-checked {
         background-color: ${props => rgba(props.theme.primaryColor, 0.13)} !important;
@@ -28,6 +28,7 @@ const StyledRadioGroup = styled(AntRadio.Group)`
       }
     }
   }
+
   &.styled {
     color: #575451;
     font-size: 12px;
@@ -40,8 +41,8 @@ const StyledRadioGroup = styled(AntRadio.Group)`
       &.ant-radio-button-wrapper-checked {
         background-color: ${props => rgba(props.theme.primaryColor, 0.13)} !important;
         border-color: inherit;
-        color: #575451;
         box-shadow: none;
+        color: #575451;
 
         span:nth-child(2) {
           opacity: 1;
@@ -57,35 +58,35 @@ const StyledRadioGroup = styled(AntRadio.Group)`
       }
 
       span:nth-child(2) {
-        flex: 1;
+        align-items: center;
         display: flex;
         flex-direction: column;
+        flex: 1;
         justify-content: center;
-        align-items: center;
-        position: relative;
-        padding: 6px 0;
         opacity: 0.5;
+        padding: 6px 0;
+        position: relative;
         transition: all 150ms linear;
       }
 
       .item-icon {
         height: 15px;
-        position: relative;
         margin-top: 8px;
+        position: relative;
         z-index: 1;
       }
 
       .item-title {
-        display: block;
         align-self: center;
+        color: #575451;
+        display: block;
         font-size: 12px;
         font-weight: bold;
         line-height: 1.25;
-        text-transform: uppercase;
-        color: #575451;
-        z-index: 1;
-        position: relative;
         margin-top: 4px;
+        position: relative;
+        text-transform: uppercase;
+        z-index: 1;
       }
     }
   }

@@ -10,14 +10,16 @@ font-family: 'Roboto Mono', monospace;
   &.roboto {
     font-family: 'Roboto', sans-serif;
   }
+
   &.roboto-mono {
     font-family: 'Roboto Mono', monospace;
   }
 
   span {
-    display:block;
+    display: block;
   }
 }
+
 .font-weights {
   display: flex;
   flex-direction: row;
@@ -25,38 +27,43 @@ font-family: 'Roboto Mono', monospace;
   &.roboto .font-weights__example .example {
     font-family: 'Roboto', sans-serif;
   }
-  &.roboto-mono .font-weights__example .example  {
+
+  &.roboto-mono .font-weights__example .example {
     font-family: 'Roboto Mono', monospace;
   }
 
   .font-weights__example {
+    border: 1px solid #d5d4d4;
     display: flex;
     flex-direction: column;
-    border: solid 1px #d5d4d4;
 
     &:not(:last-child) {
-      margin-right:24px;
+      margin-right: 24px;
     }
 
     .example {
-      font-size: 48px;
-      color: #2d2926;
-      margin: 10px 10px 0;
       border-bottom: 1px solid #d5d4d4;
+      color: #2d2926;
+      font-size: 48px;
+      margin: 10px 10px 0;
 
       &.light {
         font-weight: 300;
       }
+
       &.regular {
         font-weight: normal;
       }
+
       &.medium {
         font-weight: 500;
       }
+
       &.bold {
         font-weight: bold;
       }
     }
+
     .title {
       font-size: 10px;
       font-weight: 300;
@@ -71,25 +78,25 @@ font-family: 'Roboto Mono', monospace;
   flex-direction: row;
 
   .body-fonts__example {
-    padding:8px 16px 8px 0;
-    width: 50%;
     font-family: 'Roboto', sans-serif;
-    font-weight: normal;
-    font-style: normal;
     font-stretch: normal;
+    font-style: normal;
+    font-weight: normal;
     letter-spacing: normal;
+    padding: 8px 16px 8px 0;
+    width: 50%;
 
     &--12 {
       @extend .body-fonts__example;
       font-size: 12px;
       line-height: 1.67;
     }
+
     &--16 {
       @extend .body-fonts__example;
       font-size: 16px;
       line-height: 1.5;
     }
-
   }
 }
 
@@ -107,12 +114,14 @@ font-family: 'Roboto Mono', monospace;
       > * {
         margin: 0;
       }
+
       .hero {
         background-color: #000;
         border: solid 1px #979797;
-        color:#fff;
-        font-size:48px;
+        color: #fff;
+        font-size: 48px;
       }
+
       .page-title {
         font-size: 28px;
 
@@ -121,6 +130,7 @@ font-family: 'Roboto Mono', monospace;
           font-weight: 300;
         }
       }
+
       .section-title {
         font-size: 21px;
 
@@ -129,8 +139,9 @@ font-family: 'Roboto Mono', monospace;
           font-weight: normal;
         }
       }
+
       h3 {
-        font-weight:16px;
+        font-weight: 16px;
 
         &.card-title,
         &.uppercase {
@@ -138,22 +149,25 @@ font-family: 'Roboto Mono', monospace;
           text-transform: uppercase;
         }
       }
+
       .carrier-name {
         font-size: 14px;
         color: var(--primary-grey-40);
       }
+
       h6 {
+        border-bottom: none;
         font-size: 12px;
         text-transform: uppercase;
-        border-bottom: none;
 
         .section-label {
           font-weight: normal;
         }
       }
     }
+
     .description {
-      flex:1;
+      flex: 1;
     }
   }
 }
@@ -165,6 +179,7 @@ font-family: 'Roboto Mono', monospace;
     font-weight: bold;
     text-transform: uppercase;
   }
+
   label {
     font-weight: 300;
   }

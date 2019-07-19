@@ -5,22 +5,22 @@ import PropTypes from 'prop-types';
 import colors from '../../styles/colors';
 
 const StyledCopy = styled.div`
-  height: 18px;
-  width: 14px;
-  border: 2px solid ${colors.darkBackgroundColor};
-  border-right: transparent;
   border-bottom: transparent;
   border-radius: 15%;
-  margin-right: 4px;
+  border-right: transparent;
+  border: 2px solid ${colors.darkBackgroundColor};
+  height: 18px;
   margin-bottom: 4px;
+  margin-right: 4px;
+  width: 14px;
 
   > div {
-    height: 18px;
-    width: 14px;
-    border: 2px solid ${colors.darkBackgroundColor};
-    margin-top: 2px;
-    margin-left: 2px;
     border-radius: 15%;
+    border: 2px solid ${colors.darkBackgroundColor};
+    height: 18px;
+    margin-left: 2px;
+    margin-top: 2px;
+    width: 14px;
   }
 `;
 

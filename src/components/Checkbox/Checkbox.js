@@ -12,6 +12,7 @@ import './Checkbox.scss';
 const StyledCheckbox = styled.div`
   .ant-checkbox-wrapper {
     margin: 2px 0;
+
     .ant-checkbox {
       .ant-checkbox-inner {
         background-color: transparent;
@@ -20,11 +21,13 @@ const StyledCheckbox = styled.div`
       &.ant-checkbox-checked .ant-checkbox-inner {
         background-color: ${props => (props.mode === 'dark' ? props.theme.primaryColor : 'var(--white)')};
         border-color: ${props => (props.mode === 'dark' ? props.theme.primaryColor : 'var(--white)')};
+
         &::after {
           border-color: ${props => (props.mode === 'dark' ? 'var(--white)' : props.theme.primaryColor)};
         }
       }
     }
+
     .item-title {
       color: ${props => (props.mode === 'dark' ? 'var(--primary-grey-80);' : 'var(--white)')};
     }

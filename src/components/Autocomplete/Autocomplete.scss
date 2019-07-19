@@ -1,24 +1,28 @@
 .autocomplete {
-  &__input{
+  &__input {
     margin-bottom: 16px;
+
     &:not(.ant-select-focused) {
       .ant-select-selection__placeholder {
         display: block !important;
       }
     }
+
     .ant-select-selection {
       border-radius: 0;
+
       &__choice {
         display: none;
       }
+
       &__placeholder {
-        font-size: 12px;
         color: #aba9a8;
+        font-size: 12px;
       }
+
       &__choice {
         border-radius: 0;
       }
     }
   }
-
 }

@@ -11,11 +11,11 @@ const NoteIcon = ({ className }) => {
         />
       </defs>
       <g fill="none" fillRule="evenodd">
-        <path fill="#FFF" fillOpacity="0" d="M0 0h24v24H0z" />
+        <path fill="#fff" fillOpacity="0" d="M0 0h24v24H0z" />
         <mask id="noteIcon" fill="#fff">
           <use xlinkHref="#notnoteIcone" />
         </mask>
-        <use fill="#EBEBEB" xlinkHref="#noteIcon" />
+        <use fill="#ebebeb" xlinkHref="#noteIcon" />
         <g fill="#575451" mask="url(#nonoteIconte)">
           <path d="M0 0h24v24H0z" />
         </g>
