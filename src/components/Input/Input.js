@@ -15,6 +15,9 @@ const StyledInput = styled.div`
     font-size: 11px;
     margin-top: 0;
   }
+  .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+    border: 1px solid ${props => props.theme.primaryColor};
+  }
   input:hover,
   input:focus {
     border: 1px solid ${props => props.theme.primaryColor};
