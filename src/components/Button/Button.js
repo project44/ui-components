@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Button as AntButton } from 'antd';
 import styled from 'styled-components';
-import { shade } from 'polished';
+import { shade, tint } from 'polished';
 import { ThemeContext, defaultThemeShape } from '../../styles/theme';
 
 import './Button.scss';
@@ -17,13 +17,14 @@ const StyledButton = styled(AntButton)`
         background-color: ${props => shade(0.2)(props.theme.primaryColor)};
       }
     }
-    &--primary-transparent: {
+    &--primary-transparent {
       border: solid 1px ${props => props.theme && props.theme.primaryColor};
       color: ${props => props.theme && props.theme.primaryColor};
       &:hover,
       &:focus {
-        border: solid 1px ${props => shade(0.2)(props.theme.primaryColor)}};
+        border: solid 1px ${props => shade(0.2)(props.theme.primaryColor)};
         color: ${props => shade(0.2)(props.theme.primaryColor)};
+        background-color: ${props => tint(0.25, props.theme.primaryColor)};
       }
     }
   }
