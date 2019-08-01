@@ -1,9 +1,6 @@
 .select {
+  display: flex;
   .ant-select-selection {
-    &--single {
-      border: none;
-      box-shadow: none;
-    }
     &__rendered {
       display: flex;
       margin: 0;
@@ -36,13 +33,12 @@
   }
   &__dropdown {
     display: inline-flex;
-    background: #FFF;
-    margin-bottom: 16px;
+    background: #fff;
+    margin-bottom: 0;
     cursor: pointer;
   }
-  &__input{
+  &__input {
     min-width: 200px;
-    border: 1px solid #d9d9d9;
   }
   &__icon {
     transform: translate(-30px);
