@@ -19627,6 +19627,15 @@ MultiSelect.propTypes = {
   onDeselect: PropTypes.func
 };
 
+var StyledSelect = styled.div.withConfig({
+  displayName: 'Select__StyledSelect',
+  componentId: 'sc-1c2k4he-0'
+})(['&& .ant-select-selection:hover,&& .ant-select-selection:focus{border:1px solid ', ';box-shadow:0 0 0 2px ', ';}'], function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
+  return rgba(props.theme.primaryColor, 0.2);
+});
+
 var Select$1 = function (_Component) {
   inherits(Select$$1, _Component);
 
@@ -19642,7 +19651,7 @@ var Select$1 = function (_Component) {
     };
 
     _this.state = {
-      options: lodash.get(props, 'dataSource', [])
+      open: false
     };
     return _this;
   }
@@ -19654,7 +19663,7 @@ var Select$1 = function (_Component) {
           _props$mode = _props.mode,
           mode = _props$mode === undefined ? 'default' : _props$mode,
           label = _props.label,
-          placeholder = _props.placeholder,
+          placeholder$$1 = _props.placeholder,
           custom = _props.custom,
           showSearch = _props.showSearch,
           defaultValue = _props.defaultValue,
@@ -19664,8 +19673,8 @@ var Select$1 = function (_Component) {
           props = objectWithoutProperties(_props, ['mode', 'label', 'placeholder', 'custom', 'showSearch', 'defaultValue', 'onChange', 'icon']);
 
       return React.createElement(
-        'div',
-        { className: 'select ant-form-vertical' },
+        StyledSelect,
+        { theme: this.props.theme || this.context, className: 'select ant-form-vertical' },
         label && React.createElement(
           'div',
           { className: 'ant-form-item-label' },
@@ -19685,12 +19694,12 @@ var Select$1 = function (_Component) {
               className: 'select__input',
               showArrow: false,
               onDropdownVisibleChange: this.handleDropdownChange,
-              placeholder: placeholder,
+              placeholder: placeholder$$1,
               defaultValue: defaultValue,
               onChange: onChange,
               mode: mode
             }, custom, props),
-            this.state.options.map(function (item) {
+            this.props.dataSource.map(function (item) {
               return React.createElement(
                 Select.Option,
                 { key: item.id },
@@ -19722,8 +19731,10 @@ Select$1.propTypes = {
   showSearch: PropTypes.bool,
   defaultValue: PropTypes.string,
   onChange: PropTypes.func,
-  icon: PropTypes.string
+  icon: PropTypes.string,
+  theme: PropTypes.shape(defaultThemeShape)
 };
+Select$1.contextType = ThemeContext;
 
 var SubHeader = function (_Component) {
   inherits(SubHeader, _Component);
