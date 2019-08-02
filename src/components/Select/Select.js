@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Select as AntSelect } from 'antd';
-import _ from 'lodash';
 import './Select.scss';
 import styled from 'styled-components';
 import { rgba } from 'polished';
@@ -33,7 +32,7 @@ export default class Select extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      options: _.get(props, 'dataSource', []),
+      open: false,
     };
   }
 
