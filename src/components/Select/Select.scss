@@ -1,5 +1,8 @@
 .select {
   display: flex;
+  .select__dropdown {
+    width: 100%;
+  }
   .ant-select-selection {
     &__rendered {
       display: flex;
@@ -14,7 +17,7 @@
     }
     &__placeholder {
       left: 11px;
-      font-size: 12px;
+      font-size: 14px;
       color: #aba9a8;
     }
     &-selected-value {

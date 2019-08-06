@@ -11,6 +11,8 @@ const StyledSelect = styled.div`
   .ant-select-selection:hover,
   .ant-select-selection:focus {
     border: 1px solid ${props => props.theme.primaryColor};
+  }
+  .ant-select-selection:focus {
     box-shadow: 0 0 0 2px ${props => rgba(props.theme.primaryColor, 0.2)};
   }
 `;
