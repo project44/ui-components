@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Drawer as AntDrawer } from 'antd';
-import styled from 'styled-components';
 
+import styled from 'styled-components';
 import Button from '../Button/Button';
 import { Close } from '../Icons';
 
@@ -13,12 +13,32 @@ const Header = styled.div`
   margin-bottom: 24px;
 `;
 
-const Title = styled.div`
+const StyledTitle = styled.div`
+  display: flex;
+  flex: 0 1 auto;
   font-size: 21px;
+  max-width: 100%;
+  padding-right: 1rem;
+  position: relative;
+  width: auto;
+`;
+
+const StyledContent = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+  max-width: 100%;
+  position: relative;
+`;
+
+const StyledActions = styled.div`
+  display: flex;
+  flex: 0 1 auto;
+  max-width: 100%;
+  position: relative;
 `;
 
 const StyledButton = styled(Button)`
-  margin-left: 18px;
+  margin-left: 1rem;
   margin-right: 0;
 `;
 
@@ -31,6 +51,7 @@ export default class Drawer extends React.Component {
     width: PropTypes.number,
     bodyStyle: PropTypes.object,
     style: PropTypes.object,
+    drawerHeaderContent: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -49,11 +70,16 @@ export default class Drawer extends React.Component {
         bodyStyle={this.props.bodyStyle}
         style={this.props.style}
       >
-        <Header>
-          <Title>{this.props.title}</Title>
-          <StyledButton clickFn={this.props.onClose} size={'sm'} icon>
-            <Close />
-          </StyledButton>
+        <Header className="drawer-header">
+          <StyledTitle>{this.props.title}</StyledTitle>
+
+          {this.props.drawerHeaderContent && <StyledContent>Drawer Content</StyledContent>}
+
+          <StyledActions>
+            <StyledButton clickFn={this.props.onClose} size={'sm'} icon>
+              <Close />
+            </StyledButton>
+          </StyledActions>
         </Header>
         {this.props.children}
       </AntDrawer>

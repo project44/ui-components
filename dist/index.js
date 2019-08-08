@@ -26309,7 +26309,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: _library ? 'pure' : 'global',
+  mode: 'pure',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -28234,8 +28234,6 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
-var returnThis = function () { return this; };
-
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -28260,8 +28258,6 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -28270,7 +28266,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {
@@ -28421,7 +28417,7 @@ var _meta_5 = _meta.onFreeze;
 
 var defineProperty$4 = _objectDp.f;
 var _wksDefine = function (name) {
-  var $Symbol = _core.Symbol || (_core.Symbol = _library ? {} : _global.Symbol || {});
+  var $Symbol = _core.Symbol || (_core.Symbol = {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty$4($Symbol, name, { value: _wksExt.f(name) });
 };
 
@@ -36177,15 +36173,25 @@ var Header = styled.div.withConfig({
   componentId: 'sc-1wsb8yi-0'
 })(['&&{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}']);
 
-var Title = styled.div.withConfig({
-  displayName: 'Drawer__Title',
+var StyledTitle = styled.div.withConfig({
+  displayName: 'Drawer__StyledTitle',
   componentId: 'sc-1wsb8yi-1'
-})(['&&{font-size:21px;}']);
+})(['&&{display:flex;flex:0 1 auto;font-size:21px;max-width:100%;padding-right:1rem;position:relative;width:auto;}']);
+
+var StyledContent = styled.div.withConfig({
+  displayName: 'Drawer__StyledContent',
+  componentId: 'sc-1wsb8yi-2'
+})(['&&{display:flex;flex:1 1 auto;max-width:100%;position:relative;}']);
+
+var StyledActions = styled.div.withConfig({
+  displayName: 'Drawer__StyledActions',
+  componentId: 'sc-1wsb8yi-3'
+})(['&&{display:flex;flex:0 1 auto;max-width:100%;position:relative;}']);
 
 var StyledButton$1 = styled(Button).withConfig({
   displayName: 'Drawer__StyledButton',
-  componentId: 'sc-1wsb8yi-2'
-})(['&&{margin-left:18px;margin-right:0;}']);
+  componentId: 'sc-1wsb8yi-4'
+})(['&&{margin-left:1rem;margin-right:0;}']);
 
 var Drawer = function (_React$Component) {
   inherits(Drawer, _React$Component);
@@ -36211,16 +36217,25 @@ var Drawer = function (_React$Component) {
         },
         React__default.createElement(
           Header,
-          null,
+          { className: 'drawer-header' },
           React__default.createElement(
-            Title,
+            StyledTitle,
             null,
             this.props.title
           ),
+          this.props.drawerHeaderContent && React__default.createElement(
+            StyledContent,
+            null,
+            'Drawer Content'
+          ),
           React__default.createElement(
-            StyledButton$1,
-            { clickFn: this.props.onClose, size: 'sm', icon: true },
-            React__default.createElement(Close, null)
+            StyledActions,
+            null,
+            React__default.createElement(
+              StyledButton$1,
+              { clickFn: this.props.onClose, size: 'sm', icon: true },
+              React__default.createElement(Close, null)
+            )
           )
         ),
         this.props.children
@@ -36237,7 +36252,8 @@ Drawer.propTypes = {
   placement: PropTypes.oneOf(['right', 'left', 'top', 'bottom']),
   width: PropTypes.number,
   bodyStyle: PropTypes.object,
-  style: PropTypes.object
+  style: PropTypes.object,
+  drawerHeaderContent: PropTypes.string.isRequired
 };
 Drawer.defaultProps = {
   width: undefined,
