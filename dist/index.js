@@ -36223,10 +36223,10 @@ var Drawer = function (_React$Component) {
             null,
             this.props.title
           ),
-          this.props.drawerHeaderContent && React__default.createElement(
+          this.props.drawerHeadContent && React__default.createElement(
             StyledContent,
             null,
-            'Drawer Content'
+            this.props.drawerHeadContent
           ),
           React__default.createElement(
             StyledActions,
@@ -36253,7 +36253,7 @@ Drawer.propTypes = {
   width: PropTypes.number,
   bodyStyle: PropTypes.object,
   style: PropTypes.object,
-  drawerHeaderContent: PropTypes.string.isRequired
+  drawerHeadContent: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
 Drawer.defaultProps = {
   width: undefined,

@@ -51,7 +51,7 @@ export default class Drawer extends React.Component {
     width: PropTypes.number,
     bodyStyle: PropTypes.object,
     style: PropTypes.object,
-    drawerHeaderContent: PropTypes.string.isRequired,
+    drawerHeadContent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   };
 
   static defaultProps = {
@@ -73,7 +73,7 @@ export default class Drawer extends React.Component {
         <Header className="drawer-header">
           <StyledTitle>{this.props.title}</StyledTitle>
 
-          {this.props.drawerHeaderContent && <StyledContent>Drawer Content</StyledContent>}
+          {this.props.drawerHeadContent && <StyledContent>{this.props.drawerHeadContent}</StyledContent>}
 
           <StyledActions>
             <StyledButton clickFn={this.props.onClose} size={'sm'} icon>
