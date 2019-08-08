@@ -145,6 +145,7 @@ export default class Input extends Component {
                 onChange={onChange}
                 onBlur={onBlur}
                 type={type}
+                {...this.props}
                 {...custom}
               >
                 {this.props.children}
