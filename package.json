@@ -1,6 +1,6 @@
 {
   "name": "ui-components",
-  "version": "0.0.114",
+  "version": "0.0.115",
   "description": "project44&#x27;s UI Component Library",
   "author": "project44",
   "license": "MIT",
@@ -40,7 +40,6 @@
     "@types/react": "^16.7.20",
     "@types/react-dom": "^16.0.11",
     "babel-core": "^6.26.3",
-    "babel-eslint": "^10.0.2",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-styled-components": "^1.10.0",
     "babel-preset-env": "^1.7.0",
