@@ -70,7 +70,7 @@ export default class Drawer extends React.Component {
         bodyStyle={this.props.bodyStyle}
         style={this.props.style}
       >
-        <Header className="drawer-header">
+        <Header>
           <StyledTitle>{this.props.title}</StyledTitle>
 
           {this.props.drawerHeadContent && <StyledContent>{this.props.drawerHeadContent}</StyledContent>}

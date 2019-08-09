@@ -36210,7 +36210,7 @@ var Drawer$1 = function (_React$Component) {
         },
         React.createElement(
           Header,
-          { className: 'drawer-header' },
+          null,
           React.createElement(
             StyledTitle,
             null,
