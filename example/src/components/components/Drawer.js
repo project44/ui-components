@@ -22,6 +22,7 @@ hideDrawer = () => {
 </Button>
 <Drawer
   title="Basic Drawer"
+  drawerHeadContent={<>optional head content</>}
   width={400}
   visible={this.state.drawerOpen}
   onClose={this.hideDrawer}
@@ -65,6 +66,7 @@ export default class DrawerDemo extends Component {
               </Button>
               <Drawer
                 title="Basic Drawer"
+                drawerHeadContent={<>optional head content</>}
                 width={400}
                 visible={this.state.drawerOpen}
                 onClose={this.hideDrawer}
