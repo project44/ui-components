@@ -39,6 +39,7 @@ declare module 'ui-components' {
     width?: number;
     bodyStyle?: React.CSSProperties;
     style?: React.CSSProperties;
+    drawerHeadContent: JSX.Element;
   }
 
   interface ColorPickerProps {
