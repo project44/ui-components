@@ -35,11 +35,11 @@ declare module 'ui-components' {
     visible: boolean;
     onClose: () => void;
     title: string;
+    drawerHeadContent?: JSX.Element;
     placement?: 'right' | 'left' | 'top' | 'bottom';
     width?: number;
     bodyStyle?: React.CSSProperties;
     style?: React.CSSProperties;
-    drawerHeadContent: JSX.Element;
   }
 
   interface ColorPickerProps {
