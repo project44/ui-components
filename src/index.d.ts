@@ -35,7 +35,7 @@ declare module 'ui-components' {
     visible: boolean;
     onClose: () => void;
     title: string;
-    drawerHeadContent?: Node;
+    drawerHeadContent?: JSX.Element;
     placement?: 'right' | 'left' | 'top' | 'bottom';
     width?: number;
     bodyStyle?: React.CSSProperties;

@@ -51,7 +51,7 @@ export default class Drawer extends React.Component {
     width: PropTypes.number,
     bodyStyle: PropTypes.object,
     style: PropTypes.object,
-    drawerHeadContent: PropTypes.node,
+    drawerHeadContent: PropTypes.element,
   };
 
   static defaultProps = {
@@ -69,6 +69,7 @@ export default class Drawer extends React.Component {
         width={this.props.width}
         bodyStyle={this.props.bodyStyle}
         style={this.props.style}
+        drawerHeadContent={this.props.drawerHeadContent}
       >
         <Header>
           <StyledTitle>{this.props.title}</StyledTitle>
