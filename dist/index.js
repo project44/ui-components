@@ -36257,7 +36257,7 @@ Drawer.propTypes = {
   width: PropTypes.number,
   bodyStyle: PropTypes.object,
   style: PropTypes.object,
-  drawerHeadContent: PropTypes.element
+  drawerHeadContent: PropTypes.node
 };
 Drawer.defaultProps = {
   width: undefined,

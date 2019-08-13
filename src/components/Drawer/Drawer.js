@@ -51,7 +51,7 @@ export default class Drawer extends React.Component {
     width: PropTypes.number,
     bodyStyle: PropTypes.object,
     style: PropTypes.object,
-    drawerHeadContent: PropTypes.element,
+    drawerHeadContent: PropTypes.node,
   };
 
   static defaultProps = {
