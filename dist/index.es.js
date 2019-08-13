@@ -36210,7 +36210,8 @@ var Drawer$1 = function (_React$Component) {
           closable: false,
           width: this.props.width,
           bodyStyle: this.props.bodyStyle,
-          style: this.props.style
+          style: this.props.style,
+          drawerHeadContent: this.props.drawerHeadContent
         },
         React.createElement(
           Header,
@@ -36250,7 +36251,7 @@ Drawer$1.propTypes = {
   width: PropTypes.number,
   bodyStyle: PropTypes.object,
   style: PropTypes.object,
-  drawerHeadContent: PropTypes.node
+  drawerHeadContent: PropTypes.element
 };
 Drawer$1.defaultProps = {
   width: undefined,

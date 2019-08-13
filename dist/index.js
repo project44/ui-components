@@ -26610,7 +26610,7 @@ var invariant_1 = invariant;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * 
+ *
  */
 
 function makeEmptyFunction(arg) {
@@ -36217,7 +36217,8 @@ var Drawer = function (_React$Component) {
           closable: false,
           width: this.props.width,
           bodyStyle: this.props.bodyStyle,
-          style: this.props.style
+          style: this.props.style,
+          drawerHeadContent: this.props.drawerHeadContent
         },
         React__default.createElement(
           Header,
@@ -36257,7 +36258,7 @@ Drawer.propTypes = {
   width: PropTypes.number,
   bodyStyle: PropTypes.object,
   style: PropTypes.object,
-  drawerHeadContent: PropTypes.node
+  drawerHeadContent: PropTypes.element
 };
 Drawer.defaultProps = {
   width: undefined,
