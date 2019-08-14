@@ -95,7 +95,8 @@
     "polished": "^2.3.3",
     "rc-color-picker": "^1.2.6",
     "react-router-dom": "^4.3.1",
-    "react-router-hash-link": "^1.2.1"
+    "react-router-hash-link": "^1.2.1",
+    "ui-components": "project44/ui-components#0.0.121"
   },
   "husky": {
     "hooks": {

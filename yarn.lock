@@ -15003,6 +15003,21 @@ uglify-to-browserify@~1.0.0:
   resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
   integrity sha1-bgkk1r2mta/jSeOabWMoUKD4grc=
 
+ui-components@project44/ui-components#0.0.121:
+  version "0.0.121"
+  resolved "https://codeload.github.com/project44/ui-components/tar.gz/a2ce072023b829ae2ceca3b967a0ef28bcda6df1"
+  dependencies:
+    "@types/react" "^16.7.20"
+    antd "3.15.0"
+    autoprefixer "^9.1.5"
+    babel-plugin-import "^1.8.0"
+    concurrently "^4.0.1"
+    lodash "^4.17.14"
+    polished "^2.3.3"
+    rc-color-picker "^1.2.6"
+    react-router-dom "^4.3.1"
+    react-router-hash-link "^1.2.1"
+
 unherit@^1.0.4:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/unherit/-/unherit-1.1.1.tgz#132748da3e88eab767e08fabfbb89c5e9d28628c"
