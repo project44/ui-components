@@ -1,3 +1,5 @@
+@import '../../styles/design/colors';
+
 .select {
   display: flex;
   .select__dropdown {
@@ -60,4 +62,9 @@
       }
     }
   }
+}
+
+.ant-select-dropdown-menu-item-active,
+.ant-select-dropdown-menu-item:hover {
+  background-color: var(--primary-grey-20);
 }
