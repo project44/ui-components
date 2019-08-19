@@ -108,7 +108,7 @@ export default class DateRange extends Component {
             onChange={value => {
               this.onStartChange(value);
               if (datepickerStartChangeFn) {
-                datepickerStartChangeFn(value);
+                datepickerStartChangeFn(value.format('YYYY-MM-DD') + 'T00:00:00.000Z');
               }
             }}
             onOpenChange={this.handleStartOpenChange}
@@ -130,7 +130,7 @@ export default class DateRange extends Component {
             onChange={value => {
               this.onEndChange(value);
               if (datepickerEndChangeFn) {
-                datepickerEndChangeFn(value);
+                datepickerEndChangeFn(value.format('YYYY-MM-DD') + 'T23:59:59.999Z');
               }
             }}
             open={this.state.endOpen}
