@@ -24531,11 +24531,11 @@ var DateRange = function (_Component) {
     };
 
     _this.onStartChange = function (value) {
-      _this.onChange('startValue', value);
+      _this.onChange('startValue', value.format('MM/DD/YYYY'));
     };
 
     _this.onEndChange = function (value) {
-      _this.onChange('endValue', value);
+      _this.onChange('endValue', value.format('MM/DD/YYYY'));
     };
 
     _this.handleStartOpenChange = function (open) {
@@ -24615,7 +24615,7 @@ var DateRange = function (_Component) {
             onChange: function onChange(value) {
               _this2.onStartChange(value);
               if (datepickerStartChangeFn) {
-                datepickerStartChangeFn(value);
+                datepickerStartChangeFn(value.format('YYYY-MM-DD') + 'T00:00:00.000Z');
               }
             },
             onOpenChange: this.handleStartOpenChange,
@@ -24643,7 +24643,7 @@ var DateRange = function (_Component) {
             onChange: function onChange(value) {
               _this2.onEndChange(value);
               if (datepickerEndChangeFn) {
-                datepickerEndChangeFn(value);
+                datepickerEndChangeFn(value.format('YYYY-MM-DD') + 'T23:59:59.999Z');
               }
             },
             open: this.state.endOpen,
@@ -26302,7 +26302,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: _library ? 'pure' : 'global',
+  mode: 'pure',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -28414,7 +28414,7 @@ var _meta_5 = _meta.onFreeze;
 
 var defineProperty$4 = _objectDp.f;
 var _wksDefine = function (name) {
-  var $Symbol = _core.Symbol || (_core.Symbol = _library ? {} : _global.Symbol || {});
+  var $Symbol = _core.Symbol || (_core.Symbol = {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty$4($Symbol, name, { value: _wksExt.f(name) });
 };
 
