@@ -10,67 +10,61 @@ export default class DateRange extends Component {
     startLabel: PropTypes.string,
     endLabel: PropTypes.string,
     format: PropTypes.string,
-    boundStartDateValue: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    boundEndDateValue: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
+    boundStartDateValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    boundEndDateValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     datepickerStartChangeFn: PropTypes.func,
-    datepickerEndChangeFn: PropTypes.func
-  }
+    datepickerEndChangeFn: PropTypes.func,
+  };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      endOpen: false
+      endOpen: false,
     };
   }
 
-  disabledStartDate = (startValue) => {
+  disabledStartDate = startValue => {
     const endValue = this.props.boundEndDateValue;
     if (!startValue || !endValue) {
       return false;
     }
     return startValue.valueOf() > endValue.valueOf();
-  }
+  };
 
-  disabledEndDate = (endValue) => {
+  disabledEndDate = endValue => {
     const startValue = this.props.boundStartDateValue;
     if (!endValue || !startValue) {
       return false;
     }
     return endValue.valueOf() <= startValue.valueOf();
-  }
+  };
 
   onChange = (field, value) => {
     this.setState({
-      [field]: value
+      [field]: value,
     });
-  }
+  };
 
-  onStartChange = (value) => {
-    this.onChange('startValue', value);
-  }
+  onStartChange = value => {
+    this.onChange('startValue', value.format('MM/DD/YYYY'));
+  };
 
-  onEndChange = (value) => {
-    this.onChange('endValue', value);
-  }
+  onEndChange = value => {
+    this.onChange('endValue', value.format('MM/DD/YYYY'));
+  };
 
-  handleStartOpenChange = (open) => {
+  handleStartOpenChange = open => {
     if (!open) {
       this.setState({ endOpen: true });
     }
-  }
+  };
 
-  handleEndOpenChange = (open) => {
+  handleEndOpenChange = open => {
     this.setState({ endOpen: open });
-  }
+  };
 
-  formatDateValue = (date) => {
+  formatDateValue = date => {
     if (typeof date === 'string') {
       return moment(date);
     } else if (moment.isMoment(date)) {
@@ -78,7 +72,7 @@ export default class DateRange extends Component {
     } else {
       return null;
     }
-  }
+  };
 
   render() {
     const {
@@ -89,58 +83,54 @@ export default class DateRange extends Component {
       datepickerStartChangeFn,
       datepickerEndChangeFn,
       boundStartDateValue,
-      boundEndDateValue
+      boundEndDateValue,
     } = this.props;
 
     const startValueBound = this.formatDateValue(boundStartDateValue);
     const endValueBound = this.formatDateValue(boundEndDateValue);
 
-    const calendarIcon = (
-      <i className='material-icons'>
-        calendar_today
-      </i>
-    );
+    const calendarIcon = <i className="material-icons">calendar_today</i>;
 
     return (
-      <div className='date-range flex'>
-        <div className='ant-form-vertical'>
-          {startLabel &&
-            <div className='ant-form-item-label'>
+      <div className="date-range flex">
+        <div className="ant-form-vertical">
+          {startLabel && (
+            <div className="ant-form-item-label">
               <label title={startLabel}>{startLabel}</label>
             </div>
-          }
+          )}
           <AntDatePicker
             placeholder={placeholder}
-            className='start-date'
+            className="start-date"
             disabledDate={this.disabledStartDate}
             format={format}
             value={startValueBound}
-            onChange={(value) => {
+            onChange={value => {
               this.onStartChange(value);
               if (datepickerStartChangeFn) {
-                datepickerStartChangeFn(value);
+                datepickerStartChangeFn(value.format('YYYY-MM-DD') + 'T00:00:00.000Z');
               }
             }}
             onOpenChange={this.handleStartOpenChange}
             suffixIcon={calendarIcon}
           />
         </div>
-        <div className='ant-form-vertical'>
-          {endLabel &&
-            <div className='ant-form-item-label'>
+        <div className="ant-form-vertical">
+          {endLabel && (
+            <div className="ant-form-item-label">
               <label title={endLabel}>{endLabel}</label>
             </div>
-          }
+          )}
           <AntDatePicker
             placeholder={placeholder}
-            className='end-date'
+            className="end-date"
             disabledDate={endValueBound ? this.disabledEndDate : null}
             format={format}
             value={endValueBound}
-            onChange={(value) => {
+            onChange={value => {
               this.onEndChange(value);
               if (datepickerEndChangeFn) {
-                datepickerEndChangeFn(value);
+                datepickerEndChangeFn(value.format('YYYY-MM-DD') + 'T23:59:59.999Z');
               }
             }}
             open={this.state.endOpen}
