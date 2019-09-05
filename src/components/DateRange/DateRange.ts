@@ -102,6 +102,7 @@ export default class DateRange extends Component {
           <AntDatePicker
             placeholder={placeholder}
             className="start-date"
+            popupStyle={{ zIndex: 9999 }}
             disabledDate={this.disabledStartDate}
             format={format}
             value={startValueBound}
@@ -124,6 +125,7 @@ export default class DateRange extends Component {
           <AntDatePicker
             placeholder={placeholder}
             className="end-date"
+            popupStyle={{ zIndex: 9999 }}
             disabledDate={endValueBound ? this.disabledEndDate : null}
             format={format}
             value={endValueBound}
