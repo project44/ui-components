@@ -19122,6 +19122,7 @@ var DatePicker = function (_Component) {
         placeholder: placeholder,
         format: format,
         className: 'date-picker',
+        popupStyle: { zIndex: 9999 },
         onChange: onChange,
         suffixIcon: calendarIcon
       });
@@ -19702,6 +19703,7 @@ var Select = function (_Component) {
             _extends({
               showSearch: showSearch,
               className: 'select__input',
+              dropdownStyle: { zIndex: 9999 },
               showArrow: false,
               onDropdownVisibleChange: this.handleDropdownChange,
               placeholder: placeholder$$1,
@@ -24616,6 +24618,7 @@ var DateRange = function (_Component) {
           React__default.createElement(antd.DatePicker, {
             placeholder: placeholder,
             className: 'start-date',
+            popupStyle: { zIndex: 9999 },
             disabledDate: this.disabledStartDate,
             format: format,
             value: startValueBound,
@@ -24644,6 +24647,7 @@ var DateRange = function (_Component) {
           React__default.createElement(antd.DatePicker, {
             placeholder: placeholder,
             className: 'end-date',
+            popupStyle: { zIndex: 9999 },
             disabledDate: endValueBound ? this.disabledEndDate : null,
             format: format,
             value: endValueBound,
@@ -26309,7 +26313,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: 'pure',
+  mode: _library ? 'pure' : 'global',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -28421,7 +28425,7 @@ var _meta_5 = _meta.onFreeze;
 
 var defineProperty$4 = _objectDp.f;
 var _wksDefine = function (name) {
-  var $Symbol = _core.Symbol || (_core.Symbol = {});
+  var $Symbol = _core.Symbol || (_core.Symbol = _library ? {} : _global.Symbol || {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty$4($Symbol, name, { value: _wksExt.f(name) });
 };
 
