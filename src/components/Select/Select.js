@@ -67,6 +67,7 @@ export default class Select extends Component {
           <AntSelect
             showSearch={showSearch}
             className="select__input"
+            dropdownStyle={{ zIndex: 9999 }}
             showArrow={false}
             onDropdownVisibleChange={this.handleDropdownChange}
             placeholder={placeholder}
