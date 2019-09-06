@@ -19122,6 +19122,7 @@ var DatePicker = function (_Component) {
         placeholder: placeholder,
         format: format,
         className: 'date-picker',
+        popupStyle: { zIndex: 9999 },
         onChange: onChange,
         suffixIcon: calendarIcon
       });
@@ -19702,6 +19703,7 @@ var Select = function (_Component) {
             _extends({
               showSearch: showSearch,
               className: 'select__input',
+              dropdownStyle: { zIndex: 9999 },
               showArrow: false,
               onDropdownVisibleChange: this.handleDropdownChange,
               placeholder: placeholder$$1,
@@ -24538,11 +24540,11 @@ var DateRange = function (_Component) {
     };
 
     _this.onStartChange = function (value) {
-      _this.onChange('startValue', value);
+      _this.onChange('startValue', value.format('MM/DD/YYYY'));
     };
 
     _this.onEndChange = function (value) {
-      _this.onChange('endValue', value);
+      _this.onChange('endValue', value.format('MM/DD/YYYY'));
     };
 
     _this.handleStartOpenChange = function (open) {
@@ -24616,13 +24618,14 @@ var DateRange = function (_Component) {
           React__default.createElement(antd.DatePicker, {
             placeholder: placeholder,
             className: 'start-date',
+            popupStyle: { zIndex: 9999 },
             disabledDate: this.disabledStartDate,
             format: format,
             value: startValueBound,
             onChange: function onChange(value) {
               _this2.onStartChange(value);
               if (datepickerStartChangeFn) {
-                datepickerStartChangeFn(value);
+                datepickerStartChangeFn(value.format('YYYY-MM-DD') + 'T00:00:00.000Z');
               }
             },
             onOpenChange: this.handleStartOpenChange,
@@ -24644,13 +24647,14 @@ var DateRange = function (_Component) {
           React__default.createElement(antd.DatePicker, {
             placeholder: placeholder,
             className: 'end-date',
+            popupStyle: { zIndex: 9999 },
             disabledDate: endValueBound ? this.disabledEndDate : null,
             format: format,
             value: endValueBound,
             onChange: function onChange(value) {
               _this2.onEndChange(value);
               if (datepickerEndChangeFn) {
-                datepickerEndChangeFn(value);
+                datepickerEndChangeFn(value.format('YYYY-MM-DD') + 'T23:59:59.999Z');
               }
             },
             open: this.state.endOpen,
@@ -36177,15 +36181,25 @@ var Header = styled.div.withConfig({
   componentId: 'sc-1wsb8yi-0'
 })(['&&{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}']);
 
-var Title = styled.div.withConfig({
-  displayName: 'Drawer__Title',
+var StyledTitle = styled.div.withConfig({
+  displayName: 'Drawer__StyledTitle',
   componentId: 'sc-1wsb8yi-1'
-})(['&&{font-size:21px;}']);
+})(['&&{display:flex;flex:0 1 auto;font-size:21px;max-width:100%;padding-right:1rem;position:relative;width:auto;}']);
+
+var StyledContent = styled.div.withConfig({
+  displayName: 'Drawer__StyledContent',
+  componentId: 'sc-1wsb8yi-2'
+})(['&&{display:flex;flex:1 1 auto;max-width:100%;position:relative;}']);
+
+var StyledActions = styled.div.withConfig({
+  displayName: 'Drawer__StyledActions',
+  componentId: 'sc-1wsb8yi-3'
+})(['&&{display:flex;flex:0 1 auto;max-width:100%;position:relative;}']);
 
 var StyledButton$1 = styled(Button).withConfig({
   displayName: 'Drawer__StyledButton',
-  componentId: 'sc-1wsb8yi-2'
-})(['&&{margin-left:18px;margin-right:0;}']);
+  componentId: 'sc-1wsb8yi-4'
+})(['&&{margin-left:1rem;margin-right:0;}']);
 
 var Drawer = function (_React$Component) {
   inherits(Drawer, _React$Component);
@@ -36207,20 +36221,30 @@ var Drawer = function (_React$Component) {
           closable: false,
           width: this.props.width,
           bodyStyle: this.props.bodyStyle,
-          style: this.props.style
+          style: this.props.style,
+          drawerHeadContent: this.props.drawerHeadContent
         },
         React__default.createElement(
           Header,
           null,
           React__default.createElement(
-            Title,
+            StyledTitle,
             null,
             this.props.title
           ),
+          this.props.drawerHeadContent && React__default.createElement(
+            StyledContent,
+            null,
+            this.props.drawerHeadContent
+          ),
           React__default.createElement(
-            StyledButton$1,
-            { clickFn: this.props.onClose, size: 'sm', icon: true },
-            React__default.createElement(Close, null)
+            StyledActions,
+            null,
+            React__default.createElement(
+              StyledButton$1,
+              { clickFn: this.props.onClose, size: 'sm', icon: true },
+              React__default.createElement(Close, null)
+            )
           )
         ),
         this.props.children
@@ -36237,7 +36261,8 @@ Drawer.propTypes = {
   placement: PropTypes.oneOf(['right', 'left', 'top', 'bottom']),
   width: PropTypes.number,
   bodyStyle: PropTypes.object,
-  style: PropTypes.object
+  style: PropTypes.object,
+  drawerHeadContent: PropTypes.element
 };
 Drawer.defaultProps = {
   width: undefined,
