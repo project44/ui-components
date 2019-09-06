@@ -17,6 +17,7 @@ import DateRange from './components/DateRange/DateRange';
 import StickyNav from './components/StickyNav/StickyNav';
 import Popover from './components/Popover/Popover';
 import ColorPicker from './components/ColorPicker/ColorPicker';
+import Modal from './components/Modal/Modal';
 import {
   Layers,
   Settings,
@@ -80,4 +81,5 @@ export {
   Drawer,
   NoteIcon,
   BookIcon,
+  Modal,
 };
