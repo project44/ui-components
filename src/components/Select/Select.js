@@ -28,6 +28,7 @@ export default class Select extends Component {
     onChange: PropTypes.func,
     icon: PropTypes.string,
     theme: PropTypes.shape(defaultThemeShape),
+    dataPropToRender: PropTypes.string,
   };
   static contextType = ThemeContext;
 
@@ -54,6 +55,7 @@ export default class Select extends Component {
       defaultValue,
       onChange,
       icon = 'arrow_drop_down',
+      dataPropToRender = 'value',
       ...props
     } = this.props;
     return (
@@ -78,7 +80,7 @@ export default class Select extends Component {
             {...props}
           >
             {this.props.dataSource.map(item => {
-              return <AntSelect.Option key={item.id}>{item.value}</AntSelect.Option>;
+              return <AntSelect.Option key={item.id}>{item[dataPropToRender]}</AntSelect.Option>;
             })}
           </AntSelect>
           <div className="select__icon">
