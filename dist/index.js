@@ -18654,7 +18654,7 @@ ThemeProvider.defaultProps = {
 var StyledButton = styled(antd.Button).withConfig({
   displayName: 'Button__StyledButton',
   componentId: 'sc-1f3ih9g-0'
-})(['&&.p44-btn--primary{background-color:', ';}&&.p44-btn--primary:hover,&&.p44-btn--primary:focus{background-color:', ';}&&.p44-btn--primary-transparent{border:solid 1px ', ';color:', ';}&&.p44-btn--primary-transparent:hover,&&.p44-btn--primary-transparent:focus{border:solid 1px ', ';color:', ';background-color:', ';}&&.p44-btn--primary-transparent-text:hover,&&.p44-btn--primary-transparent-text:focus{border:solid 1px ', ';color:', ';}'], function (props) {
+})(['&&.p44-btn--primary{background-color:', ';}&&.p44-btn--primary:hover,&&.p44-btn--primary:focus{background-color:', ';}&&.p44-btn--primary-transparent{border:solid 1px ', ';color:', ';}&&.p44-btn--primary-transparent:hover,&&.p44-btn--primary-transparent:focus{border:solid 1px ', ';color:', ';background-color:', ';}&&.p44-btn--primary-transparent-text{border:solid 1px transparent;}&&.p44-btn--primary-transparent-text:hover,&&.p44-btn--primary-transparent-text:focus{border:solid 1px ', ';color:', ';}'], function (props) {
   return props.theme && props.theme.primaryColor;
 }, function (props) {
   return curriedShade(0.2)(props.theme.primaryColor);
@@ -26313,7 +26313,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: _library ? 'pure' : 'global',
+  mode: 'pure',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -28238,8 +28238,6 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
-var returnThis = function () { return this; };
-
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -28264,8 +28262,6 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -28274,7 +28270,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {
@@ -28425,7 +28421,7 @@ var _meta_5 = _meta.onFreeze;
 
 var defineProperty$4 = _objectDp.f;
 var _wksDefine = function (name) {
-  var $Symbol = _core.Symbol || (_core.Symbol = _library ? {} : _global.Symbol || {});
+  var $Symbol = _core.Symbol || (_core.Symbol = {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty$4($Symbol, name, { value: _wksExt.f(name) });
 };
 

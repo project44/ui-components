@@ -28,6 +28,7 @@ const StyledButton = styled(AntButton)`
       }
     }
     &--primary-transparent-text {
+      border: solid 1px transparent;
       &:hover,
       &:focus {
         border: solid 1px ${props => shade(0.2)(props.theme.primaryColor)};
