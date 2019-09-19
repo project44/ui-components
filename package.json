@@ -1,6 +1,6 @@
 {
   "name": "ui-components",
-  "version": "0.0.126",
+  "version": "0.0.127",
   "description": "project44&#x27;s UI Component Library",
   "author": "project44",
   "license": "MIT",
@@ -88,7 +88,7 @@
   ],
   "dependencies": {
     "@types/react": "*",
-    "antd": "3.15.0",
+    "antd": "3.23.3",
     "autoprefixer": "^9.1.5",
     "babel-plugin-import": "^1.8.0",
     "concurrently": "^4.0.1",
