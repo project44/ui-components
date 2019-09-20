@@ -18608,10 +18608,11 @@ curry
 (transparentize);
 
 var primaryBlue = '#00558b';
-var primaryGreyEighty = '#575451';
 var primaryGreyForty = '#aba9a8';
-var primaryGreyTwenty = '#D5D4D4';
 var primaryGreyFive = '#f3f3f3';
+var primaryGreyTwenty = '#d5d4d4';
+var primaryGreyEighty = '#575451';
+var black = '#000000';
 var white = '#ffffff';
 
 var colors = {
@@ -20986,6 +20987,8 @@ var FF_ITERATOR = '@@iterator';
 var KEYS = 'keys';
 var VALUES = 'values';
 
+var returnThis = function () { return this; };
+
 var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   _iterCreate(Constructor, NAME, next);
   var getMethod = function (kind) {
@@ -21010,6 +21013,8 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
       // Set @@toStringTag to native iterators
       _setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -21018,7 +21023,7 @@ var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORC
     $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if ((FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     _hide(proto, ITERATOR, $default);
   }
   if (DEFAULT) {
@@ -21663,7 +21668,7 @@ var performanceNow = createCommonjsModule(function (module) {
 
 }).call(commonjsGlobal);
 
-//# sourceMappingURL=performance-now.js.map
+
 });
 
 var root = typeof window === 'undefined' ? commonjsGlobal : window
@@ -34573,14 +34578,19 @@ var omit$1 = _flatRest(function(object, paths) {
 
 var omit_1 = omit$1;
 
+var StyledCard = styled(AntCard).withConfig({
+  displayName: 'Card__StyledCard',
+  componentId: 'q2wl93-0'
+})(['&&{background:', ';box-shadow:0 1px 2px 0 ', ';margin-bottom:1rem;}&& header{border-bottom:1px solid ', ';}&& header,&& main,&& footer{padding:1.5rem 1.5rem;}&& header .row,&& main .row,&& footer .row{margin-left:-1.5rem;margin-right:-1.5rem;}&& footer{border-top:1px solid ', ';}&& footer.footerBg{background-color:', ';border:none;}'], white, rgba(black, 0.5), primaryGreyTwenty, primaryGreyTwenty, primaryGreyFive);
+
 var Card = function Card(_ref) {
   var children = _ref.children,
       rest = objectWithoutProperties(_ref, ['children']);
 
   var propsMinusClassNames = omit_1(rest, ['classNames']);
   return React__default.createElement(
-    AntCard,
-    _extends({ className: classNames('card', rest.classNames) }, propsMinusClassNames),
+    StyledCard,
+    _extends({ className: classNames(rest.classNames) }, propsMinusClassNames),
     children
   );
 };
@@ -46529,7 +46539,7 @@ var Input = function (_Component) {
               antd.Input.Search,
               _extends({
                 className: search,
-                placeholder: 'THIS IS A SEARCH FIELD',
+                placeholder: placeholder$$1,
                 defaultValue: defaultValue,
                 onPressEnter: onPressEnter,
                 onSearch: onSearch,
@@ -48891,12 +48901,16 @@ exports["default"] = _default;
 
 var AntModal = unwrapExports(modal);
 
+var StyledModal = styled(AntModal).withConfig({
+  displayName: 'Modal__StyledModal',
+  componentId: 'enpugo-0'
+})(['&&{}']);
 var Modal$1 = function Modal(_ref) {
   var children = _ref.children,
       rest = objectWithoutProperties(_ref, ['children']);
 
   return React__default.createElement(
-    AntModal,
+    StyledModal,
     rest,
     children
   );
@@ -49302,7 +49316,7 @@ var Select = function (_Component) {
             this.props.dataSource.map(function (item) {
               return React__default.createElement(
                 antd.Select.Option,
-                { key: item.id, value: item.value },
+                { key: item.value, value: item.value },
                 item.displayValue || item.value
               );
             })

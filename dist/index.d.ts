@@ -1,6 +1,7 @@
 declare module 'ui-components' {
   import React from 'react';
   import { ButtonProps as AntButtonProps } from 'antd/lib/button';
+  import { SelectProps as AntSelectProps } from 'antd/lib/select';
   import { AlertProps } from 'antd/lib/alert';
   import { MessageApi } from 'antd/lib/message';
   interface ButtonProps extends Partial<AntButtonProps> {
@@ -60,6 +61,19 @@ declare module 'ui-components' {
     className?: string;
   }
 
+  interface SelectProps extends AntSelectProps<T> {
+    mode?: string;
+    label?: string;
+    placeholder?: string;
+    custom?: any;
+    showSearch?: boolean;
+    icon?: string;
+    dataSource: {
+      value: T;
+      displayValue?: string;
+    }[];
+  }
+
   export const Button: (props: ButtonProps) => React.FunctionComponent<ButtonProps, {}>;
   export const Checkbox: (props: CheckboxProps) => React.FunctionComponent<CheckboxProps, {}>;
   export class ColorPicker extends React.Component<ColorPickerProps, any> {}
@@ -78,7 +92,7 @@ declare module 'ui-components' {
   export const message: MessageApi;
   export class Alert extends React.Component<AlertProps, {}> {}
   export class Input extends React.Component<any, any> {}
-  export class Select extends React.Component<any, any> {}
+  export class Select extends React.Component<SelectProps, any> {}
   export class MultiInput extends React.Component<any, any> {}
   export class Row extends React.Component<any, any> {}
   export class Col extends React.Component<any, any> {}
