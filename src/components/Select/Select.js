@@ -79,7 +79,7 @@ export default class Select extends Component {
           >
             {this.props.dataSource.map(item => {
               return (
-                <AntSelect.Option key={item.id} value={item.value}>
+                <AntSelect.Option key={item.value} value={item.value}>
                   {item.displayValue || item.value}
                 </AntSelect.Option>
               );

@@ -61,7 +61,7 @@ declare module 'ui-components' {
     className?: string;
   }
 
-  interface SelectProps extends AntSelectProps {
+  interface SelectProps extends AntSelectProps<T> {
     mode?: string;
     label?: string;
     placeholder?: string;
@@ -69,8 +69,7 @@ declare module 'ui-components' {
     showSearch?: boolean;
     icon?: string;
     dataSource: {
-      id: string;
-      value: string;
+      value: T;
       displayValue?: string;
     }[];
   }
