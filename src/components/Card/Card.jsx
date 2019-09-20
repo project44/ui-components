@@ -4,11 +4,12 @@ import classNames from 'classNames';
 import AntCard from 'antd/lib/card';
 import omit from 'lodash/omit';
 import styled from 'styled-components';
+import { rgba } from 'polished';
 import { black, primaryGreyTwenty, white, primaryGreyFive } from '../../styles/colors';
 
 const StyledCard = styled(AntCard)`
   background: ${white};
-  box-shadow: 0 1px 2px 0 rgba(${black}, 0.5);
+  box-shadow: 0 1px 2px 0 ${rgba(black, 0.5)};
   margin-bottom: 1rem;
 
   header {
