@@ -21,6 +21,14 @@ declare module 'ui-components' {
     disabled?: boolean;
   }
 
+  interface CardProps {
+    [key: string]: any;
+  }
+
+  interface ModalProps {
+    [key: string]: any;
+  }
+
   interface CheckboxProps {
     checkboxData?: any;
     layout?: string;
@@ -54,7 +62,7 @@ declare module 'ui-components' {
 
   export const Button: (props: ButtonProps) => React.FunctionComponent<ButtonProps, {}>;
   export const Checkbox: (props: CheckboxProps) => React.FunctionComponent<CheckboxProps, {}>;
-  export class ColorPicker extends React.Component<ColorPickerProps, any> { }
+  export class ColorPicker extends React.Component<ColorPickerProps, any> {}
   export const Layers: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const Settings: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const Checkmark: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
@@ -64,21 +72,23 @@ declare module 'ui-components' {
   export const ChevronDown: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const Link: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const NoteIcon: (props: { className: string }) => React.FunctionComponent<{ className: string }, {}>;
-  export class TextArea extends React.Component<any, any> { }
+  export class TextArea extends React.Component<any, any> {}
   export const DocumentIcon: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const ChevronRight: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
   export const message: MessageApi;
-  export class Alert extends React.Component<AlertProps, {}> { }
-  export class Input extends React.Component<any, any> { }
-  export class Select extends React.Component<any, any> { }
-  export class MultiInput extends React.Component<any, any> { }
-  export class Row extends React.Component<any, any> { }
-  export class Col extends React.Component<any, any> { }
-  export class SubHeader extends React.Component<any, any> { }
-  export class StickyNav extends React.Component<any, any> { }
-  export class Popover extends React.Component<any, any> { }
+  export class Alert extends React.Component<AlertProps, {}> {}
+  export class Input extends React.Component<any, any> {}
+  export class Select extends React.Component<any, any> {}
+  export class MultiInput extends React.Component<any, any> {}
+  export class Row extends React.Component<any, any> {}
+  export class Col extends React.Component<any, any> {}
+  export class SubHeader extends React.Component<any, any> {}
+  export class StickyNav extends React.Component<any, any> {}
+  export class Popover extends React.Component<any, any> {}
   export const ThemeProvider: (props: any) => void;
-  export class Drawer extends React.Component<DrawerProps, any> { }
+  export class Drawer extends React.Component<DrawerProps, any> {}
   export const ShipmentModeIcon: (props: any) => React.FunctionComponent<any, any>;
   export const BookIcon: (props: IconProps) => React.FunctionComponent<IconProps, {}>;
+  export const Card: React.FC<CardProps>;
+  export const Modal: React.FC<ModalProps>;
 }
