@@ -58,7 +58,7 @@ const StyledInput = styled.div`
     }
   }
   .ant-btn-lg {
-    height: 48px;
+    height: 50px;
   }
 `;
 
@@ -100,6 +100,7 @@ export default class Input extends Component {
       type,
       className,
       custom,
+      enterButton,
     } = this.props;
 
     return (
@@ -129,7 +130,7 @@ export default class Input extends Component {
                 onSearch={onSearch}
                 onChange={onChange}
                 onBlur={onBlur}
-                enterButton={search === 'super' || search === 'primary'}
+                enterButton={search === 'super' || search === 'primary' || enterButton}
                 size={search === 'super' || search === 'primary' || search === 'secondary' ? 'large' : size}
                 type={type}
                 {...custom}

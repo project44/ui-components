@@ -3,7 +3,7 @@
 // Ant Colors & Styles can be overwritten here. Just use the variable names from
 // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
 
-@primary-color: #1DA57A;
+@primary-color: #1da57a;
 
 @font-size-base: 14px;
 
@@ -19,6 +19,10 @@
 @border-radius-sm: 0px;
 
 @input-height-base: 36px;
+
+// Needs to match @input-height-base, otherwise input-groups with buttons are misaligned.
+// for example <Input.Search /> will break if these values don't match.
+@btn-height-base: 36px; // Defaults to 32px.
 
 @input-height-lg: 48px;
 
