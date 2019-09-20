@@ -19,7 +19,11 @@
 @border-radius-sm: 0px;
 
 @input-height-base: 36px;
-@btn-height-base: 36px;
+
+// Needs to match @input-height-base, otherwise input-groups with buttons are misaligned.
+// for example <Input.Search /> will break if these values don't match.
+@btn-height-base: 36px; // Defaults to 32px.
+
 @input-height-lg: 48px;
 
 @input-placeholder-color: #aba9a8;

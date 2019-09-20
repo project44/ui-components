@@ -124,7 +124,7 @@ export default class Input extends Component {
             {search && (
               <AntInput.Search
                 className={search}
-                placeholder={'THIS IS A SEARCH FIELD'}
+                placeholder={placeholder}
                 defaultValue={defaultValue}
                 onPressEnter={onPressEnter}
                 onSearch={onSearch}

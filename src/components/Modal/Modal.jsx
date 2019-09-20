@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AntModal from 'antd/lib/modal';
-import './Modal.scss';
+import styled from 'styled-components';
+
+const StyledModal = styled(AntModal)``;
 const Modal = ({ children, ...rest }) => {
-  return <AntModal {...rest}>{children}</AntModal>;
+  return <StyledModal {...rest}>{children}</StyledModal>;
 };
 
 Modal.propTypes = {
