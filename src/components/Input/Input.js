@@ -126,7 +126,7 @@ export default class Input extends Component {
                 className={search}
                 placeholder={placeholder}
                 defaultValue={defaultValue}
-                onPressEnter={onPressEnter}
+                {...(!onSearch ? { onPressEnter } : {})}
                 onSearch={onSearch}
                 onChange={onChange}
                 onBlur={onBlur}
