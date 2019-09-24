@@ -46540,8 +46540,8 @@ var Input = function (_Component) {
               _extends({
                 className: search,
                 placeholder: placeholder$$1,
-                defaultValue: defaultValue,
-                onPressEnter: onPressEnter,
+                defaultValue: defaultValue
+              }, !onSearch ? { onPressEnter: onPressEnter } : {}, {
                 onSearch: onSearch,
                 onChange: onChange,
                 onBlur: onBlur,
