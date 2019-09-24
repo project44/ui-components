@@ -42,7 +42,8 @@ class Example extends Component {
 
 When you are ready to publish a new version of ui-components, follow the directions on the site, and and your new version should be published directly to GitHub, and viewable from the [releases](https://github.com/project44/ui-components/releases) page of this repo.
 
-- Run `yarn build` to generate the static assets
+- Run `yarn start` to generate the static assets. Once finished and termainl shows "waiting for changes", `CMD+C` to kill the process.
+- commit the generated `/dist` files, and push them up to **master**
 - Run `yarn version --patch | --minor | --major | --new-version <version>`
 - Run `git push` and `git push --tags`
 - Run `yarn deploy` to publish new gh-pages
