@@ -1,7 +1,6 @@
 # ui-components
 
-> project44&#x27;s UI Component Library
-> https://project44.github.io/ui-components/
+## This project has been archived and moved into the [portal-v2-ui](https://github.com/project44/portal-v2-ui) repo. The example page has been moved to https://project44.github.io/portal-v2-ui/
 
 [![NPM](https://img.shields.io/npm/v/ui-components.svg)](https://www.npmjs.com/package/ui-components) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
